@@ -26,7 +26,7 @@ public class GameWindow {
         jframe.setSize(1280,720);
         // Connecting the gamepanel to window
         jframe.add(gamePanel);
-        // making window to appear center of display
+        // Spawn the window in center of screen
         jframe.setLocationRelativeTo(null);
         // Make window visible
         jframe.setVisible(true);
