@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 // this class will be changed to abstract later
 // it is not abstract for now just for testing
-public  class Entity {
+public abstract class Entity {
     double positionX;
     double positionY;
     double height;
@@ -15,32 +15,6 @@ public  class Entity {
         this.positionX = positionX;
         this.positionY = positionY;
         this.height = height;
-        this.width = width;
-    }
-
-    // Getters and Setters
-    public double getPositionX() {
-        return this.positionX;
-    }
-    public void setPositionX(double positionX) {
-        this.positionX = positionX;
-    }
-    public double getPositionY() {
-        return this.positionY;
-    }
-    public void setPositionY(double positionY) {
-        this.positionY = positionY;
-    }
-    public double getHeight() {
-        return this.height;
-    }
-    public void setHeight(double height) {
-        this.height = height;
-    }
-    public double getWidth() {
-        return width;
-    }
-    public void setWidth(double width) {
         this.width = width;
     }
 

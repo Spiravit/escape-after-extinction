@@ -2,6 +2,7 @@ package group7.inputs;
 
 import group7.entities.Entity;
 import group7.main.GamePanel;
+import group7.utils.Direction;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -34,20 +35,16 @@ public class KeyboardInputs implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
             //Right arrow key code
-            gamePanel.changePositionX(+5);
-            System.out.println("right key pressed ");
+            gamePanel.setDirection(Direction.RIGHT);
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
             //gamePanel arrow key code
-            gamePanel.changePositionX(-5);
-            System.out.println("left key pressed ");
+            gamePanel.setDirection(Direction.LEFT);
         } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
             //Up arrow key code
-            System.out.println("up key pressed ");
-            gamePanel.changePositionY(-5);
+            gamePanel.setDirection(Direction.UP);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
             //Down arrow key code
-            System.out.println("down key pressed ");
-            gamePanel.changePositionY(5);
+            gamePanel.setDirection(Direction.DOWN);
         }
     }
 
@@ -60,6 +57,18 @@ public class KeyboardInputs implements KeyListener {
      */
     @Override
     public void keyReleased(KeyEvent e) {
-
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+            //Right arrow key code
+            gamePanel.removeDirection(Direction.RIGHT);
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
+            //gamePanel arrow key code
+            gamePanel.removeDirection(Direction.LEFT);
+        } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
+            //Up arrow key code
+            gamePanel.removeDirection(Direction.UP);
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
+            //Down arrow key code
+            gamePanel.removeDirection(Direction.DOWN);
+        }
     }
 }
