@@ -1,16 +1,36 @@
 package group7.main;
 
-import group7.entities.Entity;
+import group7.entities.Player;
 
-public class Game {
+public class Game implements Runnable{
     public GameWindow gameWindow;
     public GamePanel gamePanel;
-    public Entity Player; // this will be removed !!
+    public Player player; // this will be removed !!
     public Game(){
-        Entity Player= new Entity(100,200,10,10);
-        gamePanel =  new GamePanel(Player);
+        player = new Player(100,200,10,10);
+        gamePanel =  new GamePanel(player);
         gameWindow = new GameWindow(gamePanel);
         // Giving input focus to gamePanel
         gamePanel.requestFocus();
+        startGameLoop();
+    }
+
+    private void startGameLoop(){
+        Thread thread = new Thread(this);
+        thread.start();
+    }
+
+
+    public void run(){
+        while(true){
+            player.updatePlayer();
+            gamePanel.repaint();
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

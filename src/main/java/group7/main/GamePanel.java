@@ -1,7 +1,8 @@
 package group7.main;
 
-import group7.entities.Entity;
+import group7.entities.Player;
 import group7.inputs.*;
+import group7.utils.Direction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,21 +12,19 @@ import java.awt.*;
  * @author Salman Ayaz, Karmen Yung, Mohammad Parsaei, Chen Min
  */
 public class GamePanel extends JPanel {
-    Entity player;
-    public GamePanel(Entity player){
+    Player player;
+    public GamePanel(Player player){
         super.addKeyListener(new KeyboardInputs(this));
         super.addMouseListener(new MouseInputs());
         this.player=player;
     }
 
-    // Those two methods will be removed later, only for testing !
-    public void changePositionX(double differenceX) {
-        player.setPositionX(player.getPositionX()+differenceX);
-        repaint();
+    public void setDirection(Direction direction) {
+        player.setDirection(direction);
     }
-    public void changePositionY(double differenceY) {
-        player.setPositionY(player.getPositionY()+differenceY);
-        repaint();
+
+    public void removeDirection(Direction direction) {
+        player.removeDirection(direction);
     }
 
     public void paint(Graphics g){
