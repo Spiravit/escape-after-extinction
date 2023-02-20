@@ -7,7 +7,7 @@ public class Game implements Runnable{
     public GamePanel gamePanel;
     public Player player; // this will be removed !!
     public Game(){
-        player = new Player(100,200,10,10);
+        player = new Player(100,200,24*5,24*5);
         gamePanel =  new GamePanel(player);
         gameWindow = new GameWindow(gamePanel);
         // Giving input focus to gamePanel
@@ -21,10 +21,12 @@ public class Game implements Runnable{
     }
 
 
+    @Override
     public void run(){
         while(true){
-            player.updatePlayer();
+            player.update();
             gamePanel.repaint();
+            System.out.println("Hmmm????");
 
             try {
                 Thread.sleep(10);

@@ -20,6 +20,7 @@ public class GamePanel extends JPanel {
     }
 
     public void setDirection(Direction direction) {
+
         player.setDirection(direction);
     }
 

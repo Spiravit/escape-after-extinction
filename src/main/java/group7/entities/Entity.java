@@ -2,6 +2,7 @@ package group7.entities;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
+import java.io.IOException;
 
 // this class will be changed to abstract later
 // it is not abstract for now just for testing
@@ -22,7 +23,5 @@ public abstract class Entity {
         return new Rectangle((int)positionX,(int)positionY,(int)width,(int)height);
     }
 
-    public void renderEntity(Graphics g){
-        g.fillRect((int)positionX,(int)positionY,(int)width,(int)height);
-    }
+    abstract void renderEntity(Graphics g);
 }
