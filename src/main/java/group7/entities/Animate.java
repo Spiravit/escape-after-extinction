@@ -1,5 +1,11 @@
 package group7.entities;
 
+import group7.levels.LevelData;
+import group7.utils.Direction;
+
+import group7.levels.LevelData;
+import group7.utils.Direction;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -8,9 +14,17 @@ import java.awt.image.BufferedImage;
 public abstract class Animate extends Entity {
     // Constants for each Animated entities' actions
 
-        // Player Actions constants:
-        protected final static int PLAYER_IDLEACTION = 1;
-        protected final static int PLAYER_MOVINGACTION =0;
+    // Player Actions constants:
+    private LevelData levelData;
+
+    private boolean movingUp = false;
+    private boolean movingDown = false;
+    private boolean movingLeft = false;
+    private boolean movingRight = false;
+
+
+    protected final static int PLAYER_IDLEACTION = 1;
+    protected final static int PLAYER_MOVINGACTION = 0;
 
     // the current condition of animated entity,
     // for instance if currentAnimateAction=0, then the entity is a player that is moving
@@ -28,9 +42,10 @@ public abstract class Animate extends Entity {
     // Moving speed of entity to change position of entity on map
     protected float animatedEntitySpeed = 4.0f;
 
-    public Animate(double positionX, double positionY, double height, double width,int currentAnimateAction) {
+    public Animate(double positionX, double positionY, double height, double width, int currentAnimateAction, LevelData levelData) {
         super(positionX, positionY, height, width);
-        this.currentAnimateAction=currentAnimateAction;
+        this.currentAnimateAction = currentAnimateAction;
+        this.levelData = levelData;
     }
 
     // this comment will be changed to javaDOC later !!!
@@ -68,6 +83,57 @@ public abstract class Animate extends Entity {
             return 6;
         }
         return 0;
+    }
+
+
+    public void updatePlayer(){
+        if(this.movingUp && levelData.canMove((int)positionX, (int)(positionY - animatedEntitySpeed))){
+            positionY -= animatedEntitySpeed;
+        }
+        if(this.movingDown && levelData.canMove((int)positionX, (int)(positionY + animatedEntitySpeed))){
+            positionY += animatedEntitySpeed;
+        }
+        if(this.movingLeft && levelData.canMove((int)(positionX - animatedEntitySpeed), (int)positionY)){
+            positionX -= animatedEntitySpeed;
+        }
+        if(this.movingRight && levelData.canMove((int)(positionX + animatedEntitySpeed), (int)positionY)){
+            positionX += animatedEntitySpeed;
+        }
+        System.out.println("Player position: " + positionX + ", " + positionY);
+    }
+
+    public void setDirection(Direction direction){
+        switch(direction) {
+            case UP:
+                this.movingUp = true;
+                break;
+            case DOWN:
+                this.movingDown = true;
+                break;
+            case LEFT:
+                this.movingLeft = true;
+                break;
+            case RIGHT:
+                this.movingRight = true;
+                break;
+        }
+    }
+
+    public void removeDirection(Direction direction){
+        switch(direction) {
+            case UP:
+                this.movingUp = false;
+                break;
+            case DOWN:
+                this.movingDown = false;
+                break;
+            case LEFT:
+                this.movingLeft = false;
+                break;
+            case RIGHT:
+                this.movingRight = false;
+                break;
+        }
     }
 
 }

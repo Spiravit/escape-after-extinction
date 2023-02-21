@@ -3,6 +3,7 @@ package group7.entities;
 import group7.utils.AssetLoader;
 import static group7.utils.AssetLoader.*;
 import group7.utils.Direction;
+import group7.levels.LevelData;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,14 +17,11 @@ public class Player extends Animate {
     private boolean isMoving=false;
     private boolean isIdle = true;
 
-    private boolean movingUp,movingDown,movingLeft,movingRight = false;
-
-    
-
-    public Player(double positionX, double positionY, double height, double width) {
-        super(positionX, positionY, height, width,PLAYER_IDLEACTION);
+    public Player(double positionX, double positionY, double height, double width, LevelData levelData) {
+        super(positionX, positionY, height, width, PLAYER_IDLEACTION, levelData);
         loadAnimations();
     }
+
     @Override
     void loadAnimations() {
         BufferedImage dinosaur = AssetLoader.getSpriteAtlas(PINKPLAYER);
@@ -37,6 +35,7 @@ public class Player extends Animate {
             animatedEntityAnimations[1][j]=dinosaur.getSubimage(j*24+13*24,0,24,24);
         }
     }
+
     public void update() {
         // update position of a player based on player current action
         updatePlayer();
@@ -45,6 +44,7 @@ public class Player extends Animate {
         // check the action of player, if the action was changed, then change currentAnimateAction
         setAnimation();
     }
+
     @Override
     void setAnimation(){
         int oldAnimateAction = currentAnimateAction;
@@ -62,6 +62,7 @@ public class Player extends Animate {
             aniTick=0;
         }
     }
+
     @Override
     public void renderEntity(Graphics g){
         // draw the player, with the current animation and sprite in the current positions
@@ -72,26 +73,7 @@ public class Player extends Animate {
         if (currentAnimateAction==PLAYER_IDLEACTION){
             return; // no need to update position when player is in idle condition
         }
-        if(this.movingUp){
-            // if the up key was pressed, then movingUp is true
-            // then add amount of playerSpeed to position y of player
-            positionY -= animatedEntitySpeed;
-        }
-        else if(this.movingDown){
-            // if the down key was pressed, then movingDown is true
-            // then deduce amount of playerSpeed to position y of player
-            positionY += animatedEntitySpeed;
-        }
-        else if(this.movingLeft){
-            // if the left key was pressed, then movingLeft is true
-            // then deduce amount of playerSpeed to position x of player
-            positionX -= animatedEntitySpeed;
-        }
-        else if(this.movingRight){
-            // if the right key was pressed, then movingRight is true
-            // then add amount of playerSpeed to position x of player
-            positionX += animatedEntitySpeed;
-        }
+        super.updatePlayer();
     }
 
     public void setDirection(Direction direction){
@@ -100,38 +82,13 @@ public class Player extends Animate {
         // and set isIdle to false, in order to change currentAnimateAction later
         isMoving=true;
         isIdle=false;
-        switch(direction) {
-            case UP:
-                this.movingUp = true;
-                break;
-            case DOWN:
-                this.movingDown = true;
-                break;
-            case LEFT:
-                this.movingLeft = true;
-                break;
-            case RIGHT:
-                this.movingRight = true;
-                break;
-        }
+        super.setDirection(direction);
     }
 
     public void removeDirection(Direction direction){
         isMoving=false;
         isIdle=true;
-        switch(direction) {
-            case UP:
-                this.movingUp = false;
-                break;
-            case DOWN:
-                this.movingDown = false;
-                break;
-            case LEFT:
-                this.movingLeft = false;
-                break;
-            case RIGHT:
-                this.movingRight = false;
-                break;
-        }
+        
+        super.removeDirection(direction);
     }
 }

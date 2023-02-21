@@ -1,13 +1,14 @@
 package group7.main;
 
 import group7.entities.Player;
+import group7.levels.LevelData;
 
 public class Game implements Runnable{
     public GameWindow gameWindow;
     public GamePanel gamePanel;
     public Player player; // this will be removed !!
     public Game(){
-        player = new Player(100,200,24*5,24*5);
+        player = new Player(100, 200, 24*5, 24*5, new LevelData(1000, 1000));
         gamePanel =  new GamePanel(player);
         gameWindow = new GameWindow(gamePanel);
         // Giving input focus to gamePanel
