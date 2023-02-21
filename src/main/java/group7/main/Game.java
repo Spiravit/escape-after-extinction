@@ -7,6 +7,13 @@ public class Game implements Runnable{
     public GameWindow gameWindow;
     public GamePanel gamePanel;
     public Player player; // this will be removed !!
+
+    public final static int TILES_SIZE = 32;
+    public final static float GAME_SIZE_SCALE = 1.0f;
+    public final static int NUMBER_OF_TILES_IN_WIDTH = 15;
+    public final static int NUMBER_OF_TILES_IN_HEIGHT = 10 ;
+
+
     public Game(){
         player = new Player(100, 200, 24*5, 24*5, new LevelData(1000, 1000));
         gamePanel =  new GamePanel(player);

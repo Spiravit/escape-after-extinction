@@ -32,5 +32,7 @@ public class GameWindow {
         jframe.setVisible(true);
         // The window can not be resized by user
         jframe.setResizable(false);
+        // set the window size such that it packs the size of game panel
+        jframe.pack();
     }
 }
