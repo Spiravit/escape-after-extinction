@@ -26,7 +26,6 @@ public class Game implements Runnable{
         while(true){
             player.update();
             gamePanel.repaint();
-            System.out.println("Hmmm????");
 
             try {
                 Thread.sleep(10);
