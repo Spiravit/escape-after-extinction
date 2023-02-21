@@ -30,6 +30,7 @@ public class GamePanel extends JPanel {
 
     public void paint(Graphics g){
         super.paintComponent(g);
+        // redraw the player
         player.renderEntity(g);
     }
 }

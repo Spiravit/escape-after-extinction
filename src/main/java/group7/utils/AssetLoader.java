@@ -7,8 +7,7 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class AssetLoader {
-    public static final String PLAYERIDLE = "dinosaur_idle.png";
-    public static final String PLAYERMOVING = "dinosaur_move.png";
+    public static final String PINKPLAYER = "playerSprites/pink_dino_ani.png";
 
     public static final String SCIENTIST = "scientist_sprites.png";
     public static final String SPIKE = "spike_sprites.png";

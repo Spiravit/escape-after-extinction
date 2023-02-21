@@ -30,5 +30,7 @@ public class GameWindow {
         jframe.setLocationRelativeTo(null);
         // Make window visible
         jframe.setVisible(true);
+        // The window can not be resized by user
+        jframe.setResizable(false);
     }
 }
