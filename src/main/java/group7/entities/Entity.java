@@ -4,10 +4,11 @@ import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.io.IOException;
 
-// this class will be changed to abstract later
-// it is not abstract for now just for testing
+
 public abstract class Entity {
+    // position of entity in x-axis
     double positionX;
+    // position of entity in y-axis
     double positionY;
     double height;
     double width;
