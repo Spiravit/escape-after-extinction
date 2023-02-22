@@ -2,7 +2,7 @@ package group7.levels;
 
 import group7.entities.*;
 
-public class Level {
+public abstract class Level {
     private Player player;
     private LevelData levelData;
     private int width;

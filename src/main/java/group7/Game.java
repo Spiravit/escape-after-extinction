@@ -1,26 +1,27 @@
-package group7.main;
+package group7;
 
+import group7.Graphics.GraphicsPanel;
+import group7.Graphics.GraphicsWindow;
+import group7.Graphics.Render;
 import group7.entities.Player;
 import group7.levels.LevelData;
 import group7.levels.LevelManager;
 
+
 public class Game implements Runnable {
-    public GameWindow gameWindow;
-    public GamePanel gamePanel;
+    public GraphicsWindow gameWindow;
+    public GraphicsPanel gamePanel;
     public Player player; // this will be removed !!
     private LevelManager levels;
-
-    public final static int TILES_SIZE = 32;
-    public final static float GAME_SIZE_SCALE = 2.5f;
-    public final static int NUMBER_OF_TILES_IN_WIDTH = 15;
-    public final static int NUMBER_OF_TILES_IN_HEIGHT = 10 ;
-
+    private Render render;
 
     public Game(){
         LevelManager levels = new LevelManager();
-        player = new Player(100, 200, TILES_SIZE*GAME_SIZE_SCALE, TILES_SIZE*GAME_SIZE_SCALE, levels.getLevelOne());
-        gamePanel =  new GamePanel(player,levels);
-        gameWindow = new GameWindow(gamePanel);
+        Render render = new Render(gamePanel, 15, 10);
+        player = new Player(100, 200, render, levels.getLevelOne());
+        gamePanel =  new GraphicsPanel(player,levels);
+        gameWindow = new GraphicsWindow(gamePanel);
+        
         // Giving input focus to gamePanel
         gamePanel.requestFocus();
         startGameLoop();
