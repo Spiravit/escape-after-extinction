@@ -7,7 +7,6 @@ import javax.swing.*;
  * @author Salman Ayaz, Karmen Yung, Mohammad Parsaei, Chen Min
  */
 public class GraphicsWindow {
-
     private JFrame jframe;
 
     /**
@@ -15,7 +14,7 @@ public class GraphicsWindow {
      * @param gamePanel
      */
     public GraphicsWindow(GraphicsPanel gamePanel){
-        jframe= new JFrame();
+        jframe = new JFrame();
         // changing attributes of window by calling changeWindowAttributes field
         changeWindowAttributes(gamePanel);
     }

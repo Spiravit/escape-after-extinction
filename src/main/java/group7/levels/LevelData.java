@@ -56,6 +56,7 @@ public class LevelData {
         if (x < 0 || x >= levelData[0].length || y < 0 || y >= levelData.length) {
             return false;
         }
+        /*
         int tileX = (int) (x/(TILES_SIZE*GAME_SIZE_SCALE));
         int tileY = (int) (y/(TILES_SIZE*GAME_SIZE_SCALE));
         if (levelData[tileX][tileY] !=13){

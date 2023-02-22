@@ -3,7 +3,7 @@ package group7.entities;
 import group7.utils.AssetLoader;
 import static group7.utils.AssetLoader.*;
 import group7.utils.Direction;
-import group7.Graphics.Render;
+import group7.Graphics.RenderGrid;
 import group7.levels.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,8 +13,8 @@ public class Player extends Animate {
     private int health = 100;
     private int stamina = 100;
 
-    public Player(double positionX, double positionY, Render render, LevelData levelData) {
-        super(positionX, positionY, render, levelData);
+    public Player(double positionX, double positionY, RenderGrid renderGrid, LevelData levelData) {
+        super(positionX, positionY, renderGrid, levelData);
         loadAnimations();
     }
 
@@ -64,14 +64,15 @@ public class Player extends Animate {
     }
 
     @Override
-    public void renderEntity(Graphics g){
-
+    public void render(Graphics g){
         // draw the player, with the current animation and sprite in the current positions
-        render.render(
+        renderGrid.render(
             g,
             entityAnimations[currentAction][aniIndex], 
             posX, 
-            posY
+            posY,
+            1,
+            1
         );
     }
 }
