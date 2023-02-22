@@ -15,7 +15,7 @@ public abstract class Animate extends Entity {
     // Constants for each Animated entities' actions
 
     // Player Actions constants:
-    private LevelData levelData;
+    protected LevelData levelData;
 
     private boolean movingUp = false;
     private boolean movingDown = false;

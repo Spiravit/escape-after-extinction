@@ -7,6 +7,9 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class AssetLoader {
+    public static final String LEVELONEMAP = "levels/level_one/levelonesprites.png";
+    public static final String LEVELS_SPRITES = "levels/levelssprites.png";
+
     public static final String PINKPLAYER = "playerSprites/pink_dino_ani.png";
 
     public static final String SCIENTIST = "scientist_sprites.png";
