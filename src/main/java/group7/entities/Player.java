@@ -3,7 +3,7 @@ package group7.entities;
 import group7.utils.AssetLoader;
 import static group7.utils.AssetLoader.*;
 import group7.utils.Direction;
-import group7.levels.LevelData;
+import group7.levels.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

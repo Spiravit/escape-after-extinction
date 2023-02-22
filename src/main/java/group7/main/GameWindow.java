@@ -28,11 +28,12 @@ public class GameWindow {
         jframe.add(gamePanel);
         // Spawn the window in center of screen
         jframe.setLocationRelativeTo(null);
-        // Make window visible
-        jframe.setVisible(true);
         // The window can not be resized by user
         jframe.setResizable(false);
         // set the window size such that it packs the size of game panel
         jframe.pack();
+        gamePanel.setFocusable(true);
+        // Make window visible
+        jframe.setVisible(true);
     }
 }
