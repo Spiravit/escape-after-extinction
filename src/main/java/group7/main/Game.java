@@ -4,7 +4,7 @@ import group7.entities.Player;
 import group7.levels.LevelData;
 import group7.levels.LevelManager;
 
-public class Game implements Runnable{
+public class Game implements Runnable {
     public GameWindow gameWindow;
     public GamePanel gamePanel;
     public Player player; // this will be removed !!
@@ -18,7 +18,7 @@ public class Game implements Runnable{
 
     public Game(){
         LevelManager levels = new LevelManager();
-        player = new Player(100, 200,TILES_SIZE*GAME_SIZE_SCALE , TILES_SIZE*GAME_SIZE_SCALE,levels.getLevelOne());
+        player = new Player(100, 200, TILES_SIZE*GAME_SIZE_SCALE, TILES_SIZE*GAME_SIZE_SCALE, levels.getLevelOne());
         gamePanel =  new GamePanel(player,levels);
         gameWindow = new GameWindow(gamePanel);
         // Giving input focus to gamePanel

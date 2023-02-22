@@ -12,96 +12,101 @@ import java.awt.image.BufferedImage;
  * will be added later
  */
 public abstract class Animate extends Entity {
-    // Constants for each Animated entities' actions
-
-    // Player Actions constants:
-    protected LevelData levelData;
+    private LevelData levelData;
 
     private boolean movingUp = false;
     private boolean movingDown = false;
     private boolean movingLeft = false;
     private boolean movingRight = false;
 
-
-    protected final static int PLAYER_IDLEACTION = 1;
-    protected final static int PLAYER_MOVINGACTION = 0;
+    protected final static int IDLE_ACTION = 1;
+    protected final static int MOVING_ACTION = 0;
 
     // the current condition of animated entity,
-    // for instance if currentAnimateAction=0, then the entity is a player that is moving
-    protected int currentAnimateAction ;
+    // for instance if currentAction=0, then the entity is a player that is moving
+    protected int currentAction;
 
     // a 2D array, where each row of it is holding stripes of one entity's actions
     // for instance, the first row can be sprites of moving sprites
-    protected BufferedImage[][] animatedEntityAnimations;
+    protected BufferedImage[][] entityAnimations;
 
-    //aniIndex is used to iterate through animatedEntityAnimations to change sprites of a condition
+    //aniIndex is used to iterate through entityAnimations to change sprites of a condition
     // ariSpeed is the speed of changing sprites in a condition
-
-    protected int aniTick, aniIndex, aniSpeed = 15;
+    protected int aniTick = 15;
+    protected int aniIndex = 15;
+    protected int aniSpeed = 15;
 
     // Moving speed of entity to change position of entity on map
-    protected float animatedEntitySpeed = 4.0f;
+    protected float entitySpeed = 4.0f;
 
-    public Animate(double positionX, double positionY, double height, double width, int currentAnimateAction, LevelData levelData) {
-        super(positionX, positionY, height, width);
-        this.currentAnimateAction = currentAnimateAction;
+    public Animate(double posX, double posY, double width, double height, int currentAction, LevelData levelData) {
+        super(posX, posY, width, height);
+        this.currentAction = currentAction;
         this.levelData = levelData;
     }
 
-    // this comment will be changed to javaDOC later !!!
-    // This function is responsible for
+    /**
+     * loads the animations of the entity 
+     * and puts them into the entityAnimations array
+     */
     abstract void loadAnimations();
 
-    // this comment will be changed to javaDOC later !!!
-    // This function is responsible for
+    /**
+     * updates the current action of the entity
+     */
     abstract void setAnimation();
 
-    // this comment will be changed to javaDOC later !!!
-    // This function is responsible for changing sprites for an entity in their current action
-    // it goes to next sprite of an action when aniTick > aniSpeed
+    /**
+     * manages the animation of the entity
+     * including changing the sprite of the entity
+     * and how fast the sprite changes
+     */
     protected void updateAnimationTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
             aniTick = 0;
-            aniIndex++;
-            if (aniIndex >= GetSpriteAmount(currentAnimateAction)) {
+            aniIndex ++;
+            if (aniIndex >= GetSpriteAmount(currentAction)) {
                 // If aniIndex went out of range, then make it 0.
                 aniIndex = 0;
             }
         }
     }
 
-    // this comment will be changed to javaDOC later !!!
-    // This function is responsible for
-    public int GetSpriteAmount(int animatedEntityAction){
-        if (animatedEntityAction==PLAYER_IDLEACTION){
-            // there are 3 sprites for player in idle condition
-            return 3;
+    /**
+     * @param entityAction
+     * enum of entity action
+     * @return
+     * amount of sprites for the action
+     */
+    public int GetSpriteAmount(int entityAction){
+        return entityAnimations[entityAction].length;
+    }
+
+    /**
+     * updates the position of the entity based on the directions it is moving in
+     */
+    public void updatePosition(){
+        if(this.movingUp && levelData.canMove((int)posX, (int)(posY - entitySpeed))){
+            posY -= entitySpeed;
         }
-        else if (animatedEntityAction==PLAYER_MOVINGACTION){
-            // there are 6 sprites for player in moving condition
-            return 6;
+        if(this.movingDown && levelData.canMove((int)posX, (int)(posY + entitySpeed))){
+            posY += entitySpeed;
         }
-        return 0;
+        if(this.movingLeft && levelData.canMove((int)(posX - entitySpeed), (int)posY)){
+            posX -= entitySpeed;
+        }
+        if(this.movingRight && levelData.canMove((int)(posX + entitySpeed), (int)posY)){
+            posX += entitySpeed;
+        }
     }
 
 
-    public void updatePlayer(){
-        if(this.movingUp && levelData.canMove((int)positionX, (int)(positionY - animatedEntitySpeed))){
-            positionY -= animatedEntitySpeed;
-        }
-        if(this.movingDown && levelData.canMove((int)positionX, (int)(positionY + animatedEntitySpeed))){
-            positionY += animatedEntitySpeed;
-        }
-        if(this.movingLeft && levelData.canMove((int)(positionX - animatedEntitySpeed), (int)positionY)){
-            positionX -= animatedEntitySpeed;
-        }
-        if(this.movingRight && levelData.canMove((int)(positionX + animatedEntitySpeed), (int)positionY)){
-            positionX += animatedEntitySpeed;
-        }
-        System.out.println("Player position: " + positionX + ", " + positionY);
-    }
-
+    /**
+     * adds a direction to the list of directions the entity is moving in
+     * @param direction
+     * the direction to start moving in
+     */
     public void setDirection(Direction direction){
         switch(direction) {
             case UP:
@@ -119,6 +124,12 @@ public abstract class Animate extends Entity {
         }
     }
 
+
+    /**
+     * removes a direction from the list of directions the entity is moving in
+     * @param direction
+     * the direction to stop moving in
+     */
     public void removeDirection(Direction direction){
         switch(direction) {
             case UP:
@@ -134,6 +145,14 @@ public abstract class Animate extends Entity {
                 this.movingRight = false;
                 break;
         }
+    }
+
+    /**
+     * @return
+     * true if the entity is moving in any direction
+     */
+    public boolean isMoving() {
+        return movingUp || movingDown || movingLeft || movingRight;
     }
 
 }
