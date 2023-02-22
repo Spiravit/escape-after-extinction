@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import static group7.main.Game.*;
 
 public class LevelData {
+
     private int levelData[][];
 
     public LevelData() {
