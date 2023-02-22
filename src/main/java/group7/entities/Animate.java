@@ -152,7 +152,17 @@ public abstract class Animate extends Entity {
      * true if the entity is moving in any direction
      */
     public boolean isMoving() {
-        return movingUp || movingDown || movingLeft || movingRight;
+        if (movingUp && movingDown) {
+            if ((movingLeft || movingRight) && !(movingLeft && movingRight)) { // XOR
+                return true;
+            }
+        } else if (movingLeft && movingRight) {
+            if ((movingUp || movingDown) && !(movingUp && movingDown)) {
+                return true;
+            }
+        } else if (movingUp || movingDown || movingLeft || movingRight) {
+            return true;
+        }
+        return false;
     }
-
 }
