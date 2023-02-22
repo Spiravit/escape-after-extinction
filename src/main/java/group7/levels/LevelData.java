@@ -1,14 +1,13 @@
 package group7.levels;
-import group7.main.Game;
+import group7.Game;
 import group7.utils.AssetLoader;
+
+import static group7.Game.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static group7.main.Game.*;
-
 public class LevelData {
-
     private int levelData[][];
 
     public LevelData() {
@@ -16,7 +15,7 @@ public class LevelData {
     }
 
     public void setLevelData() {
-        levelData = new int[NUMBER_OF_TILES_IN_HEIGHT][NUMBER_OF_TILES_IN_WIDTH];
+        levelData = new int[15][20];
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELONEMAP);
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {
@@ -54,12 +53,9 @@ public class LevelData {
      * true if valid, false if invalid
      */
     public boolean canMove(int x, int y) {
-        int gameWidth = (int) GAME_SIZE_SCALE * NUMBER_OF_TILES_IN_WIDTH * TILES_SIZE;
-        int gameHeight = (int) GAME_SIZE_SCALE * NUMBER_OF_TILES_IN_HEIGHT * TILES_SIZE;
-        if (x < 0 || x >= gameWidth || y < 0 || y >= gameHeight) {
+        if (x < 0 || x >= levelData[0].length || y < 0 || y >= levelData.length) {
             return false;
         }
-/*
         int tileX = (int) (x/(TILES_SIZE*GAME_SIZE_SCALE));
         int tileY = (int) (y/(TILES_SIZE*GAME_SIZE_SCALE));
         if (levelData[tileX][tileY] !=13){

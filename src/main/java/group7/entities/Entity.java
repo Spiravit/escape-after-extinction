@@ -2,19 +2,18 @@ package group7.entities;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
+import group7.Graphics.Render;
 
 
 public abstract class Entity {
     double posX;
     double posY;
-    double height;
-    double width;
+    Render render;
 
-    public Entity(double positionX, double positionY, double width, double height) {
+    public Entity(double positionX, double positionY, Render render) {
         this.posX = positionX;
         this.posY = positionY;
-        this.height = height;
-        this.width = width;
+        this.render = render;
     }
 
     /**
@@ -22,7 +21,7 @@ public abstract class Entity {
      * returns the hitbox of the entity as a rectangle
      */
     public Rectangle getHitbox() {
-        return new Rectangle((int)posX, (int)posY, (int)width, (int)height);
+        return new Rectangle((int)posX, (int)posY, 1, 1);
     }
 
     abstract void renderEntity(Graphics g);
