@@ -2,18 +2,21 @@ package group7.entities;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
-import group7.Graphics.Render;
+import group7.Graphics.RenderGrid;
+import java.awt.image.BufferedImage;
 
 
 public abstract class Entity {
     double posX;
     double posY;
-    Render render;
+    RenderGrid renderGrid;
 
-    public Entity(double positionX, double positionY, Render render) {
+    BufferedImage currentSprite; 
+
+    public Entity(double positionX, double positionY, RenderGrid render) {
         this.posX = positionX;
         this.posY = positionY;
-        this.render = render;
+        this.renderGrid = render;
     }
 
     /**
@@ -24,5 +27,5 @@ public abstract class Entity {
         return new Rectangle((int)posX, (int)posY, 1, 1);
     }
 
-    abstract void renderEntity(Graphics g);
+    abstract void render(Graphics g);
 }

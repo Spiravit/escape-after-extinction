@@ -3,7 +3,7 @@ package group7.entities;
 import group7.levels.LevelData;
 import group7.utils.Direction;
 
-import group7.Graphics.Render;
+import group7.Graphics.RenderGrid;
 
 import java.awt.image.BufferedImage;
 
@@ -38,8 +38,8 @@ public abstract class Animate extends Entity {
     // Moving speed of entity to change position of entity on map
     protected float entitySpeed = 4.0f;
 
-    public Animate(double posX, double posY, Render render, LevelData levelData) {
-        super(posX, posY, render);
+    public Animate(double posX, double posY, RenderGrid renderGrid, LevelData levelData) {
+        super(posX, posY, renderGrid);
         this.levelData = levelData;
     }
 
@@ -69,6 +69,10 @@ public abstract class Animate extends Entity {
                 aniIndex = 0;
             }
         }
+    }
+
+    private void updateCurrentSprite() {
+        currentSprite = entityAnimations[currentAction][aniIndex];
     }
 
     /**

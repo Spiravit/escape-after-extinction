@@ -2,7 +2,7 @@ package group7;
 
 import group7.Graphics.GraphicsPanel;
 import group7.Graphics.GraphicsWindow;
-import group7.Graphics.Render;
+import group7.Graphics.RenderGrid;
 import group7.entities.Player;
 import group7.levels.LevelData;
 import group7.levels.LevelManager;
@@ -13,12 +13,12 @@ public class Game implements Runnable {
     public GraphicsPanel gamePanel;
     public Player player; // this will be removed !!
     private LevelManager levels;
-    private Render render;
+    private RenderGrid renderGrid;
 
     public Game(){
         LevelManager levels = new LevelManager();
-        Render render = new Render(gamePanel, 15, 10);
-        player = new Player(100, 200, render, levels.getLevelOne());
+        RenderGrid renderGrid = new RenderGrid(gamePanel, 15, 10);
+        player = new Player(100, 200, renderGrid, levels.getLevel(1));
         gamePanel =  new GraphicsPanel(player,levels);
         gameWindow = new GraphicsWindow(gamePanel);
         

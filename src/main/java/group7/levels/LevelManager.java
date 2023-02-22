@@ -11,6 +11,9 @@ import java.util.ArrayList;
 public class LevelManager {
     private BufferedImage[] levelSprite;
     private LevelData levelOne;
+    private Level[] levels = {
+        new Level1()
+    };
 
     public LevelManager() {
         importOutsideSprites();
@@ -18,7 +21,7 @@ public class LevelManager {
     }
 
     public LevelData getLevel(int level) {
-        return level;
+        return levels[level];
     }
 
     private void importOutsideSprites() {
