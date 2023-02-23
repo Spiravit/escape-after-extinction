@@ -16,8 +16,8 @@ import java.util.ArrayList;
  * - saves level data
  */
 public class LevelManager {
-    private Level1 currentLevel; // TODO: change this to a Level
-    private Level1[] levels = { // TODO: change this to a Level array
+    private Level currentLevel;
+    private Level[] levels = {
         new Level1()
     };
 
