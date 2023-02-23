@@ -9,22 +9,22 @@ import group7.levels.LevelManager;
 
 
 public class Game implements Runnable {
-    public GraphicsWindow gameWindow;
-    public GraphicsPanel gamePanel;
+    public GraphicsWindow graphicsWindow;
+    public GraphicsPanel graphicsPanel;
     public Player player; // TODO: this will be removed !!
     private LevelManager levelManager;
     private GraphicsGrid graphicsGrid;
 
     public Game() {
-        this.graphicsGrid = new GraphicsGrid(gamePanel, 15, 10);
+        this.graphicsGrid = new GraphicsGrid(graphicsPanel, 15, 10);
         this.levelManager = new LevelManager(graphicsGrid);
         this.levelManager.loadLevel(1);
         this.player = new Player(0, 0, this.graphicsGrid, this.levelManager.getLevelData());
-        this.gamePanel =  new GraphicsPanel(this.player, this.levelManager);
-        this.gameWindow = new GraphicsWindow(this.gamePanel);
+        this.graphicsPanel =  new GraphicsPanel(this.player, this.levelManager);
+        this.graphicsWindow = new GraphicsWindow(this.graphicsPanel);
         
-        // Giving input focus to gamePanel
-        gamePanel.requestFocus();
+        // Giving input focus to graphicsPanel
+        graphicsPanel.requestFocus();
         startGameLoop();
     }
 
@@ -35,10 +35,10 @@ public class Game implements Runnable {
 
 
     @Override
-    public void run(){
-        while(true){
+    public void run() {
+        while(true) {
             player.update();
-            gamePanel.repaint();
+            graphicsPanel.repaint();
 
             try {
                 Thread.sleep(10); // TODO: change this back to 10

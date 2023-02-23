@@ -5,15 +5,15 @@ import java.awt.*;
 
 
 public class GraphicsGrid {
-    private GraphicsPanel gamePanel;
+    private GraphicsPanel graphicsPanel;
 
-    private float scaleX;
-    private float scaleY;
+    private double scaleX;
+    private double scaleY;
     private int unitsWide;
     private int unitsHigh;
 
-    public GraphicsGrid(GraphicsPanel gamePanel, int unitsWide, int unitsHigh) {
-        this.gamePanel = gamePanel;
+    public GraphicsGrid(GraphicsPanel graphicsPanel, int unitsWide, int unitsHigh) {
+        this.graphicsPanel = graphicsPanel;
         this.unitsWide = unitsWide;
         this.unitsHigh = unitsHigh;
         calculateScale();
@@ -26,7 +26,7 @@ public class GraphicsGrid {
     }
 
     private void calculateScale() {
-        // TODO: call gamePanel to get the width and height
+        // TODO: call graphicsPanel to get the width and height
         // removing the + 1 causes the objects to be drawn off screen
         scaleX = 1280 / (unitsWide + 1);
         scaleY = 720 / (unitsHigh + 1);

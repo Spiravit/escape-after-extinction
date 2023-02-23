@@ -47,7 +47,7 @@ public class GraphicsPanel extends JPanel {
         //System.out.println("painting 1");
         super.paintComponent(g);
         //System.out.println("painting 2");
-        //levelManager.render(g);
+        levelManager.render(g);
         //System.out.println("painting 3");
         player.render(g);
         //System.out.println("painting done");

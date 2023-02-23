@@ -48,10 +48,8 @@ public class LevelData {
      */
     public boolean canMove(int x, int y) {
         if (x < 0 || x >= levelData.length || y < 0 || y >= levelData[0].length) {
-            System.out.println("Out of bounds");
             return false;
         }
-        System.out.println("x: " + x + "y: " + y);
         return levelData[x][y];
     }
 }
