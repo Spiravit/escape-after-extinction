@@ -36,8 +36,8 @@ public abstract class Animate extends Entity {
     // Moving speed of entity to change position of entity on map
     protected float entitySpeed = 0.05f;
 
-    public Animate(double posX, double posY, GraphicsGrid graphicsGrid, LevelData levelData) {
-        super(posX, posY, graphicsGrid);
+    public Animate(double posX, double posY, LevelData levelData) {
+        super(posX, posY);
         this.currentAction = IDLE_ACTION;
         this.levelData = levelData;
     }

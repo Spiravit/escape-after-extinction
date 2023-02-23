@@ -13,10 +13,9 @@ public abstract class Entity {
 
     BufferedImage currentSprite; 
 
-    public Entity(double positionX, double positionY, GraphicsGrid render) {
+    public Entity(double positionX, double positionY) {
         this.posX = positionX;
         this.posY = positionY;
-        this.graphicsGrid = render;
     }
 
     /**
