@@ -7,8 +7,4 @@ public abstract class Level {
     private LevelData levelData;
     private int width;
     private int height;
-
-   public void loadLevel() {
-
-   }
 }

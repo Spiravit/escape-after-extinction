@@ -1,5 +1,6 @@
 package group7.levels;
 
+import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
 
 import static group7.Game.*;
@@ -8,29 +9,39 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/**
+ * LevelManager
+ * - loads levels
+ * - renders levels
+ * - saves level data
+ */
 public class LevelManager {
-    private BufferedImage[] levelSprite;
-    private LevelData levelOne;
-    private Level[] levels = {
+    private Level1 currentLevel; // TODO: change this to a Level
+    private Level1[] levels = { // TODO: change this to a Level array
         new Level1()
     };
 
-    public LevelManager() {
-        importOutsideSprites();
-        levelOne = new LevelData();
+    private GraphicsGrid graphicsGrid;
+
+    public LevelManager(GraphicsGrid graphicsGrid) {
+        this.graphicsGrid = graphicsGrid;
+    }
+    
+    /** 
+     * Load a level
+     * @param level
+     * level number starting from 1
+     */
+    public void loadLevel(int level) {
+        currentLevel = levels[level - 1];
+        currentLevel.loadLevel(graphicsGrid);
     }
 
-    public LevelData getLevel(int level) {
-        return levels[level];
+    public LevelData getLevelData() { // TODO: remove this
+        return currentLevel.getLevelData();
     }
 
-    private void importOutsideSprites() {
-        BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELS_SPRITES);
-        levelSprite = new BufferedImage[60];
-        for (int j = 0; j < 4; j++)
-            for (int i = 0; i < 15; i++) {
-                int index = j * 15 + i;
-                levelSprite[index] = img.getSubimage(i * 32, j * 32, 32, 32);
-            }
+    public void render(Graphics g) {
+        currentLevel.render(g);
     }
 }

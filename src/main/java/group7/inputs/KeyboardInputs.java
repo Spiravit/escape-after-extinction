@@ -32,7 +32,6 @@ public class KeyboardInputs implements KeyListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(" I am depressed :|");
         if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
             //Right arrow key code
             gamePanel.setDirection(Direction.RIGHT);
