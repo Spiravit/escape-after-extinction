@@ -2,19 +2,20 @@ package group7.entities;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
+import group7.Graphics.GraphicsGrid;
+import java.awt.image.BufferedImage;
 
 
 public abstract class Entity {
     double posX;
     double posY;
-    double height;
-    double width;
+    GraphicsGrid graphicsGrid;
 
-    public Entity(double positionX, double positionY, double width, double height) {
+    BufferedImage currentSprite; 
+
+    public Entity(double positionX, double positionY) {
         this.posX = positionX;
         this.posY = positionY;
-        this.height = height;
-        this.width = width;
     }
 
     /**
@@ -22,8 +23,8 @@ public abstract class Entity {
      * returns the hitbox of the entity as a rectangle
      */
     public Rectangle getHitbox() {
-        return new Rectangle((int)posX, (int)posY, (int)width, (int)height);
+        return new Rectangle((int)posX, (int)posY, 1, 1);
     }
 
-    abstract void renderEntity(Graphics g);
+    abstract void render(Graphics g);
 }
