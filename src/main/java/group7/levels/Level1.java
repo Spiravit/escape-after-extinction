@@ -13,12 +13,10 @@ public class Level1 extends Level {
     private BufferedImage[] levelSprites;
     private int levelSpriteData[][];
 
-    private GraphicsGrid graphicsGrid;
-
-    public void loadLevel(GraphicsGrid graphicsGrid) {
+    public void loadLevel() {
         importSprites();
         setLevelData();
-        graphicsGrid.setGridSize(width, height);
+        GraphicsGrid.setGridSize(width, height);
         System.out.println("Level 1 Loaded");
     }
 
@@ -28,7 +26,6 @@ public class Level1 extends Level {
 
     public void setLevelData() {
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELONEMAP);
-        System.out.println("Map Width: " + img.getWidth() + " Height: " + img.getHeight());
 
         this.width = img.getWidth();
         this.height = img.getHeight();
@@ -64,8 +61,14 @@ public class Level1 extends Level {
     public void render(Graphics g) {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                g.drawImage(levelSprites[levelSpriteData[x][y]], (int)(x * (1280 / width)), (int)(y * (720 / height)), (int)(1280 / width), (int)(720 / height), null);
-                //graphicsGrid.render(g, levelSprites[levelSpriteData[x][y]], x, y, 1, 1);
+                GraphicsGrid.render(
+                    g, 
+                    levelSprites[levelSpriteData[x][y]], 
+                    x, 
+                    y, 
+                    1, 
+                    1
+                );
             }
         }
     }

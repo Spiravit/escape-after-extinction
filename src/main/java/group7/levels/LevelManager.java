@@ -21,12 +21,6 @@ public class LevelManager {
         new Level1()
     };
 
-    private GraphicsGrid graphicsGrid;
-
-    public LevelManager(GraphicsGrid graphicsGrid) {
-        this.graphicsGrid = graphicsGrid;
-    }
-    
     /** 
      * Load a level
      * @param level
@@ -34,7 +28,7 @@ public class LevelManager {
      */
     public void loadLevel(int level) {
         currentLevel = levels[level - 1];
-        currentLevel.loadLevel(graphicsGrid);
+        currentLevel.loadLevel();
     }
 
     public LevelData getLevelData() { // TODO: remove this

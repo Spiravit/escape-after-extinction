@@ -13,8 +13,8 @@ public class Player extends Animate {
     private int health = 100;
     private int stamina = 100;
 
-    public Player(double posX, double posY, GraphicsGrid graphicsGrid, LevelData levelData) {
-        super(posX, posY, graphicsGrid, levelData);
+    public Player(double posX, double posY, LevelData levelData) {
+        super(posX, posY, levelData);
         loadAnimations();
     }
 
@@ -66,12 +66,11 @@ public class Player extends Animate {
     @Override
     public void render(Graphics g){
         // draw the player, with the current animation and sprite in the current positions
-        //System.out.println("currentAction: " + currentAction + " aniIndex: " + aniIndex);
-        graphicsGrid.render(
+        GraphicsGrid.render(
             g,
             entityAnimations[currentAction][aniIndex], 
-            posX, 
-            posY,
+            (posX - 0.5), // slight offset to make the player look more centered on the tile
+            (posY - 0.7), // TODO: change this to be more accurate and maybe place it somewhere else
             1,
             1
         );
