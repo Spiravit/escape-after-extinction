@@ -1,4 +1,4 @@
-package group7.main;
+package group7.Graphics;
 
 import javax.swing.*;
 
@@ -6,33 +6,33 @@ import javax.swing.*;
  * Sets up the window frame for Game.
  * @author Salman Ayaz, Karmen Yung, Mohammad Parsaei, Chen Min
  */
-public class GameWindow {
-
+public class GraphicsWindow {
     private JFrame jframe;
 
     /**
      * Initializes jframe field and changes jframe's attributes
-     * @param gamePanel
+     * @param graphicsPanel
      */
-    public GameWindow(GamePanel gamePanel){
-        jframe= new JFrame();
+    public GraphicsWindow(GraphicsPanel graphicsPanel){
+        jframe = new JFrame();
         // changing attributes of window by calling changeWindowAttributes field
-        changeWindowAttributes(gamePanel);
+        changeWindowAttributes(graphicsPanel);
     }
-    private void changeWindowAttributes(GamePanel gamePanel){
+    
+    private void changeWindowAttributes(GraphicsPanel graphicsPanel){
         // Terminate the program when player closes the window
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         // window size set to be 1280x720
         jframe.setSize(1280,720);
-        // Connecting the gamepanel to window
-        jframe.add(gamePanel);
+        // Connecting the graphicspanel to window
+        jframe.add(graphicsPanel);
         // Spawn the window in center of screen
         jframe.setLocationRelativeTo(null);
         // The window can not be resized by user
         jframe.setResizable(false);
-        // set the window size such that it packs the size of game panel
+        // set the window size such that it packs the size of graphics panel
         jframe.pack();
-        gamePanel.setFocusable(true);
+        graphicsPanel.setFocusable(true);
         // Make window visible
         jframe.setVisible(true);
     }

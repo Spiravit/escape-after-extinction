@@ -1,15 +1,14 @@
 package group7.inputs;
 
-import group7.entities.Entity;
-import group7.main.GamePanel;
+import group7.Graphics.GraphicsPanel;
 import group7.utils.Direction;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyboardInputs implements KeyListener {
-    GamePanel gamePanel;
-    public KeyboardInputs(GamePanel gamePanel){
+    GraphicsPanel gamePanel;
+    public KeyboardInputs(GraphicsPanel gamePanel){
         this.gamePanel=gamePanel;
     }
     /**
@@ -33,7 +32,6 @@ public class KeyboardInputs implements KeyListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println(" I am depressed :|");
         if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
             //Right arrow key code
             gamePanel.setDirection(Direction.RIGHT);

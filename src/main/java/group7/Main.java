@@ -1,4 +1,4 @@
-package group7.main;
+package group7;
 
 /**
  * Starts the game
