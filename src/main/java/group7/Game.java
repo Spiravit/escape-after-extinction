@@ -2,7 +2,7 @@ package group7;
 
 import group7.Graphics.GraphicsPanel;
 import group7.Graphics.GraphicsWindow;
-import group7.Graphics.RenderGrid;
+import group7.Graphics.GraphicsGrid;
 import group7.entities.Player;
 import group7.levels.LevelData;
 import group7.levels.LevelManager;
@@ -11,16 +11,17 @@ import group7.levels.LevelManager;
 public class Game implements Runnable {
     public GraphicsWindow gameWindow;
     public GraphicsPanel gamePanel;
-    public Player player; // this will be removed !!
-    private LevelManager levels;
-    private RenderGrid renderGrid;
+    public Player player; // TODO: this will be removed !!
+    private LevelManager levelManager;
+    private GraphicsGrid graphicsGrid;
 
-    public Game(){
-        LevelManager levels = new LevelManager();
-        RenderGrid renderGrid = new RenderGrid(gamePanel, 15, 10);
-        player = new Player(100, 200, renderGrid, levels.getLevel(1));
-        gamePanel =  new GraphicsPanel(player,levels);
-        gameWindow = new GraphicsWindow(gamePanel);
+    public Game() {
+        this.graphicsGrid = new GraphicsGrid(gamePanel, 15, 10);
+        this.levelManager = new LevelManager(graphicsGrid);
+        this.levelManager.loadLevel(1);
+        this.player = new Player(0, 0, this.graphicsGrid, this.levelManager.getLevelData());
+        this.gamePanel =  new GraphicsPanel(this.player, this.levelManager);
+        this.gameWindow = new GraphicsWindow(this.gamePanel);
         
         // Giving input focus to gamePanel
         gamePanel.requestFocus();
@@ -40,7 +41,7 @@ public class Game implements Runnable {
             gamePanel.repaint();
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(10); // TODO: change this back to 10
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

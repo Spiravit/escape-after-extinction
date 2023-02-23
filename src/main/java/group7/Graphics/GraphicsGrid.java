@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.awt.*;
 
 
-public class RenderGrid {
+public class GraphicsGrid {
     private GraphicsPanel gamePanel;
 
     private float scaleX;
@@ -12,35 +12,30 @@ public class RenderGrid {
     private int unitsWide;
     private int unitsHigh;
 
-    public RenderGrid(GraphicsPanel gamePanel, int unitsWide, int unitsHigh) {
+    public GraphicsGrid(GraphicsPanel gamePanel, int unitsWide, int unitsHigh) {
         this.gamePanel = gamePanel;
         this.unitsWide = unitsWide;
         this.unitsHigh = unitsHigh;
         calculateScale();
     }
 
-    public void setUnitsWide(int unitsWide) {
+    public void setGridSize(int unitsWide, int unitsHigh) {
         this.unitsWide = unitsWide;
-        calculateScale();
-    }
-
-    public void setUnitsHigh(int unitsHigh) {
         this.unitsHigh = unitsHigh;
         calculateScale();
     }
 
     private void calculateScale() {
-        int width = gamePanel.getWidth();
-        int height = gamePanel.getHeight();
-
-        scaleX = (float) width / unitsWide;
-        scaleY = (float) height / unitsHigh;
+        // TODO: call gamePanel to get the width and height
+        // removing the + 1 causes the objects to be drawn off screen
+        scaleX = 1280 / (unitsWide + 1);
+        scaleY = 720 / (unitsHigh + 1);
     }
 
 
     /**
      * translates the given x and y coordinates to the correct position on the screen 
-     * by multiplying them by the scale given in the constructor
+     * by multiplying them by the given grid sizes
      * @param g
      * the graphics object to draw on
      * @param image
@@ -51,12 +46,14 @@ public class RenderGrid {
      * y coordinate
      */
     public void render(Graphics g, BufferedImage image, double posX, double posY, double width, double height) {
+        System.out.println("posX on screen: " + (posX* scaleX) + " posX: " + posX);
+        System.out.println("posY on screen: " + (posY* scaleY) + " posY: " + posY);
         g.drawImage(
             image, 
             (int) (posX * scaleX), 
             (int) (posY * scaleY), 
             (int) (width * scaleX),
-            (int) (width * scaleY),
+            (int) (height * scaleY),
             null
         );
     }

@@ -24,8 +24,8 @@ public class GraphicsPanel extends JPanel {
     public GraphicsPanel(Player player, LevelManager levelManager){
         super.addKeyListener(new KeyboardInputs(this));
         super.addMouseListener(new MouseInputs());
-        this.player=player;
-        this.levelManager=levelManager;
+        this.player = player;
+        this.levelManager = levelManager;
         changePanelSize();
     }
 
@@ -35,6 +35,7 @@ public class GraphicsPanel extends JPanel {
     }
 
     public void setDirection(Direction direction) {
+        System.out.println("setting direction");
         player.setDirection(direction);
     }
 
@@ -42,10 +43,13 @@ public class GraphicsPanel extends JPanel {
         player.removeDirection(direction);
     }
 
-    public void paint(Graphics g){
+    public void paintComponent(Graphics g) {
+        //System.out.println("painting 1");
         super.paintComponent(g);
-        // redraw the player
-       levelManager.draw(g);
-        player.renderEntity(g);
+        //System.out.println("painting 2");
+        //levelManager.render(g);
+        //System.out.println("painting 3");
+        player.render(g);
+        //System.out.println("painting done");
     }
 }
