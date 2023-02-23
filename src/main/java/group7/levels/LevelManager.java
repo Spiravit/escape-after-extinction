@@ -1,42 +1,41 @@
 package group7.levels;
 
+import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
+
+import static group7.Game.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import static group7.main.Game.*;
 
+/**
+ * LevelManager
+ * - loads levels
+ * - renders levels
+ * - saves level data
+ */
 public class LevelManager {
+    private Level currentLevel;
+    private Level[] levels = {
+        new Level1()
+    };
 
-    private BufferedImage[] levelSprite;
-    private LevelData levelOne;
-
-    public LevelManager() {
-        importOutsideSprites();
-        levelOne = new LevelData();
+    /** 
+     * Load a level
+     * @param level
+     * level number starting from 1
+     */
+    public void loadLevel(int level) {
+        currentLevel = levels[level - 1];
+        currentLevel.loadLevel();
     }
 
-    public LevelData getLevelOne() {
-        return levelOne;
+    public LevelData getLevelData() { // TODO: remove this
+        return currentLevel.getLevelData();
     }
 
-    private void importOutsideSprites() {
-        BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELS_SPRITES);
-        levelSprite = new BufferedImage[60];
-        for (int j = 0; j < 4; j++)
-            for (int i = 0; i < 15; i++) {
-                int index = j * 15 + i;
-                levelSprite[index] = img.getSubimage(i * 32, j * 32, 32, 32);
-            }
+    public void render(Graphics g) {
+        currentLevel.render(g);
     }
-
-    public void draw(Graphics g) {
-        for (int j = 0; j < NUMBER_OF_TILES_IN_HEIGHT; j++)
-            for (int i = 0; i < NUMBER_OF_TILES_IN_WIDTH; i++) {
-                int index = levelOne.getLevelDataSprite(j, i);
-                g.drawImage(levelSprite[index], (int) GAME_SIZE_SCALE * TILES_SIZE * i, (int) GAME_SIZE_SCALE * TILES_SIZE * j, (int) GAME_SIZE_SCALE * TILES_SIZE, (int) GAME_SIZE_SCALE * TILES_SIZE, null);
-            }
-    }
-
 }

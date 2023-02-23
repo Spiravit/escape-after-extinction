@@ -2,10 +2,7 @@ package group7.entities;
 
 import group7.levels.LevelData;
 import group7.utils.Direction;
-
-import group7.levels.LevelData;
-import group7.utils.Direction;
-
+import group7.Graphics.GraphicsGrid;
 import java.awt.image.BufferedImage;
 
 /**
@@ -37,11 +34,11 @@ public abstract class Animate extends Entity {
     protected int aniSpeed = 15;
 
     // Moving speed of entity to change position of entity on map
-    protected float entitySpeed = 4.0f;
+    protected float entitySpeed = 0.05f;
 
-    public Animate(double posX, double posY, double width, double height, int currentAction, LevelData levelData) {
-        super(posX, posY, width, height);
-        this.currentAction = currentAction;
+    public Animate(double posX, double posY, LevelData levelData) {
+        super(posX, posY);
+        this.currentAction = IDLE_ACTION;
         this.levelData = levelData;
     }
 
@@ -87,16 +84,17 @@ public abstract class Animate extends Entity {
      * updates the position of the entity based on the directions it is moving in
      */
     public void updatePosition(){
-        if(this.movingUp && levelData.canMove((int)posX, (int)(posY - entitySpeed))){
+        // floor in the canMove function insures the entity doesn't move into a negative position between 0 and -1
+        if(this.movingUp && levelData.canMove((int)Math.floor(posX), (int)Math.floor(posY - entitySpeed))){
             posY -= entitySpeed;
         }
-        if(this.movingDown && levelData.canMove((int)posX, (int)(posY + entitySpeed))){
+        if(this.movingDown && levelData.canMove((int)Math.floor(posX), (int)Math.floor(posY + entitySpeed))){
             posY += entitySpeed;
         }
-        if(this.movingLeft && levelData.canMove((int)(posX - entitySpeed), (int)posY)){
+        if(this.movingLeft && levelData.canMove((int)Math.floor(posX - entitySpeed), (int)Math.floor(posY))){
             posX -= entitySpeed;
         }
-        if(this.movingRight && levelData.canMove((int)(posX + entitySpeed), (int)posY)){
+        if(this.movingRight && levelData.canMove((int)Math.floor(posX + entitySpeed), (int)Math.floor(posY))){
             posX += entitySpeed;
         }
     }
