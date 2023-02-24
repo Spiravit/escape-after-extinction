@@ -9,44 +9,65 @@ public class GraphicsGrid {
 
     private static int scaleX;
     private static int scaleY;
-    private static int graphWidth;
-    private static int graphHeight;
+    private static int gridWidth;
+    private static int gridHeight;
 
+    /**
+     * creates a new GraphicsGrid
+     * @param graphicsPanel
+     * the graphics panel to draw on
+     * @param unitsWide
+     * the width of the grid
+     * @param unitsHigh
+     * the height of the grid
+     */
     public GraphicsGrid(GraphicsPanel graphicsPanel, int unitsWide, int unitsHigh) {
         this.graphicsPanel = graphicsPanel;
-        graphWidth = unitsWide;
-        graphHeight = unitsHigh;
+        gridWidth = unitsWide;
+        gridHeight = unitsHigh;
         calculateScale();
     }
 
+    /**
+     * sets the grid size
+     * @param unitsWide
+     * the width of the grid
+     * @param unitsHigh
+     * the height of the grid
+     */
     public static void setGridSize(int unitsWide, int unitsHigh) {
-        graphWidth = unitsWide;
-        graphHeight = unitsHigh;
+        gridWidth = unitsWide;
+        gridHeight = unitsHigh;
         calculateScale();
     }
 
+    /**
+     * calculates the scale of the grid 
+     * using the size of the screen and the size of the grid
+     */
     private static void calculateScale() {
         // TODO: call graphicsPanel to get the width and height
-        // removing the + 1 causes the objects to be drawn off screen
-        scaleX = 1280 / graphWidth;
-        scaleY = 720 / graphHeight;
+        scaleX = 1280 / gridWidth;
+        scaleY = 720 / gridHeight;
     }
 
     /**
      * translates the given x and y coordinates to the correct position on the screen 
      * by multiplying them by the given grid sizes
      * @param g
-     * the graphics object to draw on
+     * the gridics object to draw on
      * @param image
      * the image to draw
      * @param posX
      * x coordinate
      * @param posY
      * y coordinate
+     * @param width
+     * width of the image
+     * @param height
+     * height of the image
      */
     public static void render(Graphics g, BufferedImage image, double posX, double posY, double width, double height) {
-        // System.out.println("posX on screen: " + (posX* scaleX) + " posX: " + posX);
-        // System.out.println("posY on screen: " + (posY* scaleY) + " posY: " + posY);
         g.drawImage(
             image, 
             (int) (posX * scaleX), 

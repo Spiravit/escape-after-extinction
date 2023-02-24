@@ -13,11 +13,24 @@ public class Player extends Animate {
     private int health = 100;
     private int stamina = 100;
 
+    /**
+     * Create a new player
+     * @param posX
+     * the x position of the player
+     * @param posY
+     * the y position of the player
+     * @param levelData
+     * the levelData of the level the player is in
+     */
     public Player(double posX, double posY, LevelData levelData) {
         super(posX, posY, levelData);
         loadAnimations();
     }
 
+   
+    /**
+     * Load the animations of the player
+     */
     @Override
     void loadAnimations() {
         BufferedImage dinosaur = AssetLoader.getSpriteAtlas(PINKPLAYER);
@@ -36,6 +49,10 @@ public class Player extends Animate {
         }
     }
 
+    /**
+     * Update the player
+     * This includes updating the position, animation, and action of the player
+     */
     public void update() {
         // update position of a player based on player current action
         updatePosition();
@@ -45,6 +62,10 @@ public class Player extends Animate {
         setAnimation();
     }
 
+
+    /**
+     * Update the the current animation of the player
+    */
     @Override
     void setAnimation(){
         int prevAction = currentAction;
@@ -63,6 +84,11 @@ public class Player extends Animate {
         }
     }
 
+    /**
+     * Render the player
+     * @param g
+     * the graphics object to draw on
+     */
     @Override
     public void render(Graphics g){
         // draw the player, with the current animation and sprite in the current positions
