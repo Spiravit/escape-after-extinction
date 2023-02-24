@@ -35,6 +35,11 @@ public class LevelManager {
         return currentLevel.getLevelData();
     }
 
+    /**
+     * render the level
+     * @param g
+     * the graphics object to draw on
+     */
     public void render(Graphics g) {
         currentLevel.render(g);
     }

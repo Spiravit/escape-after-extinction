@@ -14,6 +14,9 @@ public abstract class Level {
     private BufferedImage[] levelSprites;
     private int levelSpriteData[][];
 
+    /** 
+     * Loads everything about the level
+     */
     public void loadLevel() {
         importSprites();
         setLevelData();
@@ -24,7 +27,31 @@ public abstract class Level {
         return levelData;
     }
 
-    public void setLevelData() {
+    /**
+     * render the level
+     * @param g
+     * the graphics object to draw on
+     */
+    public void render(Graphics g) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                GraphicsGrid.render(
+                    g, 
+                    levelSprites[levelSpriteData[x][y]], 
+                    x, 
+                    y, 
+                    1, 
+                    1
+                );
+            }
+        }
+    }
+
+    /** 
+     * Set the level data
+     * this includes the data in the levelData object and the levelSpriteData array
+     */
+    private void setLevelData() {
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELONEMAP);
 
         this.width = img.getWidth();
@@ -46,6 +73,9 @@ public abstract class Level {
         }
     }
 
+    /** 
+     * Import the sprites from the sprite atlas and store them in the levelSprites array
+     */
     private void importSprites() {
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELS_SPRITES);
         levelSprites = new BufferedImage[60];
@@ -54,21 +84,6 @@ public abstract class Level {
             for (int y = 0; y < 4; y++) {
                 int index = y * 15 + x;
                 levelSprites[index] = img.getSubimage(x * 32, y * 32, 32, 32);
-            }
-        }
-    }
-
-    public void render(Graphics g) {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                GraphicsGrid.render(
-                    g, 
-                    levelSprites[levelSpriteData[x][y]], 
-                    x, 
-                    y, 
-                    1, 
-                    1
-                );
             }
         }
     }
