@@ -12,6 +12,14 @@ public class GraphicsGrid {
     private static int gridWidth;
     private static int gridHeight;
 
+    public static int getScaleY() {
+        return scaleY;
+    }
+
+    public static int getScaleX() {
+        return scaleX;
+    }
+
     /**
      * creates a new GraphicsGrid
      * @param graphicsPanel
