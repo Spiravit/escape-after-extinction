@@ -104,22 +104,22 @@ public abstract class Animate extends Entity {
             posY -= entitySpeed;
         }
         // When moving down check both bottom left and right corners
-        if(this.movingDown && levelData.canMove((int)Math.floor(posX+0.1), (int)Math.floor(posY + 1 + entitySpeed))){
-            if ( ! (levelData.canMove((int)Math.floor(posX+0.9), (int)Math.floor(posY + 1 + entitySpeed)))){
+        if(this.movingDown && levelData.canMove((int)Math.floor(posX + 0.1), (int)Math.floor(posY + 1 - entitySpeed))){
+            if ( ! (levelData.canMove((int)Math.floor(posX + 0.9), (int)Math.floor(posY + 1 - entitySpeed)))){
                 return;
             }
             posY += entitySpeed;
         }
         // When moving left check both top left and bottom left
-        if(this.movingLeft && levelData.canMove((int)Math.floor(posX - entitySpeed), (int)Math.floor(posY+0.1))){
-            if ( ! (levelData.canMove((int)Math.floor(posX - entitySpeed), (int)Math.floor(posY+0.9)))){
+        if(this.movingLeft && levelData.canMove((int)Math.floor(posX + 0.1 - entitySpeed), (int)Math.floor(posY + 0.1))){
+            if ( ! (levelData.canMove((int)Math.floor(posX + 0.1 - entitySpeed), (int)Math.floor(posY + 0.9)))){
                 return;
             }
             posX -= entitySpeed;
         }
         // When moving right check both top left and bottom left
-        if(this.movingRight && levelData.canMove((int)Math.floor(posX + 1 + entitySpeed), (int)Math.floor(posY+0.1))){
-            if ( ! (levelData.canMove((int)Math.floor(posX + 1 +  entitySpeed), (int)Math.floor(posY+0.9)))){
+        if(this.movingRight && levelData.canMove((int)Math.floor(posX + 1 - entitySpeed), (int)Math.floor(posY + 0.1))){
+            if ( ! (levelData.canMove((int)Math.floor(posX + 1 - entitySpeed), (int)Math.floor(posY + 0.9)))){
                 return;
             }
             posX += entitySpeed;
