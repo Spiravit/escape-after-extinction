@@ -83,21 +83,48 @@ public abstract class Animate extends Entity {
     /**
      * updates the position of the entity based on the directions it is moving in
      */
-    public void updatePosition(){
+    public void updatePosition() {
+        // Exit if not moving in any direction
+        if( !movingUp && !movingDown && !movingLeft && !movingRight ) {
+            return;
+        }
+
+        // Prevent diagonal movement
+        if ( (movingDown && movingUp) || (movingLeft && movingUp) || (movingUp && movingRight) )
+            return;
+        if ((movingDown && movingLeft) || (movingDown && movingRight) )
+            return;
+        
         // floor in the canMove function insures the entity doesn't move into a negative position between 0 and -1
-        if(this.movingUp && levelData.canMove((int)Math.floor(posX), (int)Math.floor(posY - entitySpeed))){
+        // When moving up check both top left and right corners
+        if(this.movingUp && levelData.canMove((int)Math.floor(posX+0.1), (int)Math.floor(posY - entitySpeed))){
+            if ( ! (levelData.canMove((int)Math.floor(posX+0.9), (int)Math.floor(posY - entitySpeed)))){
+                return;
+            }
             posY -= entitySpeed;
         }
-        if(this.movingDown && levelData.canMove((int)Math.floor(posX), (int)Math.floor(posY + entitySpeed))){
+        // When moving down check both bottom left and right corners
+        if(this.movingDown && levelData.canMove((int)Math.floor(posX+0.1), (int)Math.floor(posY + 1 + entitySpeed))){
+            if ( ! (levelData.canMove((int)Math.floor(posX+0.9), (int)Math.floor(posY + 1 + entitySpeed)))){
+                return;
+            }
             posY += entitySpeed;
         }
-        if(this.movingLeft && levelData.canMove((int)Math.floor(posX - entitySpeed), (int)Math.floor(posY))){
+        // When moving left check both top left and bottom left
+        if(this.movingLeft && levelData.canMove((int)Math.floor(posX - entitySpeed), (int)Math.floor(posY+0.1))){
+            if ( ! (levelData.canMove((int)Math.floor(posX - entitySpeed), (int)Math.floor(posY+0.9)))){
+                return;
+            }
             posX -= entitySpeed;
         }
-        if(this.movingRight && levelData.canMove((int)Math.floor(posX + entitySpeed), (int)Math.floor(posY))){
+        // When moving right check both top left and bottom left
+        if(this.movingRight && levelData.canMove((int)Math.floor(posX + 1 + entitySpeed), (int)Math.floor(posY+0.1))){
+            if ( ! (levelData.canMove((int)Math.floor(posX + 1 +  entitySpeed), (int)Math.floor(posY+0.9)))){
+                return;
+            }
             posX += entitySpeed;
         }
-    }
+    } 
 
 
     /**
