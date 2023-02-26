@@ -22,8 +22,8 @@ public class Player extends Animate {
      * @param levelData
      * the levelData of the level the player is in
      */
-    public Player(double posX, double posY, LevelData levelData) {
-        super(posX, posY, levelData);
+    public Player(double posX, double posY, LevelData levelData) { 
+        super(posX, posY, levelData); 
         loadAnimations();
     }
 
@@ -56,6 +56,7 @@ public class Player extends Animate {
     public void update() {
         // update position of a player based on player current action
         updatePosition();
+        updateHitbox();
         // change sprite of the player in sprites of current actions
         updateAnimationTick();
         // check the action of player, if the action was changed, then change currentAction
@@ -95,10 +96,11 @@ public class Player extends Animate {
         GraphicsGrid.render(
             g,
             entityAnimations[currentAction][aniIndex], 
-            (posX - 0.5), // slight offset to make the player look more centered on the tile
-            (posY - 0.7), // TODO: change this to be more accurate and maybe place it somewhere else
+            (posX), // -0.5 slight offset to make the player look more centered on the tile
+            (posY), // -0.7 TODO: change this to be more accurate and maybe place it somewhere else
             1,
             1
         );
+        drawHitbox(g);
     }
 }

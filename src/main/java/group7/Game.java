@@ -19,7 +19,7 @@ public class Game implements Runnable {
         this.graphicsGrid = new GraphicsGrid(graphicsPanel, 15, 10);
         this.levelManager = new LevelManager();
         this.levelManager.loadLevel(1);
-        this.player = new Player(1, 1, this.levelManager.getLevelData());
+        this.player = new Player(1, 1, this.levelManager.getLevelData());  
         this.graphicsPanel =  new GraphicsPanel(this.player, this.levelManager);
         this.graphicsWindow = new GraphicsWindow(this.graphicsPanel);
         
