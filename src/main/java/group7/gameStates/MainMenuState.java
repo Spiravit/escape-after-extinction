@@ -4,6 +4,7 @@ import group7.Game;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
+import static group7.Graphics.GraphicsPanel.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -13,6 +14,9 @@ import java.awt.image.BufferedImage;
 public class MainMenuState extends State {
     private GraphicsButtons[] mainMenuButtons = new GraphicsButtons[3]; // 3 since there are 3 buttons in Main menu
     private BufferedImage mainMenuBackground;
+    // The Heigh of main Menu background
+    private static final int MAIN_MENU_BACKGROUND_HEIGH=80+4*GraphicsGrid.getScaleY()+20;
+    private static final int MAIN_MENU_BACKGROUND_WIDTH=4*GraphicsGrid.getScaleX(); // The width of main Menu is 4 Grids
 
     public MainMenuState(Game game) {
         super(game);
@@ -32,7 +36,13 @@ public class MainMenuState extends State {
     public void render(Graphics g) {
         g.setColor(new Color(0, 0, 0));
         g.fillRect(0, 0, 1280, 720);
-        g.drawImage(mainMenuBackground,1280 / 2 - 2*GraphicsGrid.getScaleX(),140,4*GraphicsGrid.getScaleX(),80+4*GraphicsGrid.getScaleY()+20,null);
+        // Draw Main menu background
+        g.drawImage(mainMenuBackground,
+                panelWidth / 2 - 2*GraphicsGrid.getScaleX(),
+                140,
+                MAIN_MENU_BACKGROUND_WIDTH,
+                MAIN_MENU_BACKGROUND_HEIGH,
+                null);
 
         for (GraphicsButtons buttons : mainMenuButtons) {
             buttons.render(g);
@@ -48,10 +58,6 @@ public class MainMenuState extends State {
 
     @Override
     public void keyReleased(KeyEvent e) {
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
     }
 
     @Override

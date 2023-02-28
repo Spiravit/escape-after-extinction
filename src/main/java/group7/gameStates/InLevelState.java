@@ -66,11 +66,6 @@ public class InLevelState extends State {
         }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
     public void mousePressed(MouseEvent e) {
 
     }
