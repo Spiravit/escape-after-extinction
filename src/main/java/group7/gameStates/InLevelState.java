@@ -9,8 +9,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+
+// This class is for when the game is in Playing state
+// it initializes a player, enemies, level
+// render and update them
+// the class is extending the abstract State class, a super class for all states
 public class InLevelState extends State {
-        public Player player; // TODO: this will be removed !!
+        public Player player;
         private LevelManager levelManager;
         public InLevelState(Game game) {
             super(game);
@@ -23,10 +28,11 @@ public class InLevelState extends State {
         }
         public void render(Graphics g) {
             levelManager.render(g);
-            //System.out.println("painting 3");
             player.render(g);
-            //System.out.println("painting done");
         }
+
+
+        @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
                 //Right arrow key code
@@ -42,6 +48,7 @@ public class InLevelState extends State {
                 player.setDirection(Direction.DOWN);
             }
         }
+        @Override
         public void keyReleased(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
                 //Right arrow key code
@@ -77,9 +84,4 @@ public class InLevelState extends State {
     public void mouseMoved(MouseEvent e) {
 
     }
-
-    public Player getPlayer() {
-            return player;
-        }
-
 }
