@@ -34,7 +34,7 @@ public abstract class Animate extends Entity {
     protected int aniSpeed = 15;
 
     // Moving speed of entity to change position of entity on map
-    protected float entitySpeed = 0.05f;
+    protected float entitySpeed = 0.02f;
 
     public Animate(double posX, double posY, LevelData levelData) {
         super(posX, posY);

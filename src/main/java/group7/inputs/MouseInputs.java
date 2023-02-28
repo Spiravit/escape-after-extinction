@@ -24,7 +24,7 @@ public class MouseInputs implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         // call the mouseClicked method of current state of game
-        gameCurrentStates.mouseClicked(e);
+
     }
 
     @Override
