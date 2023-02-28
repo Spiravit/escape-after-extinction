@@ -57,7 +57,28 @@ public class InLevelState extends State {
                 player.removeDirection(Direction.DOWN);
             }
         }
-        public Player getPlayer() {
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    public Player getPlayer() {
             return player;
         }
 

@@ -25,7 +25,7 @@ public class GraphicsPanel extends JPanel {
     private State gameCurrentStates;
     public GraphicsPanel(State gameCurrentStates){
         super.addKeyListener(new KeyboardInputs(this));
-        super.addMouseListener(new MouseInputs());
+        super.addMouseListener(new MouseInputs(this));
         //this.player = player;
         //this.levelManager = levelManager;
         this.gameCurrentStates = gameCurrentStates;

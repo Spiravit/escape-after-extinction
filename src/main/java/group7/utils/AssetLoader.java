@@ -10,6 +10,9 @@ public class AssetLoader {
     public static final String LEVELONEMAP = "levels/level_one/levelonesprites.png";
     public static final String LEVELS_SPRITES = "levels/levelssprites.png";
 
+    public static final String MAIN_MENU_BUTTONS = "menu/mainMenuButtons.png";
+    public static final String MAIN_MENU_BACKGROUND = "menu/mainMenuBackground.png";
+
     public static final String PINKPLAYER = "playerSprites/pink_dino_ani.png";
 
     public static final String SCIENTIST = "scientist_sprites.png";
