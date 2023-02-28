@@ -50,6 +50,8 @@ public class Game implements Runnable {
         }
         else if (gameCurrentState == gameStates.IN_LEVEL ) {
             graphicsPanel.changeGameStates(inLevelState);
+        } else if (gameCurrentState == gameStates.QUIT) {
+            System.exit(0);
         }
     }
 
