@@ -1,50 +1,47 @@
 package group7.inputs;
 
 import group7.Graphics.GraphicsPanel;
+import group7.gameStates.State;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class MouseInputs implements MouseListener {
-    GraphicsPanel gamePanel;
-    public MouseInputs(GraphicsPanel gamePanel){
-        this.gamePanel=gamePanel;
+
+    private State gameCurrentStates;
+    public MouseInputs(State gameCurrentStates){
+        // call the MouseInputs method of current state of game
+        this.gameCurrentStates=gameCurrentStates;
+    }
+    public void setMouseGameStates(State gameCurrentStates) {
+        this.gameCurrentStates = gameCurrentStates;
     }
     public void mouseMoved(MouseEvent e) {
-        gamePanel.getGameCurrentStates().mouseMoved(e);
+        // call the mouseMoved method of current state of game
+        gameCurrentStates.mouseMoved(e);
 
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
-        gamePanel.getGameCurrentStates().mouseClicked(e);
+        // call the mouseClicked method of current state of game
+        gameCurrentStates.mouseClicked(e);
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        gamePanel.getGameCurrentStates().mousePressed(e);
+        // call the mousePressed method of current state of game
+        gameCurrentStates.mousePressed(e);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        gamePanel.getGameCurrentStates().mouseReleased(e);
+        // call the mouseReleased method of current state of game
+        gameCurrentStates.mouseReleased(e);
     }
-
-    /**
-     * Invoked when the mouse enters a component.
-     *
-     * @param e the event to be processed
-     */
     @Override
     public void mouseEntered(MouseEvent e) {
 
     }
-
-    /**
-     * Invoked when the mouse exits a component.
-     *
-     * @param e the event to be processed
-     */
     @Override
     public void mouseExited(MouseEvent e) {
 

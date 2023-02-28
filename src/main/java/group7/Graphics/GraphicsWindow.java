@@ -22,8 +22,6 @@ public class GraphicsWindow {
     private void changeWindowAttributes(GraphicsPanel graphicsPanel){
         // Terminate the program when player closes the window
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        // window size set to be 1280x720
-        jframe.setSize(1280,720);
         // Connecting the graphicspanel to window
         jframe.add(graphicsPanel);
         // Spawn the window in center of screen
