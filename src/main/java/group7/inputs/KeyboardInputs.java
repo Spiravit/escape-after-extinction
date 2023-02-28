@@ -32,6 +32,7 @@ public class KeyboardInputs implements KeyListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
+        /*
         if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
             //Right arrow key code
             gamePanel.setDirection(Direction.RIGHT);
@@ -45,6 +46,9 @@ public class KeyboardInputs implements KeyListener {
             //Down arrow key code
             gamePanel.setDirection(Direction.DOWN);
         }
+
+         */
+        gamePanel.getGameCurrentStates().keyPressed(e);
     }
 
     /**
@@ -56,18 +60,6 @@ public class KeyboardInputs implements KeyListener {
      */
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
-            //Right arrow key code
-            gamePanel.removeDirection(Direction.RIGHT);
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
-            //gamePanel arrow key code
-            gamePanel.removeDirection(Direction.LEFT);
-        } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
-            //Up arrow key code
-            gamePanel.removeDirection(Direction.UP);
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
-            //Down arrow key code
-            gamePanel.removeDirection(Direction.DOWN);
-        }
+        gamePanel.getGameCurrentStates().keyReleased(e);
     }
 }
