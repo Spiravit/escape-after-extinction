@@ -1,10 +1,19 @@
 package group7.entities;
 
+import group7.Graphics.GraphicsGrid;
 import group7.levels.LevelData;
 import group7.utils.Direction;
 
+import java.awt.Color;
+import java.awt.geom.Rectangle2D;
+import java.awt.Graphics;
+
 public class Enemy extends Animate {
-    int directionUpdateInterval = 100;
+    int directionUpdateInterval = 200;
+
+    int detectionWidth = 5;
+    int detectionHeight = 5;
+    
 
     public Enemy(double posX, double posY, LevelData levelData) {
         super(posX, posY, levelData);
@@ -24,7 +33,7 @@ public class Enemy extends Animate {
             directionUpdateInterval--;
             return;
         }
-        directionUpdateInterval = 100;
+        directionUpdateInterval = (int) (Math.random() * 100);
         switch ((int) (Math.random() * 5)) {
             case 0:
                 toggleDirection(Direction.UP);
@@ -50,4 +59,14 @@ public class Enemy extends Animate {
     public void loadAnimations() {
 
     }
+
+    public Rectangle2D getDetectionBounds() {
+        return new Rectangle2D.Double(posX - detectionWidth / 2, posY - detectionHeight / 2, detectionWidth, detectionHeight);
+    }
+
+    public void render(Graphics g) {
+        super.render(g);
+        g.setColor(Color.YELLOW);
+        GraphicsGrid.drawRect(g, posX - detectionWidth / 2, posY - detectionHeight / 2, detectionWidth, detectionHeight);
+    } 
 }

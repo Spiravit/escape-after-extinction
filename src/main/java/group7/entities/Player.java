@@ -85,6 +85,12 @@ public class Player extends Animate {
         }
     }
 
+    void onInteraction(Entity entity) {
+        if (entity instanceof Enemy) {
+            health -= health; // end game instantly
+        }
+    }
+
     /**
      * Render the player
      * @param g
@@ -92,12 +98,13 @@ public class Player extends Animate {
      */
     @Override
     public void render(Graphics g){
+        g.setColor(Color.RED);
         // draw the player, with the current animation and sprite in the current positions
         GraphicsGrid.render(
             g,
             entityAnimations[currentAction][aniIndex], 
-            (posX), // -0.5 slight offset to make the player look more centered on the tile
-            (posY), // -0.7 TODO: change this to be more accurate and maybe place it somewhere else
+            posX, // -0.5 slight offset to make the player look more centered on the tile
+            posY, // -0.7 TODO: change this to be more accurate and maybe place it somewhere else
             1,
             1
         );
