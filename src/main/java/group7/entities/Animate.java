@@ -4,6 +4,7 @@ import group7.levels.LevelData;
 import group7.utils.Direction;
 import group7.Graphics.GraphicsGrid;
 import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 
 /**
  * will be added later
@@ -52,6 +53,16 @@ public abstract class Animate extends Entity {
      * updates the current action of the entity
      */
     abstract void setAnimation();
+
+    public void update() {
+        // update position of a player based on player current action
+        updatePosition();
+        updateHitbox();
+        // change sprite of the player in sprites of current actions
+        //updateAnimationTick();
+        // check the action of player, if the action was changed, then change currentAction
+        //setAnimation();
+    }
 
     /**
      * manages the animation of the entity
@@ -173,6 +184,27 @@ public abstract class Animate extends Entity {
     }
 
     /**
+     * toggles a direction in the list of directions the entity is moving in
+     * @param direction
+     */
+    public void toggleDirection(Direction direction) {
+        switch(direction) {
+            case UP:
+                this.movingUp = !this.movingUp;
+                break;
+            case DOWN:
+                this.movingDown = !this.movingDown;
+                break;
+            case LEFT:
+                this.movingLeft = !this.movingLeft;
+                break;
+            case RIGHT:
+                this.movingRight = !this.movingRight;
+                break;
+        }
+    }
+
+    /**
      * @return
      * true if the entity is moving in any direction
      */
@@ -190,4 +222,10 @@ public abstract class Animate extends Entity {
         }
         return false;
     }
+
+    public void render(Graphics g) {
+        update();
+        GraphicsGrid.drawRect(g, posX, posY, 1, 1);
+    }
+
 }

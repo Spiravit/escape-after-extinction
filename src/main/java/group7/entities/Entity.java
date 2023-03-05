@@ -52,5 +52,9 @@ public abstract class Entity {
         return hitBox;
     }
 
-    abstract void render(Graphics g);
+    public void render(Graphics g) {
+        System.out.println("rendering entity at x: " + posX + " y: " + posY);
+        GraphicsGrid.drawRect(g, posX, posY, 1, 1);
+    }
+
 }
