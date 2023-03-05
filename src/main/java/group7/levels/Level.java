@@ -4,6 +4,7 @@ import group7.entities.*;
 import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Color;
 
@@ -14,6 +15,8 @@ public abstract class Level {
     private BufferedImage[] levelSprites;
     private int levelSpriteData[][];
 
+    private ArrayList<Entity> entities;
+
     /** 
      * Loads everything about the level
      */
@@ -21,6 +24,9 @@ public abstract class Level {
         importSprites();
         setLevelData();
         GraphicsGrid.setGridSize(width, height);
+
+        entities = new ArrayList<Entity>();
+        entities.add(new Enemy(2, 5, levelData));
     }
 
     public LevelData getLevelData() { // TODO: remove this
@@ -44,6 +50,10 @@ public abstract class Level {
                     1
                 );
             }
+        }
+
+        for (Entity entity : entities) {
+            entity.render(g);
         }
     }
 
