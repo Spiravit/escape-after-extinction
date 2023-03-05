@@ -11,7 +11,7 @@ import java.awt.Color;
  * will be added later
  */
 public abstract class Animate extends Entity {
-    private LevelData levelData;
+    protected LevelData levelData;
 
     private boolean movingUp = false;
     private boolean movingDown = false;
@@ -95,7 +95,7 @@ public abstract class Animate extends Entity {
     /**
      * updates the position of the entity based on the directions it is moving in
      */
-    public void updatePosition() {
+    protected void updatePosition() {
         // Exit if not moving in any direction
         if( !movingUp && !movingDown && !movingLeft && !movingRight ) {
             return;
@@ -114,6 +114,7 @@ public abstract class Animate extends Entity {
                 return;
             }
             posY -= entitySpeed;
+            hitboxY -= entitySpeed;
         }
         // When moving down check both bottom left and right corners
         if(this.movingDown && levelData.canMove((int)Math.floor(posX + 0.1), (int)Math.floor(posY + 1 - entitySpeed))){
@@ -121,6 +122,7 @@ public abstract class Animate extends Entity {
                 return;
             }
             posY += entitySpeed;
+            hitboxY += entitySpeed;
         }
         // When moving left check both top left and bottom left
         if(this.movingLeft && levelData.canMove((int)Math.floor(posX + 0.1 - entitySpeed), (int)Math.floor(posY + 0.1))){
@@ -128,6 +130,7 @@ public abstract class Animate extends Entity {
                 return;
             }
             posX -= entitySpeed;
+            hitboxX -= entitySpeed;
         }
         // When moving right check both top left and bottom left
         if(this.movingRight && levelData.canMove((int)Math.floor(posX + 1 - entitySpeed), (int)Math.floor(posY + 0.1))){
@@ -135,6 +138,7 @@ public abstract class Animate extends Entity {
                 return;
             }
             posX += entitySpeed;
+            hitboxX += entitySpeed;
         }
     } 
 
@@ -226,8 +230,7 @@ public abstract class Animate extends Entity {
 
     public void render(Graphics g) {
         update();
-        g.setColor(Color.RED);
-        GraphicsGrid.drawRect(g, posX, posY, 1, 1);
+        super.render(g);
     }
 
 }

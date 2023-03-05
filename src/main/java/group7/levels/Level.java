@@ -26,7 +26,7 @@ public abstract class Level {
         GraphicsGrid.setGridSize(width, height);
 
         entities = new ArrayList<Entity>();
-        entities.add(new Enemy(2, 5, levelData));
+        entities.add(new Enemy(1, 1, levelData));
     }
 
     public LevelData getLevelData() { // TODO: remove this
@@ -79,7 +79,7 @@ public abstract class Level {
                 // TODO: add the logic to set the level data
                 // levelData.set(x, y, true/false); <- get the true or false value
                 levelSpriteData[x][y] = value;
-                levelData.set(x, y, value != 13 ? false:true);
+                levelData.set(x, y, value != 13 ? levelData.INVALID:levelData.VALID);
             }
         }
     }

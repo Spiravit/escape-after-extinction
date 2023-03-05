@@ -63,6 +63,11 @@ public class Player extends Animate {
         setAnimation();
     }
 
+    protected void updatePosition() {
+        super.updatePosition();
+        levelData.set((int) posX, (int) posY, levelData.PLAYER);
+    }
+
 
     /**
      * Update the the current animation of the player
@@ -103,11 +108,12 @@ public class Player extends Animate {
         GraphicsGrid.render(
             g,
             entityAnimations[currentAction][aniIndex], 
-            posX, // -0.5 slight offset to make the player look more centered on the tile
-            posY, // -0.7 TODO: change this to be more accurate and maybe place it somewhere else
+            posX, 
+            posY,
             1,
             1
         );
         drawHitbox(g);
+        super.render(g);
     }
 }

@@ -13,6 +13,9 @@ public class Enemy extends Animate {
 
     int detectionWidth = 5;
     int detectionHeight = 5;
+
+    double hitboxWidth = 0.8;
+    double hitboxHeight = 0.8;
     
 
     public Enemy(double posX, double posY, LevelData levelData) {
@@ -29,6 +32,18 @@ public class Enemy extends Animate {
     }
 
     public void updateDirection() {
+        Direction playerDirection = levelData.findPlayer((int) getPosX(), (int) getPosY(), detectionWidth);
+        if (!(playerDirection == Direction.NONE)) {
+            // remove all directions and move towards the player
+            removeDirection(Direction.UP);
+            removeDirection(Direction.DOWN);
+            removeDirection(Direction.LEFT);
+            removeDirection(Direction.RIGHT);
+
+            setDirection(playerDirection);
+            return;
+        }
+
         if (directionUpdateInterval > 0) {
             directionUpdateInterval--;
             return;
@@ -67,6 +82,6 @@ public class Enemy extends Animate {
     public void render(Graphics g) {
         super.render(g);
         g.setColor(Color.YELLOW);
-        GraphicsGrid.drawRect(g, posX - detectionWidth / 2, posY - detectionHeight / 2, detectionWidth, detectionHeight);
+        //GraphicsGrid.drawRect(g, hitboxX - detectionWidth / 2, hitboxY - detectionHeight / 2, detectionWidth, detectionHeight);
     } 
 }
