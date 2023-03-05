@@ -96,7 +96,6 @@ public class GraphicsGrid {
      * @param height
      */
     public static void drawRect(Graphics g, double posX, double posY, double width, double height) {
-        g.setColor(Color.RED);
         g.drawRect(
             (int) (posX * scaleX), 
             (int) (posY * scaleY), 

@@ -52,8 +52,9 @@ public abstract class Entity {
         return hitBox;
     }
 
+    
     public void render(Graphics g) {
-        System.out.println("rendering entity at x: " + posX + " y: " + posY);
+        g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, posX, posY, 1, 1);
     }
 

@@ -5,6 +5,7 @@ import group7.utils.Direction;
 import group7.Graphics.GraphicsGrid;
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
+import java.awt.Color;
 
 /**
  * will be added later
@@ -225,6 +226,7 @@ public abstract class Animate extends Entity {
 
     public void render(Graphics g) {
         update();
+        g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, posX, posY, 1, 1);
     }
 
