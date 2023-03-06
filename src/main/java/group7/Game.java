@@ -5,7 +5,7 @@ import group7.Graphics.GraphicsWindow;
 import group7.Graphics.GraphicsGrid;
 import group7.entities.Player;
 import group7.gameStates.*;
-import group7.levels.LevelData;
+import group7.levels.Pathfinding;
 import group7.levels.LevelManager;
 
 

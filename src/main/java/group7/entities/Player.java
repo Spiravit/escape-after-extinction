@@ -19,11 +19,11 @@ public class Player extends Animate {
      * the x position of the player
      * @param posY
      * the y position of the player
-     * @param levelData
-     * the levelData of the level the player is in
+     * @param pathfinding
+     * the pathfinding of the level the player is in
      */
-    public Player(double posX, double posY, LevelData levelData, int DinoNumber) {
-        super(posX, posY, levelData);
+    public Player(double posX, double posY, Pathfinding pathfinding, int DinoNumber) {
+        super(posX, posY, pathfinding);
         this.DinoNumber = DinoNumber;
         loadAnimations();
     }
@@ -59,7 +59,7 @@ public class Player extends Animate {
    
     protected void updatePosition() {
         super.updatePosition();
-        levelData.setPlayer((int) getPosX(), (int) getPosY());
+        pathfinding.setPlayer((int) getPosX(), (int) getPosY());
     }
 
     @Override

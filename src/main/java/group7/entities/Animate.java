@@ -1,6 +1,6 @@
 package group7.entities;
 
-import group7.levels.LevelData;
+import group7.levels.Pathfinding;
 import group7.utils.Direction;
 import group7.Graphics.GraphicsGrid;
 import java.awt.image.BufferedImage;
@@ -11,7 +11,7 @@ import java.awt.Color;
  * will be added later
  */
 public abstract class Animate extends Entity {
-    protected LevelData levelData;
+    protected Pathfinding pathfinding;
 
     protected boolean movingUp = false;
     protected boolean movingDown = false;
@@ -38,10 +38,10 @@ public abstract class Animate extends Entity {
     // Moving speed of entity to change position of entity on map
     protected float entitySpeed = 0.02f;
 
-    public Animate(double posX, double posY, LevelData levelData) {
+    public Animate(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY);
         this.currentAction = IDLE_ACTION;
-        this.levelData = levelData;
+        this.pathfinding = pathfinding;
     }
 
     /**
@@ -103,29 +103,29 @@ public abstract class Animate extends Entity {
         
         // floor in the canMove function insures the entity doesn't move into a negative position between 0 and -1
         // When moving up check both top left and right corners
-        if(this.movingUp && levelData.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY - entitySpeed))){
-            if ((levelData.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY - entitySpeed)))){
+        if(this.movingUp && pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY - entitySpeed))){
+            if ((pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY - entitySpeed)))){
                 posY -= entitySpeed;
                 hitboxY -= entitySpeed;
             }
         }
         // When moving down check both bottom left and right corners
-        if(this.movingDown && levelData.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed))){
-            if ((levelData.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed)))){
+        if(this.movingDown && pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed))){
+            if ((pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed)))){
                 posY += entitySpeed;
                 hitboxY += entitySpeed;
             }
         }
         // When moving left check both top left and bottom left
-        if(this.movingLeft && levelData.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY))){
-            if ((levelData.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
+        if(this.movingLeft && pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY))){
+            if ((pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
                 posX -= entitySpeed;
                 hitboxX -= entitySpeed;
             }
         }
         // When moving right check both top left and bottom left
-        if(this.movingRight && levelData.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY))){
-            if ( (levelData.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
+        if(this.movingRight && pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY))){
+            if ( (pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
                 posX += entitySpeed;
                 hitboxX += entitySpeed;
             }
