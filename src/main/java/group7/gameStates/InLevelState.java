@@ -16,7 +16,7 @@ import java.awt.event.MouseEvent;
 // the class is extending the abstract State class, a super class for all states
 public class InLevelState extends State {
         public Player player;
-        private LevelManager levelManager;
+        protected LevelManager levelManager;
         public InLevelState(Game game) {
             super(game);
             this.levelManager = new LevelManager();
