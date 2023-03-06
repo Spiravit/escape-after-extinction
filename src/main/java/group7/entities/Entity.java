@@ -23,7 +23,6 @@ public abstract class Entity {
     public Entity(double positionX, double positionY) {
         this.posX = positionX;
         this.posY = positionY;
-        System.out.println("updateHitbox x: " + posX + " y: " + posY + " xscale: " + xScale + " yscale: " + yScale);
         initHitbox();
     }
 

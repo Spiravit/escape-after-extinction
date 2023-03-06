@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Animate {
     private int health = 100;
     private int stamina = 100;
-
+    private int DinoNumber ;
     /**
      * Create a new player
      * @param posX
@@ -22,8 +22,9 @@ public class Player extends Animate {
      * @param levelData
      * the levelData of the level the player is in
      */
-    public Player(double posX, double posY, LevelData levelData) { 
-        super(posX, posY, levelData); 
+    public Player(double posX, double posY, LevelData levelData, int DinoNumber) {
+        super(posX, posY, levelData);
+        this.DinoNumber = DinoNumber;
         loadAnimations();
     }
 
@@ -33,19 +34,19 @@ public class Player extends Animate {
      */
     @Override
     void loadAnimations() {
-        BufferedImage dinosaur = AssetLoader.getSpriteAtlas(PINKPLAYER);
+        BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+DinoNumber+".png");
         entityAnimations = new BufferedImage[2][];
         
         // place moving animations into 2d array
         entityAnimations[0] = new BufferedImage[6];
-        for (int i = 0; i < entityAnimations[0].length; i++) { 
+        for (int i = 0; i < 6; i++) {
             entityAnimations[0][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
         }
         
         // place idle animations into 2d array
         entityAnimations[1] = new BufferedImage[3];
-        for (int i = 0; i < entityAnimations[1].length; i++) {
-            entityAnimations[1][i] = dinosaur.getSubimage(i * 24 + 13 * 24, 0, 24, 24);
+        for (int i = 0; i < 3; i++) {
+            entityAnimations[1][i] = dinosaur.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
         }
     }
 

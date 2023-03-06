@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class MainMenuState extends State {
-    private GraphicsButtons[] mainMenuButtons = new GraphicsButtons[4]; // 3 since there are 3 buttons in Main menu
+    protected GraphicsButtons[] mainMenuButtons = new GraphicsButtons[4]; // 3 since there are 3 buttons in Main menu
     private BufferedImage mainMenuBackground;
     private BufferedImage[] loadingMainPage = new BufferedImage[3];
     protected GraphicParallelBackground mainPageParallelBG;
@@ -36,7 +36,7 @@ public class MainMenuState extends State {
         mainMenuBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
         mainMenuButtons[0] = new GraphicsButtons(game,panelWidth / 2, 160, 0, gameStates.PLAYER_SELECTION_SUB_MENU);
         mainMenuButtons[1] = new GraphicsButtons(game,panelWidth / 2, 160 + 15 + GraphicsGrid.getScaleY(), 4, gameStates.IN_MENU);
-        mainMenuButtons[2] = new GraphicsButtons(game,panelWidth / 2, 160 + 35 + 2*GraphicsGrid.getScaleY(), 2, gameStates.IN_MENU);
+        mainMenuButtons[2] = new GraphicsButtons(game,panelWidth / 2, 160 + 35 + 2*GraphicsGrid.getScaleY(), 2, gameStates.CREDIT_SUB_MENU);
         mainMenuButtons[3] = new GraphicsButtons(game,panelWidth / 2, 160 + 45 + 3 * GraphicsGrid.getScaleY(), 3, gameStates.QUIT);
     }
 
@@ -122,5 +122,13 @@ public class MainMenuState extends State {
             }
 
         }
+    }
+    public int incrementIndexCharacterDemo() {
+       // DO NOTHING HERE !!!!
+        return 0;
+    }
+    public int decrementIndexCharacterDemo() {
+        // DO NOTHING HERE !!!!
+        return 0;
     }
 }
