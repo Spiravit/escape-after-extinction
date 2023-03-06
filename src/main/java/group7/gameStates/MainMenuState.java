@@ -48,6 +48,7 @@ public class MainMenuState extends State {
 
     @Override
     public void render(Graphics g) {
+
         mainPageParallelBG.renderParallelBackground(g);
             // Show the original main menu
             loadingTick++;
@@ -74,8 +75,8 @@ public class MainMenuState extends State {
     }
 
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER)
-            game.changeGameStates(gameStates.IN_LEVEL);
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+            game.changeGameStates(gameStates.QUIT);
     }
 
     @Override
