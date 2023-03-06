@@ -46,20 +46,7 @@ public class Player extends Animate {
         }
     }
 
-    /**
-     * Update the player
-     * This includes updating the position, animation, and action of the player
-     */
-    public void update() {
-        // update position of a player based on player current action
-        updatePosition();
-        updateHitbox();
-        // change sprite of the player in sprites of current actions
-        updateAnimationTick();
-        // check the action of player, if the action was changed, then change currentAction
-        setAnimation();
-    }
-
+   
     protected void updatePosition() {
         super.updatePosition();
         levelData.setPlayer((int) getPosX(), (int) getPosY());

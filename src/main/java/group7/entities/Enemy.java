@@ -14,8 +14,6 @@ public class Enemy extends Animate {
     int detectionWidth = 5;
     int detectionHeight = 5;
 
-    
-
     public Enemy(double posX, double posY, LevelData levelData) {
         super(posX, posY, levelData);
     }
@@ -24,11 +22,19 @@ public class Enemy extends Animate {
 
     }
 
+    /**
+     * Update the direction the enemy is moving in, the position, and the animation
+     */
     public void update() {
         updateDirection();
         super.update();
     }
 
+    /**
+     * Update the direction the enemy is moving in
+     * If the player is in range, move towards the player
+     * If the player is not in range, move randomly
+     */
     public void updateDirection() {
         Direction playerDirection = levelData.findPlayer((int) getPosX(), (int) getPosY(), detectionWidth);
         if (!(playerDirection == Direction.NONE)) {
@@ -39,14 +45,14 @@ public class Enemy extends Animate {
             removeDirection(Direction.RIGHT);
 
             // move to towards the center of the tile to prevent getting stuck
-            if (getPosX() % 1 > 0.5 && playerDirection != Direction.RIGHT) {
+            if (getPosX() % 1 - (hitboxWidth / 2) > 0 && playerDirection != Direction.RIGHT) {
                 setDirection(Direction.LEFT);
-            } else if (getPosX() % 1 < 0.5 && playerDirection != Direction.LEFT) {
+            } else if (getPosX() % 1 < (hitboxWidth / 2) && playerDirection != Direction.LEFT) {
                 setDirection(Direction.RIGHT);
             }
-            if (getPosY() % 1 > 0.5 && playerDirection != Direction.DOWN) {
+            if (getPosY() % 1 - (hitboxHeight / 2) > 0 && playerDirection != Direction.DOWN) {
                 setDirection(Direction.UP);
-            } else if (getPosY() % 1 < 0.5 && playerDirection != Direction.UP) {
+            } else if (getPosY() % 1 < (hitboxHeight / 2) && playerDirection != Direction.UP) {
                 setDirection(Direction.DOWN);
             } 
             System.out.println(playerDirection);
@@ -84,17 +90,16 @@ public class Enemy extends Animate {
     }
 
     public void loadAnimations() {
-
+        
     }
 
-    public Rectangle2D getDetectionBounds() {
-        return new Rectangle2D.Double(posX - detectionWidth / 2, posY - detectionHeight / 2, detectionWidth, detectionHeight);
-    }
-
-    public void render(Graphics g) {
-        super.render(g);
-        g.setColor(Color.YELLOW);
-
+    /**
+     * debugging only
+     * Draw rectangles in the direction the enemy is moving in
+     * @param g
+     * the graphics object to draw to
+     */
+    private void drawMovementDirections(Graphics g) {
         // debugging the direction the enemy is moving in
         g.setColor(Color.ORANGE);
         if (movingDown) {
@@ -109,5 +114,18 @@ public class Enemy extends Animate {
         if (movingUp) {
             GraphicsGrid.drawRect(g, getPosX(), getPosY() - 1, 0.1, 0.1);
         }
+    }
+
+    /**
+     * Render the enemy
+     * @param g
+     * the graphics object to render to
+     */
+    @Override
+    public void render(Graphics g) {
+        super.render(g);
+        g.setColor(Color.YELLOW);
+
+        drawMovementDirections(g);
     } 
 }

@@ -11,6 +11,7 @@ import java.awt.geom.Rectangle2D;
 
 
 public abstract class Entity {
+    // use getPosX() and getPosY() instead
     double posX; // deprecated
     double posY; // deprecated
 
@@ -25,14 +26,15 @@ public abstract class Entity {
     protected double hitboxWidth = 0.8;
     protected double hitboxHeight = 0.8;
 
-    protected Rectangle hitBox; // not related to the hitboxX, hitboxY, hitboxWidth, hitboxHeight
-    private int xScale = GraphicsGrid.getScaleX();
-    private int yScale = GraphicsGrid.getScaleY();
+    // not related to hitboxX, hitboxY, hitboxWidth, hitboxHeight
+    // do not use
+    protected Rectangle hitBox; // deprecated
+    private int xScale = GraphicsGrid.getScaleX(); // deprecated
+    private int yScale = GraphicsGrid.getScaleY(); // deprecated
 
     public Entity(double positionX, double positionY) {
         this.posX = positionX;
         this.posY = positionY;
-        System.out.println("updateHitbox x: " + posX + " y: " + posY + " xscale: " + xScale + " yscale: " + yScale);
         initHitbox();
 
         hitboxX = positionX;
@@ -40,7 +42,7 @@ public abstract class Entity {
     }
 
     /**
-     * deprecated
+     * deprecated, do not use
      * initializes the hitbox of the entity
      */
     private void initHitbox() {
@@ -54,7 +56,7 @@ public abstract class Entity {
     }
 
     /**
-     * deprecated
+     * deprecated, do not use
      * updates the hitbox of the entity with the current position
      */
     protected void updateHitbox() {
@@ -64,7 +66,7 @@ public abstract class Entity {
     }
 
     /**
-     * should be deprecated
+     * deprecated, do not use
      * @return
      * returns the hitbox of the entity as a rectangle
      */
@@ -90,7 +92,6 @@ public abstract class Entity {
     }
 
     /**
-     * 
      * @return
      * returns a Rectangle2D object of the hitbox
      */
@@ -98,12 +99,24 @@ public abstract class Entity {
         return new Rectangle2D.Double(hitboxX, hitboxY, hitboxWidth, hitboxHeight);
     }
 
-    
+    /**
+     * default render method
+     * draws a rectangle
+     * should be overridden by subclasses
+     * @param g
+     * the graphics object to draw on
+     */
     public void render(Graphics g) {
         g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight);
     }
 
+    /**
+     * debugging purposes only
+     * draws a dot at getPosX() and getPosY() of the entity
+     * @param g
+     * the graphics object to draw on
+     */
     public void drawPositionDot(Graphics g) {
         g.setColor(Color.ORANGE);
         g.drawRect((int)(xScale * getPosX()), (int) (yScale * getPosY()), 2, 2);

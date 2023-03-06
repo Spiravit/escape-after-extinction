@@ -11,16 +11,20 @@ import java.util.ArrayList;
 
 /**
  * LevelData
- * - stores whether a tile is valid or invalid (can be moved on or not) 
+ * - used to store the data of a level and pathfind the player
  */
 public class LevelData {
+    // location of the player
     private int playerX;
     private int playerY;
 
+    // level data that stores if a tile is valid or not (true = valid, false = invalid)
     private boolean levelData[][];
 
-    private ArrayList<PathNode> openList = new ArrayList<PathNode>(); // nodes to check
-    private ArrayList<PathNode> closedList = new ArrayList<PathNode>(); // nodes checked
+    // nodes to check for pathfinding
+    private ArrayList<PathNode> openList = new ArrayList<PathNode>(); 
+    // nodes that have already been checked for pathfinding
+    private ArrayList<PathNode> closedList = new ArrayList<PathNode>();
 
     public LevelData(int width, int height) {
         levelData = new boolean[width][height];
@@ -51,7 +55,6 @@ public class LevelData {
     }
 
     public Direction findPlayer(int x, int y, int range) {
-        System.out.println("range: " + range);
         openList.add(new PathNode(
             x,
             y, 
@@ -79,19 +82,20 @@ public class LevelData {
                     return Direction.NONE;
                 }
 
-                // loop through parents until we get right before the enemy tile
+                // loop through parents until we get right before the first node
                 while (currentNode.getParent() != null 
                 && !(currentNode.getParent().getX() == (int) x && currentNode.getParent().getY() == (int) y)){
                     currentNode = currentNode.getParent();
                 }
                 
+                // if we are at the first node, return none
                 if (currentNode.getParent() == null) {
                     return Direction.NONE;
                 }
                 System.out.println("Current node x: " + currentNode.getX() + " y: " + currentNode.getY());
                 //System.out.println("Parent node x: " + currentNode.getParent().getX() + " y: " + currentNode.getParent().getY());
                 
-                // return the direction of the first tile
+                // return the direction of the 2nd node compared to the first node
                 if (currentNode.getX() == x + 1) {
                     return Direction.RIGHT;
                 } else if (currentNode.getX() == x - 1) {
@@ -115,13 +119,22 @@ public class LevelData {
         return Direction.NONE;
     }
 
+    /**
+     * Add a node to the open list
+     * @param currentNode
+     * the node that is being checked
+     * @param x
+     * x coordinate
+     * @param y
+     * y coordinate
+     */
     private void addPathNode(PathNode currentNode, int x, int y) {
         // only add if tile is valid
         if (canMove(x, y)) {
             PathNode pathnode = new PathNode(
                 x, 
                 y, 
-                currentNode.getG() + 1, // child node will always be 1 away from start
+                currentNode.getG() + 1, // child node will be 1 away from start
                 Math.abs(x - playerX) + Math.abs(y - playerY), // distance from end
                 currentNode.getG() + 1 + Math.abs(x - playerX) + Math.abs(y - playerY), // distance from start + distance from end
                 currentNode
@@ -170,13 +183,15 @@ public class LevelData {
 
 } // End of LevelData.java
 
-
+/**
+ * A node in the pathfinding algorithm
+ */
 class PathNode {
     private int x;
     private int y;
     private int g; // distance from start
     private int h; // distance from end
-    private int f; // g + h
+    private int f; // g + h (total distance)
     private PathNode parent;
 
     public PathNode(int x, int y, int g, int h, int f, PathNode parent) {
