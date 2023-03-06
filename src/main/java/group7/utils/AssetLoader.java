@@ -23,6 +23,9 @@ public class AssetLoader {
     public static final String MAINPAGE_Layer_6 = "menu/parallexBG/6.png";
     public static final String MAINPAGE_Layer_7 = "menu/parallexBG/7.png";
     public static final String MAINPAGE_Layer_8 = "menu/parallexBG/8.png";
+    public static final String LOADING_1 = "menu/parallexBG/loading1.png";
+    public static final String LOADING_2 = "menu/parallexBG/loading2.png";
+    public static final String LOADING_3 = "menu/parallexBG/loading3.png";
 
     public static final String PINKPLAYER = "playerSprites/pink_dino_ani.png";
 
