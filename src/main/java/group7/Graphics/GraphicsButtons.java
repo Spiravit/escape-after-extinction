@@ -28,10 +28,13 @@ public class GraphicsButtons {
     }
 
     private void loadButtonsSprites() {
-        imgs = new BufferedImage[2]; // for each button there are two conditions, hovered and not hovered
+        imgs = new BufferedImage[5]; // for each button there are two conditions, hovered and not hovered
         BufferedImage temp = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BUTTONS);
-        for (int i = 0; i < imgs.length; i++)
-            imgs[i] = temp.getSubimage(i * 30, row * 14, 30, 14);
+        int menuButtonSpriteHeight = temp.getHeight() /6 ;
+        int menuButtonSpriteWidth = temp.getWidth() / 2;
+        System.out.println(menuButtonSpriteWidth);
+        for (int i = 0; i < 2; i++)
+            imgs[i] = temp.getSubimage(i * menuButtonSpriteWidth, row * menuButtonSpriteHeight, menuButtonSpriteWidth, menuButtonSpriteHeight);
     }
 
     public void render(Graphics g) {
@@ -74,4 +77,8 @@ public class GraphicsButtons {
     public boolean isMouseInButton (MouseEvent e) {
         return bounds.contains(e.getX(), e.getY());
     }
+    public gameStates getButtonGameStates() {
+        return buttonGameStates;
+    }
+
 }

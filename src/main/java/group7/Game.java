@@ -4,10 +4,7 @@ import group7.Graphics.GraphicsPanel;
 import group7.Graphics.GraphicsWindow;
 import group7.Graphics.GraphicsGrid;
 import group7.entities.Player;
-import group7.gameStates.InLevelState;
-import group7.gameStates.MainMenuState;
-import group7.gameStates.State;
-import group7.gameStates.gameStates;
+import group7.gameStates.*;
 import group7.levels.LevelData;
 import group7.levels.LevelManager;
 
@@ -28,7 +25,7 @@ public class Game implements Runnable {
     public Game() {
         gameCurrentState = gameStates.IN_MENU; // setting initial state of game to be mainMenu
         this.graphicsGrid = new GraphicsGrid(graphicsPanel, 15, 10);
-        inLevelState = new InLevelState(this);
+       // inLevelState = new InLevelState(this);
         mainMenuState = new MainMenuState(this);
         // Since the initial state of game is main menu, we pass a mainMenuState object as a gameState object
         // to graphicsPanel so that graphicsPanel will render the main menu until.
@@ -53,11 +50,21 @@ public class Game implements Runnable {
             // the graphicsPanel will use the rendering methods of current running state to render the game
             // Here, once the game state is changed to main menu in game class,
             // then we change game states in graphicsPanel to render the main menu.
+            mainMenuState = new MainMenuState(this);
+            graphicsPanel.changeGameStates(mainMenuState);
+        }
+        if (gameCurrentState == gameStates.CREDIT_SUB_MENU ) {
+            mainMenuState = new playerSelectionState(this);
+            graphicsPanel.changeGameStates(mainMenuState);
+        }
+        if (gameCurrentState == gameStates.PLAYER_SELECTION_SUB_MENU ) {
+            mainMenuState = new playerSelectionState(this);
             graphicsPanel.changeGameStates(mainMenuState);
         }
         else if (gameCurrentState == gameStates.IN_LEVEL ) {
             // Here, once the game state is changed to in Level state (the state, where player is playing) in game class,
             // then we change game states in graphicsPanel to render the level state (rendering levels,players,...) .
+            inLevelState = new InLevelState(this);
             graphicsPanel.changeGameStates(inLevelState);
         } else if (gameCurrentState == gameStates.QUIT) {
             // if the current state of game is changed to be quit, then terminate the program
@@ -68,7 +75,7 @@ public class Game implements Runnable {
     @Override
     public void run() {
         while(true) {
-            if (gameCurrentState == gameStates.IN_MENU ) {
+            if (gameCurrentState == gameStates.IN_MENU) {
                 // If the current state of game is in main menu state,
                 // then use the update method of inLevelState
                 // TODO writing comments here
