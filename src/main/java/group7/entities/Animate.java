@@ -13,10 +13,10 @@ import java.awt.Color;
 public abstract class Animate extends Entity {
     protected LevelData levelData;
 
-    private boolean movingUp = false;
-    private boolean movingDown = false;
-    private boolean movingLeft = false;
-    private boolean movingRight = false;
+    protected boolean movingUp = false;
+    protected boolean movingDown = false;
+    protected boolean movingLeft = false;
+    protected boolean movingRight = false;
 
     protected final static int IDLE_ACTION = 1;
     protected final static int MOVING_ACTION = 0;

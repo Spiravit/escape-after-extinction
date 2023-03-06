@@ -49,6 +49,7 @@ public class Enemy extends Animate {
             } else if (getPosY() % 1 < 0.5 && playerDirection != Direction.UP) {
                 setDirection(Direction.DOWN);
             } 
+            System.out.println(playerDirection);
 
             setDirection(playerDirection);
             return;
@@ -93,6 +94,20 @@ public class Enemy extends Animate {
     public void render(Graphics g) {
         super.render(g);
         g.setColor(Color.YELLOW);
-        //GraphicsGrid.drawRect(g, hitboxX - detectionWidth / 2, hitboxY - detectionHeight / 2, detectionWidth, detectionHeight);
+
+        // debugging the direction the enemy is moving in
+        g.setColor(Color.ORANGE);
+        if (movingDown) {
+            GraphicsGrid.drawRect(g, getPosX(), getPosY() + 1, 0.1, 0.1);
+        }
+        if (movingLeft) {
+            GraphicsGrid.drawRect(g, getPosX() - 1, getPosY(), 0.1, 0.1);
+        }
+        if (movingRight) {
+            GraphicsGrid.drawRect(g, getPosX() + 1, getPosY(), 0.1, 0.1);
+        }
+        if (movingUp) {
+            GraphicsGrid.drawRect(g, getPosX(), getPosY() - 1, 0.1, 0.1);
+        }
     } 
 }

@@ -108,5 +108,6 @@ public class Player extends Animate {
         );
         drawHitbox(g);
         super.render(g);
+        
     }
 }
