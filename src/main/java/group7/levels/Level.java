@@ -11,7 +11,7 @@ import java.awt.Color;
 public abstract class Level {
     private int width;
     private int height;
-    private LevelData levelData;
+    private Pathfinding levelData;
     private BufferedImage[] levelSprites;
     private int levelSpriteData[][];
 
@@ -29,7 +29,7 @@ public abstract class Level {
         entities.add(new Enemy(1, 1, levelData));
     }
 
-    public LevelData getLevelData() { // TODO: remove this
+    public Pathfinding getLevelData() { // TODO: remove this
         return levelData;
     }
 
@@ -68,7 +68,7 @@ public abstract class Level {
         this.height = img.getHeight();
 
         levelSpriteData = new int[width][height];
-        levelData = new LevelData(width, height);
+        levelData = new Pathfinding(width, height);
 
         for (int x = 0; x < this.width; x++) {
             for (int y = 0; y < this.height; y++) {

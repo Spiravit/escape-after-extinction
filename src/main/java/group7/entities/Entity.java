@@ -1,6 +1,6 @@
 package group7.entities;
 
-import group7.levels.LevelData;
+import group7.levels.Pathfinding;
 import group7.Graphics.GraphicsGrid;
 
 import java.awt.Rectangle;

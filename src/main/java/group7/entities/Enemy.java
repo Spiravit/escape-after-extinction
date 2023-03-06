@@ -1,7 +1,7 @@
 package group7.entities;
 
 import group7.Graphics.GraphicsGrid;
-import group7.levels.LevelData;
+import group7.levels.Pathfinding;
 import group7.utils.Direction;
 
 import java.awt.Color;
@@ -14,8 +14,8 @@ public class Enemy extends Animate {
     int detectionWidth = 5;
     int detectionHeight = 5;
 
-    public Enemy(double posX, double posY, LevelData levelData) {
-        super(posX, posY, levelData);
+    public Enemy(double posX, double posY, Pathfinding pathfinding) {
+        super(posX, posY, pathfinding);
     }
 
     public void setAnimation() {
@@ -36,7 +36,7 @@ public class Enemy extends Animate {
      * If the player is not in range, move randomly
      */
     public void updateDirection() {
-        Direction playerDirection = levelData.findPlayer((int) getPosX(), (int) getPosY(), detectionWidth);
+        Direction playerDirection = pathfinding.findPlayer((int) getPosX(), (int) getPosY(), detectionWidth);
         if (!(playerDirection == Direction.NONE)) {
             // remove all directions
             removeDirection(Direction.UP);

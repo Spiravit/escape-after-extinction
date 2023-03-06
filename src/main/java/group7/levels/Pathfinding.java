@@ -10,28 +10,27 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
- * LevelData
  * - used to store the data of a level and pathfind the player
  */
-public class LevelData {
+public class Pathfinding {
     // location of the player
     private int playerX;
     private int playerY;
 
     // level data that stores if a tile is valid or not (true = valid, false = invalid)
-    private boolean levelData[][];
+    private boolean pathfinding[][];
 
     // nodes to check for pathfinding
     private ArrayList<PathNode> openList = new ArrayList<PathNode>(); 
     // nodes that have already been checked for pathfinding
     private ArrayList<PathNode> closedList = new ArrayList<PathNode>();
 
-    public LevelData(int width, int height) {
-        levelData = new boolean[width][height];
+    public Pathfinding(int width, int height) {
+        pathfinding = new boolean[width][height];
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                levelData[i][j] = false;
+                pathfinding[i][j] = false;
             }
         }
     }
@@ -46,7 +45,7 @@ public class LevelData {
      * true if valid, false if invalid
      */
     public void set(int x, int y, boolean value) {
-        levelData[x][y] = value;
+        pathfinding[x][y] = value;
     }
 
     public void setPlayer(int x, int y) {
@@ -112,7 +111,7 @@ public class LevelData {
             addPathNode(currentNode, currentNode.getX(), currentNode.getY() + 1);
             addPathNode(currentNode, currentNode.getX(), currentNode.getY() - 1);
         }
-        
+
         return Direction.NONE;
     }
 
@@ -172,10 +171,10 @@ public class LevelData {
      * true if valid, false if invalid
      */
     public boolean canMove(int x, int y) {
-        if (x < 0 || x >= levelData.length || y < 0 || y >= levelData[0].length) {
+        if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
             return false;
         }
-        return levelData[x][y];
+        return pathfinding[x][y];
     }
 
 } // End of LevelData.java
