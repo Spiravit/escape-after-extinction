@@ -84,6 +84,10 @@ public class InLevelState extends State {
             if (isPaused==true){
                 if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
                     isPaused = false;
+                    player.removeDirection(Direction.RIGHT);
+                    player.removeDirection(Direction.LEFT);
+                    player.removeDirection(Direction.UP);
+                    player.removeDirection(Direction.DOWN);
                 }
             }
         }
