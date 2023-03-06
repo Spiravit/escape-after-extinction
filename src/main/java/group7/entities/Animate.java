@@ -55,14 +55,17 @@ public abstract class Animate extends Entity {
      */
     abstract void setAnimation();
 
+    /**
+     * updates the entity, including position, hitbox, and animation
+     */
     public void update() {
         // update position of a player based on player current action
         updatePosition();
         updateHitbox();
         // change sprite of the player in sprites of current actions
-        //updateAnimationTick();
-        // check the action of player, if the action was changed, then change currentAction
-        //setAnimation();
+        updateAnimationTick();
+        // check the action of entity, if the action was changed, then change currentAction
+        setAnimation();
     }
 
     /**
