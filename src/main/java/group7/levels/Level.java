@@ -79,7 +79,7 @@ public abstract class Level {
                 // TODO: add the logic to set the level data
                 // levelData.set(x, y, true/false); <- get the true or false value
                 levelSpriteData[x][y] = value;
-                levelData.set(x, y, value != 13 ? levelData.INVALID:levelData.VALID);
+                levelData.set(x, y, value != 13 ? false:true);
             }
         }
     }
