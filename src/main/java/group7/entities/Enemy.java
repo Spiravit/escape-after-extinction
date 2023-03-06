@@ -14,8 +14,6 @@ public class Enemy extends Animate {
     int detectionWidth = 5;
     int detectionHeight = 5;
 
-    double hitboxWidth = 0.8;
-    double hitboxHeight = 0.8;
     
 
     public Enemy(double posX, double posY, LevelData levelData) {
@@ -34,16 +32,28 @@ public class Enemy extends Animate {
     public void updateDirection() {
         Direction playerDirection = levelData.findPlayer((int) getPosX(), (int) getPosY(), detectionWidth);
         if (!(playerDirection == Direction.NONE)) {
-            // remove all directions and move towards the player
+            // remove all directions
             removeDirection(Direction.UP);
             removeDirection(Direction.DOWN);
             removeDirection(Direction.LEFT);
             removeDirection(Direction.RIGHT);
 
+            // move to towards the center of the tile to prevent getting stuck
+            if (getPosX() % 1 > 0.5 && playerDirection != Direction.RIGHT) {
+                setDirection(Direction.LEFT);
+            } else if (getPosX() % 1 < 0.5 && playerDirection != Direction.LEFT) {
+                setDirection(Direction.RIGHT);
+            } else if (getPosY() % 1 > 0.5 && playerDirection != Direction.DOWN) {
+                setDirection(Direction.UP);
+            } else if (getPosY() % 1 < 0.5 && playerDirection != Direction.UP) {
+                setDirection(Direction.DOWN);
+            } 
+
             setDirection(playerDirection);
             return;
         }
 
+        // if the player is not in range, move randomly
         if (directionUpdateInterval > 0) {
             directionUpdateInterval--;
             return;

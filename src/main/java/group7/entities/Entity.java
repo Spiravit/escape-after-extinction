@@ -19,11 +19,11 @@ public abstract class Entity {
     BufferedImage currentSprite;
     
     // stores the position of the top left corner of the hitbox rectangle
-    double hitboxX;
-    double hitboxY;
+    protected double hitboxX;
+    protected double hitboxY;
 
-    double hitboxWidth = 1;
-    double hitboxHeight = 1;
+    protected double hitboxWidth = 0.8;
+    protected double hitboxHeight = 0.8;
 
     protected Rectangle hitBox; // not related to the hitboxX, hitboxY, hitboxWidth, hitboxHeight
     private int xScale = GraphicsGrid.getScaleX();
@@ -102,6 +102,11 @@ public abstract class Entity {
     public void render(Graphics g) {
         g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight);
+    }
+
+    public void drawPositionDot(Graphics g) {
+        g.setColor(Color.ORANGE);
+        g.drawRect((int)(xScale * getPosX()), (int) (yScale * getPosY()), 2, 2);
     }
 
 }
