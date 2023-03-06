@@ -24,13 +24,13 @@ public class GraphicsWindow {
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         // Connecting the graphics panel to window
         jframe.add(graphicsPanel);
-        // Spawn the window in center of screen
-        jframe.setLocationRelativeTo(null);
         // The window can not be resized by user
         jframe.setResizable(false);
         // set the window size such that it packs the size of graphics panel
         jframe.pack();
         graphicsPanel.setFocusable(true);
+        // Spawn the window in center of screen
+        jframe.setLocationRelativeTo(null);
         // Make window visible
         jframe.setVisible(true);
     }
