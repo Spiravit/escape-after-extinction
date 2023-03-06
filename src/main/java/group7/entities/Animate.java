@@ -100,41 +100,35 @@ public abstract class Animate extends Entity {
         if( !movingUp && !movingDown && !movingLeft && !movingRight ) {
             return;
         }
-
-        // Prevent diagonal movement
-        if ( (movingDown && movingUp) || (movingLeft && movingUp) || (movingUp && movingRight) )
-            return;
-        if ((movingDown && movingLeft) || (movingDown && movingRight) )
-            return;
         
         // floor in the canMove function insures the entity doesn't move into a negative position between 0 and -1
         // When moving up check both top left and right corners
-        if(this.movingUp && levelData.canMove((int)Math.floor(posX+0.1), (int)Math.floor(posY - entitySpeed))){
-            if ( ! (levelData.canMove((int)Math.floor(posX+0.9), (int)Math.floor(posY - entitySpeed)))){
+        if(this.movingUp && levelData.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY - entitySpeed))){
+            if ( ! (levelData.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY - entitySpeed)))){
                 return;
             }
             posY -= entitySpeed;
             hitboxY -= entitySpeed;
         }
         // When moving down check both bottom left and right corners
-        if(this.movingDown && levelData.canMove((int)Math.floor(posX + 0.1), (int)Math.floor(posY + 1 - entitySpeed))){
-            if ( ! (levelData.canMove((int)Math.floor(posX + 0.9), (int)Math.floor(posY + 1 - entitySpeed)))){
+        if(this.movingDown && levelData.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed))){
+            if ( ! (levelData.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed)))){
                 return;
             }
             posY += entitySpeed;
             hitboxY += entitySpeed;
         }
         // When moving left check both top left and bottom left
-        if(this.movingLeft && levelData.canMove((int)Math.floor(posX + 0.1 - entitySpeed), (int)Math.floor(posY + 0.1))){
-            if ( ! (levelData.canMove((int)Math.floor(posX + 0.1 - entitySpeed), (int)Math.floor(posY + 0.9)))){
+        if(this.movingLeft && levelData.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY))){
+            if ( ! (levelData.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
                 return;
             }
             posX -= entitySpeed;
             hitboxX -= entitySpeed;
         }
         // When moving right check both top left and bottom left
-        if(this.movingRight && levelData.canMove((int)Math.floor(posX + 1 - entitySpeed), (int)Math.floor(posY + 0.1))){
-            if ( ! (levelData.canMove((int)Math.floor(posX + 1 - entitySpeed), (int)Math.floor(posY + 0.9)))){
+        if(this.movingRight && levelData.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY))){
+            if ( ! (levelData.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
                 return;
             }
             posX += entitySpeed;
@@ -230,6 +224,7 @@ public abstract class Animate extends Entity {
 
     public void render(Graphics g) {
         update();
+        drawPositionDot(g);
         super.render(g);
     }
 
