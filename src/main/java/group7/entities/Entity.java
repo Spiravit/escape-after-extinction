@@ -92,14 +92,6 @@ public abstract class Entity {
     }
 
     /**
-     * @return
-     * returns a Rectangle2D object of the hitbox
-     */
-    public Rectangle2D getBounds() {
-        return new Rectangle2D.Double(hitboxX, hitboxY, hitboxWidth, hitboxHeight);
-    }
-
-    /**
      * default render method
      * draws a rectangle
      * should be overridden by subclasses

@@ -27,6 +27,15 @@ public class Player extends Animate {
         loadAnimations();
     }
 
+    public void update() {
+        super.update();
+        // move these functions to update() in Animate once Enemy sprites are added
+        // change sprite of the entity in sprites of current actions
+        updateAnimationTick();
+        // check the action of entity, if the action was changed, then change currentAction
+        setAnimation();
+    }
+
    
     @Override
     void loadAnimations() {
@@ -88,13 +97,11 @@ public class Player extends Animate {
         GraphicsGrid.render(
             g,
             entityAnimations[currentAction][aniIndex], 
-            posX, 
-            posY,
-            1,
-            1
+            hitboxX, 
+            hitboxY,
+            hitboxWidth,
+            hitboxHeight
         );
-        drawHitbox(g);
         super.render(g);
-        
     }
 }
