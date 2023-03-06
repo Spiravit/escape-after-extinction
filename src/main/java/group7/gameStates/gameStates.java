@@ -10,5 +10,6 @@ public enum gameStates {
     PLAYER_SELECTION_SUB_MENU,
     CREDIT_SUB_MENU,
     NEXT,
-    PERV;
+    PERV,
+    RESTART;
 }

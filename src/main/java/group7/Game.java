@@ -47,6 +47,11 @@ public class Game implements Runnable {
 
     public void changeGameStates(gameStates gameStateParameter){
         // changing the gameCurrentState to indicate the current running state of game in game class
+        if (gameStateParameter==gameStates.IN_LEVEL && gameCurrentState==gameStates.IN_LEVEL){
+            if (inLevelState.isPaused==true){
+                inLevelState.isPaused=false;
+            }
+        }
         if (gameCurrentState == gameStateParameter ){
             return;
         }
@@ -74,6 +79,11 @@ public class Game implements Runnable {
         }
         if (gameStateParameter == gameStates.PERV ) {
             playerDinoNumber = mainMenuState.decrementIndexCharacterDemo() + 1;
+        }
+        if (gameStateParameter == gameStates.RESTART ) {
+            this.gameCurrentState = gameStates.IN_LEVEL;
+            inLevelState = new InLevelState(this,playerDinoNumber);
+            graphicsPanel.changeGameStates(inLevelState);
         }
         else if (gameStateParameter == gameStates.IN_LEVEL ) {
             // Here, once the game state is changed to in Level state (the state, where player is playing) in game class,
