@@ -43,7 +43,8 @@ public class Enemy extends Animate {
                 setDirection(Direction.LEFT);
             } else if (getPosX() % 1 < 0.5 && playerDirection != Direction.LEFT) {
                 setDirection(Direction.RIGHT);
-            } else if (getPosY() % 1 > 0.5 && playerDirection != Direction.DOWN) {
+            }
+            if (getPosY() % 1 > 0.5 && playerDirection != Direction.DOWN) {
                 setDirection(Direction.UP);
             } else if (getPosY() % 1 < 0.5 && playerDirection != Direction.UP) {
                 setDirection(Direction.DOWN);

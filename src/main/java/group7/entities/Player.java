@@ -28,9 +28,6 @@ public class Player extends Animate {
     }
 
    
-    /**
-     * Load the animations of the player
-     */
     @Override
     void loadAnimations() {
         BufferedImage dinosaur = AssetLoader.getSpriteAtlas(PINKPLAYER);
@@ -65,13 +62,9 @@ public class Player extends Animate {
 
     protected void updatePosition() {
         super.updatePosition();
-        levelData.set((int) posX, (int) posY, levelData.PLAYER);
+        levelData.setPlayer((int) getPosX(), (int) getPosY());
     }
 
-
-    /**
-     * Update the the current animation of the player
-    */
     @Override
     void setAnimation(){
         int prevAction = currentAction;
