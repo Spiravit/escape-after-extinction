@@ -11,7 +11,7 @@ import java.awt.Color;
 public abstract class Level {
     private int width;
     private int height;
-    private Pathfinding levelData;
+    private Pathfinding pathfinding;
     private BufferedImage[] levelSprites;
     private int levelSpriteData[][];
 
@@ -26,11 +26,11 @@ public abstract class Level {
         GraphicsGrid.setGridSize(width, height);
 
         entities = new ArrayList<Entity>();
-        entities.add(new Enemy(1, 1, levelData));
+        entities.add(new Enemy(1, 1, pathfinding));
     }
 
     public Pathfinding getLevelData() { // TODO: remove this
-        return levelData;
+        return pathfinding;
     }
 
     /**
@@ -59,7 +59,7 @@ public abstract class Level {
 
     /** 
      * Set the level data
-     * this includes the data in the levelData object and the levelSpriteData array
+     * this includes the data in the pathfinding object and the levelSpriteData array
      */
     private void setLevelData() {
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELONEMAP);
@@ -68,7 +68,7 @@ public abstract class Level {
         this.height = img.getHeight();
 
         levelSpriteData = new int[width][height];
-        levelData = new Pathfinding(width, height);
+        pathfinding = new Pathfinding(width, height);
 
         for (int x = 0; x < this.width; x++) {
             for (int y = 0; y < this.height; y++) {
@@ -76,9 +76,9 @@ public abstract class Level {
                 int value = color.getRed() % 57;
 
                 // TODO: add the logic to set the level data
-                // levelData.set(x, y, true/false); <- get the true or false value
+                // pathfinding.set(x, y, true/false); <- get the true or false value
                 levelSpriteData[x][y] = value;
-                levelData.set(x, y, value != 13 ? false:true);
+                pathfinding.set(x, y, value != 13 ? false:true);
             }
         }
     }
