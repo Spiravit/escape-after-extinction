@@ -32,11 +32,11 @@ public abstract class Animate extends Entity {
     //aniIndex is used to iterate through entityAnimations to change sprites of a condition
     // ariSpeed is the speed of changing sprites in a condition
     protected int aniTick = 15;
-    protected int aniIndex = 15;
+    protected int aniIndex = 0;
     protected int aniSpeed = 15;
 
     // Moving speed of entity to change position of entity on map
-    protected float entitySpeed = 0.05f;
+    protected float entitySpeed = 0.02f;
 
     public Animate(double posX, double posY, LevelData levelData) {
         super(posX, posY);

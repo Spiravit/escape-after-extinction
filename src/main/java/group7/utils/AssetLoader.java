@@ -10,7 +10,25 @@ public class AssetLoader {
     public static final String LEVELONEMAP = "levels/level_one/levelonesprites.png";
     public static final String LEVELS_SPRITES = "levels/levelssprites.png";
 
-    public static final String PINKPLAYER = "playerSprites/pink_dino_ani.png";
+    // The main menu buttons sprite image
+    public static final String MAIN_MENU_BUTTONS = "menu/mainMenuButtons.png";
+    // The main menu background sprite image
+    public static final String MAIN_MENU_BACKGROUND = "menu/mainMenuBackground.png";
+
+    public static final String MAINPAGE_Layer_1 = "menu/parallexBG/1.png";
+    public static final String MAINPAGE_Layer_2 = "menu/parallexBG/2.png";
+    public static final String MAINPAGE_Layer_3 = "menu/parallexBG/3.png";
+    public static final String MAINPAGE_Layer_4 = "menu/parallexBG/4.png";
+    public static final String MAINPAGE_Layer_5 = "menu/parallexBG/5.png";
+    public static final String MAINPAGE_Layer_6 = "menu/parallexBG/6.png";
+    public static final String MAINPAGE_Layer_7 = "menu/parallexBG/7.png";
+    public static final String MAINPAGE_Layer_8 = "menu/parallexBG/8.png";
+    public static final String LOADING_1 = "menu/parallexBG/loading1.png";
+    public static final String LOADING_2 = "menu/parallexBG/loading2.png";
+    public static final String LOADING_3 = "menu/parallexBG/loading3.png";
+
+    public static final String CreditMenu = "menu/credit_text.png";
+
 
     public static final String SCIENTIST = "scientist_sprites.png";
     public static final String SPIKE = "spike_sprites.png";
