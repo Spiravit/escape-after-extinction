@@ -55,7 +55,6 @@ public class Enemy extends Animate {
             } else if (getPosY() % 1 < (hitboxHeight / 2) && playerDirection != Direction.UP) {
                 setDirection(Direction.DOWN);
             } 
-            System.out.println(playerDirection);
 
             setDirection(playerDirection);
             return;

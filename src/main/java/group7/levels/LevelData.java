@@ -92,9 +92,7 @@ public class LevelData {
                 if (currentNode.getParent() == null) {
                     return Direction.NONE;
                 }
-                System.out.println("Current node x: " + currentNode.getX() + " y: " + currentNode.getY());
-                //System.out.println("Parent node x: " + currentNode.getParent().getX() + " y: " + currentNode.getParent().getY());
-                
+                                
                 // return the direction of the 2nd node compared to the first node
                 if (currentNode.getX() == x + 1) {
                     return Direction.RIGHT;
@@ -114,8 +112,7 @@ public class LevelData {
             addPathNode(currentNode, currentNode.getX(), currentNode.getY() + 1);
             addPathNode(currentNode, currentNode.getX(), currentNode.getY() - 1);
         }
-
-        System.out.println("Player not found");
+        
         return Direction.NONE;
     }
 
