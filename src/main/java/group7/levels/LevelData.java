@@ -47,24 +47,20 @@ public class LevelData {
      * true if valid, false if invalid
      */
      public boolean canMove(int x, int y) {
-        System.out.println("top left: x = " + x + " y = " + y);             // **TEST REMOVE**
 
         if ( !boundary(x, y) ) {
             return true;
         }
-        System.out.println("cant go");                                      // **TEST REMOVE**
         return false;
     } 
 
     public boolean boundary( int x, int y ) {
-        System.out.println("in boundary: x = " + x + " y = " + y );                       // **TEST REMOVE**
+         // **TEST REMOVE**
         if (x < 0 || x >= levelData.length || y < 0 || y >= levelData[0].length) {
-            System.out.println("check 1: out of bounds " + " width: " + levelData.length + " height: " + levelData[0].length);      // **TEST REMOVE**
             return true;
         }
 
         if (levelData[x][y] == true){
-            System.out.println("check 2: walkable " + levelData[x][y]);                    // **TEST REMOVE**
             return false;
         }
         return true;

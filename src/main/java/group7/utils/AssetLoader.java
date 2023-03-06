@@ -27,7 +27,8 @@ public class AssetLoader {
     public static final String LOADING_2 = "menu/parallexBG/loading2.png";
     public static final String LOADING_3 = "menu/parallexBG/loading3.png";
 
-    public static final String PINKPLAYER = "playerSprites/pink_dino_ani.png";
+    public static final String CreditMenu = "menu/credit_text.png";
+
 
     public static final String SCIENTIST = "scientist_sprites.png";
     public static final String SPIKE = "spike_sprites.png";

@@ -17,11 +17,13 @@ import java.awt.event.MouseEvent;
 public class InLevelState extends State {
         public Player player;
         protected LevelManager levelManager;
-        public InLevelState(Game game) {
+        int DinoNumber = 1;
+        public InLevelState(Game game, int PlayerDinoNumber) {
             super(game);
             this.levelManager = new LevelManager();
             this.levelManager.loadLevel(1);
-            this.player = new Player(1, 1, this.levelManager.getLevelData());
+            this.DinoNumber = PlayerDinoNumber;
+            this.player = new Player(1, 1, this.levelManager.getLevelData(),PlayerDinoNumber);
         }
         public void update() {
             player.update();
