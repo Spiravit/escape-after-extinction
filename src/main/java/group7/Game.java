@@ -4,6 +4,7 @@ import group7.Graphics.GraphicsPanel;
 import group7.Graphics.GraphicsWindow;
 import group7.Graphics.GraphicsGrid;
 import group7.entities.Player;
+import group7.gameObjects.ObjectManager;
 import group7.levels.LevelData;
 import group7.levels.LevelManager;
 
@@ -14,12 +15,14 @@ public class Game implements Runnable {
     public Player player; // TODO: this will be removed !!
     private LevelManager levelManager;
     private GraphicsGrid graphicsGrid;
+    private ObjectManager objectManager; // TEST REMOVE
 
     public Game() {
         this.graphicsGrid = new GraphicsGrid(graphicsPanel, 15, 10);
         this.levelManager = new LevelManager();
         this.levelManager.loadLevel(1);
-        this.player = new Player(1, 1, this.levelManager.getLevelData());  
+        this.player = new Player(1, 1, this.levelManager.getLevelData()); 
+        this.objectManager = new ObjectManager( this.levelManager.getLevelData() ); // TEST REMOVE
         this.graphicsPanel =  new GraphicsPanel(this.player, this.levelManager);
         this.graphicsWindow = new GraphicsWindow(this.graphicsPanel);
         

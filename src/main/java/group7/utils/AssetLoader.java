@@ -16,14 +16,13 @@ public class AssetLoader {
     public static final String SPIKE = "spike_sprites.png";
 
     public static final String EGG = "egg_sprites.png";
-    public static final String KEY_CARD = "key_card_sprites.png";
+    public static final String KEY_CARD = "keyCard.png";
 
     public static final String INVISIBILITY_POTION = "invisibility_potion_sprites.png";
     public static final String SPEED_POTION = "speed_potion_sprites.png";
 
     public static final String LAB_TILE = "lab_tile.png";
     public static final String DOOR = "door_sprites.png";
-    
 
     /**
      * Load a sprite atlas from the assets folder
