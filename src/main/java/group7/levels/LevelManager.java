@@ -31,7 +31,7 @@ public class LevelManager {
         currentLevel.loadLevel();
     }
 
-    public LevelData getLevelData() { // TODO: remove this
+    public Pathfinding getLevelData() { // TODO: remove this
         return currentLevel.getLevelData();
     }
 
