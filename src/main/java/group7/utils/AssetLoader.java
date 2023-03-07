@@ -29,6 +29,8 @@ public class AssetLoader {
 
     public static final String CreditMenu = "menu/credit_text.png";
 
+    public static final String ScientistSprite = "enemies/Scientists.png";
+
 
     public static final String SCIENTIST = "scientist_sprites.png";
     public static final String SPIKE = "spike_sprites.png";

@@ -2,24 +2,44 @@ package group7.entities;
 
 import group7.Graphics.GraphicsGrid;
 import group7.levels.Pathfinding;
+import group7.utils.AssetLoader;
 import group7.utils.Direction;
 
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Enemy extends Animate {
     int directionUpdateInterval = 200;
 
     int detectionWidth = 5;
     int detectionHeight = 5;
+    Random rand = new Random();
+    int scientistCharacter = rand.nextInt(4);
 
     public Enemy(double posX, double posY, Pathfinding pathfinding) {
+
         super(posX, posY, pathfinding);
+        loadAnimations();
     }
 
     public void setAnimation() {
-
+        int prevAction = currentAction;
+        if (this.isMoving()) {
+            currentAction = MOVING_ACTION;
+        }
+        else if (!this.isMoving()) {
+            currentAction = IDLE_ACTION;
+        }
+        if (prevAction != currentAction){
+            // if the action of a player was changed, then
+            // we need to reset the aniIndex and aniTick
+            // in order to start from beginning of sprites for new action
+            aniIndex = 0;
+            aniTick = 0;
+        }
     }
 
     /**
@@ -28,6 +48,11 @@ public class Enemy extends Animate {
     public void update() {
         updateDirection();
         super.update();
+        // move these functions to update() in Animate once Enemy sprites are added
+        // change sprite of the entity in sprites of current actions
+        updateAnimationTick();
+        // check the action of entity, if the action was changed, then change currentAction
+        setAnimation();
     }
 
     /**
@@ -88,8 +113,22 @@ public class Enemy extends Animate {
         }
     }
 
+    @Override
     public void loadAnimations() {
-        
+        BufferedImage scientist = AssetLoader.getSpriteAtlas("playerSprites/dino_"+1+".png");
+        entityAnimations = new BufferedImage[2][];
+
+        // place moving animations into 2d array
+        entityAnimations[0] = new BufferedImage[6];
+        for (int i = 0; i < 6; i++) {
+            entityAnimations[0][i] = scientist.getSubimage(i * 24, 0, 24, 24);
+        }
+
+        // place idle animations into 2d array
+        entityAnimations[1] = new BufferedImage[3];
+        for (int i = 0; i < 3; i++) {
+            entityAnimations[1][i] = scientist.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
+        }
     }
 
     /**
@@ -124,7 +163,14 @@ public class Enemy extends Animate {
     public void render(Graphics g) {
         super.render(g);
         g.setColor(Color.YELLOW);
-
+        GraphicsGrid.render(
+                g,
+                entityAnimations[currentAction][aniIndex],
+                hitboxX,
+                hitboxY,
+                hitboxWidth,
+                hitboxHeight
+        );
         drawMovementDirections(g);
     } 
 }
