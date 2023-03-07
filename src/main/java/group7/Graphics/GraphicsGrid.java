@@ -88,4 +88,22 @@ public class GraphicsGrid {
             null
         );
     }
+
+
+    /**
+     * creates a rectangle on the screen for debugging purposes
+     * @param g
+     * @param posX
+     * @param posY
+     * @param width
+     * @param height
+     */
+    public static void drawRect(Graphics g, double posX, double posY, double width, double height) {
+        g.drawRect(
+            (int) (posX * scaleX), 
+            (int) (posY * scaleY), 
+            (int) (width * scaleX),
+            (int) (height * scaleY)
+        );
+    }
 }
