@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ObjectManager {
     private LevelData currentLevel;
-    private BufferedImage potionImage;
+    private BufferedImage keycardImage;
     private ArrayList<KeyCard> keys;
 
     public ObjectManager (LevelData levelData) {
@@ -22,8 +22,8 @@ public class ObjectManager {
     }
 
     private void loadImages() {
-        BufferedImage potionSprite = AssetLoader.getSpriteAtlas(KEY_CARD);
-        BufferedImage potionImage = potionSprite.getSubimage(0, 0, 32, 24); //x,y,w,h
+        BufferedImage keycardSprite = AssetLoader.getSpriteAtlas(KEY_CARD);
+        BufferedImage keycardImage = keycardSprite.getSubimage(0, 0, 32, 24); //x,y,w,h
     }
     
     public void render(Graphics g){
@@ -31,12 +31,12 @@ public class ObjectManager {
         for(KeyCard key : keys) {
             GraphicsGrid.render(
                 g,
-                potionImage,
+                keycardImage,
                 ( key.getHitbox().x ),
                 ( key.getHitbox().y ), // TODO: maybe place it somewhere else.
                 1,
                 1
-            );
+            ); 
             //drawHitbox(g);
         }    
     }

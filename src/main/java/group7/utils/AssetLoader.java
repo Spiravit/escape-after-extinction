@@ -16,7 +16,7 @@ public class AssetLoader {
     public static final String SPIKE = "spike_sprites.png";
 
     public static final String EGG = "egg_sprites.png";
-    public static final String KEY_CARD = "keyCard.png";
+    public static final String KEY_CARD = "colectable/keyCard.png";
 
     public static final String INVISIBILITY_POTION = "invisibility_potion_sprites.png";
     public static final String SPEED_POTION = "speed_potion_sprites.png";
