@@ -1,6 +1,7 @@
 package group7.Graphics;
 
 import group7.entities.Player;
+import group7.gameObjects.ObjectManager;
 import group7.inputs.*;
 import group7.levels.LevelManager;
 import group7.utils.Direction;
@@ -17,6 +18,7 @@ import java.awt.*;
  */
 public class GraphicsPanel extends JPanel {
     Player player;
+    ObjectManager objectManager; // TEST REMOVE
     LevelManager levelManager;
     int panelWidth = 1280;
     int panelHeight = 720;
@@ -51,5 +53,6 @@ public class GraphicsPanel extends JPanel {
         //System.out.println("painting 3");
         player.render(g);
         //System.out.println("painting done");
+        objectManager.render(g); // TEST REMOVE
     }
 }
