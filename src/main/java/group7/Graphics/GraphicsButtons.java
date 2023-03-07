@@ -32,7 +32,7 @@ public class GraphicsButtons {
         BufferedImage temp = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BUTTONS);
         int menuButtonSpriteHeight = 140;
         int menuButtonSpriteWidth = temp.getWidth() / 2;
-        System.out.println(menuButtonSpriteWidth);
+        //System.out.println(menuButtonSpriteWidth);
         for (int i = 0; i < 2; i++)
             imgs[i] = temp.getSubimage(i * menuButtonSpriteWidth, row * menuButtonSpriteHeight, menuButtonSpriteWidth, menuButtonSpriteHeight);
     }

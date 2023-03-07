@@ -19,19 +19,25 @@ public class Player extends Animate {
      * the x position of the player
      * @param posY
      * the y position of the player
-     * @param levelData
-     * the levelData of the level the player is in
+     * @param pathfinding
+     * the pathfinding of the level the player is in
      */
-    public Player(double posX, double posY, LevelData levelData, int DinoNumber) {
-        super(posX, posY, levelData);
+    public Player(double posX, double posY, Pathfinding pathfinding, int DinoNumber) {
+        super(posX, posY, pathfinding);
         this.DinoNumber = DinoNumber;
         loadAnimations();
     }
 
+    public void update() {
+        super.update();
+        // move these functions to update() in Animate once Enemy sprites are added
+        // change sprite of the entity in sprites of current actions
+        updateAnimationTick();
+        // check the action of entity, if the action was changed, then change currentAction
+        setAnimation();
+    }
+
    
-    /**
-     * Load the animations of the player
-     */
     @Override
     void loadAnimations() {
         BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+DinoNumber+".png");
@@ -50,24 +56,12 @@ public class Player extends Animate {
         }
     }
 
-    /**
-     * Update the player
-     * This includes updating the position, animation, and action of the player
-     */
-    public void update() {
-        // update position of a player based on player current action
-        updatePosition();
-        updateHitbox();
-        // change sprite of the player in sprites of current actions
-        updateAnimationTick();
-        // check the action of player, if the action was changed, then change currentAction
-        setAnimation();
+   
+    protected void updatePosition() {
+        super.updatePosition();
+        pathfinding.setPlayer((int) getPosX(), (int) getPosY());
     }
 
-
-    /**
-     * Update the the current animation of the player
-    */
     @Override
     void setAnimation(){
         int prevAction = currentAction;
@@ -86,6 +80,12 @@ public class Player extends Animate {
         }
     }
 
+    void onInteraction(Entity entity) {
+        if (entity instanceof Enemy) {
+            health -= health; // end game instantly
+        }
+    }
+
     /**
      * Render the player
      * @param g
@@ -93,15 +93,16 @@ public class Player extends Animate {
      */
     @Override
     public void render(Graphics g){
+        g.setColor(Color.RED);
         // draw the player, with the current animation and sprite in the current positions
         GraphicsGrid.render(
             g,
             entityAnimations[currentAction][aniIndex], 
-            (posX), // -0.5 slight offset to make the player look more centered on the tile
-            (posY), // -0.7 TODO: change this to be more accurate and maybe place it somewhere else
-            1,
-            1
+            hitboxX, 
+            hitboxY,
+            hitboxWidth,
+            hitboxHeight
         );
-        drawHitbox(g);
+        super.render(g);
     }
 }
