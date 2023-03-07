@@ -3,14 +3,17 @@ package group7.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.*;
 
+import static group7.Graphics.GraphicsPanel.panelHeight;
+import static group7.Graphics.GraphicsPanel.panelWidth;
+
 
 public class GraphicsGrid {
     private GraphicsPanel graphicsPanel;
 
-    private static int scaleX;
-    private static int scaleY;
-    private static int gridWidth;
-    private static int gridHeight;
+    public static int scaleX;
+    public static int scaleY;
+    public static int gridWidth;
+    public static int gridHeight;
 
     // Getters
     public static int getScaleY() {
@@ -64,8 +67,8 @@ public class GraphicsGrid {
      */
     private static void calculateScale() {
         // TODO: call graphicsPanel to get the width and height
-        scaleX = 1280 / gridWidth;
-        scaleY = 720 / gridHeight;
+        scaleX = panelWidth / gridWidth;
+        scaleY = panelHeight / gridHeight;
     }
 
     /**
@@ -92,6 +95,24 @@ public class GraphicsGrid {
             (int) (width * scaleX),
             (int) (height * scaleY),
             null
+        );
+    }
+
+
+    /**
+     * creates a rectangle on the screen for debugging purposes
+     * @param g
+     * @param posX
+     * @param posY
+     * @param width
+     * @param height
+     */
+    public static void drawRect(Graphics g, double posX, double posY, double width, double height) {
+        g.drawRect(
+            (int) (posX * scaleX), 
+            (int) (posY * scaleY), 
+            (int) (width * scaleX),
+            (int) (height * scaleY)
         );
     }
 }

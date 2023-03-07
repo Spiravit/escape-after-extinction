@@ -4,15 +4,18 @@ import group7.entities.*;
 import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Color;
 
 public abstract class Level {
     private int width;
     private int height;
-    private LevelData levelData;
+    private Pathfinding pathfinding;
     private BufferedImage[] levelSprites;
     private int levelSpriteData[][];
+
+    private ArrayList<Entity> entities;
 
     /** 
      * Loads everything about the level
@@ -21,10 +24,13 @@ public abstract class Level {
         importSprites();
         setLevelData();
         GraphicsGrid.setGridSize(width, height);
+
+        entities = new ArrayList<Entity>();
+        entities.add(new Enemy(1, 1, pathfinding));
     }
 
-    public LevelData getLevelData() { // TODO: remove this
-        return levelData;
+    public Pathfinding getLevelData() { // TODO: remove this
+        return pathfinding;
     }
 
     /**
@@ -45,11 +51,15 @@ public abstract class Level {
                 );
             }
         }
+
+        for (Entity entity : entities) {
+            entity.render(g);
+        }
     }
 
     /** 
      * Set the level data
-     * this includes the data in the levelData object and the levelSpriteData array
+     * this includes the data in the pathfinding object and the levelSpriteData array
      */
     private void setLevelData() {
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELONEMAP);
@@ -58,18 +68,17 @@ public abstract class Level {
         this.height = img.getHeight();
 
         levelSpriteData = new int[width][height];
-        levelData = new LevelData(width, height);
+        pathfinding = new Pathfinding(width, height);
 
         for (int x = 0; x < this.width; x++) {
-            System.out.println(img.getWidth());
             for (int y = 0; y < this.height; y++) {
                 Color color = new Color(img.getRGB(x, y));
                 int value = color.getRed() % 57;
 
                 // TODO: add the logic to set the level data
-                // levelData.set(x, y, true/false); <- get the true or false value
+                // pathfinding.set(x, y, true/false); <- get the true or false value
                 levelSpriteData[x][y] = value;
-                levelData.set(x, y, value != 13 ? false:true);
+                pathfinding.set(x, y, value != 13 ? false:true);
             }
         }
     }
