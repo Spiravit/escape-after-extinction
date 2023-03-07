@@ -23,7 +23,7 @@ public class Game implements Runnable {
         this.levelManager.loadLevel(1);
         this.player = new Player(1, 1, this.levelManager.getLevelData()); 
         this.objectManager = new ObjectManager( this.levelManager.getLevelData() ); // TEST REMOVE
-        this.graphicsPanel =  new GraphicsPanel(this.player, this.levelManager);
+        this.graphicsPanel =  new GraphicsPanel(this.player, this.levelManager, this.objectManager); // Test added ojbManager
         this.graphicsWindow = new GraphicsWindow(this.graphicsPanel);
         
         // Giving input focus to graphicsPanel

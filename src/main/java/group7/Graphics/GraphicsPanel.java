@@ -23,10 +23,11 @@ public class GraphicsPanel extends JPanel {
     int panelWidth = 1280;
     int panelHeight = 720;
 
-    public GraphicsPanel(Player player, LevelManager levelManager){
+    public GraphicsPanel(Player player, LevelManager levelManager, ObjectManager objectManager){ // Test added objMan
         super.addKeyListener(new KeyboardInputs(this));
         super.addMouseListener(new MouseInputs());
         this.player = player;
+        this.objectManager = objectManager; // TEST REMOVE
         this.levelManager = levelManager;
         changePanelSize();
     }
