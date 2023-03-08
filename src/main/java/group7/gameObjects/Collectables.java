@@ -1,19 +1,21 @@
 package group7.gameObjects;
 
-//import java.awt.geom.Rectangle2D;
 
 import group7.Graphics.GraphicsGrid;
+import group7.levels.Pathfinding;
+
 import java.awt.Rectangle;
 import java.awt.Graphics;
-import java.awt.Color;
 
 
-public class Collectables {
-    GraphicsGrid graphicsGrid;
+public abstract class Collectables extends Enti {
+    protected Pathfinding pathfinding;
 
     protected static int xScale = GraphicsGrid.getScaleX();
     protected static int yScale = GraphicsGrid.getScaleY();
     protected Rectangle hitBox;
+
+    protected java.awt.image.BufferedImage[][] entityAnimations;
 
     protected int x, y, objectType;
     //protected Rectangle2D.Float hitBox;
@@ -34,31 +36,17 @@ public class Collectables {
     public static final int EGG_POINT_BONUS = 3;
     
     // Constructor
-    public Collectables( int x, int y, int objectType ) {
-        this.x = x;
-        this.y = y;
+    public Collectables( int x, int y, int objectType, Pathfinding pathfinding ) {
+        super(x, y);
+        this.pathfinding = pathfinding;
         this.objectType = objectType;
-        initHitbox(); // TODO: move into potion/egg/keycard constructor
-    }
-/* 
-    protected void initHitbox( int width, int height ) {
-        hitBox = new Rectangle2D.Float(x, y, , );
-    } */
-    protected void initHitbox() {
-        hitBox = new Rectangle( x, y, 56, 56 );
     }
 
-    // For Debugging Purpose
-    protected void drawHitbox( Graphics g ) {
-        g.setColor(Color.RED);
-        g.drawRect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
-    }
-
-    protected void updateHitbox() {
-        //System.out.println("updateHitbox x: " + posX + " y: " + posY);            // TEST
-        hitBox.x = (int) ((x + 0.2) * xScale);
-        hitBox.y = (int) ((y + 0.1) * yScale);
-    }
+    /**
+     * loads the animations of the entity 
+     * and puts them into the entityAnimations array
+     */
+    abstract void loadAnimations();
 
     public void reset() {
         aniIndex = 0;     // implement if you animate the potion/keys/eggs
@@ -78,6 +66,10 @@ public class Collectables {
 			}
 		}
 	}
+
+    public void render(Graphics g) {
+        super.render(g);
+    }
 
     // GETTERS and SETTERS
     // implement if you animate the potion/keys/eggs

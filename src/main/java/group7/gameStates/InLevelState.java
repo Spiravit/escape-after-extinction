@@ -4,6 +4,7 @@ import group7.Game;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.entities.Player;
+import group7.gameObjects.KeyCard;
 import group7.gameObjects.ObjectManager;
 import group7.levels.LevelManager;
 import group7.utils.AssetLoader;
@@ -24,7 +25,7 @@ import static group7.Graphics.GraphicsPanel.panelWidth;
 // the class is extending the abstract State class, a super class for all states
 public class InLevelState extends State {
         public Player player;
-        private ObjectManager objectManager; // TEST REMOVE
+        private KeyCard key; // TEST REMOVE
         protected LevelManager levelManager;
         int DinoNumber = 1;
         public boolean isPaused = false;
@@ -38,7 +39,7 @@ public class InLevelState extends State {
             this.levelManager.loadLevel(1);
             this.DinoNumber = PlayerDinoNumber;
             this.player = new Player(1, 1, this.levelManager.getLevelData(), PlayerDinoNumber);
-            this.objectManager = new ObjectManager(this.levelManager.getLevelData());       // TEST REMOVE
+            this.key = new KeyCard(3, 3, 0, this.levelManager.getLevelData());       // TEST REMOVE
             PauseBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
             PauseMenuButtons[0] = new GraphicsButtons(game,panelWidth / 2, 170, 0, gameStates.RESTART);
             PauseMenuButtons[1] = new GraphicsButtons(game,panelWidth / 2, 170 + 10 + 1 * GraphicsGrid.getScaleY(), 11, gameStates.IN_LEVEL);
@@ -57,6 +58,7 @@ public class InLevelState extends State {
         public void render(Graphics g) {
             levelManager.render(g);
             player.render(g);
+            key.render(g);              // TEST REMOVE
             if (isPaused){
                 renderPause(g);
             }
