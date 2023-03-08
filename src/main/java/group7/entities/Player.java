@@ -80,7 +80,7 @@ public class Player extends Animate {
         }
     }
 
-    void onInteraction(Entity entity) {
+    public void onInteraction(Entity entity) {
         if (entity instanceof Enemy) {
             health -= health; // end game instantly
         }

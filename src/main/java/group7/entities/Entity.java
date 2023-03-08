@@ -70,9 +70,8 @@ public abstract class Entity {
      * @return
      * returns the hitbox of the entity as a rectangle
      */
-    public Rectangle getHitbox() {
-        //return new Rectangle((int)posX, (int)posY, 1, 1);
-        return hitBox;
+    public Rectangle2D getHitbox() {
+        return new Rectangle2D.Double(hitboxX, hitboxY, hitboxWidth, hitboxHeight);
     }
 
     /**
@@ -94,7 +93,7 @@ public abstract class Entity {
     public abstract void update();
 
     /**
-     * default render method
+     * default debugging render method
      * draws a rectangle
      * should be overridden by subclasses
      * @param g
@@ -103,7 +102,7 @@ public abstract class Entity {
     public void render(Graphics g) {
         g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight);
-    }
+    } 
 
     /**
      * debugging purposes only
