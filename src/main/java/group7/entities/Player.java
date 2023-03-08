@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Animate {
     private int health = 100;
     private int stamina = 100;
-    private int DinoNumber ;
+    private int DinoNumber;
     /**
      * Create a new player
      * @param posX
