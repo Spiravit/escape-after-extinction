@@ -13,7 +13,6 @@ public abstract class Collectables extends Enti {
 
     protected static int xScale = GraphicsGrid.getScaleX();
     protected static int yScale = GraphicsGrid.getScaleY();
-    protected Rectangle hitBox;
 
     protected java.awt.image.BufferedImage[][] entityAnimations;
 

@@ -38,8 +38,8 @@ public class AssetLoader {
     public static final String EGG = "egg_sprites.png";
     public static final String KEY_CARD = "colectable/keyCard.png";
 
-    public static final String INVISIBILITY_POTION = "invisibility_potion_sprites.png";
-    public static final String SPEED_POTION = "speed_potion_sprites.png";
+    public static final String HEALTH_POTION = "colectable/greenPotion.png";
+    public static final String SPEED_POTION = "colectable/purplePotion.png";
 
     public static final String LAB_TILE = "lab_tile.png";
     public static final String DOOR = "door_sprites.png";
@@ -52,6 +52,7 @@ public class AssetLoader {
      * The sprite atlas as a BufferedImage
      */
     public static BufferedImage getSpriteAtlas(String filename) {
+        
         BufferedImage img = null;
         InputStream is = AssetLoader.class.getResourceAsStream("/assets/" + filename);
         try {
