@@ -1,11 +1,10 @@
-package group7.entities;
+package group7.entities.animate;
 
 import group7.Graphics.GraphicsGrid;
 import group7.levels.Pathfinding;
 import group7.utils.Direction;
 
 import java.awt.Color;
-import java.awt.geom.Rectangle2D;
 import java.awt.Graphics;
 
 public class Enemy extends Animate {

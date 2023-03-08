@@ -1,4 +1,4 @@
-package group7.gameObjects;
+package group7.entities.inanimate;
 
 import java.awt.Graphics;
 
@@ -40,6 +40,11 @@ public class KeyCard extends Collectables {
         ); 
         super.render(g);
         //drawHitbox(g);
+    }
+
+    @Override
+    public void update() {
+        
     }
     
 }

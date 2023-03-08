@@ -1,8 +1,10 @@
-package group7.entities;
+package group7.entities.animate;
 
+import group7.entities.Entity;
 import group7.levels.Pathfinding;
 import group7.utils.Direction;
 import group7.Graphics.GraphicsGrid;
+
 import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 import java.awt.Color;

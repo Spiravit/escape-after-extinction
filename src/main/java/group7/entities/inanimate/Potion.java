@@ -1,4 +1,4 @@
-package group7.gameObjects;
+package group7.entities.inanimate;
 
 
 import java.awt.Graphics;
@@ -60,6 +60,11 @@ public class Potion extends Collectables {
         super.render(g); //draws hitbox
         // hitboxWidth,
         //  hitboxHeight
+    }
+
+    @Override
+    public void update() {
+        
     }
    
 }

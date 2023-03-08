@@ -1,6 +1,7 @@
-package group7.entities;
+package group7.entities.inanimate;
 
-import group7.Graphics.GraphicsGrid;
+import group7.entities.Entity;
+
 
 public abstract class Inanimate extends Entity {
     public Inanimate(double positionX, double positionY) {

@@ -12,8 +12,8 @@ import java.awt.geom.Rectangle2D;
 
 public abstract class Entity {
     // use getPosX() and getPosY() instead
-    double posX; // deprecated
-    double posY; // deprecated
+    protected double posX; // deprecated
+    protected double posY; // deprecated
 
     GraphicsGrid graphicsGrid;
 
