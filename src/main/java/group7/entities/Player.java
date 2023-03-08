@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Animate {
     private int health = 100;
     private int stamina = 100;
-    private int DinoNumber ;
+    private int dinoNumber ;
     /**
      * Create a new player
      * @param posX
@@ -22,9 +22,9 @@ public class Player extends Animate {
      * @param pathfinding
      * the pathfinding of the level the player is in
      */
-    public Player(double posX, double posY, Pathfinding pathfinding, int DinoNumber) {
+    public Player(double posX, double posY, Pathfinding pathfinding, int dinoNumber) {
         super(posX, posY, pathfinding);
-        this.DinoNumber = DinoNumber;
+        this.dinoNumber = dinoNumber;
         loadAnimations();
     }
 
@@ -40,7 +40,7 @@ public class Player extends Animate {
    
     @Override
     void loadAnimations() {
-        BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+DinoNumber+".png");
+        BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ dinoNumber+".png");
         entityAnimations = new BufferedImage[2][];
         
         // place moving animations into 2d array
@@ -93,7 +93,6 @@ public class Player extends Animate {
      */
     @Override
     public void render(Graphics g){
-        g.setColor(Color.RED);
         // draw the player, with the current animation and sprite in the current positions
         GraphicsGrid.render(
             g,
