@@ -91,6 +91,8 @@ public abstract class Entity {
         return hitboxY + hitboxHeight / 2;
     }
 
+    public abstract void update();
+
     /**
      * default render method
      * draws a rectangle

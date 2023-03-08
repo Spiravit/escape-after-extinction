@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 
 public class AssetLoader {
     public static final String LEVELONEMAP = "levels/level_one/levelonesprites.png";
+    public static final String LEVEL_TWO_MAP = "levels/level_two/level_two_sprites.png"; 
+    public static final String LEVEL_THREE_MAP = "levels/level_three/level_three_sprites.png"; 
     public static final String LEVELS_SPRITES = "levels/levelssprites.png";
 
     // The main menu buttons sprite image

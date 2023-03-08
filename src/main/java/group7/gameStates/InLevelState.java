@@ -3,12 +3,10 @@ package group7.gameStates;
 import group7.Game;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
-import group7.entities.Player;
-import group7.gameObjects.KeyCard;
-import group7.gameObjects.ObjectManager;
 import group7.levels.LevelManager;
 import group7.utils.AssetLoader;
 import group7.utils.Direction;
+import group7.gameObjects.KeyCard;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -20,44 +18,43 @@ import static group7.Graphics.GraphicsPanel.panelWidth;
 
 
 // This class is for when the game is in Playing state
-// it initializes a player, enemies, level
+// it initializes a level
 // render and update them
 // the class is extending the abstract State class, a super class for all states
 public class InLevelState extends State {
-        public Player player;
-        private KeyCard key; // TEST REMOVE
         protected LevelManager levelManager;
+        private KeyCard key; // TEST REMOVE
         int DinoNumber = 1;
         public boolean isPaused = false;
          protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
         private BufferedImage PauseBackground;
         private static final int PAUSE_BACKGROUND_HEIGHT=80+4*GraphicsGrid.getScaleY()+20;
         private static final int PAUSE_BACKGROUND_WIDTH=4*GraphicsGrid.getScaleX(); // The width of main Menu is 4 Grids
-        public InLevelState(Game game, int PlayerDinoNumber) {
+        public InLevelState(Game game, int playerDinoNumber) {
             super(game);
-            this.levelManager = new LevelManager();
+            this.levelManager = new LevelManager(playerDinoNumber);
             this.levelManager.loadLevel(1);
-            this.DinoNumber = PlayerDinoNumber;
-            this.player = new Player(1, 1, this.levelManager.getLevelData(), PlayerDinoNumber);
             this.key = new KeyCard(3, 3, 0, this.levelManager.getLevelData());       // TEST REMOVE
+            
             PauseBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
             PauseMenuButtons[0] = new GraphicsButtons(game,panelWidth / 2, 170, 0, gameStates.RESTART);
             PauseMenuButtons[1] = new GraphicsButtons(game,panelWidth / 2, 170 + 10 + 1 * GraphicsGrid.getScaleY(), 11, gameStates.IN_LEVEL);
             PauseMenuButtons[2] = new GraphicsButtons(game,panelWidth / 2, 170 + 20 + 2 * GraphicsGrid.getScaleY(), 10, gameStates.IN_MENU);
             PauseMenuButtons[3] = new GraphicsButtons(game,panelWidth / 2, 170 + 30 + 3 * GraphicsGrid.getScaleY(), 3, gameStates.QUIT);
         }
+
         public void update() {
-            if (isPaused==false){
-                player.update();
+            if (isPaused==false) {
+                levelManager.update();
             }
             else{
                 for (GraphicsButtons button : PauseMenuButtons)
                     button.update();
             }
         }
+
         public void render(Graphics g) {
             levelManager.render(g);
-            player.render(g);
             key.render(g);              // TEST REMOVE
             if (isPaused){
                 renderPause(g);
@@ -65,21 +62,21 @@ public class InLevelState extends State {
         }
 
 
-    @Override
+        @Override
         public void keyPressed(KeyEvent e) {
             if (isPaused==false){
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
                     //Right arrow key code
-                    player.setDirection(Direction.RIGHT);
+                    levelManager.setDirection(Direction.RIGHT);
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
                     //gamePanel arrow key code
-                    player.setDirection(Direction.LEFT);
+                    levelManager.setDirection(Direction.LEFT);
                 } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
                     //Up arrow key code
-                    player.setDirection(Direction.UP);
+                    levelManager.setDirection(Direction.UP);
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
                     //Down arrow key code
-                    player.setDirection(Direction.DOWN);
+                    levelManager.setDirection(Direction.DOWN);
                 }
                 if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
                     isPaused = true;
@@ -89,10 +86,10 @@ public class InLevelState extends State {
             if (isPaused==true){
                 if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
                     isPaused = false;
-                    player.removeDirection(Direction.RIGHT);
-                    player.removeDirection(Direction.LEFT);
-                    player.removeDirection(Direction.UP);
-                    player.removeDirection(Direction.DOWN);
+                    levelManager.removeDirection(Direction.RIGHT);
+                    levelManager.removeDirection(Direction.LEFT);
+                    levelManager.removeDirection(Direction.UP);
+                    levelManager.removeDirection(Direction.DOWN);
                 }
             }
         }
@@ -101,16 +98,16 @@ public class InLevelState extends State {
             if (isPaused==false){
                 if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
                     //Right arrow key code
-                    player.removeDirection(Direction.RIGHT);
+                    levelManager.removeDirection(Direction.RIGHT);
                 } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
                     //gamePanel arrow key code
-                    player.removeDirection(Direction.LEFT);
+                    levelManager.removeDirection(Direction.LEFT);
                 } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
                     //Up arrow key code
-                    player.removeDirection(Direction.UP);
+                    levelManager.removeDirection(Direction.UP);
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
                     //Down arrow key code
-                    player.removeDirection(Direction.DOWN);
+                    levelManager.removeDirection(Direction.DOWN);
                 }
             }
         }
