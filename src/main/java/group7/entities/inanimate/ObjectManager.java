@@ -1,4 +1,4 @@
-package group7.gameObjects;
+package group7.entities.inanimate;
 
 import group7.utils.AssetLoader;
 import static group7.utils.AssetLoader.*;

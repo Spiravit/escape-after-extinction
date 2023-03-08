@@ -1,6 +1,8 @@
 package group7.levels;
 
 import group7.entities.*;
+import group7.entities.animate.*;
+import group7.entities.inanimate.*;
 import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
 import group7.utils.Direction;
@@ -32,6 +34,10 @@ public abstract class Level {
 
         entities = new ArrayList<Entity>();
         entities.add(new Enemy(1, 1, pathfinding));
+
+        entities.add(new KeyCard(3, 3, KeyCard.ESCAPE_KEYCARD, pathfinding));
+        entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION, pathfinding));
+        entities.add(new Potion(5, 3, Potion.GREEN_HEALTH_POTION, pathfinding));
     }
 
     public Pathfinding getLevelData() { // TODO: remove this

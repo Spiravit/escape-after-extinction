@@ -1,6 +1,6 @@
-package group7.gameObjects;
+package group7.entities.inanimate;
 
-
+import group7.entities.Entity;
 import group7.Graphics.GraphicsGrid;
 import group7.levels.Pathfinding;
 
@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 import java.awt.Graphics;
 
 
-public abstract class Collectables extends Enti {
+public abstract class Collectables extends Inanimate {
     protected Pathfinding pathfinding;
 
     protected static int xScale = GraphicsGrid.getScaleX();
