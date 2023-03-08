@@ -3,6 +3,8 @@ package group7.levels;
 import group7.entities.*;
 import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
+import group7.utils.Direction;
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.awt.Graphics;
@@ -14,16 +16,19 @@ public abstract class Level {
     private Pathfinding pathfinding;
     private BufferedImage[] levelSprites;
     private int levelSpriteData[][];
+    private Player player;
 
     private ArrayList<Entity> entities;
 
     /** 
      * Loads everything about the level
      */
-    public void loadLevel() {
+    public void loadLevel(int dinoNumber) {
         importSprites();
         setLevelData();
         GraphicsGrid.setGridSize(width, height);
+
+        player = new Player(1, 1, pathfinding, dinoNumber);
 
         entities = new ArrayList<Entity>();
         entities.add(new Enemy(1, 1, pathfinding));
@@ -34,11 +39,12 @@ public abstract class Level {
     }
 
     /**
-     * render the level
+     * render the level, player and entities
      * @param g
      * the graphics object to draw on
      */
     public void render(Graphics g) {
+       // remember to render the level first or you will end up spending a long time debugging like me :D
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 GraphicsGrid.render(
@@ -55,6 +61,8 @@ public abstract class Level {
         for (Entity entity : entities) {
             entity.render(g);
         }
+
+        player.render(g);
     }
 
     /** 
@@ -95,6 +103,21 @@ public abstract class Level {
                 int index = y * 15 + x;
                 levelSprites[index] = img.getSubimage(x * 32, y * 32, 32, 32);
             }
+        }
+    }
+
+    public void setDirection(Direction direction) {
+        player.setDirection(direction);
+    }
+
+    public void removeDirection(Direction direction) {
+        player.removeDirection(direction);
+    }
+
+    public void update() {
+        player.update();
+        for (Entity entity : entities) {
+            entity.update();
         }
     }
 }
