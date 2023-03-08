@@ -1,5 +1,7 @@
 package group7.gameObjects;
 
+import group7.levels.Pathfinding;
+
 public class Potion extends Collectables {
 
     public static final int POTION_WIDTH_DEFAULT = 16;
@@ -10,8 +12,8 @@ public class Potion extends Collectables {
     public static final int GREEN_POTION_BOOST_VALUE = 15; // TODO: change value if needed
 	public static final int PURPLE_POTION_BOOST_VALUE = 10; // TODO: change value
 
-    public Potion(int positionX, int positionY, int objectType) {
-        super(positionX, positionY, objectType);
+    public Potion(int positionX, int positionY, int objectType, Pathfinding pathfinding ) {
+        super(positionX, positionY, objectType, pathfinding);
         // doAnimation = true;
         // initHitbox(); // move hitbox here from collectables
     }
@@ -20,5 +22,11 @@ public class Potion extends Collectables {
         updateAnimationTick();
     }
 */
+
+    @Override
+    void loadAnimations() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'loadAnimations'");
+    }
 
 }

@@ -18,7 +18,7 @@ public class ObjectManager {
         this.currentLevel = pathfinding;
         loadImages();
         keys = new ArrayList<>();
-        keys.add(new KeyCard(3, 3, 0));
+        //keys.add(new KeyCard(3, 3, 0));
     }
 
     private void loadImages() {
