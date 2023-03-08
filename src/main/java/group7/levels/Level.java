@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 
 public abstract class Level {
     private int width;
@@ -83,8 +84,6 @@ public abstract class Level {
                 Color color = new Color(img.getRGB(x, y));
                 int value = color.getRed() % 57;
 
-                // TODO: add the logic to set the level data
-                // pathfinding.set(x, y, true/false); <- get the true or false value
                 levelSpriteData[x][y] = value;
                 pathfinding.set(x, y, value != 13 ? false:true);
             }
@@ -114,10 +113,24 @@ public abstract class Level {
         player.removeDirection(direction);
     }
 
+    public void checkInteractions() {
+        Rectangle2D playerHitbox = player.getHitbox();
+
+        for (Entity entity : entities) {
+            Rectangle2D entityHitbox = entity.getHitbox();
+
+            if (playerHitbox.intersects(entityHitbox)) {
+                player.onInteraction(entity);
+                System.out.println("Interacted with entity");
+            }
+        }
+    }
+
     public void update() {
         player.update();
         for (Entity entity : entities) {
             entity.update();
         }
+        checkInteractions();
     }
 }
