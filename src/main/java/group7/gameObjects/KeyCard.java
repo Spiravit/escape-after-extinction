@@ -7,7 +7,6 @@ import group7.levels.Pathfinding;
 import group7.utils.AssetLoader;
 import static group7.utils.AssetLoader.*;
 import java.awt.image.BufferedImage;
-import java.awt.*;
 
 
 public class KeyCard extends Collectables {
