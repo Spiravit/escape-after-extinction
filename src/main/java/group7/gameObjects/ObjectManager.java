@@ -1,21 +1,21 @@
 package group7.gameObjects;
 
-import group7.levels.LevelData;
 import group7.utils.AssetLoader;
 import static group7.utils.AssetLoader.*;
 import group7.Graphics.GraphicsGrid;
+import group7.levels.Pathfinding;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class ObjectManager {
-    private LevelData currentLevel;
+    private Pathfinding currentLevel;
     private BufferedImage keycardImage;
     private ArrayList<KeyCard> keys;
-
-    public ObjectManager (LevelData levelData) {
-        this.currentLevel = levelData;
+ 
+    public ObjectManager (Pathfinding pathfinding) {
+        this.currentLevel = pathfinding;
         loadImages();
         keys = new ArrayList<>();
         keys.add(new KeyCard(3, 3, 0));
@@ -26,8 +26,8 @@ public class ObjectManager {
         BufferedImage keycardImage = keycardSprite.getSubimage(0, 0, 32, 24); //x,y,w,h
     }
     
-    public void render(Graphics g){
-        // draw the player, with the current animation and sprite in the current positions
+    public void render(Graphics g) {
+        // draw the current animation and sprite in the current positions
         for(KeyCard key : keys) {
             GraphicsGrid.render(
                 g,
