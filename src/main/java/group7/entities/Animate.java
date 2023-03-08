@@ -219,7 +219,6 @@ public abstract class Animate extends Entity {
     }
 
     public void render(Graphics g) {
-        update();
         drawPositionDot(g);
         super.render(g);
     }
