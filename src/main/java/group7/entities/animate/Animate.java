@@ -13,10 +13,6 @@ public abstract class Animate extends Entity {
     protected boolean movingLeft = false;
     protected boolean movingRight = false;
 
-    protected final static int MOVING_ACTION = 1;
-
-    
-
     // Moving speed of entity to change position of entity on map
     protected float entitySpeed = 0.02f;
 
@@ -37,10 +33,56 @@ public abstract class Animate extends Entity {
         super.update();
     }
 
-    protected void updateAnimation() {
+    /**
+     * updates the position of the entity based on the directions it is moving in
+     */
+    protected void updatePosition() {
+        // Exit if not moving in any direction
+        if( !movingUp && !movingDown && !movingLeft && !movingRight ) {
+            return;
+        }
+        
+        // floor in the canMove function insures the entity doesn't move into a negative position between 0 and -1
+        // When moving up check both top left and right corners
+        if(this.movingUp && animateCanMove(Direction.UP)){
+            hitboxY -= entitySpeed;
+        }
+        // When moving down check both bottom left and right corners
+        if(this.movingDown && animateCanMove(Direction.DOWN)){
+            hitboxY += entitySpeed;
+        }
+        // When moving left check both top left and bottom left
+        if(this.movingLeft && animateCanMove(Direction.LEFT)){
+            hitboxX -= entitySpeed;
+        }
+        // When moving right check both top left and bottom left
+        if(this.movingRight && animateCanMove(Direction.RIGHT)) {
+            hitboxX += entitySpeed;
+        }
+    }
+
+
+
+    /**
+    * updates the current animation on the entity based on its movement state and direction
+    * if the entity is currently moving and can move in a certain direction, the motion animation is played.
+    *previous animations are stored in a variable for comparison.
+    **/
+    protected void updateAnimation(){
         int prevAnimation = currentAnimation;
-        if (this.isMoving()) {
-            currentAnimation = MOVING_ANIMATION;
+        if (this.isMoving()){
+            if (this.movingUp && animateCanMove(Direction.UP)){
+                currentAnimation = MOVING_ANIMATION;
+            }
+            if (this.movingDown && animateCanMove(Direction.DOWN)){
+                currentAnimation = MOVING_ANIMATION;
+            }
+            if (this.movingLeft && animateCanMove(Direction.LEFT)){
+                currentAnimation = MOVING_ANIMATION;
+            }
+            if (this.movingRight && animateCanMove(Direction.RIGHT)){
+                currentAnimation = MOVING_ANIMATION;
+            }
         }
         else if (!this.isMoving()) {
             currentAnimation = DEFAULT_ANIMATION;
@@ -54,41 +96,27 @@ public abstract class Animate extends Entity {
         }
     }
 
-    /**
-     * updates the position of the entity based on the directions it is moving in
-     */
-    protected void updatePosition() {
-        // Exit if not moving in any direction
-        if( !movingUp && !movingDown && !movingLeft && !movingRight ) {
-            return;
-        }
-        
-        // floor in the canMove function insures the entity doesn't move into a negative position between 0 and -1
-        // When moving up check both top left and right corners
-        if(this.movingUp && pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY - entitySpeed))){
-            if ((pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY - entitySpeed)))){
-               hitboxY -= entitySpeed;
-            }
-        }
-        // When moving down check both bottom left and right corners
-        if(this.movingDown && pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed))){
-            if ((pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed)))){
-                hitboxY += entitySpeed;
-            }
-        }
-        // When moving left check both top left and bottom left
-        if(this.movingLeft && pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY))){
-            if ((pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
-                hitboxX -= entitySpeed;
-            }
-        }
-        // When moving right check both top left and bottom left
-        if(this.movingRight && pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY))){
-            if ( (pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
-                hitboxX += entitySpeed;
-            }
+    protected boolean animateCanMove(Direction direction) {
+        switch(direction) {
+            case UP:
+                return pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY - entitySpeed)) &&
+                        pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY - entitySpeed));
+            case DOWN:
+                return pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed)) &&
+                        pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed));
+            case LEFT:
+                return pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY)) &&
+                        pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY + hitboxHeight));
+            case RIGHT:
+                return pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY)) &&
+                        pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY + hitboxHeight));
+            default:
+                return false;
         }
     }
+
+
+
 
 
     /**
