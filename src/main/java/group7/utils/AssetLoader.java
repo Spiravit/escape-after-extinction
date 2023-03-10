@@ -37,6 +37,7 @@ public class AssetLoader {
     public static final String EGG = "collectable/egg.png";
     public static final String KEY_CARD = "collectable/keyCard.png";
     public static final String KEY = "collectable/key.png";
+    public static final String TRAP = "collectable/trap.png";
 
 
     public static final String HEALTH_POTION = "collectable/greenPotion.png";

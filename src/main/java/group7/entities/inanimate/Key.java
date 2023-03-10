@@ -5,7 +5,7 @@ import static group7.utils.AssetLoader.*;
 import java.awt.image.BufferedImage;
 
 
-public class Key extends Collectables {
+public class Key extends Collectable {
     
     // Constructor
     public Key(int x, int y) {

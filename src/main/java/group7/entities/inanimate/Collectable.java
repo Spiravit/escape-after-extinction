@@ -1,6 +1,6 @@
 package group7.entities.inanimate;
 
-public abstract class Collectables extends Inanimate {
+public abstract class Collectable extends Inanimate {
     protected int objectType;
 
     protected boolean active = true; // If object hasn't been picked up TRUE, else FALSE 
@@ -12,9 +12,8 @@ public abstract class Collectables extends Inanimate {
     public static final int EGG_POINT_BONUS = 3;
     
     // Constructor
-    public Collectables( int x, int y) {
+    public Collectable(int x, int y) {
         super(x, y);
-        loadAnimations();
     }
 
     protected void updateAnimation() {

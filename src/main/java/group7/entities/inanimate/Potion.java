@@ -5,7 +5,7 @@ import static group7.utils.AssetLoader.*;
 import java.awt.image.BufferedImage;
 
 
-public class Potion extends Collectables {
+public class Potion extends Collectable {
     public static final int GREEN_POTION_BOOST_VALUE = 15;	
     public static final int PURPLE_POTION_BOOST_VALUE = 10;
     
