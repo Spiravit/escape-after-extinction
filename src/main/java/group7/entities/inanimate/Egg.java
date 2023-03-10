@@ -1,0 +1,20 @@
+package group7.entities.inanimate;
+
+import java.awt.image.BufferedImage;
+
+import group7.utils.AssetLoader;
+
+public class Egg extends Collectables {
+
+    public Egg(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    protected void loadAnimations() {
+        entityAnimations = new BufferedImage[1][];
+        entityAnimations[0] = new BufferedImage[1];
+        BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.EGG);
+        entityAnimations[0][0] = img.getSubimage(0, 0, 24, 24);
+    }
+}

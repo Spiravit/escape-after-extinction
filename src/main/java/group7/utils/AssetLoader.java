@@ -35,11 +35,11 @@ public class AssetLoader {
     public static final String SCIENTIST = "scientist_sprites.png";
     public static final String SPIKE = "spike_sprites.png";
 
-    public static final String EGG = "egg_sprites.png";
-    public static final String KEY_CARD = "colectable/keyCard.png";
+    public static final String EGG = "collectable/egg.png";
+    public static final String KEY_CARD = "collectable/keyCard.png";
 
-    public static final String HEALTH_POTION = "colectable/greenPotion.png";
-    public static final String SPEED_POTION = "colectable/purplePotion.png";
+    public static final String HEALTH_POTION = "collectable/greenPotion.png";
+    public static final String SPEED_POTION = "collectable/purplePotion.png";
 
     public static final String LAB_TILE = "lab_tile.png";
     public static final String DOOR = "door_sprites.png";
@@ -52,7 +52,6 @@ public class AssetLoader {
      * The sprite atlas as a BufferedImage
      */
     public static BufferedImage getSpriteAtlas(String filename) {
-        System.out.println("Loading sprite atlas: " + filename);
         BufferedImage img = null;
         InputStream is = AssetLoader.class.getResourceAsStream("/assets/" + filename);
         try {
