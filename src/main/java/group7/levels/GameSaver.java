@@ -44,7 +44,6 @@ public class GameSaver
 
     public Game load_game()
     {
-        game = new Game(null);
         try
         {
             fileInputStream = new FileInputStream("game.saver");
