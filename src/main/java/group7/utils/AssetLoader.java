@@ -54,7 +54,6 @@ public class AssetLoader {
      * The sprite atlas as a BufferedImage
      */
     public static BufferedImage getSpriteAtlas(String filename) {
-        System.out.println("Loading sprite atlas: " + filename);
         BufferedImage img = null;
         InputStream is = AssetLoader.class.getResourceAsStream("/assets/" + filename);
         try {

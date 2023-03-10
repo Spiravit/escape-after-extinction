@@ -34,8 +34,9 @@ public abstract class Entity {
     // entity animation options
     protected final static int DEFAULT_ANIMATION = 0;
     protected final static int MOVING_ANIMATION = 1;
+    protected final static int INTERACTION_ANIMATION = 2;
     // stores the amount of possible animations, update this if you add more animations
-    protected final static int ANIMATION_COUNT = 2; 
+    protected final static int ANIMATION_COUNT = 3;
 
     public Entity(double posX, double posY) {
         hitboxX = posX;
