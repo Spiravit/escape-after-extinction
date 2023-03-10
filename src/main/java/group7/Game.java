@@ -6,6 +6,8 @@ import group7.Graphics.GraphicsGrid;
 import group7.entities.Player;
 import group7.gameStates.*;
 import group7.levels.Pathfinding;
+import group7.utils.AssetLoader;
+import group7.levels.Level;
 import group7.levels.LevelManager;
 
 
@@ -22,14 +24,18 @@ public class Game implements Runnable {
     private GraphicsGrid graphicsGrid;
     public gameStates gameCurrentState; // The current running state of the game
 
+    private boolean playerSelectFlag = false;                                           // **TEST: MULTIPLE LEVELS **
+    private boolean levelSelectFlag = false;                                            // **TEST: MULTIPLE LEVELS **
+
     int playerDinoNumber = 1;
+    int levelSelected = 1;                                                              // **TEST: MULTIPLE LEVELS **
 
     public Game() {
         gameCurrentState = gameStates.IN_MENU; // setting initial state of game to be mainMenu
         this.graphicsGrid = new GraphicsGrid(graphicsPanel, 15, 10);
        // inLevelState = new InLevelState(this);
         mainMenuState = new MainMenuState(this);
-        inLevelState = new InLevelState(this,playerDinoNumber);
+        inLevelState = new InLevelState(this, playerDinoNumber, levelSelected);            // **TEST: MULTIPLE LEVELS **
         // Since the initial state of game is main menu, we pass a mainMenuState object as a gameState object
         // to graphicsPanel so that graphicsPanel will render the main menu until.
         this.graphicsPanel =  new GraphicsPanel(mainMenuState);
@@ -63,6 +69,8 @@ public class Game implements Runnable {
             this.gameCurrentState = gameStateParameter;
             mainMenuState = new MainMenuState(this);
             graphicsPanel.changeGameStates(mainMenuState);
+            playerSelectFlag = false;
+            levelSelectFlag = false;
         }
         if (gameStateParameter == gameStates.CREDIT_SUB_MENU ) {
             this.gameCurrentState = gameStateParameter;
@@ -73,23 +81,38 @@ public class Game implements Runnable {
             this.gameCurrentState = gameStateParameter;
             mainMenuState = new playerSelectionState(this);
             graphicsPanel.changeGameStates(mainMenuState);
+            playerSelectFlag = true;
+        }
+        if (gameStateParameter == gameStates.LEVEL_SELECTION_SUB_MENU ) {
+            this.gameCurrentState = gameStateParameter;
+            mainMenuState = new LevelSelectionState(this);
+            graphicsPanel.changeGameStates(mainMenuState);
+            playerSelectFlag = true;
         }
         if (gameStateParameter == gameStates.NEXT ) {
-            playerDinoNumber = mainMenuState.decrementIndexCharacterDemo() + 1;
+            if ( playerSelectFlag == true ) {
+                playerDinoNumber = mainMenuState.decrementIndexCharacterDemo() + 1;
+            } else if ( levelSelectFlag == true ) {
+                levelSelected = mainMenuState.decrementIndexLevelNumber() + 1;
+            }
         }
         if (gameStateParameter == gameStates.PERV ) {
-            playerDinoNumber = mainMenuState.decrementIndexCharacterDemo() + 1;
+            if ( playerSelectFlag == true ) {
+                playerDinoNumber = mainMenuState.decrementIndexCharacterDemo() + 1;
+            } else if ( levelSelectFlag == true ) {
+                levelSelected = mainMenuState.decrementIndexLevelNumber() + 1;
+            }        
         }
         if (gameStateParameter == gameStates.RESTART ) {
             this.gameCurrentState = gameStates.IN_LEVEL;
-            inLevelState = new InLevelState(this,playerDinoNumber);
+            inLevelState = new InLevelState(this, playerDinoNumber, levelSelected);
             graphicsPanel.changeGameStates(inLevelState);
         }
         else if (gameStateParameter == gameStates.IN_LEVEL ) {
             // Here, once the game state is changed to in Level state (the state, where player is playing) in game class,
             // then we change game states in graphicsPanel to render the level state (rendering levels,players,...) .
             this.gameCurrentState = gameStateParameter;
-            inLevelState = new InLevelState(this,playerDinoNumber);
+            inLevelState = new InLevelState(this, playerDinoNumber, levelSelected);
             graphicsPanel.changeGameStates(inLevelState);
         } else if (gameStateParameter == gameStates.QUIT) {
             // if the current state of game is changed to be quit, then terminate the program

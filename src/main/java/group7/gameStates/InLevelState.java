@@ -24,14 +24,14 @@ public class InLevelState extends State {
         protected LevelManager levelManager;
         int DinoNumber = 1;
         public boolean isPaused = false;
-         protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
+        protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
         private BufferedImage PauseBackground;
         private static final int PAUSE_BACKGROUND_HEIGHT=80+4*GraphicsGrid.getScaleY()+20;
         private static final int PAUSE_BACKGROUND_WIDTH=4*GraphicsGrid.getScaleX(); // The width of main Menu is 4 Grids
-        public InLevelState(Game game, int playerDinoNumber) {
+        public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
             super(game);
             this.levelManager = new LevelManager(playerDinoNumber);
-            this.levelManager.loadLevel(1);
+            this.levelManager.loadLevel(levelSelected);
             
             PauseBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
             PauseMenuButtons[0] = new GraphicsButtons(game,panelWidth / 2, 170, 0, gameStates.RESTART);
