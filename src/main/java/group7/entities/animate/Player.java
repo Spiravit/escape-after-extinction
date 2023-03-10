@@ -43,8 +43,6 @@ public class Player extends Animate {
         for (int i = 0; i < 6; i++) {
             entityAnimations[1][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
         }
-
-        currentEntityImage = entityAnimations[0][0];
     }
 
    

@@ -19,17 +19,17 @@ public abstract class Entity {
     protected double hitboxHeight = 1;
 
     // entity sprite information
-    protected BufferedImage currentEntityImage; // current image to be rendered
     protected BufferedImage[][] entityAnimations; // all animations of the entity
     protected int currentAnimation = IDLE_ACTION; // current animation to be rendered (first dimension of entityAnimations)
     
+    // used to scale the image size relative to the hitbox
+    protected double imageScaleX = 1;
+    protected double imageScaleY = 1;
+
     // animation information
     protected int aniIndex = 0; // current index of the animation (second dimension of entityAnimations)
     protected int aniSpeed = 15; // how fast the animation changes
     protected int aniTick = 15; // how long the current animation has been playing
-
-    private int xScale = GraphicsGrid.getScaleX(); 
-    private int yScale = GraphicsGrid.getScaleY();
 
     // entity animation options
     protected final static int IDLE_ACTION = 0;
@@ -62,14 +62,6 @@ public abstract class Entity {
      */
     protected double getPosY() {
         return hitboxY + hitboxHeight / 2;
-    }
-
-    protected void setHitboxWidth(double width) {
-        hitboxWidth = width;
-    }
-
-    protected void setHitboxHeight(double height) {
-        hitboxHeight = height;
     }
 
     /**
@@ -124,11 +116,11 @@ public abstract class Entity {
         g.setColor(Color.RED);
         GraphicsGrid.render(
             g,
-            currentEntityImage,
+            entityAnimations[currentAnimation][aniIndex],
             hitboxX, 
             hitboxY, 
-            hitboxWidth, 
-            hitboxHeight
+            hitboxWidth * imageScaleX, 
+            hitboxHeight * imageScaleY
         );
         // TODO: debugging purposes only, remove later
         GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight); 
@@ -143,6 +135,6 @@ public abstract class Entity {
      */
     public void drawPositionDot(Graphics g) {
         g.setColor(Color.ORANGE);
-        g.drawRect((int)(xScale * getPosX()), (int) (yScale * getPosY()), 2, 2);
+        g.drawRect((int)(GraphicsGrid.getScaleX() * getPosX()), (int) (GraphicsGrid.getScaleY() * getPosY()), 2, 2);
     }
 }

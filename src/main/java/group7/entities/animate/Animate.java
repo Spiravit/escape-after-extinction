@@ -15,6 +15,8 @@ public abstract class Animate extends Entity {
 
     protected final static int MOVING_ACTION = 1;
 
+    
+
     // Moving speed of entity to change position of entity on map
     protected float entitySpeed = 0.02f;
 
@@ -23,8 +25,8 @@ public abstract class Animate extends Entity {
         this.pathfinding = pathfinding;
 
         // change hitbox size to 0.8 to allow for movement
-        setHitboxWidth(0.8);
-        setHitboxHeight(0.8);
+        hitboxWidth = 0.8;
+        hitboxHeight = 0.8;
     }
 
     /**
@@ -50,7 +52,6 @@ public abstract class Animate extends Entity {
             aniIndex = 0;
             aniTick = 0;
         }
-        currentEntityImage = entityAnimations[currentAnimation][aniIndex];
     }
 
     /**

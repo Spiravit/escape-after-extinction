@@ -24,6 +24,8 @@ public abstract class Level {
 
     /** 
      * Loads everything about the level
+     * @param dinoNumber 
+     * player dino type
      */
     public void loadLevel(int dinoNumber) {
         importSprites();
@@ -35,36 +37,9 @@ public abstract class Level {
         entities = new ArrayList<Entity>();
         entities.add(new Enemy(1, 1, pathfinding));
 
-        entities.add(new KeyCard(3, 3, KeyCard.ESCAPE_KEYCARD, pathfinding));
-        entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION, pathfinding));
-        //entities.add(new Potion(5, 3, Potion.GREEN_HEALTH_POTION, pathfinding));
-    }
-
-    /**
-     * render the level, player and entities
-     * @param g
-     * the graphics object to draw on
-     */
-    public void render(Graphics g) {
-       // remember to render the level first or you will end up spending a long time debugging like me :D
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                GraphicsGrid.render(
-                    g, 
-                    levelSprites[levelSpriteData[x][y]], 
-                    x, 
-                    y, 
-                    1, 
-                    1
-                );
-            }
-        }
-
-        for (Entity entity : entities) {
-            entity.render(g);
-        }
-
-        player.render(g);
+        entities.add(new KeyCard(3, 3));
+        entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION));
+        entities.add(new Egg(5, 3));
     }
 
     /** 
@@ -85,8 +60,6 @@ public abstract class Level {
                 Color color = new Color(img.getRGB(x, y));
                 int value = color.getRed() % 57;
 
-                // TODO: add the logic to set the level data
-                // pathfinding.set(x, y, true/false); <- get the true or false value
                 levelSpriteData[x][y] = value;
                 pathfinding.set(x, y, value != 13 ? false:true);
             }
@@ -121,5 +94,32 @@ public abstract class Level {
         for (Entity entity : entities) {
             entity.update();
         }
+    }
+
+    /**
+     * render the level, player and entities
+     * @param g
+     * the graphics object to draw on
+     */
+    public void render(Graphics g) {
+        // remember to render the level first or you will end up spending a long time debugging like me :D
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                GraphicsGrid.render(
+                    g, 
+                    levelSprites[levelSpriteData[x][y]], 
+                    x, 
+                    y, 
+                    1, 
+                    1
+                );
+            }
+        }
+ 
+        for (Entity entity : entities) {
+        entity.render(g);
+        }
+ 
+        player.render(g);
     }
 }

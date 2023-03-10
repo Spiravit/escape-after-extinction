@@ -1,10 +1,5 @@
 package group7.entities.inanimate;
 
-
-import java.awt.Graphics;
-
-import group7.Graphics.GraphicsGrid;
-import group7.levels.Pathfinding;
 import group7.utils.AssetLoader;
 import static group7.utils.AssetLoader.*;
 import java.awt.image.BufferedImage;
@@ -16,8 +11,8 @@ public class Potion extends Collectables {
     
     protected String potionType;
 
-    public Potion(int positionX, int positionY, int objectType, Pathfinding pathfinding ) {
-        super(positionX, positionY, objectType, pathfinding);
+    public Potion(int positionX, int positionY, int objectType) {
+        super(positionX, positionY);
         setObject( objectType );
         loadAnimations();
     }
@@ -37,6 +32,5 @@ public class Potion extends Collectables {
 
         entityAnimations[0] = new BufferedImage[1];
         entityAnimations[0][0] = potion.getSubimage( 0, 0, 16, 16 );
-        currentEntityImage = entityAnimations[0][0];
     }
 }
