@@ -2,10 +2,12 @@ package group7.entities.animate;
 
 import group7.Graphics.GraphicsGrid;
 import group7.levels.Pathfinding;
+import group7.utils.AssetLoader;
 import group7.utils.Direction;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 public class Enemy extends Animate {
     int directionUpdateInterval = 200;
@@ -15,10 +17,6 @@ public class Enemy extends Animate {
 
     public Enemy(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY, pathfinding);
-    }
-
-    public void setAnimation() {
-
     }
 
     /**
@@ -88,7 +86,23 @@ public class Enemy extends Animate {
     }
 
     public void loadAnimations() {
+        BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ 1 +".png");
+        System.out.println("playerSprites/dino_"+ 1 +".png done");
+        entityAnimations = new BufferedImage[2][];
         
+        // place idle animations into 2d array
+        entityAnimations[0] = new BufferedImage[3];
+        for (int i = 0; i < 3; i++) {
+            entityAnimations[0][i] = dinosaur.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
+        }
+
+        // place moving animations into 2d array
+        entityAnimations[1] = new BufferedImage[6];
+        for (int i = 0; i < 6; i++) {
+            entityAnimations[1][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
+        }
+
+        currentEntityImage = entityAnimations[0][0];
     }
 
     /**
@@ -114,16 +128,9 @@ public class Enemy extends Animate {
         }
     }
 
-    /**
-     * Render the enemy
-     * @param g
-     * the graphics object to render to
-     */
-    @Override
     public void render(Graphics g) {
         super.render(g);
-        g.setColor(Color.YELLOW);
-
         drawMovementDirections(g);
-    } 
+    }
 }
+

@@ -23,7 +23,6 @@ import static group7.Graphics.GraphicsPanel.panelWidth;
 public class InLevelState extends State {
         protected LevelManager levelManager;                                                              // ***TEST REMOVE***              
 
-        int DinoNumber = 1;
         public boolean isPaused = false;
         protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
         private BufferedImage PauseBackground;

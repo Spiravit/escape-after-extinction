@@ -11,23 +11,15 @@ import java.awt.image.BufferedImage;
 
 
 public class Potion extends Collectables {
-
-    public static final int POTION_WIDTH_DEFAULT = 16;
-	public static final int POTION_HEIGHT_DEFAULT = 16;
-	public static final int POTION_WIDTH = (int) ( xScale * POTION_WIDTH_DEFAULT);
-	public static final int POTION_HEIGHT = (int) ( yScale * POTION_HEIGHT_DEFAULT);
+    public static final int GREEN_POTION_BOOST_VALUE = 15;	
+    public static final int PURPLE_POTION_BOOST_VALUE = 10;
     
-    public static final int GREEN_POTION_BOOST_VALUE = 15; // TODO: change value if needed
-	public static final int PURPLE_POTION_BOOST_VALUE = 10; // TODO: change value
     protected String potionType;
 
-    // Constructor
     public Potion(int positionX, int positionY, int objectType, Pathfinding pathfinding ) {
         super(positionX, positionY, objectType, pathfinding);
         setObject( objectType );
         loadAnimations();
-        // doAnimation = true;
-        // initHitbox(); // move hitbox here from collectables
     }
 
     protected void setObject( int objectType ) {
@@ -40,31 +32,11 @@ public class Potion extends Collectables {
     @Override
     protected void loadAnimations() {
         //BufferedImage potion = AssetLoader.getSpriteAtlas( SPEED_POTION );
-        BufferedImage potion = AssetLoader.getSpriteAtlas( potionType );
+        BufferedImage potion = AssetLoader.getSpriteAtlas( SPEED_POTION ); // TODO: Change this to potionType
         entityAnimations = new BufferedImage[1][];
 
         entityAnimations[0] = new BufferedImage[1];
-        entityAnimations[0][0] = potion.getSubimage( 0, 0, 16, 16 ); //x,y,w,h
+        entityAnimations[0][0] = potion.getSubimage( 0, 0, 16, 16 );
+        currentEntityImage = entityAnimations[0][0];
     }
-
-    public void render(Graphics g) {
-        // draw the current animation and sprite in the current positions
-        GraphicsGrid.render(
-            g,
-            entityAnimations[0][0],
-            hitboxX + 0.2,
-            hitboxY + 0.1, // TODO: maybe change centering 0.1 adjustment.
-            0.6,
-            0.8
-        ); 
-        super.render(g); //draws hitbox
-        // hitboxWidth,
-        //  hitboxHeight
-    }
-
-    @Override
-    public void update() {
-        
-    }
-   
 }
