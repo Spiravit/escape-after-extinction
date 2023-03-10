@@ -91,9 +91,9 @@ public class Game implements Runnable {
         }
         if (gameStateParameter == gameStates.NEXT ) {
             if ( playerSelectFlag == true ) {
-                playerDinoNumber = mainMenuState.decrementIndexCharacterDemo() + 1;
+                playerDinoNumber = mainMenuState.incrementIndexCharacterDemo() + 1;
             } else if ( levelSelectFlag == true ) {
-                levelSelected = mainMenuState.decrementIndexLevelNumber() + 1;
+                levelSelected = mainMenuState.incrementIndexCharacterDemo() + 1;
             }
         }
         if (gameStateParameter == gameStates.PERV ) {

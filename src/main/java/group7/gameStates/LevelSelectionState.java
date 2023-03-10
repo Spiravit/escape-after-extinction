@@ -28,7 +28,7 @@ public class LevelSelectionState extends MainMenuState{
     }
 
     private void loadCharacterDemos() {
-        String level_select_sprite = "levelSelectMenu/lvl_";
+        String level_select_sprite = "levelSelectMenu/lvl";
         for ( int i = 0; i < numberOfLevels; i++ ) {
             levelNumbers[i] = AssetLoader.getSpriteAtlas( level_select_sprite + (i + 1) + ".png" );
         }
