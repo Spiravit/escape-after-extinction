@@ -7,9 +7,9 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class AssetLoader {
-    public static final String LEVELONEMAP = "levels/level_one/levelonesprites.png";
-    public static final String LEVEL_TWO_MAP = "levels/level_two/level_two_sprites.png"; 
-    public static final String LEVEL_THREE_MAP = "levels/level_three/level_three_sprites.png"; 
+    public static final String LEVEL_1 = "levels/level_maps/level_1.png";
+    public static final String LEVEL_2 = "levels/level_maps/level_2.png"; 
+    public static final String LEVEL_3 = "levels/level_maps/level_3.png"; 
     public static final String LEVELS_SPRITES = "levels/levelssprites.png";
 
     // The main menu buttons sprite image
@@ -53,6 +53,7 @@ public class AssetLoader {
      * The sprite atlas as a BufferedImage
      */
     public static BufferedImage getSpriteAtlas(String filename) {
+        //System.out.println("filename: " + filename);
         BufferedImage img = null;
         InputStream is = AssetLoader.class.getResourceAsStream("/assets/" + filename);
         try {

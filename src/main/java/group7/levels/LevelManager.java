@@ -17,9 +17,11 @@ import java.util.ArrayList;
  * - saves level data
  */
 public class LevelManager {
-    private Level currentLevel;
+    private Level currentLevel; 
     private Level[] levels = {
-        new Level1()
+        new Level1(),
+        new Level2(),
+        new Level3()
     };
     private int dinoNumber;
 
@@ -34,11 +36,11 @@ public class LevelManager {
      */
     public void loadLevel(int level) {
         currentLevel = levels[level - 1];
-        currentLevel.loadLevel(dinoNumber);
+        currentLevel.loadLevel("levels/level_maps/level_" + level + ".png", dinoNumber); //TEST MULTIPLE LEVELS, chnged from (dinoNumber) to ("Level_" + level, dinoNumber)
     }
 
     public Pathfinding getLevelData() { // TODO: remove this
-        return currentLevel.getLevelData();
+        return currentLevel.getPathfindingData();
     }
 
     public void update() {
