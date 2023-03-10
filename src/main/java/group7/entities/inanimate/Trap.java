@@ -19,6 +19,11 @@ public class Trap extends Collectable {
         for (int i = 0; i < 1; i++) {
             entityAnimations[DEFAULT_ANIMATION][i] = trap.getSubimage(i * 32, 0, 32, 32);
         }
+
+        entityAnimations[INTERACTION_ANIMATION] = new BufferedImage[3];
+        for (int i = 0; i < 3; i++) {
+            entityAnimations[INTERACTION_ANIMATION][i] = trap.getSubimage((i + 1) * 32, 0, 32, 32);
+        }
     }
     
 }
