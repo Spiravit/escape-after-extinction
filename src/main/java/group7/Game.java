@@ -2,8 +2,8 @@ package group7;
 
 import group7.Graphics.GraphicsPanel;
 import group7.Graphics.GraphicsWindow;
+import group7.entities.animate.Player;
 import group7.Graphics.GraphicsGrid;
-import group7.entities.Player;
 import group7.gameStates.*;
 import group7.levels.Pathfinding;
 import group7.utils.AssetLoader;
