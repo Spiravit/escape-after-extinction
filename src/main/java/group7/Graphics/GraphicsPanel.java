@@ -1,6 +1,6 @@
 package group7.Graphics;
 
-import group7.entities.Player;
+import group7.entities.animate.Player;
 import group7.gameStates.State;
 import group7.gameStates.gameStates;
 import group7.inputs.*;

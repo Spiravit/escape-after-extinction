@@ -5,7 +5,7 @@ import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.levels.LevelManager;
 import group7.utils.AssetLoader;
-import group7.utils.Direction;
+import group7.utils.Direction;                                                      
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -21,17 +21,17 @@ import static group7.Graphics.GraphicsPanel.panelWidth;
 // render and update them
 // the class is extending the abstract State class, a super class for all states
 public class InLevelState extends State {
-        protected LevelManager levelManager;
-        int DinoNumber = 1;
+        protected LevelManager levelManager;                                                              // ***TEST REMOVE***              
+
         public boolean isPaused = false;
-         protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
+        protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
         private BufferedImage PauseBackground;
         private static final int PAUSE_BACKGROUND_HEIGHT=80+4*GraphicsGrid.getScaleY()+20;
         private static final int PAUSE_BACKGROUND_WIDTH=4*GraphicsGrid.getScaleX(); // The width of main Menu is 4 Grids
-        public InLevelState(Game game, int playerDinoNumber) {
+        public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
             super(game);
             this.levelManager = new LevelManager(playerDinoNumber);
-            this.levelManager.loadLevel(1);
+            this.levelManager.loadLevel(levelSelected);
             
             PauseBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
             PauseMenuButtons[0] = new GraphicsButtons(game,panelWidth / 2, 170, 0, gameStates.RESTART);
@@ -61,19 +61,19 @@ public class InLevelState extends State {
         @Override
         public void keyPressed(KeyEvent e) {
             if (isPaused==false){
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
                     //Right arrow key code
                     levelManager.setDirection(Direction.RIGHT);
-                } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
                     //gamePanel arrow key code
                     levelManager.setDirection(Direction.LEFT);
-                } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
                     //Up arrow key code
                     levelManager.setDirection(Direction.UP);
-                } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
                     //Down arrow key code
                     levelManager.setDirection(Direction.DOWN);
-                }
+                } 
                 if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
                     isPaused = true;
                     return;
@@ -92,16 +92,16 @@ public class InLevelState extends State {
         @Override
         public void keyReleased(KeyEvent e) {
             if (isPaused==false){
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
                     //Right arrow key code
                     levelManager.removeDirection(Direction.RIGHT);
-                } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
                     //gamePanel arrow key code
                     levelManager.removeDirection(Direction.LEFT);
-                } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
                     //Up arrow key code
                     levelManager.removeDirection(Direction.UP);
-                } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
                     //Down arrow key code
                     levelManager.removeDirection(Direction.DOWN);
                 }
