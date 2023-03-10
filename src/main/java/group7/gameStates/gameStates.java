@@ -8,6 +8,7 @@ public enum gameStates {
     IN_LEVEL,
     QUIT,
     PLAYER_SELECTION_SUB_MENU,
+    LEVEL_SELECTION_SUB_MENU,
     CREDIT_SUB_MENU,
     NEXT,
     PERV,
