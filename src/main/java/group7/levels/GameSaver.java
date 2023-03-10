@@ -11,7 +11,7 @@ public class GameSaver
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
     private int highestLevelCompleted;
-    private Game game = new Game();
+    private Game game;
 
     public void save_game(Game game)
     {
@@ -42,8 +42,9 @@ public class GameSaver
         }
     }
 
-    public void load_game()
+    public Game load_game()
     {
+        game = new Game(null);
         try
         {
             fileInputStream = new FileInputStream("game.saver");
@@ -55,5 +56,6 @@ public class GameSaver
         {
             ex.printStackTrace();
         }
+        return game;
     }
 }
