@@ -1,6 +1,8 @@
 package group7.levels;
 
 import group7.entities.*;
+import group7.entities.animate.*;
+import group7.entities.inanimate.*;
 import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
 import group7.utils.Direction;
@@ -29,6 +31,8 @@ public abstract class Level {
 
     /** 
      * Loads everything about the level
+     * @param dinoNumber 
+     * player dino type
      */
     public void loadLevel(String filename, int dinoNumber) {
         //levelSpriteData = getLevelData(level);      // TEST: MULTIPLE LEVLES
@@ -39,73 +43,12 @@ public abstract class Level {
         player = new Player(1, 3, pathfinding, dinoNumber);
 
         entities = new ArrayList<Entity>();
-        entities.add(new Enemy(1, 1, pathfinding));
-    }
+        entities.add(new Enemy(1, 3, pathfinding));
 
-    public Pathfinding getPathfindingData() { // TODO: remove this
-        return pathfinding;
-    }
-
-    // Fetch all game level maps
-/*    public static BufferedImage[] getAllLevels() {
-        URL url = AssetLoader.class.getResource( "/assets/levels/level_maps/" );
-        File file = null;
-
-        try {
-            file = new File( url.toURI() );
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        
-        File[] files = file.listFiles(); // array of all level maps
-        File[] levelMaps = new File[files.length]; // sorted array of all levels
-
-        for ( int i = 0; i < levelMaps.length; i++ ) {
-            for ( int j = 0; j < files.length; j++ ) {
-                if ( files[j].getName().equals( "level_" + (i + 1) + ".png" ) ) {
-                    levelMaps[i] = files[j];
-                }
-            }
-        }
-
-        // convert files to usable images, store in array
-        BufferedImage[] imgs = new BufferedImage[levelMaps.length];
-        for ( int k = 0; k < imgs.length; k++ ) {
-            try {
-                imgs[k] = ImageIO.read( levelMaps[k] );
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return imgs;
-    } 
-*/
-    /**
-     * render the level, player and entities
-     * @param g
-     * the graphics object to draw on
-     */
-    public void render(Graphics g) {
-       // remember to render the level first or you will end up spending a long time debugging like me :D
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                GraphicsGrid.render(
-                    g, 
-                    levelSprites[levelSpriteData[x][y]], 
-                    x, 
-                    y, 
-                    1, 
-                    1
-                );
-            }
-        }
-
-        for (Entity entity : entities) {
-            entity.render(g);
-        }
-
-        player.render(g);
+        entities.add(new Key(3, 3));
+        entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION));
+        entities.add(new Egg(5, 3));
+        entities.add(new Trap(6, 4));
     }
 
     /** 
@@ -126,8 +69,6 @@ public abstract class Level {
                 Color color = new Color(img.getRGB(x, y));
                 int value = color.getRed() % 58; //chaged from 57 b 57 is the clear tile
 
-                // TODO: add the logic to set the level data
-                // pathfinding.set(x, y, true/false); <- get the true or false value
                 levelSpriteData[x][y] = value;
                 pathfinding.set(x, y, value != 13 ? false:true);
             }
@@ -164,4 +105,30 @@ public abstract class Level {
         }
     }
 
+    /**
+     * render the level, player and entities
+     * @param g
+     * the graphics object to draw on
+     */
+    public void render(Graphics g) {
+        // remember to render the level first or you will end up spending a long time debugging like me :D
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                GraphicsGrid.render(
+                    g, 
+                    levelSprites[levelSpriteData[x][y]], 
+                    x, 
+                    y, 
+                    1, 
+                    1
+                );
+            }
+        }
+ 
+        for (Entity entity : entities) {
+        entity.render(g);
+        }
+ 
+        player.render(g);
+    }
 }

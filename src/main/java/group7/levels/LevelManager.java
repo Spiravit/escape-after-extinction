@@ -39,10 +39,6 @@ public class LevelManager {
         currentLevel.loadLevel("levels/level_maps/level_" + level + ".png", dinoNumber); //TEST MULTIPLE LEVELS, chnged from (dinoNumber) to ("Level_" + level, dinoNumber)
     }
 
-    public Pathfinding getLevelData() { // TODO: remove this
-        return currentLevel.getPathfindingData();
-    }
-
     public void update() {
         currentLevel.update();
     }

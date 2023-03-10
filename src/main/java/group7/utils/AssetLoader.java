@@ -33,17 +33,18 @@ public class AssetLoader {
 
 
     public static final String SCIENTIST = "scientist_sprites.png";
-    public static final String SPIKE = "spike_sprites.png";
 
-    public static final String EGG = "egg_sprites.png";
-    public static final String KEY_CARD = "key_card_sprites.png";
+    public static final String EGG = "collectable/egg.png";
+    public static final String KEY_CARD = "collectable/keyCard.png";
+    public static final String KEY = "collectable/key.png";
+    public static final String TRAP = "collectable/trap.png";
 
-    public static final String INVISIBILITY_POTION = "invisibility_potion_sprites.png";
-    public static final String SPEED_POTION = "speed_potion_sprites.png";
+
+    public static final String HEALTH_POTION = "collectable/greenPotion.png";
+    public static final String SPEED_POTION = "collectable/purplePotion.png";
 
     public static final String LAB_TILE = "lab_tile.png";
     public static final String DOOR = "door_sprites.png";
-    
 
     /**
      * Load a sprite atlas from the assets folder
