@@ -37,10 +37,6 @@ public class LevelManager {
         currentLevel.loadLevel(dinoNumber);
     }
 
-    public Pathfinding getLevelData() { // TODO: remove this
-        return currentLevel.getLevelData();
-    }
-
     public void update() {
         currentLevel.update();
     }

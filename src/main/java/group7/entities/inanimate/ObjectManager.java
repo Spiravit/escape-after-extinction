@@ -25,19 +25,4 @@ public class ObjectManager {
         BufferedImage keycardSprite = AssetLoader.getSpriteAtlas(KEY_CARD);
         BufferedImage keycardImage = keycardSprite.getSubimage(0, 0, 32, 24); //x,y,w,h
     }
-    
-    public void render(Graphics g) {
-        // draw the current animation and sprite in the current positions
-        for(KeyCard key : keys) {
-            GraphicsGrid.render(
-                g,
-                keycardImage,
-                ( key.getHitbox().x ),
-                ( key.getHitbox().y ), // TODO: maybe place it somewhere else.
-                1,
-                1
-            ); 
-            //drawHitbox(g);
-        }    
-    }
 }

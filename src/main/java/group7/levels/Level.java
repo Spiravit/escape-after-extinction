@@ -37,11 +37,7 @@ public abstract class Level {
 
         entities.add(new KeyCard(3, 3, KeyCard.ESCAPE_KEYCARD, pathfinding));
         entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION, pathfinding));
-        entities.add(new Potion(5, 3, Potion.GREEN_HEALTH_POTION, pathfinding));
-    }
-
-    public Pathfinding getLevelData() { // TODO: remove this
-        return pathfinding;
+        //entities.add(new Potion(5, 3, Potion.GREEN_HEALTH_POTION, pathfinding));
     }
 
     /**

@@ -11,68 +11,41 @@ import java.awt.geom.Rectangle2D;
 
 
 public abstract class Entity {
-    // use getPosX() and getPosY() instead
-    protected double posX; // deprecated
-    protected double posY; // deprecated
-
-    GraphicsGrid graphicsGrid;
-
-    BufferedImage currentSprite;
-    
     // stores the position of the top left corner of the hitbox rectangle
     protected double hitboxX;
     protected double hitboxY;
 
-    protected double hitboxWidth = 0.8;
-    protected double hitboxHeight = 0.8;
+    protected double hitboxWidth = 1;
+    protected double hitboxHeight = 1;
 
-    // not related to hitboxX, hitboxY, hitboxWidth, hitboxHeight
-    // do not use
-    protected Rectangle hitBox; // deprecated
-    private int xScale = GraphicsGrid.getScaleX(); // deprecated
-    private int yScale = GraphicsGrid.getScaleY(); // deprecated
+    // entity sprite information
+    protected BufferedImage currentEntityImage; // current image to be rendered
+    protected BufferedImage[][] entityAnimations; // all animations of the entity
+    protected int currentAnimation = IDLE_ACTION; // current animation to be rendered (first dimension of entityAnimations)
+    
+    // animation information
+    protected int aniIndex = 0; // current index of the animation (second dimension of entityAnimations)
+    protected int aniSpeed = 15; // how fast the animation changes
+    protected int aniTick = 15; // how long the current animation has been playing
 
-    public Entity(double positionX, double positionY) {
-        this.posX = positionX;
-        this.posY = positionY;
-        initHitbox();
+    private int xScale = GraphicsGrid.getScaleX(); 
+    private int yScale = GraphicsGrid.getScaleY();
 
-        hitboxX = positionX;
-        hitboxY = positionY;
+    // entity animation options
+    protected final static int IDLE_ACTION = 0;
+
+    public Entity(double posX, double posY) {
+        hitboxX = posX;
+        hitboxY = posY;
+        loadAnimations();
     }
 
     /**
-     * deprecated, do not use
-     * initializes the hitbox of the entity
-     */
-    private void initHitbox() {
-        hitBox = new Rectangle( (int)(posX), (int)(posY), 56, 56 ); 
-    }
-
-    // For Debugging Purpose
-    protected void drawHitbox( Graphics g ) {
-        g.setColor(Color.BLUE);
-        g.drawRect(hitBox.x, hitBox.y, hitBox.width, hitBox.height);
-    }
-
-    /**
-     * deprecated, do not use
-     * updates the hitbox of the entity with the current position
-     */
-    protected void updateHitbox() {
-        //System.out.println("updateHitbox x: " + posX + " y: " + posY);            // TEST
-        hitBox.x = (int) ((posX + 0.2) * xScale);
-        hitBox.y = (int) ((posY + 0.1) * yScale);
-    }
-
-    /**
-     * deprecated, do not use
      * @return
      * returns the hitbox of the entity as a rectangle
      */
-    public Rectangle getHitbox() {
-        //return new Rectangle((int)posX, (int)posY, 1, 1);
-        return hitBox;
+    public Rectangle2D getHitbox() {
+        return new Rectangle2D.Double(hitboxX, hitboxY, hitboxWidth, hitboxHeight);
     }
 
     /**
@@ -91,18 +64,75 @@ public abstract class Entity {
         return hitboxY + hitboxHeight / 2;
     }
 
-    public abstract void update();
+    protected void setHitboxWidth(double width) {
+        hitboxWidth = width;
+    }
+
+    protected void setHitboxHeight(double height) {
+        hitboxHeight = height;
+    }
 
     /**
-     * default render method
-     * draws a rectangle
-     * should be overridden by subclasses
+     * manages the animation of the entity
+     * including changing the sprite of the entity
+     * and how fast the sprite changes
+     */
+    protected void updateAnimationTick() {
+        aniTick++;
+        if (aniTick >= aniSpeed) {
+            aniTick = 0;
+            aniIndex ++;
+            if (aniIndex >= GetSpriteAmount(currentAnimation)) {
+                // If aniIndex went out of range, then make it 0.
+                aniIndex = 0;
+            }
+        }
+    }
+
+    /**
+     * @param entityAction
+     * enum of entity action
+     * @return
+     * amount of sprites for the action
+     */
+    protected int GetSpriteAmount(int entityAction){
+        return entityAnimations[entityAction].length;
+    }
+
+    public void update() {
+        updateAnimationTick();
+        updateAnimation();
+    }
+
+    /**
+     * loads the animations of the entity 
+     * and puts them into the entityAnimations array
+     */
+    protected abstract void loadAnimations();
+
+    /**
+     * updates the current animation of the entity
+     */
+    protected abstract void updateAnimation();
+
+    /**
+     * draws the currentEntityImage on the screen
      * @param g
      * the graphics object to draw on
      */
     public void render(Graphics g) {
         g.setColor(Color.RED);
-        GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight);
+        GraphicsGrid.render(
+            g,
+            currentEntityImage,
+            hitboxX, 
+            hitboxY, 
+            hitboxWidth, 
+            hitboxHeight
+        );
+        // TODO: debugging purposes only, remove later
+        GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight); 
+        drawPositionDot(g);
     }
 
     /**
@@ -115,5 +145,4 @@ public abstract class Entity {
         g.setColor(Color.ORANGE);
         g.drawRect((int)(xScale * getPosX()), (int) (yScale * getPosY()), 2, 2);
     }
-
 }

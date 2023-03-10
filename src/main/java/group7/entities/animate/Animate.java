@@ -3,15 +3,8 @@ package group7.entities.animate;
 import group7.entities.Entity;
 import group7.levels.Pathfinding;
 import group7.utils.Direction;
-import group7.Graphics.GraphicsGrid;
 
-import java.awt.image.BufferedImage;
-import java.awt.Graphics;
-import java.awt.Color;
 
-/**
- * will be added later
- */
 public abstract class Animate extends Entity {
     protected Pathfinding pathfinding;
 
@@ -20,78 +13,44 @@ public abstract class Animate extends Entity {
     protected boolean movingLeft = false;
     protected boolean movingRight = false;
 
-    protected final static int IDLE_ACTION = 1;
-    protected final static int MOVING_ACTION = 0;
-
-    // the current condition of animated entity,
-    // for instance if currentAction=0, then the entity is a player that is moving
-    protected int currentAction;
-
-    // a 2D array, where each row of it is holding stripes of one entity's actions
-    // for instance, the first row can be sprites of moving sprites
-    protected BufferedImage[][] entityAnimations;
-
-    //aniIndex is used to iterate through entityAnimations to change sprites of a condition
-    // ariSpeed is the speed of changing sprites in a condition
-    protected int aniTick = 15;
-    protected int aniIndex = 0;
-    protected int aniSpeed = 15;
+    protected final static int MOVING_ACTION = 1;
 
     // Moving speed of entity to change position of entity on map
     protected float entitySpeed = 0.02f;
 
     public Animate(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY);
-        this.currentAction = IDLE_ACTION;
         this.pathfinding = pathfinding;
+
+        // change hitbox size to 0.8 to allow for movement
+        setHitboxWidth(0.8);
+        setHitboxHeight(0.8);
     }
-
-    /**
-     * loads the animations of the entity 
-     * and puts them into the entityAnimations array
-     */
-    abstract void loadAnimations();
-
-    /**
-     * updates the current action of the entity
-     */
-    abstract void setAnimation();
 
     /**
      * updates the entity, including position, hitbox, and animation
      */
     public void update() {
-        // update position of a entity based on player current action
         updatePosition();
-        updateHitbox();
-        
+        super.update();
     }
 
-    /**
-     * manages the animation of the entity
-     * including changing the sprite of the entity
-     * and how fast the sprite changes
-     */
-    protected void updateAnimationTick() {
-        aniTick++;
-        if (aniTick >= aniSpeed) {
-            aniTick = 0;
-            aniIndex ++;
-            if (aniIndex >= GetSpriteAmount(currentAction)) {
-                // If aniIndex went out of range, then make it 0.
-                aniIndex = 0;
-            }
+    protected void updateAnimation() {
+        int prevAnimation = currentAnimation;
+        if (this.isMoving()) {
+            currentAnimation = MOVING_ACTION;
         }
-    }
-
-    /**
-     * @param entityAction
-     * enum of entity action
-     * @return
-     * amount of sprites for the action
-     */
-    public int GetSpriteAmount(int entityAction){
-        return entityAnimations[entityAction].length;
+        else if (!this.isMoving()) {
+            currentAnimation = IDLE_ACTION;
+        }
+        if (prevAnimation != currentAnimation){
+            // if the action of a player was changed, then
+            // we need to reset the aniIndex and aniTick
+            // in order to start from beginning of sprites for new action
+            aniIndex = 0;
+            aniTick = 0;
+        }
+        currentEntityImage = entityAnimations[currentAnimation][aniIndex];
     }
 
     /**
@@ -107,32 +66,28 @@ public abstract class Animate extends Entity {
         // When moving up check both top left and right corners
         if(this.movingUp && pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY - entitySpeed))){
             if ((pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY - entitySpeed)))){
-                posY -= entitySpeed;
-                hitboxY -= entitySpeed;
+               hitboxY -= entitySpeed;
             }
         }
         // When moving down check both bottom left and right corners
         if(this.movingDown && pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed))){
             if ((pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed)))){
-                posY += entitySpeed;
                 hitboxY += entitySpeed;
             }
         }
         // When moving left check both top left and bottom left
         if(this.movingLeft && pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY))){
             if ((pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
-                posX -= entitySpeed;
                 hitboxX -= entitySpeed;
             }
         }
         // When moving right check both top left and bottom left
         if(this.movingRight && pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY))){
             if ( (pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY + hitboxHeight)))){
-                posX += entitySpeed;
                 hitboxX += entitySpeed;
             }
         }
-    } 
+    }
 
 
     /**
@@ -153,6 +108,12 @@ public abstract class Animate extends Entity {
                 break;
             case RIGHT:
                 this.movingRight = true;
+                break;
+            case NONE:
+                this.movingUp = false;
+                this.movingDown = false;
+                this.movingLeft = false;
+                this.movingRight = false;
                 break;
         }
     }
@@ -177,6 +138,8 @@ public abstract class Animate extends Entity {
             case RIGHT:
                 this.movingRight = false;
                 break;
+            case NONE:
+                break;
         }
     }
 
@@ -197,6 +160,8 @@ public abstract class Animate extends Entity {
                 break;
             case RIGHT:
                 this.movingRight = !this.movingRight;
+                break;
+            case NONE:
                 break;
         }
     }
@@ -219,10 +184,4 @@ public abstract class Animate extends Entity {
         }
         return false;
     }
-
-    public void render(Graphics g) {
-        drawPositionDot(g);
-        super.render(g);
-    }
-
 }

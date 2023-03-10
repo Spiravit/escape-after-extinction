@@ -98,7 +98,6 @@ public class GraphicsGrid {
         );
     }
 
-
     /**
      * creates a rectangle on the screen for debugging purposes
      * @param g
