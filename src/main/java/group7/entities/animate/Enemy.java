@@ -17,6 +17,7 @@ public class Enemy extends Animate {
 
     public Enemy(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY, pathfinding);
+        loadAnimations();
     }
 
     /**
@@ -87,19 +88,19 @@ public class Enemy extends Animate {
 
     public void loadAnimations() {
         BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ 1 +".png");
-        System.out.println("playerSprites/dino_"+ 1 +".png done");
+    
         entityAnimations = new BufferedImage[2][];
         
         // place idle animations into 2d array
-        entityAnimations[0] = new BufferedImage[3];
+        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[3];
         for (int i = 0; i < 3; i++) {
-            entityAnimations[0][i] = dinosaur.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
+            entityAnimations[DEFAULT_ANIMATION][i] = dinosaur.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
         }
 
         // place moving animations into 2d array
-        entityAnimations[1] = new BufferedImage[6];
+        entityAnimations[MOVING_ANIMATION] = new BufferedImage[6];
         for (int i = 0; i < 6; i++) {
-            entityAnimations[1][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
+            entityAnimations[MOVING_ANIMATION][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
         }
     }
 
