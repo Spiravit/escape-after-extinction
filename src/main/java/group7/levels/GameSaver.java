@@ -46,7 +46,7 @@ public class GameSaver
     {
         try
         {
-            fileInputStream = new FileInputStream("game.sav");
+            fileInputStream = new FileInputStream("game.saver");
             objectInputStream= new ObjectInputStream(fileInputStream);
             game = (Game) objectInputStream.readObject();
             objectInputStream.close();
