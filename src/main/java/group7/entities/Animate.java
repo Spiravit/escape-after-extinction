@@ -155,6 +155,13 @@ public abstract class Animate extends Entity {
                 currentAnimation = MOVING_ANIMATION;
             }
         }
+        else if (!this.isMoving){
+            currentAnimation = DEFAULT_ANIMATION;
+        }
+        if (prevAnimation != currentAnimation){
+            aniIndex = 0;
+            aniTick = 0;
+        }
     }
 
 
