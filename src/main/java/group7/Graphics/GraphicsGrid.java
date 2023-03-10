@@ -15,6 +15,7 @@ public class GraphicsGrid {
     public static int gridWidth;
     public static int gridHeight;
 
+    // Getters
     public static int getScaleY() {
         return scaleY;
     }
@@ -23,8 +24,16 @@ public class GraphicsGrid {
         return scaleX;
     }
 
+    public static int getGridWidth() {
+        return gridWidth;
+    }
+
+    public static int getGridHeight() {
+        return gridHeight;
+    }
+
     /**
-     * creates a new GraphicsGrid
+     * Constructor, creates a new GraphicsGrid
      * @param graphicsPanel
      * the graphics panel to draw on
      * @param unitsWide
@@ -88,7 +97,6 @@ public class GraphicsGrid {
             null
         );
     }
-
 
     /**
      * creates a rectangle on the screen for debugging purposes
