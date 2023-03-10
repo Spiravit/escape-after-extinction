@@ -134,6 +134,11 @@ public abstract class Animate extends Entity {
 
 
 
+    /**
+    * updates the current animation on the entity based on its movement state and direction
+    * if the entity is currently moving and can move in a certain direction, the motion animation is played.
+    *previous animations are stored in a variable for comparison.
+    **/
     protected void updateAnimation(){
         int prevAnimation = currentAnimation;
         if (this.isMoving()){
