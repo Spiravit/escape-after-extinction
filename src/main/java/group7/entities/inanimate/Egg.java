@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import group7.utils.AssetLoader;
 
-public class Egg extends Collectables {
+public class Egg extends Collectable {
 
     public Egg(int x, int y) {
         super(x, y);

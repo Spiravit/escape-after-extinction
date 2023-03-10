@@ -40,6 +40,7 @@ public abstract class Level {
         entities.add(new Key(3, 3));
         entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION));
         entities.add(new Egg(5, 3));
+        entities.add(new Trap(6, 3));
     }
 
     /** 
