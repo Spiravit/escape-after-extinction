@@ -133,6 +133,29 @@ public abstract class Animate extends Entity {
     } 
 
 
+
+    protected void updateAnimation(){
+        int prevAnimation = currentAnimation;
+        if (this.isMoving()){
+            if (this.movingUp && canMoveCheck(Direction.up)){
+                currentAnimation = MOVING_ANIMATION;
+            }
+            if (this.movingDown && canMoveCheck(Direction.down)){
+                currentAnimation = MOVING_ANIMATION;
+            }
+            if (this.movingLeft && canMoveCheck(Direction.left)){
+                currentAnimation = MOVING_ANIMATION;
+            }
+            if (this.movingRight && canMoveCheck(Direction.right)){
+                currentAnimation = MOVING_ANIMATION;
+            }
+        }
+    }
+
+
+
+
+
     /**
      * adds a direction to the list of directions the entity is moving in
      * @param direction
