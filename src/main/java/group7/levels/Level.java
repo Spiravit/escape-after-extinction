@@ -37,7 +37,7 @@ public abstract class Level {
         entities = new ArrayList<Entity>();
         entities.add(new Enemy(1, 1, pathfinding));
 
-        entities.add(new KeyCard(3, 3));
+        entities.add(new Key(3, 3));
         entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION));
         entities.add(new Egg(5, 3));
     }

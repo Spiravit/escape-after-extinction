@@ -40,10 +40,10 @@ public abstract class Animate extends Entity {
     protected void updateAnimation() {
         int prevAnimation = currentAnimation;
         if (this.isMoving()) {
-            currentAnimation = MOVING_ACTION;
+            currentAnimation = MOVING_ANIMATION;
         }
         else if (!this.isMoving()) {
-            currentAnimation = IDLE_ACTION;
+            currentAnimation = DEFAULT_ANIMATION;
         }
         if (prevAnimation != currentAnimation){
             // if the action of a player was changed, then

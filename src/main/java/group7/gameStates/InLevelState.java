@@ -61,19 +61,19 @@ public class InLevelState extends State {
         @Override
         public void keyPressed(KeyEvent e) {
             if (isPaused==false){
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
                     //Right arrow key code
                     levelManager.setDirection(Direction.RIGHT);
-                } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
                     //gamePanel arrow key code
                     levelManager.setDirection(Direction.LEFT);
-                } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
                     //Up arrow key code
                     levelManager.setDirection(Direction.UP);
-                } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
                     //Down arrow key code
                     levelManager.setDirection(Direction.DOWN);
-                }
+                } 
                 if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
                     isPaused = true;
                     return;
@@ -92,16 +92,16 @@ public class InLevelState extends State {
         @Override
         public void keyReleased(KeyEvent e) {
             if (isPaused==false){
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
                     //Right arrow key code
                     levelManager.removeDirection(Direction.RIGHT);
-                } else if (e.getKeyCode() == KeyEvent.VK_LEFT ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
                     //gamePanel arrow key code
                     levelManager.removeDirection(Direction.LEFT);
-                } else if (e.getKeyCode() == KeyEvent.VK_UP ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
                     //Up arrow key code
                     levelManager.removeDirection(Direction.UP);
-                } else if (e.getKeyCode() == KeyEvent.VK_DOWN ) {
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
                     //Down arrow key code
                     levelManager.removeDirection(Direction.DOWN);
                 }

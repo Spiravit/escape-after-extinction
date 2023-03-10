@@ -5,7 +5,6 @@ import group7.levels.*;
 import group7.utils.AssetLoader;
 import java.awt.image.BufferedImage;
 
-
 public class Player extends Animate {
     private int health = 100;
     private int stamina = 100;
@@ -23,29 +22,26 @@ public class Player extends Animate {
     public Player(double posX, double posY, Pathfinding pathfinding, int dinoNumber) {
         super(posX, posY, pathfinding);
         this.dinoNumber = dinoNumber;
+        loadAnimations();
     }
 
-   
     @Override
     protected void loadAnimations() {
-        BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ 1 +".png");
-        System.out.println("playerSprites/dino_"+ dinoNumber +".png done");
-        entityAnimations = new BufferedImage[2][];
+        BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ dinoNumber +".png");
         
         // place idle animations into 2d array
-        entityAnimations[0] = new BufferedImage[3];
+        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[3];
         for (int i = 0; i < 3; i++) {
-            entityAnimations[0][i] = dinosaur.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
+            entityAnimations[DEFAULT_ANIMATION][i] = dinosaur.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
         }
 
         // place moving animations into 2d array
-        entityAnimations[1] = new BufferedImage[6];
+        entityAnimations[MOVING_ANIMATION] = new BufferedImage[6];
         for (int i = 0; i < 6; i++) {
-            entityAnimations[1][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
+            entityAnimations[MOVING_ANIMATION][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
         }
     }
 
-   
     protected void updatePosition() {
         super.updatePosition();
         pathfinding.setPlayer((int) getPosX(), (int) getPosY());

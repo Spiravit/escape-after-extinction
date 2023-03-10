@@ -28,9 +28,8 @@ public class Potion extends Collectables {
     protected void loadAnimations() {
         //BufferedImage potion = AssetLoader.getSpriteAtlas( SPEED_POTION );
         BufferedImage potion = AssetLoader.getSpriteAtlas( SPEED_POTION ); // TODO: Change this to potionType
-        entityAnimations = new BufferedImage[1][];
 
-        entityAnimations[0] = new BufferedImage[1];
-        entityAnimations[0][0] = potion.getSubimage( 0, 0, 16, 16 );
+        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[1];
+        entityAnimations[DEFAULT_ANIMATION][0] = potion.getSubimage( 0, 0, 16, 16 );
     }
 }

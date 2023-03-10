@@ -20,7 +20,7 @@ public abstract class Entity {
 
     // entity sprite information
     protected BufferedImage[][] entityAnimations; // all animations of the entity
-    protected int currentAnimation = IDLE_ACTION; // current animation to be rendered (first dimension of entityAnimations)
+    protected int currentAnimation = DEFAULT_ANIMATION; // current animation to be rendered (first dimension of entityAnimations)
     
     // used to scale the image size relative to the hitbox
     protected double imageScaleX = 1;
@@ -32,12 +32,16 @@ public abstract class Entity {
     protected int aniTick = 15; // how long the current animation has been playing
 
     // entity animation options
-    protected final static int IDLE_ACTION = 0;
+    protected final static int DEFAULT_ANIMATION = 0;
+    protected final static int MOVING_ANIMATION = 1;
+    // stores the amount of possible animations, update this if you add more animations
+    protected final static int ANIMATION_COUNT = 2; 
 
     public Entity(double posX, double posY) {
         hitboxX = posX;
         hitboxY = posY;
-        loadAnimations();
+
+        entityAnimations = new BufferedImage[ANIMATION_COUNT][];
     }
 
     /**

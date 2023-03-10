@@ -14,6 +14,7 @@ public abstract class Collectables extends Inanimate {
     // Constructor
     public Collectables( int x, int y) {
         super(x, y);
+        loadAnimations();
     }
 
     protected void updateAnimation() {
