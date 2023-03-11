@@ -133,8 +133,15 @@ public class MainMenuState extends State {
         // DO NOTHING HERE !!!!
         return 0;
     }
+    public int incrementIndexLevelNumber() {
+        // DO NOTHING HERE !!!!
+         return 0;
+     }
     public int decrementIndexLevelNumber() {
         // DO NOTHING HERE !!!!
+        return 0;
+    }
+    public int resetLevelSelect() {
         return 0;
     }
 }
