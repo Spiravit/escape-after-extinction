@@ -133,7 +133,26 @@ public abstract class Level {
     public int getEggsCollected() {
         return player.getEggsCollected();
     }
-    
+
+    /**
+     * returns number of all egg (collected and not collected) in a level
+     *
+     * @return number of egg items in a level
+     */
+    public int getNumberOfEggs() {
+        return numberOfEggs;
+    }
+
+    /**
+     * returns number of all keys (collected and not collected) in a level
+     *
+     * @return number of keys items in a level
+     */
+    public int getNumberOfKeys() {
+        return numberOfKeys;
+    }
+
+
     /** 
      * Set the level data
      * this includes the data in the pathfinding object and the levelSpriteData array
