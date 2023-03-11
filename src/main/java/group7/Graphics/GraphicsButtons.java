@@ -30,7 +30,7 @@ public class GraphicsButtons {
     private void loadButtonsSprites() {
         imgs = new BufferedImage[5]; // for each button there are two conditions, hovered and not hovered
         BufferedImage temp = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BUTTONS);
-        int menuButtonSpriteHeight = 140;
+        int menuButtonSpriteHeight = 70;
         int menuButtonSpriteWidth = temp.getWidth() / 2;
         //System.out.println(menuButtonSpriteWidth);
         for (int i = 0; i < 2; i++)
