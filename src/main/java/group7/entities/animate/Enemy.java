@@ -18,6 +18,7 @@ public class Enemy extends Animate {
 
     public Enemy(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY, pathfinding);
+        entitySpeed = (float)(0.75 * entitySpeed); // 0.75 the speed of regular animate
         loadAnimations();
     }
 
