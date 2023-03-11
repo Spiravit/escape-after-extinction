@@ -6,6 +6,7 @@ import group7.Graphics.GraphicsGrid;
 import group7.Graphics.GraphicsPanel;
 import group7.gameStates.gameStates;
 import group7.utils.AssetLoader;
+import group7.utils.BackgroundMovingSpeed;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -94,7 +95,5 @@ public class UiTopMenuBar {
         g.setFont(retroFont);
         g.drawString("TIME : " + Integer.toString(minute_counter)+" : "+secondTimeString, 3*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
     }
-    private render parallelTopMenuBackground(Graphics g){
 
-    }
 }
