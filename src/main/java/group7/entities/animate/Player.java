@@ -10,6 +10,9 @@ public class Player extends Animate {
     private int stamina = 100;
     private int dinoNumber; // the number of the dinosaur sprite to use
 
+    private int eggsCollected = 0;
+    private int keysCollected = 0;
+
     /**
      * Create a new player
      * @param posX
@@ -47,9 +50,23 @@ public class Player extends Animate {
         pathfinding.setPlayer((int) getPosX(), (int) getPosY());
     }
 
-    public void onInteraction(Entity entity) {
-        if (entity instanceof Enemy) {
-            health -= health; // end game instantly
-        }
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getKeysCollected() {
+        return keysCollected;
+    }
+
+    public void incrementKeysCollected() {
+        keysCollected ++;
+    }
+    
+    public void onInteraction(Player player) {
+        // no interaction
     }
 }

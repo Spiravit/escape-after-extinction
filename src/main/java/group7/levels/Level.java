@@ -28,7 +28,13 @@ public abstract class Level {
     private int levelSpriteData[][];
     private Player player;
 
-    private ArrayList<Entity> entities;
+    private ArrayList<Entity> entities = new ArrayList<Entity>();
+
+    private int numberOfEggs = 0;
+    private int numberOfKeys = 0;
+
+    private int eggsCollected = 0;
+    private int keysCollected = 0;
 
     /** 
      * Loads everything about the level
@@ -40,16 +46,42 @@ public abstract class Level {
         importSprites();
         setLevelData(filename); // TEST: MULTIPLE LEVLES 
         GraphicsGrid.setGridSize(width, height);
+        
+        numberOfEggs = 0;
+        numberOfKeys = 0;
 
-        player = new Player(1, 3, pathfinding, dinoNumber);
+        addPlayer(1, 3, dinoNumber);
+        addEnemy(5, 5);
+        addKey(1, 3);
+        addEgg(1, 4);
+        addPotion(1, 5, 0);
+        addTrap(1, 6);
+    }
 
-        entities = new ArrayList<Entity>();
-        entities.add(new Enemy(1, 3, pathfinding));
+    private void addPlayer(int x, int y, int dinoNumber) {
+        player = new Player(x, y, pathfinding, dinoNumber);
+    }
 
-        entities.add(new Key(3, 3));
-        entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION));
-        entities.add(new Egg(5, 3));
-        entities.add(new Trap(6, 4));
+    private void addEnemy(int x, int y) {
+        entities.add(new Enemy(x, y, pathfinding));
+    }
+
+    private void addKey(int x, int y) {
+        entities.add(new Key(x, y));
+        numberOfKeys++;
+    }
+
+    private void addEgg(int x, int y) {
+        entities.add(new Egg(x, y));
+        numberOfEggs++;
+    }
+
+    private void addPotion(int x, int y, int potionType) {
+        entities.add(new Potion(x, y, potionType));
+    }
+
+    private void addTrap(int x, int y) {
+        entities.add(new Trap(x, y));
     }
 
     /** 
@@ -99,15 +131,20 @@ public abstract class Level {
         player.removeDirection(direction);
     }
 
-    public void checkInteractions() {
-        Rectangle2D playerHitbox = player.getHitbox();
+    public LevelState checkLevelState() {
+        if (player.getHealth() < 0) {
+            return LevelState.LOST;
+        } else if (numberOfKeys == keysCollected) {
+            return LevelState.WON;
+        } else {
+            return LevelState.PLAYING;
+        }
+    }
 
+    private void checkInteractions() {
         for (Entity entity : entities) {
-            Rectangle2D entityHitbox = entity.getHitbox();
-
-            if (playerHitbox.intersects(entityHitbox)) {
-                player.onInteraction(entity);
-                System.out.println("Interacted with entity");
+            if (entity.getHitbox().intersects(player.getHitbox())) {
+                entity.onInteraction(player);
             }
         }
     }
@@ -141,7 +178,7 @@ public abstract class Level {
         }
  
         for (Entity entity : entities) {
-        entity.render(g);
+            entity.render(g);
         }
  
         player.render(g);

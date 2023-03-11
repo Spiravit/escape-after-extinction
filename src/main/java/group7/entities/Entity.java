@@ -2,6 +2,7 @@ package group7.entities;
 
 import group7.levels.Pathfinding;
 import group7.Graphics.GraphicsGrid;
+import group7.entities.animate.Player;
 
 import java.awt.Rectangle;
 import java.awt.Graphics;
@@ -111,6 +112,8 @@ public abstract class Entity {
      * updates the current animation of the entity
      */
     protected abstract void updateAnimation();
+
+    public abstract void onInteraction(Player player);
 
     /**
      * draws the currentEntityImage on the screen
