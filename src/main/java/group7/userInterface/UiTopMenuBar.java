@@ -123,6 +123,9 @@ public class UiTopMenuBar {
         g.drawImage(topMenuLandBackground,0,(int)(1.25*GraphicsGrid.scaleY),GraphicsPanel.panelWidth,(int)(0.75*GraphicsGrid.scaleY),null);
         renderTime(g,isPaused);
         renderHealth(g,health);
+        renderScore(g,100);
+        renderEggCount(g,1,8);
+        renderKeyCount(g,1,8);
         pauseMenuButton.render(g);
     }
 
@@ -181,6 +184,31 @@ public class UiTopMenuBar {
         Graphics2D g2D = (Graphics2D) g;
         g.setFont(retroFont);
         g.drawString("TIME : " + Integer.toString(minute_counter)+" : "+secondTimeString, 3*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+    }
+
+    /**
+     * draws the score of player while playing a level in in-game top menu.
+     *
+     * @param g         Graphic g is passed as parameter in order to draw items on game window.
+     * @param score     score of player in current level is passed in order to be drawn by Graphic g.
+     */
+    private void renderScore(Graphics g,int score){
+        Graphics2D g2D = (Graphics2D) g;
+        g.setFont(retroFont);
+        g.drawString("SCORE: " + score,7*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+    };
+
+    private void renderEggCount(Graphics g, int eggCollected, int eggLevelNumber){
+        Graphics2D g2D = (Graphics2D) g;
+        g.setFont(retroFont);
+        g.drawString("Egg: " + eggCollected +"/" + eggLevelNumber,10*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+
+    }
+
+    private void renderKeyCount(Graphics g, int keyCollected, int keyLevelNumber){
+        Graphics2D g2D = (Graphics2D) g;
+        g.setFont(retroFont);
+        g.drawString("Keys: " + keyCollected +"/" + keyLevelNumber,12*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
     }
 
 }
