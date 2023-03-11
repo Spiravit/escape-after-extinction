@@ -1,7 +1,6 @@
 package group7.gameStates;
 
 import group7.Game;
-import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.helperClasses.AssetLoader;
 import group7.userInterface.UiButtons;
@@ -17,7 +16,7 @@ import java.awt.image.BufferedImage;
 public class MainMenuState extends State {
 
     //dedicated for four buttons in main menu page
-    protected UiButtons[] mainMenuButtons = new UiButtons[4];
+    protected UiButtons[] menuButtons = new UiButtons[4];
     //protected GraphicsButtons[] mainMenuButtons = new GraphicsButtons[4];
 
     //mainMenuBoxBackground: dedicated for blue box image behind main menu buttons
@@ -52,15 +51,15 @@ public class MainMenuState extends State {
     }
     protected void initializeMainMenuButtons(){
         int mainMenuButtonsPosX = panelWidth/ 2 -GraphicsGrid.scaleX ;
-        mainMenuButtons[0] = new UiButtons(game,mainMenuButtonsPosX, 5*GraphicsGrid.scaleY, 0, gameStates.PLAYER_SELECTION_SUB_MENU);
-        mainMenuButtons[1] = new UiButtons(game,mainMenuButtonsPosX, 7*GraphicsGrid.scaleY, 4, gameStates.LEVEL_SELECTION_SUB_MENU); //TEST
-        mainMenuButtons[2] = new UiButtons(game,mainMenuButtonsPosX, 9*GraphicsGrid.scaleY, 2, gameStates.CREDIT_SUB_MENU);
-        mainMenuButtons[3] = new UiButtons(game,mainMenuButtonsPosX, 11*GraphicsGrid.scaleY, 3, gameStates.QUIT);
+        menuButtons[0] = new UiButtons(game,mainMenuButtonsPosX, 5*GraphicsGrid.scaleY, 0, gameStates.PLAYER_SELECTION_SUB_MENU);
+        menuButtons[1] = new UiButtons(game,mainMenuButtonsPosX, 7*GraphicsGrid.scaleY, 4, gameStates.LEVEL_SELECTION_SUB_MENU); //TEST
+        menuButtons[2] = new UiButtons(game,mainMenuButtonsPosX, 9*GraphicsGrid.scaleY, 2, gameStates.CREDIT_SUB_MENU);
+        menuButtons[3] = new UiButtons(game,mainMenuButtonsPosX, 11*GraphicsGrid.scaleY, 3, gameStates.QUIT);
     }
 
     @Override
     public void update() {
-        for (UiButtons button : mainMenuButtons)
+        for (UiButtons button : menuButtons)
             button.update();
     }
 
@@ -74,7 +73,7 @@ public class MainMenuState extends State {
         renderMainMenuBox(g);
 
         // Render each main menu buttons
-        for (UiButtons buttons : mainMenuButtons) {
+        for (UiButtons buttons : menuButtons) {
             buttons.render(g);
         }
 
@@ -126,17 +125,16 @@ public class MainMenuState extends State {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        for (UiButtons button : mainMenuButtons) {
+        for (UiButtons button : menuButtons) {
             if (button.isMouseInButton(e)) {
                 button.setIsMousePressedButton(true);
             }
         }
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        for (UiButtons button : mainMenuButtons) {
+        for (UiButtons button : menuButtons) {
             if (button.isMouseInButton(e)) {
                 if (button.getIsMousePressed())
                     button.applyGameState();
@@ -147,17 +145,17 @@ public class MainMenuState extends State {
     }
 
     private void resetButtons() {
-        for (UiButtons button : mainMenuButtons) {
+        for (UiButtons button : menuButtons) {
             button.resetMouseBooleans();
         }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        for (UiButtons button : mainMenuButtons)
+        for (UiButtons button : menuButtons)
             button.setIsMouseOverButton(false);
 
-        for (UiButtons button : mainMenuButtons) {
+        for (UiButtons button : menuButtons) {
             if (button.isMouseInButton(e)) {
                 button.setIsMouseOverButton(true);
                 break;

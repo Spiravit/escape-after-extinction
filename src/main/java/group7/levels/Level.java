@@ -15,20 +15,20 @@ import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
 public abstract class Level {
-    private int width;
-    private int height;
-    private Pathfinding pathfinding;
-    private BufferedImage[] levelSprites;
-    private int levelSpriteData[][];
-    private Player player;
+    protected int width;
+    protected int height;
+    protected Pathfinding pathfinding;
+    protected BufferedImage[] levelSprites;
+    protected int levelSpriteData[][];
+    protected Player player;
 
-    private ArrayList<Entity> entities = new ArrayList<Entity>();
+    protected ArrayList<Entity> entities = new ArrayList<Entity>();
 
-    private int numberOfEggs = 0;
-    private int numberOfKeys = 0;
+    protected int numberOfEggs = 0;
+    protected int numberOfKeys = 0;
 
-    private int eggsCollected = 0;
-    private int keysCollected = 0;
+    protected int eggsCollected = 0;
+    protected int keysCollected = 0;
 
     /** 
      * Loads everything about the level
@@ -43,13 +43,6 @@ public abstract class Level {
         
         numberOfEggs = 0;
         numberOfKeys = 0;
-
-        addPlayer(1, 3, dinoNumber);
-        addEnemy(5, 5);
-        addKey(1, 3);
-        addEgg(1, 4, 100);
-        addPotion(1, 5, 0);
-        addTrap(1, 6);
     }
 
     /**
@@ -61,7 +54,7 @@ public abstract class Level {
      * @param dinoNumber
      * the number of the dinosaur sprite to use
      */
-    private void addPlayer(int x, int y, int dinoNumber) {
+    protected void addPlayer(int x, int y, int dinoNumber) {
         player = new Player(x, y, pathfinding, dinoNumber);
     }
 
@@ -72,7 +65,7 @@ public abstract class Level {
      * @param y
      * position y
      */
-    private void addEnemy(int x, int y) {
+    protected void addEnemy(int x, int y) {
         entities.add(new Enemy(x, y, pathfinding));
     }
 
@@ -83,7 +76,7 @@ public abstract class Level {
      * @param y
      * position y
      */
-    private void addKey(int x, int y) {
+    protected void addKey(int x, int y) {
         entities.add(new Key(x, y));
         numberOfKeys++;
     }
@@ -97,7 +90,7 @@ public abstract class Level {
      * @param timeout
      * time in seconds before egg disappears
      */
-    private void addEgg(int x, int y, int timeout) {
+    protected void addEgg(int x, int y, int timeout) {
         entities.add(new Egg(x, y, timeout));
         numberOfEggs++;
     }
@@ -111,7 +104,7 @@ public abstract class Level {
      * @param potionType
      * type of potion
      */
-    private void addPotion(int x, int y, int potionType) {
+    protected void addPotion(int x, int y, int potionType) {
         entities.add(new Potion(x, y, potionType));
     }
 
@@ -122,7 +115,7 @@ public abstract class Level {
      * @param y
      * position y
      */
-    private void addTrap(int x, int y) {
+    protected void addTrap(int x, int y) {
         entities.add(new Trap(x, y));
     }
 
@@ -157,25 +150,7 @@ public abstract class Level {
      * Set the level data
      * this includes the data in the pathfinding object and the levelSpriteData array
      */
-    private void setLevelData( String filename) { //TEST MULTIPLE LEVELS
-        BufferedImage img = AssetLoader.getSpriteAtlas(filename); //TEST MULTIPLE LEVELS, changed from AssetLoader.LEVEL_1 to filename
-
-        this.width = img.getWidth();
-        this.height = img.getHeight();
-
-        levelSpriteData = new int[width][height];
-        pathfinding = new Pathfinding(width, height);
-
-        for (int x = 0; x < this.width; x++) {
-            for (int y = 0; y < this.height; y++) {
-                Color color = new Color(img.getRGB(x, y));
-                int value = color.getRed() % 74; //73 is the clear tile
-
-                levelSpriteData[x][y] = value;
-                pathfinding.set(x, y, value != 13 ? false:true);
-            }
-        }
-    }
+    protected abstract void setLevelData( String filename);
 
     /** 
      * Import the sprites from the sprite atlas and store them in the levelSprites array

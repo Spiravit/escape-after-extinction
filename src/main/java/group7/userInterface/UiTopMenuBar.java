@@ -68,7 +68,7 @@ public class UiTopMenuBar {
      *                     the gameState inside game object.
      *
      */
-    public UiTopMenuBar(int levelNumber, Game game){
+    public UiTopMenuBar(int levelNumber, Game game, int eggCollected, int eggLevelNumber, int keyCollected, int keyLevelNumber){
         // Initialize the topMenuSkyParallelBackground object
         // passed 4 to UiParallelBackground constructor since animated background for in-game menu is using 4 images
         // passed 0 as scale1 meaning that position y of animated background is at 0 and scale2 is indicating
@@ -131,9 +131,10 @@ public class UiTopMenuBar {
 
 
     /**
+     * renders remaining health left for player in current level that player is playing.
      *
-     * @param g
-     * @param health
+     * @param g          Graphic g is passed as parameter in order to draw items on game window.
+     * @param health    current health left for player as a percentage.
      */
     private void renderHealth(Graphics g,int health) {
         int healthBarInsideHeight = healthBarInside.getHeight();
@@ -145,12 +146,14 @@ public class UiTopMenuBar {
     }
 
     /**
+     *  Loads custom font from assets folder in order to be used later in drawing strings on game window.
      *
      */
     private void loadFont(){
         InputStream is;
         try{
             is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
+            // Set size of font to be 30
             retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
         }
         catch (FontFormatException f){
@@ -162,27 +165,50 @@ public class UiTopMenuBar {
     }
 
     /**
+     * renders the time that player is spending playing the current level.
      *
-     * @param g
-     * @param isPaused
+     * @param g             Graphic g is passed as parameter in order to draw items on game window.
+     * @param isPaused      This boolean is passed in order if the game is paused
+     *                     then stop updating time counter.
      */
     private void renderTime(Graphics g, boolean isPaused){
+        // Get current time is milliseconds
         Long currentTime = System.currentTimeMillis();
+
         if (System.currentTimeMillis() - startTime >= 1000){
+            // If current time is more or equal to 1 second in comparison to start
+            // then set start time to current time
+
             startTime = currentTime;
+
+            // If game is not paused then increment
+            // the second_counter since a second has passed
             if (!isPaused)
                 second_counter ++;
         }
         if (!isPaused && second_counter >= 60){
+            // If the game was not paused and second counter is passing 60
+            // then increment minute_counter since 60 seconds is a minute
+            // and reset the second_counter to start from 0
             second_counter =0;
             minute_counter ++;
         }
+
+        // Preparing second_counter to write it as string on window
         String secondTimeString = Integer.toString(second_counter);
+
         if (secondTimeString.length() == 1){
+            // If second_counter was less than 10, then we need to add a 0 to its
+            // string, For instance instead of having 9 , it is going to be 09
+            // In order to make sure that string has always 2 characters
             secondTimeString = "0"+secondTimeString;
         }
+        // Using Graphic2D in order to change the Font for drawing a string
         Graphics2D g2D = (Graphics2D) g;
+        // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
+
+        // Drawing Time : minute : second on the game window
         g.drawString("TIME : " + Integer.toString(minute_counter)+" : "+secondTimeString, 3*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
     }
 
@@ -193,20 +219,40 @@ public class UiTopMenuBar {
      * @param score     score of player in current level is passed in order to be drawn by Graphic g.
      */
     private void renderScore(Graphics g,int score){
+        // Using Graphic2D in order to change the Font for drawing a string
         Graphics2D g2D = (Graphics2D) g;
+        // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
         g.drawString("SCORE: " + score,7*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
     };
 
+    /**
+     * renders number of eggs a player has collected and number of all eggs in current level player is playing.
+     *
+     * @param g                 Graphic g is passed as parameter in order to draw items on game window.
+     * @param eggCollected      Number of eggs a player has collected currently.
+     * @param eggLevelNumber    Number of all eggs whether collected or not in current level player is playing.
+     */
     private void renderEggCount(Graphics g, int eggCollected, int eggLevelNumber){
+        // Using Graphic2D in order to change the Font for drawing a string
         Graphics2D g2D = (Graphics2D) g;
+        // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
         g.drawString("Egg: " + eggCollected +"/" + eggLevelNumber,10*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
 
     }
 
+    /**
+     * renders number of keys a player has collected and number of all keys in current level player is playing.
+     *
+     * @param g                 Graphic g is passed as parameter in order to draw items on game window.
+     * @param keyCollected      Number of Keys a player has collected currently.
+     * @param keyLevelNumber    Number of all keys whether collected or not in current level player is playing.
+     */
     private void renderKeyCount(Graphics g, int keyCollected, int keyLevelNumber){
+        // Using Graphic2D in order to change the Font for drawing a string
         Graphics2D g2D = (Graphics2D) g;
+        // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
         g.drawString("Keys: " + keyCollected +"/" + keyLevelNumber,12*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
     }

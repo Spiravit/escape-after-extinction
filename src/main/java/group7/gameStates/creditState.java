@@ -33,7 +33,7 @@ public class creditState extends MainMenuState{
         super(game);
 
         // There will be only one button in credit page, and it is a return button
-        mainMenuButtons = new UiButtons[1];
+        menuButtons = new UiButtons[1];
 
         // TODO The line bellow will be removed !!
         creditText = AssetLoader.getSpriteAtlas(AssetLoader.CreditMenu);
@@ -48,7 +48,7 @@ public class creditState extends MainMenuState{
      */
     @Override
     protected void initializeMainMenuButtons(){
-        mainMenuButtons[0] = new UiButtons(game,
+        menuButtons[0] = new UiButtons(game,
                 13*GraphicsGrid.scaleX,
                 14*GraphicsGrid.scaleY,
                 RETURN_BUTTON,
@@ -70,6 +70,6 @@ public class creditState extends MainMenuState{
         g.drawImage(creditText, (int)(0.5*(panelWidth-creditText.getWidth())),100,creditText.getWidth(),creditText.getHeight(),null);
 
         // Render the return button in credit page
-        mainMenuButtons[0].render(g);
+        menuButtons[0].render(g);
     }
 }

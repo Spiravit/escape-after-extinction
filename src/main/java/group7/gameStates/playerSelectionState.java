@@ -1,7 +1,6 @@
 package group7.gameStates;
 
 import group7.Game;
-import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.helperClasses.AssetLoader;
 import group7.userInterface.UiButtons;
@@ -16,12 +15,12 @@ public class playerSelectionState extends MainMenuState{
     protected int indexCharacterDemo =0;
     public playerSelectionState(Game game) {
         super(game);
-        mainMenuButtons = new UiButtons[4];
+        menuButtons = new UiButtons[4];
         characterDemos = new BufferedImage[numberOfCharacters];
-        mainMenuButtons[0] = new UiButtons(game,(int)(panelWidth/2 - 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 7, gameStates.PERV);
-        mainMenuButtons[1] = new UiButtons(game,(int)(panelWidth/2 + 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 6, gameStates.NEXT);
-        mainMenuButtons[2] = new UiButtons(game,panelWidth / 2 - GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 8, gameStates.IN_LEVEL);
-        mainMenuButtons[3] = new UiButtons(game,panelWidth / 2 + GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 9, gameStates.IN_MENU);
+        menuButtons[0] = new UiButtons(game,(int)(panelWidth/2 - 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 7, gameStates.PERV);
+        menuButtons[1] = new UiButtons(game,(int)(panelWidth/2 + 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 6, gameStates.NEXT);
+        menuButtons[2] = new UiButtons(game,panelWidth / 2 - GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 8, gameStates.IN_LEVEL);
+        menuButtons[3] = new UiButtons(game,panelWidth / 2 + GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 9, gameStates.IN_MENU);
         loadCharacterDemos();
     }
 
@@ -36,7 +35,7 @@ public class playerSelectionState extends MainMenuState{
     public void render(Graphics g){
         mainPageParallelBG.renderParallelBackground(g);
         g.drawImage(characterDemos[indexCharacterDemo],(int)(panelWidth/2 - GraphicsGrid.getScaleX()),(int)(0.4*panelHeight), 2*GraphicsGrid.getScaleX(),2*GraphicsGrid.getScaleX(),null);
-        for (UiButtons buttons : mainMenuButtons) {
+        for (UiButtons buttons : menuButtons) {
             buttons.render(g);
         }
     }

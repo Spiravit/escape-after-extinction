@@ -27,12 +27,12 @@ public class LevelManager {
 
     /** 
      * Load a level
-     * @param level
-     * level number starting from 1
+     * @param levelNumber   level number starting from 1
+     *
      */
-    public void loadLevel(int level) {
-        currentLevel = levels[level - 1];
-        currentLevel.loadLevel("levels/level_maps/level_" + level + ".png", dinoNumber); //TEST MULTIPLE LEVELS, chnged from (dinoNumber) to ("Level_" + level, dinoNumber)
+    public void loadLevel(int levelNumber) {
+        currentLevel = levels[levelNumber - 1];
+        currentLevel.loadLevel("levels/level_maps/level_" + levelNumber + ".png", dinoNumber);
     }
 
     public void update() {
