@@ -24,9 +24,11 @@ public class LevelManager {
         new Level3()
     };
     private int dinoNumber;
+    //private int levelSelected;
 
     public LevelManager(int dinoNumber) {
         this.dinoNumber = dinoNumber;
+        //this.levelSelected = levelSelected;
     }
 
     /** 
