@@ -42,21 +42,20 @@ public abstract class Animate extends Entity {
             return;
         }
         
-        // floor in the canMove function insures the entity doesn't move into a negative position between 0 and -1
         // When moving up check both top left and right corners
-        if(this.movingUp && animateCanMove(Direction.UP)){
+        if(this.movingUp && checkDirection(Direction.UP)){
             hitboxY -= entitySpeed;
         }
         // When moving down check both bottom left and right corners
-        if(this.movingDown && animateCanMove(Direction.DOWN)){
+        if(this.movingDown && checkDirection(Direction.DOWN)){
             hitboxY += entitySpeed;
         }
         // When moving left check both top left and bottom left
-        if(this.movingLeft && animateCanMove(Direction.LEFT)){
+        if(this.movingLeft && checkDirection(Direction.LEFT)){
             hitboxX -= entitySpeed;
         }
         // When moving right check both top left and bottom left
-        if(this.movingRight && animateCanMove(Direction.RIGHT)) {
+        if(this.movingRight && checkDirection(Direction.RIGHT)) {
             hitboxX += entitySpeed;
         }
     }
@@ -71,16 +70,16 @@ public abstract class Animate extends Entity {
     protected void updateAnimation(){
         int prevAnimation = currentAnimation;
         if (this.isMoving()){
-            if (this.movingUp && animateCanMove(Direction.UP)){
+            if (this.movingUp && checkDirection(Direction.UP)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            else if (this.movingDown && animateCanMove(Direction.DOWN)){
+            else if (this.movingDown && checkDirection(Direction.DOWN)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            else if (this.movingLeft && animateCanMove(Direction.LEFT)){
+            else if (this.movingLeft && checkDirection(Direction.LEFT)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            else if (this.movingRight && animateCanMove(Direction.RIGHT)){
+            else if (this.movingRight && checkDirection(Direction.RIGHT)){
                 currentAnimation = MOVING_ANIMATION;
             }
             else {
@@ -99,20 +98,21 @@ public abstract class Animate extends Entity {
         }
     }
 
-    protected boolean animateCanMove(Direction direction) {
+    protected boolean checkDirection(Direction direction) {
+        // floor in the isValidTile function insures the entity doesn't move into a negative position between 0 and -1
         switch(direction) {
             case UP:
-                return pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY - entitySpeed)) &&
-                        pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY - entitySpeed));
+                return pathfinding.isValidTile((int)Math.floor(hitboxX), (int)Math.floor(hitboxY - entitySpeed)) &&
+                        pathfinding.isValidTile((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY - entitySpeed));
             case DOWN:
-                return pathfinding.canMove((int)Math.floor(hitboxX), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed)) &&
-                        pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed));
+                return pathfinding.isValidTile((int)Math.floor(hitboxX), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed)) &&
+                        pathfinding.isValidTile((int)Math.floor(hitboxX + hitboxWidth), (int)Math.floor(hitboxY + hitboxHeight + entitySpeed));
             case LEFT:
-                return pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY)) &&
-                        pathfinding.canMove((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY + hitboxHeight));
+                return pathfinding.isValidTile((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY)) &&
+                        pathfinding.isValidTile((int)Math.floor(hitboxX - entitySpeed), (int)Math.floor(hitboxY + hitboxHeight));
             case RIGHT:
-                return pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY)) &&
-                        pathfinding.canMove((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY + hitboxHeight));
+                return pathfinding.isValidTile((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY)) &&
+                        pathfinding.isValidTile((int)Math.floor(hitboxX + hitboxWidth + entitySpeed), (int)Math.floor(hitboxY + hitboxHeight));
             default:
                 return false;
         }

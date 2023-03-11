@@ -30,7 +30,7 @@ public class Trap extends Collectable {
 
     @Override
     public void onInteraction(Player player) {
-        player.setHealth(player.getHealth() - damage);
+        player.takeDamage(damage);
         super.onInteraction(player);
     }
 }

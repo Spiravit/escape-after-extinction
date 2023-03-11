@@ -128,7 +128,7 @@ public class Enemy extends Animate {
 
     @Override
     public void onInteraction(Player player) {
-        player.setHealth(0); // remove all health
+        player.takeDamage(player.getHealth()); // remove all health
     }
 
     public void render(Graphics g) {

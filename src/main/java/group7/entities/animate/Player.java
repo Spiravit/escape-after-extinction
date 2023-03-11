@@ -12,6 +12,8 @@ public class Player extends Animate {
     private int keysCollected = 0;
     private int eggsCollected = 0;
 
+    private boolean canMove = false;
+
     /**
      * Create a new player
      * @param posX
@@ -24,23 +26,67 @@ public class Player extends Animate {
     public Player(double posX, double posY, Pathfinding pathfinding, int dinoNumber) {
         super(posX, posY, pathfinding);
         this.dinoNumber = dinoNumber;
+        currentAnimation = SPAWN_ANIMATION;
         loadAnimations();
+    }
+
+    @Override
+    protected void updateAnimation() {
+        if (!canMove) {
+            if (aniIndex >= getSpriteAmount(currentAnimation) - 1) {
+                currentAnimation = DEFAULT_ANIMATION;
+                aniIndex = 0;
+                canMove = true;
+            }
+        } else {
+            super.updateAnimation();
+        }
     }
 
     @Override
     protected void loadAnimations() {
         BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ dinoNumber +".png");
         
-        // place idle animations into 2d array
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[3];
-        for (int i = 0; i < 3; i++) {
-            entityAnimations[DEFAULT_ANIMATION][i] = dinosaur.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
+        int prevAnimations = 0;
+        int curAnimation = 8;
+
+        entityAnimations[SPAWN_ANIMATION] = new BufferedImage[curAnimation];
+        for (int i = 0; i < curAnimation; i++) {
+            entityAnimations[SPAWN_ANIMATION][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
         }
 
+        prevAnimations += curAnimation;
+        curAnimation = 3;
+
+        // place idle animations into 2d array
+        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[curAnimation];
+        for (int i = 0; i < curAnimation; i++) {
+            entityAnimations[DEFAULT_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
+        }
+
+        prevAnimations += curAnimation;
+        curAnimation = 6;
+
         // place moving animations into 2d array
-        entityAnimations[MOVING_ANIMATION] = new BufferedImage[6];
-        for (int i = 0; i < 6; i++) {
-            entityAnimations[MOVING_ANIMATION][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
+        entityAnimations[MOVING_ANIMATION] = new BufferedImage[curAnimation];
+        for (int i = 0; i < curAnimation; i++) {
+            entityAnimations[MOVING_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
+        }
+
+        prevAnimations += curAnimation + 6;
+        curAnimation = 4;
+
+        entityAnimations[DAMAGE_TAKEN_ANIMATION] = new BufferedImage[curAnimation];
+        for (int i = 0; i < curAnimation; i++) {
+            entityAnimations[DAMAGE_TAKEN_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
+        }
+
+        prevAnimations += curAnimation;
+        curAnimation = 5;
+
+        entityAnimations[DEATH_ANIMATION] = new BufferedImage[curAnimation];
+        for (int i = 0; i < curAnimation; i++) {
+            entityAnimations[DEATH_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
         }
     }
 
@@ -50,7 +96,9 @@ public class Player extends Animate {
      */
     @Override
     protected void updatePosition() {
-        super.updatePosition();
+        if (canMove) {
+            super.updatePosition();
+        }
         pathfinding.setPlayer((int) getPosX(), (int) getPosY());
     }
 
@@ -63,13 +111,16 @@ public class Player extends Animate {
         return health;
     }
 
+    
     /**
-     * Set the health of the player
-     * @param health
-     * the health to set
+     * Take damage
+     * @param damage
+     * the amount of damage to take
      */
-    public void setHealth(int health) {
-        this.health = health;
+    public void takeDamage(int damage) {
+        health -= damage;
+        setAnimation(DAMAGE_TAKEN_ANIMATION);
+        canMove = false;
     }
 
     /**
