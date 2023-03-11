@@ -27,7 +27,7 @@ public class Game implements Runnable {
 
     public Game() {
         gameCurrentState = gameStates.IN_MENU; // setting initial state of game to be mainMenu
-        this.graphicsGrid = new GraphicsGrid(graphicsPanel, 15, 10);
+        this.graphicsGrid = new GraphicsGrid(graphicsPanel, 20, 18);
        // inLevelState = new InLevelState(this);
         mainMenuState = new MainMenuState(this);
         inLevelState = new InLevelState(this, playerDinoNumber, levelSelected);            // **TEST: MULTIPLE LEVELS **
