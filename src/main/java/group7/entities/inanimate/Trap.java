@@ -29,8 +29,21 @@ public class Trap extends Collectable {
     }
 
     @Override
+    protected void updateAnimation() {
+        if (currentAnimation == INTERACTION_ANIMATION) {
+            if (aniIndex >= getSpriteAmount(currentAnimation) - 1) {
+                visible = false;
+            }
+        } else {
+            super.updateAnimation();
+        }
+    }
+
+    @Override
     public void onInteraction(Player player) {
         player.takeDamage(damage);
         super.onInteraction(player);
+        visible = true;
+        setAnimation(INTERACTION_ANIMATION);
     }
 }
