@@ -32,7 +32,7 @@ public class AssetLoader {
     public static final String CreditMenu = "menu/credit_text.png";
 
 
-    public static final String SCIENTIST = "scientist_sprites.png";
+    public static final String SCIENTIST = "enemies/Scientists.png";
 
     public static final String EGG = "collectable/egg.png";
     public static final String KEY_CARD = "collectable/keyCard.png";

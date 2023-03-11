@@ -87,20 +87,16 @@ public class Enemy extends Animate {
     }
 
     public void loadAnimations() {
-        BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ 1 +".png");
-    
-        entityAnimations = new BufferedImage[2][];
+        BufferedImage scientist = AssetLoader.getSpriteAtlas(AssetLoader.SCIENTIST);
         
-        // place idle animations into 2d array
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[3];
-        for (int i = 0; i < 3; i++) {
-            entityAnimations[DEFAULT_ANIMATION][i] = dinosaur.getSubimage(i * 24 + 12 * 24, 0, 24, 24);
+        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
+        for (int i = 0; i < 4; i++) {
+            entityAnimations[DEFAULT_ANIMATION][i] = scientist.getSubimage(i * 32, 0, 32, 32);
         }
 
-        // place moving animations into 2d array
-        entityAnimations[MOVING_ANIMATION] = new BufferedImage[6];
-        for (int i = 0; i < 6; i++) {
-            entityAnimations[MOVING_ANIMATION][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
+        entityAnimations[MOVING_ANIMATION] = new BufferedImage[8];
+        for (int i = 0; i < 8; i++) {
+            entityAnimations[MOVING_ANIMATION][i] = scientist.getSubimage(i * 32, 32, 32, 32);
         }
     }
 
