@@ -5,15 +5,13 @@ import userInterface.UiTopMenuBar;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.levels.LevelManager;
-import group7.utils.AssetLoader;
-import group7.utils.Direction;                                                      
+import group7.helperClasses.AssetLoader;
+import group7.helperClasses.Direction;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
 import static group7.Graphics.GraphicsPanel.panelWidth;
 

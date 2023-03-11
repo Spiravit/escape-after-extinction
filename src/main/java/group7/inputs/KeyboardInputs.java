@@ -1,8 +1,6 @@
 package group7.inputs;
 
-import group7.Graphics.GraphicsPanel;
 import group7.gameStates.State;
-import group7.utils.Direction;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

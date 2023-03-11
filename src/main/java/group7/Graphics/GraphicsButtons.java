@@ -2,7 +2,7 @@ package group7.Graphics;
 
 import group7.Game;
 import group7.gameStates.gameStates;
-import group7.utils.AssetLoader;
+import group7.helperClasses.AssetLoader;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
