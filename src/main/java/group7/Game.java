@@ -87,13 +87,13 @@ public class Game implements Runnable {
             this.gameCurrentState = gameStateParameter;
             mainMenuState = new LevelSelectionState(this);
             graphicsPanel.changeGameStates(mainMenuState);
-            playerSelectFlag = true;
+            levelSelectFlag = true;
         }
         if (gameStateParameter == gameStates.NEXT ) {
             if ( playerSelectFlag == true ) {
                 playerDinoNumber = mainMenuState.incrementIndexCharacterDemo() + 1;
             } else if ( levelSelectFlag == true ) {
-                levelSelected = mainMenuState.incrementIndexCharacterDemo() + 1;
+                levelSelected = mainMenuState.incrementIndexLevelNumber() + 1;
             }
         }
         if (gameStateParameter == gameStates.PERV ) {
