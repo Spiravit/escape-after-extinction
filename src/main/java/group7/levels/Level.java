@@ -53,7 +53,7 @@ public abstract class Level {
         addPlayer(1, 3, dinoNumber);
         addEnemy(5, 5);
         addKey(1, 3);
-        addEgg(1, 4);
+        addEgg(1, 4, 100);
         addPotion(1, 5, 0);
         addTrap(1, 6);
     }
@@ -71,8 +71,8 @@ public abstract class Level {
         numberOfKeys++;
     }
 
-    private void addEgg(int x, int y) {
-        entities.add(new Egg(x, y));
+    private void addEgg(int x, int y, int timeout) {
+        entities.add(new Egg(x, y, timeout));
         numberOfEggs++;
     }
 
