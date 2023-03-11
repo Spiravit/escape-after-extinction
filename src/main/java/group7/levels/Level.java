@@ -67,7 +67,7 @@ public abstract class Level {
         for (int x = 0; x < this.width; x++) {
             for (int y = 0; y < this.height; y++) {
                 Color color = new Color(img.getRGB(x, y));
-                int value = color.getRed() % 58; //chaged from 57 b 57 is the clear tile
+                int value = color.getRed() % 74; //73 is the clear tile
 
                 levelSpriteData[x][y] = value;
                 pathfinding.set(x, y, value != 13 ? false:true);
@@ -79,11 +79,11 @@ public abstract class Level {
      * Import the sprites from the sprite atlas and store them in the levelSprites array
      */
     private void importSprites() {
-        BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELS_SPRITES);
-        levelSprites = new BufferedImage[60];
+        BufferedImage img = AssetLoader.getSpriteAtlas("levels/levelssprites.png");
+        levelSprites = new BufferedImage[75];
         
         for (int x = 0; x < 15; x++) {
-            for (int y = 0; y < 4; y++) {
+            for (int y = 0; y < 5; y++) {
                 int index = y * 15 + x;
                 levelSprites[index] = img.getSubimage(x * 32, y * 32, 32, 32);
             }
