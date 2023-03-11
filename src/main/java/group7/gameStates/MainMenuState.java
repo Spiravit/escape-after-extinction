@@ -50,7 +50,7 @@ public class MainMenuState extends State {
         mainMenuBoxBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
         initializeMainMenuButtons();
     }
-    private void initializeMainMenuButtons(){
+    protected void initializeMainMenuButtons(){
         int mainMenuButtonsPosX = panelWidth/ 2 -GraphicsGrid.scaleX ;
         mainMenuButtons[0] = new UiButtons(game,mainMenuButtonsPosX, 5*GraphicsGrid.scaleY, 0, gameStates.PLAYER_SELECTION_SUB_MENU);
         mainMenuButtons[1] = new UiButtons(game,mainMenuButtonsPosX, 7*GraphicsGrid.scaleY, 4, gameStates.LEVEL_SELECTION_SUB_MENU); //TEST
