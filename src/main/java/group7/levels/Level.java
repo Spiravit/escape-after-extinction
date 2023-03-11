@@ -132,6 +132,14 @@ public abstract class Level {
         entities.add(new Trap(x, y));
     }
 
+    public int getKeysCollected() {
+        return player.getKeysCollected();
+    }
+
+    public int getEggsCollected() {
+        return player.getEggsCollected();
+    }
+    
     /** 
      * Set the level data
      * this includes the data in the pathfinding object and the levelSpriteData array
