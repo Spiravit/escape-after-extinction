@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
  */
 public abstract class State {
     public Game game;
+    public boolean isPaused=false;
     public State(Game game){
         this.game=game;
     }
@@ -62,4 +63,7 @@ public abstract class State {
      * @param e
      */
     public abstract void mouseMoved(MouseEvent e);
+
+    public abstract int incrementSpriteArrayIndex();
+    public abstract int decrementSpriteArrayIndex();
 }
