@@ -74,14 +74,17 @@ public abstract class Animate extends Entity {
             if (this.movingUp && animateCanMove(Direction.UP)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            if (this.movingDown && animateCanMove(Direction.DOWN)){
+            else if (this.movingDown && animateCanMove(Direction.DOWN)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            if (this.movingLeft && animateCanMove(Direction.LEFT)){
+            else if (this.movingLeft && animateCanMove(Direction.LEFT)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            if (this.movingRight && animateCanMove(Direction.RIGHT)){
+            else if (this.movingRight && animateCanMove(Direction.RIGHT)){
                 currentAnimation = MOVING_ANIMATION;
+            }
+            else {
+                currentAnimation = DEFAULT_ANIMATION;
             }
         }
         else if (!this.isMoving()) {

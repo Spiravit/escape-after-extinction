@@ -2,9 +2,11 @@ package group7.entities.inanimate;
 
 import java.awt.image.BufferedImage;
 
+import group7.entities.animate.Player;
 import group7.utils.AssetLoader;
 
 public class Trap extends Collectable {
+    private int damage = 50;
 
     public Trap(int positionX, int positionY) {
         super(positionX, positionY);
@@ -25,5 +27,10 @@ public class Trap extends Collectable {
             entityAnimations[INTERACTION_ANIMATION][i] = trap.getSubimage((i + 1) * 32, 0, 32, 32);
         }
     }
-    
+
+    @Override
+    public void onInteraction(Player player) {
+        player.setHealth(player.getHealth() - damage);
+        super.onInteraction(player);
+    }
 }

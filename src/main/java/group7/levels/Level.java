@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.geom.Rectangle2D;
 
 public abstract class Level {
     private int width;
@@ -27,7 +28,13 @@ public abstract class Level {
     private int levelSpriteData[][];
     private Player player;
 
-    private ArrayList<Entity> entities;
+    private ArrayList<Entity> entities = new ArrayList<Entity>();
+
+    private int numberOfEggs = 0;
+    private int numberOfKeys = 0;
+
+    private int eggsCollected = 0;
+    private int keysCollected = 0;
 
     /** 
      * Loads everything about the level
@@ -39,18 +46,100 @@ public abstract class Level {
         importSprites();
         setLevelData(filename); // TEST: MULTIPLE LEVLES 
         GraphicsGrid.setGridSize(width, height);
+        
+        numberOfEggs = 0;
+        numberOfKeys = 0;
 
-        player = new Player(1, 3, pathfinding, dinoNumber);
-
-        entities = new ArrayList<Entity>();
-        entities.add(new Enemy(1, 3, pathfinding));
-
-        entities.add(new Key(3, 3));
-        entities.add(new Potion(4, 3, Potion.PURPLE_SPEED_POTION));
-        entities.add(new Egg(5, 3));
-        entities.add(new Trap(6, 4));
+        addPlayer(1, 3, dinoNumber);
+        addEnemy(5, 5);
+        addKey(1, 3);
+        addEgg(1, 4, 100);
+        addPotion(1, 5, 0);
+        addTrap(1, 6);
     }
 
+    /**
+     * spawn the player in the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     * @param dinoNumber
+     * the number of the dinosaur sprite to use
+     */
+    private void addPlayer(int x, int y, int dinoNumber) {
+        player = new Player(x, y, pathfinding, dinoNumber);
+    }
+
+    /**
+     * Add an enemy to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     */
+    private void addEnemy(int x, int y) {
+        entities.add(new Enemy(x, y, pathfinding));
+    }
+
+    /**
+     * Add a key to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     */
+    private void addKey(int x, int y) {
+        entities.add(new Key(x, y));
+        numberOfKeys++;
+    }
+
+    /**
+     * Add an egg to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     * @param timeout
+     * time in seconds before egg disappears
+     */
+    private void addEgg(int x, int y, int timeout) {
+        entities.add(new Egg(x, y, timeout));
+        numberOfEggs++;
+    }
+
+    /**
+     * Add a potion to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     * @param potionType
+     * type of potion
+     */
+    private void addPotion(int x, int y, int potionType) {
+        entities.add(new Potion(x, y, potionType));
+    }
+
+    /**
+     * Add a trap to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     */
+    private void addTrap(int x, int y) {
+        entities.add(new Trap(x, y));
+    }
+
+    public int getKeysCollected() {
+        return player.getKeysCollected();
+    }
+
+    public int getEggsCollected() {
+        return player.getEggsCollected();
+    }
+    
     /** 
      * Set the level data
      * this includes the data in the pathfinding object and the levelSpriteData array
@@ -98,11 +187,30 @@ public abstract class Level {
         player.removeDirection(direction);
     }
 
+    public LevelState checkLevelState() {
+        if (player.getHealth() < 0) {
+            return LevelState.LOST;
+        } else if (numberOfKeys == keysCollected) {
+            return LevelState.WON;
+        } else {
+            return LevelState.PLAYING;
+        }
+    }
+
+    private void checkInteractions() {
+        for (Entity entity : entities) {
+            if (entity.getHitbox().intersects(player.getHitbox())) {
+                entity.onInteraction(player);
+            }
+        }
+    }
+
     public void update() {
         player.update();
         for (Entity entity : entities) {
             entity.update();
         }
+        checkInteractions();
     }
 
     /**
@@ -126,7 +234,7 @@ public abstract class Level {
         }
  
         for (Entity entity : entities) {
-        entity.render(g);
+            entity.render(g);
         }
  
         player.render(g);
