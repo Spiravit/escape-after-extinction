@@ -1,10 +1,11 @@
 package group7.gameStates;
 
 import group7.Game;
-import group7.Graphics.GraphicParallelBackground;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.utils.AssetLoader;
+import userInterface.UiParallelBackground;
+
 import static group7.Graphics.GraphicsPanel.*;
 
 import java.awt.*;
@@ -16,7 +17,7 @@ public class MainMenuState extends State {
     protected GraphicsButtons[] mainMenuButtons = new GraphicsButtons[4]; // 3 since there are 3 buttons in Main menu
     private BufferedImage mainMenuBackground;
     private BufferedImage[] loadingMainPage = new BufferedImage[3];
-    protected GraphicParallelBackground mainPageParallelBG;
+    protected UiParallelBackground mainPageParallelBG;
     private int loadingIndex=0;
     private int loadingSpeed=20;
     private  int loadingTick = 0;
@@ -28,7 +29,7 @@ public class MainMenuState extends State {
 
     public MainMenuState(Game game) {
         super(game);
-        mainPageParallelBG= new GraphicParallelBackground();
+        mainPageParallelBG= new UiParallelBackground(8,"menu/parallexBG/mainMenu",0.75);
         loadingMainPage[0] = AssetLoader.getSpriteAtlas(AssetLoader.LOADING_1);
         loadingMainPage[1] = AssetLoader.getSpriteAtlas(AssetLoader.LOADING_2);
         loadingMainPage[2] = AssetLoader.getSpriteAtlas(AssetLoader.LOADING_3);
