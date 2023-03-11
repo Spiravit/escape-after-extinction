@@ -32,8 +32,7 @@ public class InLevelState extends State {
         public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
             super(game);
             topMenu = new UiTopMenuBar(2,game,1,8,1,8);
-            this.levelManager = new LevelManager(playerDinoNumber);
-            this.levelManager.loadLevel(levelSelected);
+            this.levelManager = new LevelManager(playerDinoNumber,2);
             
             PauseBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
             PauseMenuButtons[0] = new GraphicsButtons(game,panelWidth / 2, 170, 0, gameStates.RESTART);

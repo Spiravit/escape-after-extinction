@@ -35,10 +35,10 @@ public abstract class Level {
      * @param dinoNumber 
      * player dino type
      */
-    public void loadLevel(String filename, int dinoNumber) {
+    public Level(int dinoNumber) {
         //levelSpriteData = getLevelData(level);      // TEST: MULTIPLE LEVLES
         importSprites();
-        setLevelData(filename); // TEST: MULTIPLE LEVLES 
+        setLevelData(); // TEST: MULTIPLE LEVLES
         GraphicsGrid.setGridSize(width, height);
         
         numberOfEggs = 0;
@@ -150,7 +150,7 @@ public abstract class Level {
      * Set the level data
      * this includes the data in the pathfinding object and the levelSpriteData array
      */
-    protected abstract void setLevelData( String filename);
+    protected abstract void setLevelData();
 
     /** 
      * Import the sprites from the sprite atlas and store them in the levelSprites array

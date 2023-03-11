@@ -3,6 +3,7 @@ package group7.gameStates;
 import group7.Game;
 import static group7.helperClasses.buttonSpriteRow.*;
 import group7.Graphics.GraphicsGrid;
+import static group7.Graphics.GraphicsGrid.*;
 import group7.helperClasses.AssetLoader;
 import group7.userInterface.UiButtons;
 import java.awt.*;
@@ -49,8 +50,8 @@ public class creditState extends MainMenuState{
     @Override
     protected void initializeMainMenuButtons(){
         menuButtons[0] = new UiButtons(game,
-                13*GraphicsGrid.scaleX,
-                14*GraphicsGrid.scaleY,
+                13*scaleX,
+                14*scaleY,
                 RETURN_BUTTON,
                 gameStates.IN_MENU);
     }

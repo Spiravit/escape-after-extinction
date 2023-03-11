@@ -11,28 +11,29 @@ import java.awt.*;
  * - saves level data
  */
 public class LevelManager {
-    private Level currentLevel; 
-    private Level[] levels = {
-        new Level1(),
-        new Level2(),
-        new Level3()
-    };
+    private Level currentLevel;
     private int dinoNumber;
-    //private int levelSelected;
 
-    public LevelManager(int dinoNumber) {
+    public LevelManager(int dinoNumber, int levelNumber) {
         this.dinoNumber = dinoNumber;
-        //this.levelSelected = levelSelected;
-    }
-
-    /** 
-     * Load a level
-     * @param levelNumber   level number starting from 1
-     *
-     */
-    public void loadLevel(int levelNumber) {
-        currentLevel = levels[levelNumber - 1];
-        currentLevel.loadLevel("levels/level_maps/level_" + levelNumber + ".png", dinoNumber);
+        switch (levelNumber){
+            case 1:
+                System.out.println("Made level 1");
+                currentLevel = new Level1(dinoNumber);
+                break;
+            case 2:
+                System.out.println("Made level 2");
+                currentLevel = new Level2(dinoNumber);
+                break;
+            case 3:
+                System.out.println("Made level 3");
+                currentLevel = new Level3(dinoNumber);
+                break;
+            default:
+                System.out.println("Made level default 1");
+                currentLevel = new Level1(dinoNumber);
+                break;
+        }
     }
 
     public void update() {
