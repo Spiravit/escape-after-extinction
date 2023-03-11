@@ -1,17 +1,15 @@
 package group7.gameStates;
 
 import group7.Game;
+import static group7.Graphics.GraphicsPanel.*;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
-import group7.Graphics.GraphicsPanel;
-import group7.entities.animate.Player;
 import group7.utils.AssetLoader;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import static group7.Graphics.GraphicsPanel.*;
 
-public class LevelSelectionState extends MainMenuState{
+public class LevelSelectionState extends MainMenuState {
     private static int numberOfLevels = 3;
     private BufferedImage[] levelNumbers;
     protected int indexLevelNumbers = 0;
@@ -24,10 +22,10 @@ public class LevelSelectionState extends MainMenuState{
         mainMenuButtons[1] = new GraphicsButtons(game,(int)(panelWidth/2 + 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 6, gameStates.NEXT);
         mainMenuButtons[2] = new GraphicsButtons(game,panelWidth / 2 - GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 8, gameStates.IN_LEVEL);
         mainMenuButtons[3] = new GraphicsButtons(game,panelWidth / 2 + GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 9, gameStates.IN_MENU);
-        loadCharacterDemos();
+        loadLevelDemos();
     }
 
-    private void loadCharacterDemos() {
+    private void loadLevelDemos() {
         String level_select_sprite = "levelSelectMenu/lvl";
         for ( int i = 0; i < numberOfLevels; i++ ) {
             levelNumbers[i] = AssetLoader.getSpriteAtlas( level_select_sprite + (i + 1) + ".png" );
@@ -51,7 +49,7 @@ public class LevelSelectionState extends MainMenuState{
     }
 
     @Override
-    public int incrementIndexCharacterDemo() {
+    public int incrementIndexLevelNumber() {
         indexLevelNumbers += 1;
         if (indexLevelNumbers >= numberOfLevels){
             indexLevelNumbers = 0;
@@ -60,7 +58,7 @@ public class LevelSelectionState extends MainMenuState{
     }
 
     @Override
-    public int decrementIndexCharacterDemo() {
+    public int decrementIndexLevelNumber() {
         indexLevelNumbers = indexLevelNumbers - 1;
         if (indexLevelNumbers <= -1){
             indexLevelNumbers = numberOfLevels - 1;
