@@ -1,4 +1,4 @@
-package userInterface;
+package group7.userInterface;
 
 import group7.Graphics.GraphicsGrid;
 import group7.helperClasses.AssetLoader;

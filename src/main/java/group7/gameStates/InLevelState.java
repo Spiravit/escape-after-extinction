@@ -1,7 +1,7 @@
 package group7.gameStates;
 
 import group7.Game;
-import userInterface.UiTopMenuBar;
+import group7.userInterface.UiTopMenuBar;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.levels.LevelManager;
