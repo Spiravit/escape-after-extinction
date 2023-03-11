@@ -3,8 +3,7 @@ package group7.gameStates;
 import group7.Game;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
-import static group7.Graphics.GraphicsGrid.*;
-import group7.utils.AssetLoader;
+import group7.helperClasses.AssetLoader;
 import userInterface.UiParallelBackground;
 
 import static group7.Graphics.GraphicsPanel.*;

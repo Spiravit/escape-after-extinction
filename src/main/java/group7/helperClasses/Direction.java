@@ -1,4 +1,4 @@
-package group7.utils;
+package group7.helperClasses;
 
 public enum Direction {
     UP,

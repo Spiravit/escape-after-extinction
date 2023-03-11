@@ -1,8 +1,8 @@
 package userInterface;
 
 import group7.Graphics.GraphicsGrid;
-import group7.utils.AssetLoader;
-import group7.utils.BackgroundMovingSpeed;
+import group7.helperClasses.AssetLoader;
+import group7.helperClasses.BackgroundMovingSpeed;
 
 
 import java.awt.*;

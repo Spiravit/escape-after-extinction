@@ -2,7 +2,6 @@ package group7.gameStates;
 
 
 import group7.Game;
-import group7.utils.Direction;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
