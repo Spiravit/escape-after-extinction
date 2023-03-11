@@ -4,17 +4,11 @@ import group7.entities.*;
 import group7.entities.animate.*;
 import group7.entities.inanimate.*;
 import group7.Graphics.GraphicsGrid;
-import group7.utils.AssetLoader;
-import group7.utils.Direction;
+import group7.helperClasses.AssetLoader;
+import group7.helperClasses.Direction;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import java.awt.Graphics;
 import java.awt.Color;

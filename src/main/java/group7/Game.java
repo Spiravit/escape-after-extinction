@@ -2,13 +2,8 @@ package group7;
 
 import group7.Graphics.GraphicsPanel;
 import group7.Graphics.GraphicsWindow;
-import group7.entities.animate.Player;
 import group7.Graphics.GraphicsGrid;
 import group7.gameStates.*;
-import group7.levels.Pathfinding;
-import group7.utils.AssetLoader;
-import group7.levels.Level;
-import group7.levels.LevelManager;
 
 
 public class Game implements Runnable {
@@ -32,7 +27,7 @@ public class Game implements Runnable {
 
     public Game() {
         gameCurrentState = gameStates.IN_MENU; // setting initial state of game to be mainMenu
-        this.graphicsGrid = new GraphicsGrid(graphicsPanel, 15, 10);
+        this.graphicsGrid = new GraphicsGrid(graphicsPanel, 20, 18);
        // inLevelState = new InLevelState(this);
         mainMenuState = new MainMenuState(this);
         inLevelState = new InLevelState(this, playerDinoNumber, levelSelected);            // **TEST: MULTIPLE LEVELS **
@@ -60,6 +55,9 @@ public class Game implements Runnable {
         }
         if (gameCurrentState == gameStateParameter ){
             return;
+        }
+        if (gameStateParameter == gameStates.PAUSE){
+            inLevelState.isPaused=true;
         }
         if (gameStateParameter == gameStates.IN_MENU ) {
             // changing the gameStates field in graphicsPanel so that
