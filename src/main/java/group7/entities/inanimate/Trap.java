@@ -8,7 +8,7 @@ import group7.helperClasses.AssetLoader;
 
 
 public class Trap extends Collectable {
-    private int damage = 50;
+    private int damage = 25;
 
     public Trap(int positionX, int positionY) {
         super(positionX, positionY);

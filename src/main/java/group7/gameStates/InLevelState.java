@@ -31,7 +31,7 @@ public class InLevelState extends State {
         private static final int PAUSE_BACKGROUND_WIDTH=4*GraphicsGrid.getScaleX(); // The width of main Menu is 4 Grids
         public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
             super(game);
-            topMenu = new UiTopMenuBar(2,game);
+            topMenu = new UiTopMenuBar(2,game,1,8,1,8);
             this.levelManager = new LevelManager(playerDinoNumber);
             this.levelManager.loadLevel(levelSelected);
             
