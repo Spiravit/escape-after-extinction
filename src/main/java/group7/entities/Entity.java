@@ -36,8 +36,13 @@ public abstract class Entity {
     protected final static int DEFAULT_ANIMATION = 0;
     protected final static int MOVING_ANIMATION = 1;
     protected final static int INTERACTION_ANIMATION = 2;
+    protected final static int SPAWN_ANIMATION = 3;
+    protected final static int DEATH_ANIMATION = 4;
+    protected final static int DAMAGE_TAKEN_ANIMATION = 5;
+    protected final static int SPECIAL_IDLE_ANIMATION = 6;
+    protected final static int TRACKING_PLAYER_ANIMATION = 7;
     // stores the amount of possible animations, update this if you add more animations
-    protected final static int ANIMATION_COUNT = 3;
+    protected final static int ANIMATION_COUNT = 7;
 
     public Entity(double posX, double posY) {
         hitboxX = posX;
@@ -80,11 +85,17 @@ public abstract class Entity {
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex ++;
-            if (aniIndex >= GetSpriteAmount(currentAnimation)) {
+            if (aniIndex >= getSpriteAmount(currentAnimation)) {
                 // If aniIndex went out of range, then make it 0.
                 aniIndex = 0;
             }
         }
+    }
+
+    protected void setAnimation(int animation) {
+        currentAnimation = animation;
+        aniIndex = 0;
+        aniTick = 0;
     }
 
     /**
@@ -93,13 +104,8 @@ public abstract class Entity {
      * @return
      * amount of sprites for the action
      */
-    protected int GetSpriteAmount(int entityAction){
+    protected int getSpriteAmount(int entityAction){
         return entityAnimations[entityAction].length;
-    }
-
-    public void update() {
-        updateAnimationTick();
-        updateAnimation();
     }
 
     /**
@@ -119,6 +125,11 @@ public abstract class Entity {
      * the player that is interacting with the entity
      */
     public abstract void onInteraction(Player player);
+
+    public void update() {
+        updateAnimationTick();
+        updateAnimation();
+    }
 
     /**
      * draws the currentEntityImage on the screen
