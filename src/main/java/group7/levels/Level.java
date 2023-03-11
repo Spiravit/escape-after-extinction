@@ -58,28 +58,76 @@ public abstract class Level {
         addTrap(1, 6);
     }
 
+    /**
+     * spawn the player in the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     * @param dinoNumber
+     * the number of the dinosaur sprite to use
+     */
     private void addPlayer(int x, int y, int dinoNumber) {
         player = new Player(x, y, pathfinding, dinoNumber);
     }
 
+    /**
+     * Add an enemy to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     */
     private void addEnemy(int x, int y) {
         entities.add(new Enemy(x, y, pathfinding));
     }
 
+    /**
+     * Add a key to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     */
     private void addKey(int x, int y) {
         entities.add(new Key(x, y));
         numberOfKeys++;
     }
 
+    /**
+     * Add an egg to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     * @param timeout
+     * time in seconds before egg disappears
+     */
     private void addEgg(int x, int y, int timeout) {
         entities.add(new Egg(x, y, timeout));
         numberOfEggs++;
     }
 
+    /**
+     * Add a potion to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     * @param potionType
+     * type of potion
+     */
     private void addPotion(int x, int y, int potionType) {
         entities.add(new Potion(x, y, potionType));
     }
 
+    /**
+     * Add a trap to the level
+     * @param x
+     * position x
+     * @param y
+     * position y
+     */
     private void addTrap(int x, int y) {
         entities.add(new Trap(x, y));
     }
