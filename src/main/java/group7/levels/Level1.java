@@ -8,9 +8,8 @@ import java.awt.image.BufferedImage;
 
 public class Level1 extends Level {
 
-    @Override
-    public void loadLevel(String filename, int dinoNumber) {
-        super.loadLevel(filename,dinoNumber);
+    public Level1(int dinoNumber) {
+        super(dinoNumber);
         addPlayer(1, 3, dinoNumber);
         addEnemy(5, 5);
         addKey(1, 3);
@@ -23,8 +22,8 @@ public class Level1 extends Level {
      * Set the level data
      * this includes the data in the pathfinding object and the levelSpriteData array
      */
-    protected void setLevelData( String filename) { //TEST MULTIPLE LEVELS
-        BufferedImage img = AssetLoader.getSpriteAtlas(filename); //TEST MULTIPLE LEVELS, changed from AssetLoader.LEVEL_1 to filename
+    protected void setLevelData() { //TEST MULTIPLE LEVELS
+        BufferedImage img = AssetLoader.getSpriteAtlas("levels/level_maps/level_" + 1 + ".png"); //TEST MULTIPLE LEVELS, changed from AssetLoader.LEVEL_1 to filename
 
         this.width = img.getWidth();
         this.height = img.getHeight();
