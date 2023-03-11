@@ -10,6 +10,7 @@ package group7.helperClasses;
  * @author Salman Ayaz
  */
 public class buttonSpriteRow {
+
     // New button sprite is at first row of mainMenuButtons.png
     public static final int NEW_GAME_BUTTON = 0;
 
