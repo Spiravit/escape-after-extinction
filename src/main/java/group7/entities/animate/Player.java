@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Animate {
     private int health = 100;
-    private int stamina = 100;
     private int dinoNumber; // the number of the dinosaur sprite to use
 
     private int keysCollected = 0;
@@ -45,31 +44,62 @@ public class Player extends Animate {
         }
     }
 
+    /**
+     * Update the position of the player
+     * and update the its position in the pathfinding class
+     */
+    @Override
     protected void updatePosition() {
         super.updatePosition();
         pathfinding.setPlayer((int) getPosX(), (int) getPosY());
     }
 
+    /**
+     * Get the health of the player
+     * @return
+     * the health of the player
+     */
     public int getHealth() {
         return health;
     }
 
+    /**
+     * Set the health of the player
+     * @param health
+     * the health to set
+     */
     public void setHealth(int health) {
         this.health = health;
     }
 
+    /**
+     * Get the number of keys collected
+     * @return
+     * the number of keys collected
+     */
     public int getKeysCollected() {
         return keysCollected;
     }
 
+    /**
+     * Increment the number of keys collected
+     */
     public void incrementKeysCollected() {
         keysCollected ++;
     }
 
+    /**
+     * Get the number of eggs collected
+     * @return
+     * the number of eggs collected
+     */
     public int getEggsCollected() {
         return eggsCollected;
     }
 
+    /**
+     * Increment the number of eggs collected
+     */
     public void incrementEggsCollected() {
         eggsCollected ++;
     }

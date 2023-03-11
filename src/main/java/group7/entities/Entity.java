@@ -113,6 +113,11 @@ public abstract class Entity {
      */
     protected abstract void updateAnimation();
 
+    /**
+     * what happens when the entity is interacted with
+     * @param player
+     * the player that is interacting with the entity
+     */
     public abstract void onInteraction(Player player);
 
     /**
