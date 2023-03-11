@@ -40,7 +40,7 @@ public class playerSelectionState extends MainMenuState{
         }
     }
     @Override
-    public int incrementIndexCharacterDemo() {
+    public int incrementSpriteArrayIndex() {
         this.indexCharacterDemo += 1;
         if (indexCharacterDemo >= numberOfCharacters){
             indexCharacterDemo=0;
@@ -48,7 +48,7 @@ public class playerSelectionState extends MainMenuState{
         return indexCharacterDemo;
     }
     @Override
-    public int decrementIndexCharacterDemo() {
+    public int decrementSpriteArrayIndex() {
         this.indexCharacterDemo = this.indexCharacterDemo -1;
         if (indexCharacterDemo <= -1){
             indexCharacterDemo=numberOfCharacters-1;

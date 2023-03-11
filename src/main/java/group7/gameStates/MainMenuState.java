@@ -163,16 +163,12 @@ public class MainMenuState extends State {
 
         }
     }
-    public int incrementIndexCharacterDemo() {
-       // DO NOTHING HERE !!!!
+    @Override
+    public int incrementSpriteArrayIndex(){
         return 0;
     }
-    public int decrementIndexCharacterDemo() {
-        // DO NOTHING HERE !!!!
-        return 0;
-    }
-    public int decrementIndexLevelNumber() {
-        // DO NOTHING HERE !!!!
+    @Override
+    public int decrementSpriteArrayIndex(){
         return 0;
     }
 }

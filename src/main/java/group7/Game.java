@@ -73,7 +73,7 @@ public class Game implements Runnable {
         // If gameStateParameter is pause then set the isPause boolean in inLevel stage to true
         // in order to spawn pause menu
         // but still keep the gameStage to be inLevel stage since we are still in levels but paused
-        if (gameCurrentState==gameStates.IN_LEVEL && gameStateParameter == gameStates.PAUSE){
+        else if (gameCurrentState==gameStates.IN_LEVEL && gameStateParameter == gameStates.PAUSE){
             currentState.isPaused=true; // TODO fix it
             return;
         }
@@ -84,7 +84,7 @@ public class Game implements Runnable {
         // then change gameCurrentState to be same as parameter
         // then initialize currentState object
         // and pass it to graphicPanel in order to render MainMenuState
-        if (gameStateParameter == gameStates.IN_MENU ) {
+        else if (gameStateParameter == gameStates.IN_MENU ) {
 
             this.gameCurrentState = gameStateParameter;
             currentState = new MainMenuState(this);
@@ -95,7 +95,7 @@ public class Game implements Runnable {
         // then change gameCurrentState to be CREDIT_SUB_MENU
         // then initialize currentState to be a credit menu state object
         // and pass it to graphicPanel in order to render level selection menu
-        if (gameStateParameter == gameStates.CREDIT_SUB_MENU ) {
+        else if (gameStateParameter == gameStates.CREDIT_SUB_MENU ) {
             this.gameCurrentState = gameStateParameter;
             currentState = new creditState(this);
             graphicsPanel.changeGameStates(currentState);
@@ -103,12 +103,23 @@ public class Game implements Runnable {
 
         // If game stage was not in level selection menu and the desired stage passed as parameter is level selection menu
         // then change gameCurrentState to be level selection menu
-        // then initialize currentState to be a  level selection menu object
+        // then initialize currentState to be a  level selection state object
         // and pass it to graphicPanel in order to render level selection menu
-        if (gameStateParameter == gameStates.LEVEL_SELECTION_SUB_MENU ) {
+        else if (gameStateParameter == gameStates.LEVEL_SELECTION_SUB_MENU ) {
             this.gameCurrentState = gameStateParameter;
             currentState = new LevelSelectionState(this);
             graphicsPanel.changeGameStates(currentState);
+        }
+
+        // If game stage was not in player selection menu and the desired stage passed as parameter is player selection menu
+        // then change gameCurrentState to be player selection menu
+        // then initialize currentState to be a  player selection state object
+        // and pass it to graphicPanel in order to render player selection menu
+       else if (gameStateParameter == gameStates.PLAYER_SELECTION_SUB_MENU ) {
+            this.gameCurrentState = gameStateParameter;
+            currentState = new playerSelectionState(this);
+            graphicsPanel.changeGameStates(currentState);
+
         }
 
 
@@ -121,42 +132,43 @@ public class Game implements Runnable {
         }
 
 
-        if (gameStateParameter == gameStates.PLAYER_SELECTION_SUB_MENU ) {
-            this.gameCurrentState = gameStateParameter;
-            currentState = new playerSelectionState(this);
-            graphicsPanel.changeGameStates(currentState);
-
-        }
-        if (gameStateParameter == gameStates.NEXT ) {
+        // If a next button was clicked then :
+        else if (gameStateParameter == gameStates.NEXT ) {
             if (gameCurrentState== gameStates.LEVEL_SELECTION_SUB_MENU){
+                // Then we need to increase index of Level Number Sprites array
+                levelSelected = currentState.incrementSpriteArrayIndex() + 1;
 
             }
             else if (gameCurrentState== gameStates.PLAYER_SELECTION_SUB_MENU){
-
+                // Then we need to increase index of dinosaur demo Sprites array
+                playerDinoNumber = currentState.incrementSpriteArrayIndex() + 1;
             }
         }
-        if (gameStateParameter == gameStates.PERV ) {
+
+        // If a previous button was clicked then :
+        else if (gameStateParameter == gameStates.PERV ) {
 
             if (gameCurrentState== gameStates.LEVEL_SELECTION_SUB_MENU){
-
+                // Then we need to decrease index of Level Number Sprites array
+                levelSelected = currentState.decrementSpriteArrayIndex() + 1;
             }
             else if (gameCurrentState== gameStates.PLAYER_SELECTION_SUB_MENU){
-
+                // Then we need to decrease index of  dinosaur demo Sprites array
+                playerDinoNumber = currentState.decrementSpriteArrayIndex() + 1;
             }
 
         }
+
+        // If Restart gameState was passed as argument, then we need to reinitialize the inLevelState
+        // in order to restart setting up the level again.
         if (gameStateParameter == gameStates.RESTART ) {
             this.gameCurrentState = gameStates.IN_LEVEL;
             currentState = new InLevelState(this, playerDinoNumber, levelSelected);
             graphicsPanel.changeGameStates(currentState);
         }
-        else if (gameStateParameter == gameStates.IN_LEVEL ) {
-            // Here, once the game state is changed to in Level state (the state, where player is playing) in game class,
-            // then we change game states in graphicsPanel to render the level state (rendering levels,players,...) .
-            this.gameCurrentState = gameStateParameter;
-            currentState = new InLevelState(this, playerDinoNumber, 2);
-            graphicsPanel.changeGameStates(currentState);
-        } else if (gameStateParameter == gameStates.QUIT) {
+
+        // If the desired state passed as argument is QUIT, then we need to exit from the game, terminating it
+         else if (gameStateParameter == gameStates.QUIT) {
             // if the current state of game is changed to be quit, then terminate the program
             this.gameCurrentState = gameStateParameter;
             System.exit(0);
@@ -166,19 +178,7 @@ public class Game implements Runnable {
     @Override
     public void run() {
         while(true) {
-            if (gameCurrentState == gameStates.IN_MENU) {
-                // If the current state of game is in main menu state,
-                // then use the update method of inLevelState
-                // TODO writing comments here
-                currentState.update();
-            }
-            else if (gameCurrentState == gameStates.IN_LEVEL ) {
-                // If the current state of game is in playing state,
-                // then use the update method of inLevelState
-                // where it updates the player, ...
-                currentState.update();
-            }
-
+           currentState.update();
             // The repaint will render the game corresponding to a gameState field, holding current running state
             // of game, in graphicsPanel.
             graphicsPanel.repaint();

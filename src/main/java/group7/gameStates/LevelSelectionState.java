@@ -132,7 +132,7 @@ public class LevelSelectionState extends MainMenuState{
      * @return index of levelNumbersSprites array that is are currently at.
      */
     @Override
-    public int incrementIndexCharacterDemo() {
+    public int incrementSpriteArrayIndex() {
         // Increment the index
         indexLevelNumbers += 1;
 
@@ -151,7 +151,7 @@ public class LevelSelectionState extends MainMenuState{
      * @return index of levelNumbersSprites array that is are currently at.
      */
     @Override
-    public int decrementIndexCharacterDemo() {
+    public int decrementSpriteArrayIndex() {
         // Decrement the index
         indexLevelNumbers = indexLevelNumbers - 1;
 

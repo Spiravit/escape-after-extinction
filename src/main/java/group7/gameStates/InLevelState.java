@@ -24,7 +24,6 @@ public class InLevelState extends State {
         protected LevelManager levelManager;
         private UiTopMenuBar topMenu;
 
-        public boolean isPaused = false;
         protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
         private BufferedImage PauseBackground;
         private static final int PAUSE_BACKGROUND_HEIGHT=80+4*GraphicsGrid.getScaleY()+20;
@@ -32,7 +31,7 @@ public class InLevelState extends State {
         public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
             super(game);
             topMenu = new UiTopMenuBar(2,game,1,8,1,8);
-            this.levelManager = new LevelManager(playerDinoNumber,2);
+            this.levelManager = new LevelManager(playerDinoNumber,levelSelected);
             
             PauseBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
             PauseMenuButtons[0] = new GraphicsButtons(game,panelWidth / 2, 170, 0, gameStates.RESTART);
@@ -173,5 +172,13 @@ public class InLevelState extends State {
         for (GraphicsButtons buttons : PauseMenuButtons) {
             buttons.render(g);
         }
+    }
+    @Override
+    public int incrementSpriteArrayIndex(){
+        return 0;
+    }
+    @Override
+    public int decrementSpriteArrayIndex(){
+        return 0;
     }
 }
