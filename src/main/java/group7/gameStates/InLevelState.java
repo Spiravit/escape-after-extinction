@@ -48,6 +48,7 @@ public class InLevelState extends State {
     public void update() {
             if (isPaused==false) {
                 levelManager.update();
+                topMenu.update();
             }
             else{
                 for (GraphicsButtons button : PauseMenuButtons)
