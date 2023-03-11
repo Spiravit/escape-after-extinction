@@ -10,8 +10,8 @@ public class Player extends Animate {
     private int stamina = 100;
     private int dinoNumber; // the number of the dinosaur sprite to use
 
-    private int eggsCollected = 0;
     private int keysCollected = 0;
+    private int eggsCollected = 0;
 
     /**
      * Create a new player
@@ -65,7 +65,15 @@ public class Player extends Animate {
     public void incrementKeysCollected() {
         keysCollected ++;
     }
-    
+
+    public int getEggsCollected() {
+        return eggsCollected;
+    }
+
+    public void incrementEggsCollected() {
+        eggsCollected ++;
+    }
+
     public void onInteraction(Player player) {
         // no interaction
     }

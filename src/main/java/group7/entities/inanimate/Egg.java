@@ -38,4 +38,10 @@ public class Egg extends Collectable {
         }
         super.update();
     }
+
+    @Override
+    public void onInteraction(Player player) {
+        player.incrementEggsCollected();
+        super.onInteraction(player);
+    }
 }
