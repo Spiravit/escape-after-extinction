@@ -8,7 +8,8 @@ import java.awt.Graphics;
 public abstract class Collectable extends Inanimate {
     protected int objectType;
 
-    protected boolean visible = true; // If object hasn't been picked up TRUE, else FALSE 
+    protected boolean visible = true; // If object can still be seen TRUE, else FALSE
+    protected boolean interactable = true; // If object can be picked up TRUE, else FALSE
 
     // TYPES OF COLLECTABLES
     public static final int ESCAPE_KEYCARD = 0;
@@ -30,7 +31,7 @@ public abstract class Collectable extends Inanimate {
     }
 
     public Rectangle2D getHitbox() {
-        if (visible) {
+        if (interactable) {
             return super.getHitbox();
         } else {
             return new Rectangle2D.Double(0, 0, 0, 0);
@@ -39,6 +40,7 @@ public abstract class Collectable extends Inanimate {
 
     @Override
     public void onInteraction(Player player) {
+        interactable = false;
         visible = false;
     }
 
