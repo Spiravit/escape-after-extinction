@@ -46,6 +46,9 @@ public class AssetLoader {
     public static final String LAB_TILE = "lab_tile.png";
     public static final String DOOR = "door_sprites.png";
 
+    public static final String HEALTH_BAR_BOUNDARY = "menu/inLevelTopMenu/health_bar_outside.png";
+    public static final String HEALTH_BAR_INSIDE = "menu/inLevelTopMenu/health_bar_inside.png";
+
     /**
      * Load a sprite atlas from the assets folder
      * @param filename
