@@ -20,34 +20,28 @@ public class UiTopMenuBar {
     private int second_counter;
     private int minute_counter;
     protected GraphicsButtons pauseMenuButton;
+    private UiParallelBackground topMenuSkyParallelBackground;
+
     private BufferedImage topMenuLandBackground;
-    private BufferedImage backgroundParallelOne;
-    private BufferedImage backgroundParallelTwo;
-    private BufferedImage backgroundParallelThree;
-    private BufferedImage backgroundParallelFour;
     private BufferedImage healthBarBoundary;
     private BufferedImage healthBarInside;
     private Font retroFont =  new Font("TimesRoman", Font.BOLD, 18);
     public UiTopMenuBar(int levelNumber, Game game){
+        topMenuSkyParallelBackground = new UiParallelBackground(4,"menu/inLevelTopMenu/level_"+levelNumber+"/",0,2);
         startTime = System.currentTimeMillis();
         second_counter=0;
         minute_counter=0;
         pauseMenuButton = new GraphicsButtons(game, (int)(panelWidth-2.5*GraphicsGrid.scaleX), (int)(0.5*GraphicsGrid.getScaleY()), 5, gameStates.PAUSE);
         loadFont();
-        String topMenuBarLocation = "menu/inLevelTopMenu/level_"+levelNumber+"/";
-        backgroundParallelOne = AssetLoader.getSpriteAtlas(topMenuBarLocation+"1"+".png");
-        backgroundParallelTwo = AssetLoader.getSpriteAtlas(topMenuBarLocation+"2"+".png");
-        backgroundParallelThree = AssetLoader.getSpriteAtlas(topMenuBarLocation+"3"+".png");
-        backgroundParallelFour = AssetLoader.getSpriteAtlas(topMenuBarLocation+"4"+".png");
         topMenuLandBackground = AssetLoader.getSpriteAtlas("menu/inLevelTopMenu/landTopMenu.png");
         healthBarBoundary = AssetLoader.getSpriteAtlas(AssetLoader.HEALTH_BAR_BOUNDARY);
         healthBarInside = AssetLoader.getSpriteAtlas(AssetLoader.HEALTH_BAR_INSIDE);
     }
+    public void update(){
+        pauseMenuButton.update();
+    }
     public void renderTopMenuBar (Graphics g, boolean isPaused, int health){
-        g.drawImage(backgroundParallelOne,0,0, GraphicsPanel.panelWidth,2* GraphicsGrid.scaleY,null);
-        g.drawImage(backgroundParallelTwo,0,0,GraphicsPanel.panelWidth,2*GraphicsGrid.scaleY,null);
-        g.drawImage(backgroundParallelThree,0,0,GraphicsPanel.panelWidth,2*GraphicsGrid.scaleY,null);
-        g.drawImage(backgroundParallelFour,0,0,GraphicsPanel.panelWidth,2*GraphicsGrid.scaleY,null);
+        topMenuSkyParallelBackground.renderParallelBackground(g);
         g.drawImage(topMenuLandBackground,0,(int)(1.25*GraphicsGrid.scaleY),GraphicsPanel.panelWidth,(int)(0.75*GraphicsGrid.scaleY),null);
         renderTime(g,isPaused);
         renderHealth(g,health);

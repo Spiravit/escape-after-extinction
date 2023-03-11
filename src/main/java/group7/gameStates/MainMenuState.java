@@ -3,6 +3,7 @@ package group7.gameStates;
 import group7.Game;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
+import static group7.Graphics.GraphicsGrid.*;
 import group7.utils.AssetLoader;
 import userInterface.UiParallelBackground;
 
@@ -29,7 +30,7 @@ public class MainMenuState extends State {
 
     public MainMenuState(Game game) {
         super(game);
-        mainPageParallelBG= new UiParallelBackground(8,"menu/parallexBG/mainMenu",0.75);
+        mainPageParallelBG= new UiParallelBackground(8,"menu/parallexBG/mainMenu",2,14);
         loadingMainPage[0] = AssetLoader.getSpriteAtlas(AssetLoader.LOADING_1);
         loadingMainPage[1] = AssetLoader.getSpriteAtlas(AssetLoader.LOADING_2);
         loadingMainPage[2] = AssetLoader.getSpriteAtlas(AssetLoader.LOADING_3);
