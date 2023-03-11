@@ -8,6 +8,7 @@ import group7.utils.Direction;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Scanner;
 
 public class Enemy extends Animate {
     int directionUpdateInterval = 200;
@@ -98,6 +99,7 @@ public class Enemy extends Animate {
         for (int i = 0; i < 8; i++) {
             entityAnimations[MOVING_ANIMATION][i] = scientist.getSubimage(i * 32, 32, 32, 32);
         }
+       
     }
 
     /**
@@ -115,12 +117,17 @@ public class Enemy extends Animate {
         if (movingLeft) {
             GraphicsGrid.drawRect(g, getPosX() - 1, getPosY(), 0.1, 0.1);
         }
-        if (movingRight) {
+        if (movingRight) {  
             GraphicsGrid.drawRect(g, getPosX() + 1, getPosY(), 0.1, 0.1);
         }
         if (movingUp) {
             GraphicsGrid.drawRect(g, getPosX(), getPosY() - 1, 0.1, 0.1);
         }
+    }
+
+    @Override
+    public void onInteraction(Player player) {
+        player.setHealth(0); // remove all health
     }
 
     public void render(Graphics g) {
