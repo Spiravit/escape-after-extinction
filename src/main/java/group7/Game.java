@@ -61,6 +61,9 @@ public class Game implements Runnable {
         if (gameCurrentState == gameStateParameter ){
             return;
         }
+        if (gameStateParameter == gameStates.PAUSE){
+            inLevelState.isPaused=true;
+        }
         if (gameStateParameter == gameStates.IN_MENU ) {
             // changing the gameStates field in graphicsPanel so that
             // the graphicsPanel will use the rendering methods of current running state to render the game

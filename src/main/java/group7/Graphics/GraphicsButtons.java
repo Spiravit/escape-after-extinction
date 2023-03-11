@@ -23,7 +23,7 @@ public class GraphicsButtons {
         this.buttonPositionY = buttonPositionY;
         this.row = row;
         this.buttonGameStates = buttonGameStates;
-        bounds = new Rectangle(buttonPositionX-GraphicsGrid.getScaleX(),buttonPositionY,2*GraphicsGrid.getScaleX(),GraphicsGrid.getScaleY());
+        bounds = new Rectangle(buttonPositionX,buttonPositionY,2*GraphicsGrid.getScaleX(),GraphicsGrid.getScaleY());
         loadButtonsSprites();
     }
 
@@ -38,7 +38,7 @@ public class GraphicsButtons {
     }
 
     public void render(Graphics g) {
-        g.drawImage(imgs[index],buttonPositionX-GraphicsGrid.getScaleX(),buttonPositionY,2*GraphicsGrid.getScaleX(),GraphicsGrid.getScaleY(),null);
+        g.drawImage(imgs[index],buttonPositionX,buttonPositionY,2*GraphicsGrid.getScaleX(),GraphicsGrid.getScaleY(),null);
     }
 
     public void update() {

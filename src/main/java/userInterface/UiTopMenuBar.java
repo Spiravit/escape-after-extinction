@@ -1,7 +1,10 @@
 package userInterface;
 
+import group7.Game;
+import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.Graphics.GraphicsPanel;
+import group7.gameStates.gameStates;
 import group7.utils.AssetLoader;
 
 import java.awt.*;
@@ -9,10 +12,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static group7.Graphics.GraphicsPanel.panelWidth;
+
 public class UiTopMenuBar {
     private long startTime;
     private int second_counter;
     private int minute_counter;
+    protected GraphicsButtons pauseMenuButton;
     private BufferedImage topMenuLandBackground;
     private BufferedImage backgroundParallelOne;
     private BufferedImage backgroundParallelTwo;
@@ -21,10 +27,11 @@ public class UiTopMenuBar {
     private BufferedImage healthBarBoundary;
     private BufferedImage healthBarInside;
     private Font retroFont =  new Font("TimesRoman", Font.BOLD, 18);
-    public UiTopMenuBar(int levelNumber){
+    public UiTopMenuBar(int levelNumber, Game game){
         startTime = System.currentTimeMillis();
         second_counter=0;
         minute_counter=0;
+        pauseMenuButton = new GraphicsButtons(game, (int)(panelWidth-2.5*GraphicsGrid.scaleX), (int)(0.5*GraphicsGrid.getScaleY()), 5, gameStates.PAUSE);
         loadFont();
         String topMenuBarLocation = "menu/inLevelTopMenu/level_"+levelNumber+"/";
         backgroundParallelOne = AssetLoader.getSpriteAtlas(topMenuBarLocation+"1"+".png");
@@ -43,6 +50,7 @@ public class UiTopMenuBar {
         g.drawImage(topMenuLandBackground,0,(int)(1.25*GraphicsGrid.scaleY),GraphicsPanel.panelWidth,(int)(0.75*GraphicsGrid.scaleY),null);
         renderTime(g,isPaused);
         renderHealth(g,health);
+        pauseMenuButton.render(g);
     }
 
     private void renderHealth(Graphics g,int health) {
@@ -85,5 +93,8 @@ public class UiTopMenuBar {
         Graphics2D g2D = (Graphics2D) g;
         g.setFont(retroFont);
         g.drawString("TIME : " + Integer.toString(minute_counter)+" : "+secondTimeString, 3*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+    }
+    private render parallelTopMenuBackground(Graphics g){
+
     }
 }
