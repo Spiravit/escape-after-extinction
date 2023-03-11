@@ -2,7 +2,7 @@ package group7.Graphics;
 
 import group7.Game;
 import group7.gameStates.gameStates;
-import group7.utils.AssetLoader;
+import group7.helperClasses.AssetLoader;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -23,14 +23,14 @@ public class GraphicsButtons {
         this.buttonPositionY = buttonPositionY;
         this.row = row;
         this.buttonGameStates = buttonGameStates;
-        bounds = new Rectangle(buttonPositionX-GraphicsGrid.getScaleX(),buttonPositionY,2*GraphicsGrid.getScaleX(),GraphicsGrid.getScaleY());
+        bounds = new Rectangle(buttonPositionX,buttonPositionY,2*GraphicsGrid.getScaleX(),GraphicsGrid.getScaleY());
         loadButtonsSprites();
     }
 
     private void loadButtonsSprites() {
         imgs = new BufferedImage[5]; // for each button there are two conditions, hovered and not hovered
         BufferedImage temp = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BUTTONS);
-        int menuButtonSpriteHeight = 140;
+        int menuButtonSpriteHeight = 70;
         int menuButtonSpriteWidth = temp.getWidth() / 2;
         //System.out.println(menuButtonSpriteWidth);
         for (int i = 0; i < 2; i++)
@@ -38,7 +38,7 @@ public class GraphicsButtons {
     }
 
     public void render(Graphics g) {
-        g.drawImage(imgs[index],buttonPositionX-GraphicsGrid.getScaleX(),buttonPositionY,2*GraphicsGrid.getScaleX(),GraphicsGrid.getScaleY(),null);
+        g.drawImage(imgs[index],buttonPositionX,buttonPositionY,2*GraphicsGrid.getScaleX(),GraphicsGrid.getScaleY(),null);
     }
 
     public void update() {

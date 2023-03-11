@@ -3,9 +3,8 @@ package group7.gameStates;
 import group7.Game;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
-import group7.Graphics.GraphicsPanel;
-import group7.entities.animate.Player;
-import group7.utils.AssetLoader;
+import group7.helperClasses.AssetLoader;
+import group7.userInterface.UiButtons;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,12 +17,12 @@ public class LevelSelectionState extends MainMenuState{
 
     public LevelSelectionState(Game game) {
         super(game);
-        mainMenuButtons = new GraphicsButtons[4];
+        mainMenuButtons = new UiButtons[4];
         levelNumbers = new BufferedImage[numberOfLevels];
-        mainMenuButtons[0] = new GraphicsButtons(game,(int)(panelWidth/2 - 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 7, gameStates.PERV);
-        mainMenuButtons[1] = new GraphicsButtons(game,(int)(panelWidth/2 + 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 6, gameStates.NEXT);
-        mainMenuButtons[2] = new GraphicsButtons(game,panelWidth / 2 - GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 8, gameStates.IN_LEVEL);
-        mainMenuButtons[3] = new GraphicsButtons(game,panelWidth / 2 + GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 9, gameStates.IN_MENU);
+        mainMenuButtons[0] = new UiButtons(game,(int)(panelWidth/2 - 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 7, gameStates.PERV);
+        mainMenuButtons[1] = new UiButtons(game,(int)(panelWidth/2 + 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 6, gameStates.NEXT);
+        mainMenuButtons[2] = new UiButtons(game,panelWidth / 2 - GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 8, gameStates.IN_LEVEL);
+        mainMenuButtons[3] = new UiButtons(game,panelWidth / 2 + GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 9, gameStates.IN_MENU);
         loadCharacterDemos();
     }
 
@@ -45,7 +44,7 @@ public class LevelSelectionState extends MainMenuState{
                     2 * GraphicsGrid.getScaleX(),
                     null);
 
-        for (GraphicsButtons buttons : mainMenuButtons) {
+        for (UiButtons buttons : mainMenuButtons) {
             buttons.render(g);
         }
     }

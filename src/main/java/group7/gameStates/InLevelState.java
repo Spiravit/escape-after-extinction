@@ -1,18 +1,18 @@
 package group7.gameStates;
 
 import group7.Game;
+import group7.userInterface.UiTopMenuBar;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.levels.LevelManager;
-import group7.utils.AssetLoader;
-import group7.utils.Direction;                                                      
+import group7.helperClasses.AssetLoader;
+import group7.helperClasses.Direction;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static group7.Graphics.GraphicsPanel.panelHeight;
 import static group7.Graphics.GraphicsPanel.panelWidth;
 
 
@@ -21,10 +21,8 @@ import static group7.Graphics.GraphicsPanel.panelWidth;
 // render and update them
 // the class is extending the abstract State class, a super class for all states
 public class InLevelState extends State {
-        private long startTime;
-        private int second_counter;
-        private int minute_counter;
-        protected LevelManager levelManager;                                                              // ***TEST REMOVE***
+        protected LevelManager levelManager;
+        private UiTopMenuBar topMenu;
 
         public boolean isPaused = false;
         protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
@@ -33,9 +31,7 @@ public class InLevelState extends State {
         private static final int PAUSE_BACKGROUND_WIDTH=4*GraphicsGrid.getScaleX(); // The width of main Menu is 4 Grids
         public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
             super(game);
-            startTime = System.currentTimeMillis();
-            second_counter=0;
-            minute_counter=0;
+            topMenu = new UiTopMenuBar(2,game);
             this.levelManager = new LevelManager(playerDinoNumber);
             this.levelManager.loadLevel(levelSelected);
             
@@ -46,22 +42,23 @@ public class InLevelState extends State {
             PauseMenuButtons[3] = new GraphicsButtons(game,panelWidth / 2, 170 + 30 + 3 * GraphicsGrid.getScaleY(), 3, gameStates.QUIT);
         }
 
-        public void update() {
+
+    public void update() {
             if (isPaused==false) {
                 levelManager.update();
+                topMenu.update();
             }
             else{
                 for (GraphicsButtons button : PauseMenuButtons)
                     button.update();
             }
         }
-
-        public void render(Graphics g) {
-            renderTime(g);
-            levelManager.render(g);
-            if (isPaused){
-                renderPause(g);
-            }
+    public void render(Graphics g) {
+        topMenu.renderTopMenuBar(g,isPaused,100);
+        levelManager.render(g);
+        if (isPaused){
+            renderPause(g);
+        }
         }
 
 
@@ -165,6 +162,7 @@ public class InLevelState extends State {
 
         }
     }
+
     private void renderPause(Graphics g) {
         g.drawImage(PauseBackground,
                 panelWidth / 2 - 2*GraphicsGrid.getScaleX(),
@@ -176,18 +174,5 @@ public class InLevelState extends State {
         for (GraphicsButtons buttons : PauseMenuButtons) {
             buttons.render(g);
         }
-    }
-    public void renderTime(Graphics g){
-            Long currentTime = System.currentTimeMillis();
-            if (System.currentTimeMillis() - startTime >= 1000){
-                startTime = currentTime;
-                if (!isPaused)
-                    second_counter ++;
-            }
-            if (!isPaused && second_counter >= 60){
-                second_counter =0;
-                minute_counter ++;
-            }
-            g.drawString(Integer.toString(minute_counter)+":"+Integer.toString(second_counter),10,10);
     }
 }

@@ -1,8 +1,10 @@
 package group7.entities.inanimate;
 
+
 import group7.entities.animate.Player;
-import group7.utils.AssetLoader;
-import static group7.utils.AssetLoader.*;
+import group7.helperClasses.AssetLoader;
+import static group7.helperClasses.AssetLoader.*;
+
 import java.awt.image.BufferedImage;
 
 

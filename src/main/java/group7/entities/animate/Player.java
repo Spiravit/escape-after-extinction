@@ -2,7 +2,7 @@ package group7.entities.animate;
 
 import group7.entities.Entity;
 import group7.levels.*;
-import group7.utils.AssetLoader;
+import group7.helperClasses.AssetLoader;
 import java.awt.image.BufferedImage;
 
 public class Player extends Animate {

@@ -59,6 +59,8 @@ public class GraphicsGrid {
         gridWidth = unitsWide;
         gridHeight = unitsHigh;
         calculateScale();
+        System.out.println("GridHeigh :" + gridHeight);
+        System.out.println("GridWidth : " + gridWidth);
     }
 
     /**
@@ -69,6 +71,8 @@ public class GraphicsGrid {
         // TODO: call graphicsPanel to get the width and height
         scaleX = panelWidth / gridWidth;
         scaleY = panelHeight / gridHeight;
+        System.out.println("ScaleX : " + scaleX);
+        System.out.println("ScaleY: " + scaleY);
     }
 
     /**
