@@ -1,6 +1,6 @@
 package group7;
 // CMPT 276 Group 7
-// Escape After Extinction 2D game 
+// Escape After Extinction 2D game
 /**
  * Starts the game.
  *

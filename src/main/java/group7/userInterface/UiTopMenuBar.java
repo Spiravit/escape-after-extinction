@@ -1,4 +1,4 @@
-package userInterface;
+package group7.userInterface;
 
 import group7.Game;
 import group7.Graphics.GraphicsButtons;
