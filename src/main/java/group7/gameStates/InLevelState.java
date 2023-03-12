@@ -32,8 +32,9 @@ public class InLevelState extends State {
 
     public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
         super(game);
-        this.levelManager = new LevelManager(playerDinoNumber,levelSelected);
         currentLevelNumber = levelSelected;
+        this.levelManager = new LevelManager(playerDinoNumber,levelSelected);
+        System.out.println("All I need is :"+currentLevelNumber);
         levelFinishedMenu = new UiFinishedGameMenu(game,currentLevelNumber);
         topMenu = new UiTopMenuBar(levelSelected,levelManager,game);
         pauseMenu = new UiPauseMenu(game);
