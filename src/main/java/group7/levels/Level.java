@@ -51,8 +51,11 @@ public abstract class Level {
         numberOfKeys = 0;
 
         addPlayer(1, 3, dinoNumber);
-        addEnemy(5, 5);
-        addKey(1, 3);
+        addEnemy(5, 5, 1);
+        addEnemy(6, 5, 2);
+        addEnemy(5, 7, 3);
+        addEnemy(5, 8, 4);
+        addKey(1, 7);
         addEgg(1, 4, 100);
         addPotion(1, 5, 0);
         addTrap(1, 6);
@@ -77,9 +80,11 @@ public abstract class Level {
      * position x
      * @param y
      * position y
+     * @param enemyNumber
+     * the number of the enemy sprite to use
      */
-    private void addEnemy(int x, int y) {
-        entities.add(new Enemy(x, y, pathfinding));
+    private void addEnemy(int x, int y, int enemyNumber) {
+        entities.add(new Enemy(x, y, pathfinding, enemyNumber));
     }
 
     /**

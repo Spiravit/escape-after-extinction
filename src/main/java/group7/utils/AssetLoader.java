@@ -31,6 +31,11 @@ public class AssetLoader {
 
     public static final String CreditMenu = "menu/credit_text.png";
 
+    public static final String DINO_1 = "player/dino_1.png";
+    public static final String DINO_2 = "player/dino_2.png";
+    public static final String DINO_3 = "player/dino_3.png";
+    public static final String DINO_4 = "player/dino_4.png";
+    public static final String DINO_5 = "player/dino_5.png";
 
     public static final String SCIENTIST = "enemies/Scientists.png";
 

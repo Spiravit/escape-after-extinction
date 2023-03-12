@@ -9,9 +9,8 @@ import java.awt.image.BufferedImage;
 public class Key extends Collectable {
     
     // Constructor
-    public Key(int x, int y) {
-        super(x, y);
-        loadAnimations();
+    public Key(double posX, double posY) {
+        super(posX, posY);
     }
 
     @Override
