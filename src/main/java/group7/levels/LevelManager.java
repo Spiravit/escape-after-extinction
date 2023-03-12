@@ -72,4 +72,13 @@ public class LevelManager {
     public int getKeyCollectedCurrentLevel(){
         return currentLevel.getKeysCollected();
     }
+    
+    /**
+     * get the health of the player in the current level
+     * @return
+     * the health of the player
+     */
+    public int getHealth() {
+        return currentLevel.getHealth();
+    }
 }
