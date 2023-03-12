@@ -123,6 +123,15 @@ public abstract class Level {
     }
 
     /**
+     * returns the player's health
+     * @return
+     * player's health
+     */
+    public int getHealth() {
+        return player.getHealth();
+    }
+
+    /**
      * returns number of all egg (collected and not collected) in a level
      *
      * @return number of egg items in a level
@@ -171,7 +180,7 @@ public abstract class Level {
     }
 
     public LevelState checkLevelState() {
-        if (player.getHealth() < 0) {
+        if (player.getHealth() <= 0) {
             return LevelState.LOST;
         } else if (numberOfKeys == getKeysCollected()) {
             return LevelState.WON;
