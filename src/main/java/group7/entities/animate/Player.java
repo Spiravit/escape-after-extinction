@@ -47,10 +47,29 @@ public class Player extends Animate {
 
     @Override
     protected void loadAnimations() {
-        BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ dinoNumber +".png");
+        String asset;
+        switch (dinoNumber) {
+        default:
+        case 1:
+            asset = AssetLoader.DINO_1;
+            break;
+        case 2:
+            asset = AssetLoader.DINO_2;
+            break;
+        case 3:
+            asset = AssetLoader.DINO_3;
+            break;
+        case 4:
+            asset = AssetLoader.DINO_4;
+            break;
+        case 5:
+            asset = AssetLoader.DINO_5;
+            break;
+        }
+        BufferedImage dinosaur = AssetLoader.getSpriteAtlas(asset);
         
         int prevAnimations = 0;
-        int curAnimation = 11;
+        int curAnimation = 15;
 
         // spawn animation + idle animation to make the spawn animation a bit longer
         entityAnimations[SPAWN_ANIMATION] = new BufferedImage[curAnimation];

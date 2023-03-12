@@ -99,7 +99,7 @@ public class Enemy extends Animate {
             removeDirection(Direction.DOWN);
             removeDirection(Direction.LEFT);
             removeDirection(Direction.RIGHT);
-            if ((int)(Math.random() * 4) == 0) { // 25% chance of playing the special idle animation
+            if ((int)(Math.random() * 2) == 0) { // 50% chance of playing the special idle animation
                 specialIdleAnimation = true;
             }
             break;
@@ -201,7 +201,7 @@ public class Enemy extends Animate {
     }
 
     protected void updateAnimation() {
-        if (specialIdleAnimation) {
+        if (specialIdleAnimation && !trackingPlayer) {
             setAnimation(SPECIAL_IDLE_ANIMATION);
             if (aniIndex == getSpriteAmount(SPECIAL_IDLE_ANIMATION) - 1) {
                 specialIdleAnimation = false;
