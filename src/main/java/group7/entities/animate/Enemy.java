@@ -19,6 +19,9 @@ public class Enemy extends Animate {
     // prevents the enemy from refreshing the player death animation when the enemy continues to interact
     boolean interactable = true;
 
+    boolean trackingPlayer = false;
+    boolean specialIdleAnimation = false;
+
     public Enemy(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY, pathfinding);
         entitySpeed = (float)(0.75 * entitySpeed); // 0.75 the speed of regular animate
@@ -41,6 +44,7 @@ public class Enemy extends Animate {
     public void updateDirection() {
         Direction playerDirection = pathfinding.findPlayer((int) getPosX(), (int) getPosY(), detectionWidth);
         if (!(playerDirection == Direction.NONE)) {
+            trackingPlayer = true;
             // remove all directions
             removeDirection(Direction.UP);
             removeDirection(Direction.DOWN);
@@ -63,37 +67,42 @@ public class Enemy extends Animate {
             return;
         }
 
+        trackingPlayer = false;
         // if the player is not in range, move randomly
-        if (directionUpdateInterval > 0) {
+        if (directionUpdateInterval > 0 || specialIdleAnimation) {
             directionUpdateInterval--;
             return;
         }
         directionUpdateInterval = (int) (Math.random() * 100);
         switch ((int) (Math.random() * 5)) {
-            case 0:
-                toggleDirection(Direction.UP);
-                break;
-            case 1:
-                toggleDirection(Direction.DOWN);
-                break;
-            case 2:
-                toggleDirection(Direction.LEFT);
-                break;
-            case 3:
-                toggleDirection(Direction.RIGHT);
-                break;
-            case 4: // stop moving
-                removeDirection(Direction.UP);
-                removeDirection(Direction.DOWN);
-                removeDirection(Direction.LEFT);
-                removeDirection(Direction.RIGHT);
-                break;
+        case 0:
+            toggleDirection(Direction.UP);
+            break;
+        case 1:
+            toggleDirection(Direction.DOWN);
+            break;
+        case 2:
+            toggleDirection(Direction.LEFT);
+            break;
+        case 3:
+            toggleDirection(Direction.RIGHT);
+            break;
+        case 4: // stop moving
+            removeDirection(Direction.UP);
+            removeDirection(Direction.DOWN);
+            removeDirection(Direction.LEFT);
+            removeDirection(Direction.RIGHT);
+            if ((int)(Math.random() * 5) == 0) { // 20% chance of playing the special idle animation
+                specialIdleAnimation = true;
+            }
+            break;
         }
     }
 
     public void loadAnimations() {
         BufferedImage scientist = AssetLoader.getSpriteAtlas(AssetLoader.SCIENTIST);
-        
+        int scientistNumber = 0;
+
         entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
         for (int i = 0; i < 4; i++) {
             entityAnimations[DEFAULT_ANIMATION][i] = scientist.getSubimage(i * 32, 0, 32, 32);
@@ -103,7 +112,30 @@ public class Enemy extends Animate {
         for (int i = 0; i < 8; i++) {
             entityAnimations[MOVING_ANIMATION][i] = scientist.getSubimage(i * 32, 32, 32, 32);
         }
-       
+
+        entityAnimations[SPECIAL_IDLE_ANIMATION] = new BufferedImage[16];
+        for (int i = 0; i < 16; i++) {
+            entityAnimations[SPECIAL_IDLE_ANIMATION][i] = scientist.getSubimage(i * 32, 2 * 32, 32, 32);
+        }
+
+        entityAnimations[TRACKING_PLAYER_ANIMATION] = new BufferedImage[8];
+        for (int i = 0; i < 8; i++) {
+            entityAnimations[TRACKING_PLAYER_ANIMATION][i] = scientist.getSubimage(i * 32, 3 * 32, 32, 32);
+        }
+    }
+
+    protected void updateAnimation() {
+        if (specialIdleAnimation) {
+            setAnimation(SPECIAL_IDLE_ANIMATION);
+            if (aniIndex == getSpriteAmount(SPECIAL_IDLE_ANIMATION) - 1) {
+                specialIdleAnimation = false;
+            }
+        } else
+        if (trackingPlayer) {
+            setAnimation(TRACKING_PLAYER_ANIMATION);
+        } else {
+            super.updateAnimation();
+        }
     }
 
     /**
