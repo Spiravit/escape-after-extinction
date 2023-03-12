@@ -49,4 +49,10 @@ public class buttonSpriteRow {
     // Continue button sprite is at 12th row of mainMenuButtons.png
     public static final int CONTINUE_BUTTON = 11;
 
+    // next level button sprite is at 13th row of mainMenuButtons.png
+    public static final int NEXT_LEVEL_BUTTON = 12;
+
+    // restart level button sprite is at 14th row of mainMenuButtons.png
+    public static final int RESTART_BUTTON = 13;
+
 }

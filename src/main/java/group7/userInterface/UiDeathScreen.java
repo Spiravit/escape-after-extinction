@@ -1,4 +1,9 @@
 package group7.userInterface;
 
-public class UiDeathScreen {
+import group7.Game;
+
+public class UiDeathScreen extends UiMenu{
+    public UiDeathScreen(Game game) {
+        super(game);
+    }
 }

@@ -56,4 +56,20 @@ public class LevelManager {
     public void render(Graphics g) {
         currentLevel.render(g);
     }
+
+    public LevelState getLevelState(){
+        return currentLevel.checkLevelState();
+    }
+    public int getEggInCurrentLevel(){
+        return currentLevel.getNumberOfEggs();
+    }
+    public int getKeyInCurrentLevel(){
+        return currentLevel.getNumberOfKeys();
+    }
+    public int getEggCollectedCurrentLevel(){
+        return currentLevel.getEggsCollected();
+    }
+    public int getKeyCollectedCurrentLevel(){
+        return currentLevel.getKeysCollected();
+    }
 }

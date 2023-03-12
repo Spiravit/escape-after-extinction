@@ -6,6 +6,9 @@ import group7.Graphics.GraphicsGrid;
 import group7.Graphics.GraphicsPanel;
 import group7.gameStates.gameStates;
 import group7.helperClasses.AssetLoader;
+import group7.levels.LevelManager;
+
+import static group7.helperClasses.buttonSpriteRow.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -53,6 +56,9 @@ public class UiTopMenuBar {
     // retroFont is used to draw time counter at in-game menu
     private Font retroFont ;
 
+    // retroFont is used to draw time counter at in-game menu
+    private LevelManager levelManager ;
+
     /**
      * Constructor for UiTopMenuBar class
      *
@@ -68,7 +74,7 @@ public class UiTopMenuBar {
      *                     the gameState inside game object.
      *
      */
-    public UiTopMenuBar(int levelNumber, Game game, int eggCollected, int eggLevelNumber, int keyCollected, int keyLevelNumber){
+    public UiTopMenuBar(int levelNumber, LevelManager levelManager, Game game){
         // Initialize the topMenuSkyParallelBackground object
         // passed 4 to UiParallelBackground constructor since animated background for in-game menu is using 4 images
         // passed 0 as scale1 meaning that position y of animated background is at 0 and scale2 is indicating
@@ -85,7 +91,7 @@ public class UiTopMenuBar {
         // passed 5 as row , since the sprite for Pause button is in 6th row of mainMenuButtons.png
         // passed gameStates.PAUSE as the objective of this button. When the button is clicked , it should change the game
         // to pause mode.
-        pauseMenuButton = new GraphicsButtons(game, (int)(panelWidth-2.5*GraphicsGrid.scaleX), (int)(0.5*GraphicsGrid.getScaleY()), 5, gameStates.PAUSE);
+        pauseMenuButton = new GraphicsButtons(game, (int)(panelWidth-2.5*GraphicsGrid.scaleX), (int)(0.5*GraphicsGrid.getScaleY()), PAUSED_BUTTON, gameStates.PAUSE);
 
         loadFont(); // loading the custom font at assets/font directory
 
@@ -95,6 +101,8 @@ public class UiTopMenuBar {
         // Loading the images for health bar
         healthBarBoundary = AssetLoader.getSpriteAtlas(AssetLoader.HEALTH_BAR_BOUNDARY);
         healthBarInside = AssetLoader.getSpriteAtlas(AssetLoader.HEALTH_BAR_INSIDE);
+
+        this.levelManager = levelManager;
     }
 
     /**
@@ -118,14 +126,14 @@ public class UiTopMenuBar {
      * @param health        Health is an integer indicating health of a player. It is passed in order
      *                      to render player's health on the in-game menu.
      */
-    public void renderTopMenuBar (Graphics g, boolean isPaused, int health){
+    public void renderTopMenuBar (Graphics g, boolean isPaused, int health,int eggCollected, int keyCollected){
         topMenuSkyParallelBackground.renderParallelBackground(g);
         g.drawImage(topMenuLandBackground,0,(int)(1.25*GraphicsGrid.scaleY),GraphicsPanel.panelWidth,(int)(0.75*GraphicsGrid.scaleY),null);
         renderTime(g,isPaused);
         renderHealth(g,health);
         renderScore(g,100);
-        renderEggCount(g,1,8);
-        renderKeyCount(g,1,8);
+        renderEggCount(g,eggCollected);
+        renderKeyCount(g,keyCollected);
         pauseMenuButton.render(g);
     }
 
@@ -231,14 +239,13 @@ public class UiTopMenuBar {
      *
      * @param g                 Graphic g is passed as parameter in order to draw items on game window.
      * @param eggCollected      Number of eggs a player has collected currently.
-     * @param eggLevelNumber    Number of all eggs whether collected or not in current level player is playing.
      */
-    private void renderEggCount(Graphics g, int eggCollected, int eggLevelNumber){
+    private void renderEggCount(Graphics g, int eggCollected){
         // Using Graphic2D in order to change the Font for drawing a string
         Graphics2D g2D = (Graphics2D) g;
         // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
-        g.drawString("Egg: " + eggCollected +"/" + eggLevelNumber,10*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+        g.drawString("Egg: " + eggCollected +"/" + levelManager.getEggInCurrentLevel(),10*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
 
     }
 
@@ -247,14 +254,13 @@ public class UiTopMenuBar {
      *
      * @param g                 Graphic g is passed as parameter in order to draw items on game window.
      * @param keyCollected      Number of Keys a player has collected currently.
-     * @param keyLevelNumber    Number of all keys whether collected or not in current level player is playing.
      */
-    private void renderKeyCount(Graphics g, int keyCollected, int keyLevelNumber){
+    private void renderKeyCount(Graphics g, int keyCollected){
         // Using Graphic2D in order to change the Font for drawing a string
         Graphics2D g2D = (Graphics2D) g;
         // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
-        g.drawString("Keys: " + keyCollected +"/" + keyLevelNumber,12*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+        g.drawString("Keys: " + keyCollected +"/" + levelManager.getKeyInCurrentLevel(),12*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
     }
 
 }
