@@ -52,7 +52,7 @@ public class InLevelState extends State {
         }
     }
     public void render(Graphics g) {
-        topMenu.renderTopMenuBar(g,isPaused,100, levelManager.getEggCollectedCurrentLevel(), levelManager.getKeyCollectedCurrentLevel());
+        topMenu.renderTopMenuBar(g,isPaused,levelManager.getHealth(), levelManager.getEggCollectedCurrentLevel(), levelManager.getKeyCollectedCurrentLevel());
         levelManager.render(g);
         if (isPaused && isLevelDone!=LevelState.PLAYING){
             levelFinishedMenu.render(g);
