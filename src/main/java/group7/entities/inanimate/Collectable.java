@@ -18,8 +18,8 @@ public abstract class Collectable extends Inanimate {
     public static final int EGG_POINT_BONUS = 3;
     
     // Constructor
-    public Collectable(int x, int y) {
-        super(x, y);
+    public Collectable(double posX, double posY) {
+        super(posX, posY);
     }
 
     protected void updateAnimation() {

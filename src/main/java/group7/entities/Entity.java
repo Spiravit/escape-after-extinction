@@ -51,10 +51,11 @@ public abstract class Entity {
     protected final static int ANIMATION_COUNT = 8;
 
     public Entity(double posX, double posY) {
-        hitboxX = posX;
-        hitboxY = posY;
+        setPosX(posX);
+        setPosY(posY);
 
         entityAnimations = new BufferedImage[ANIMATION_COUNT][];
+        loadAnimations();
     }
 
     /**
@@ -71,6 +72,26 @@ public abstract class Entity {
      */
     protected double getPosX() {
         return hitboxX + hitboxWidth / 2;
+    }
+
+    /**
+     * sets the x position of the entity to be the center of the given x tile
+     * recall this method when hitboxX or hitboxWidth is changed to center the entity
+     * @param x
+     * the x position to set the entity to
+     */
+    protected void setPosX(double x) {
+        hitboxX = x + ((1 - hitboxWidth) / 2);
+    }
+
+    /**
+     * sets the y position of the entity to be the center of the given y tile
+     * recall this method when hitboxY or hitboxHeight is changed to center the entity
+     * @param y
+     * the y position to set the entity to
+     */
+    protected void setPosY(double y) {
+        hitboxY = y + ((1 - hitboxHeight) / 2);
     }
 
     /**
@@ -98,6 +119,11 @@ public abstract class Entity {
         }
     }
 
+    /**
+     * sets the current animation of the entity
+     * @param animation
+     * the animation to set the entity to
+     */
     protected void setAnimation(int animation) {
         if (!(currentAnimation == animation)) {
             currentAnimation = animation;

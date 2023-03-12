@@ -23,6 +23,8 @@ public abstract class Animate extends Entity {
         // change hitbox size to 0.8 to allow for movement
         hitboxWidth = 0.8;
         hitboxHeight = 0.8;
+        setPosX(posX);
+        setPosY(posY);
     }
 
     /**
