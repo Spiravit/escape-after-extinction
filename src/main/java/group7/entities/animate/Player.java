@@ -28,6 +28,8 @@ public class Player extends Animate {
         this.dinoNumber = dinoNumber;
         currentAnimation = SPAWN_ANIMATION;
         loadAnimations();
+        imageScaleX = 1.25;
+        imageScaleY = 1.5;
     }
 
     @Override
