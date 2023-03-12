@@ -20,7 +20,7 @@ public class UiFinishedGameMenu extends UiMenu{
     public UiFinishedGameMenu(Game game, int currentLevel) {
         super(game);
         this.currentLevel=currentLevel;
-        System.out.println(currentLevel);
+        initialiseMenuButtons();
         loadFont();
     }
 
@@ -32,12 +32,16 @@ public class UiFinishedGameMenu extends UiMenu{
         g2D.setColor(Color.white);
         g2D.drawString("WON !",panelWidth/2 - scaleX/2,5*scaleY);
     }
-
     @Override
     protected void initializeMenuButtons() {
+        // TODO FIx here
+    }
+
+    protected void initialiseMenuButtons() {
         menuButtons = new UiButtons[3];
         // If we are at level 2 or 1, we will have next level button
         if (currentLevel < 3){
+            System.out.println("Current level is " + currentLevel);
             menuButtons[0] = new UiButtons(game,
                     mainMenuButtonsPosX,
                     9*scaleY,
