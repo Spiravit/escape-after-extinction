@@ -1,8 +1,8 @@
 package group7.gameStates;
 
 import group7.Game;
-import group7.userInterface.UiPauseMenu;
-import group7.userInterface.UiTopMenuBar;
+import group7.levels.LevelState;
+import group7.userInterface.*;
 import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.levels.LevelManager;
@@ -26,25 +26,39 @@ public class InLevelState extends State {
     protected LevelManager levelManager;
     private UiTopMenuBar topMenu;
     private UiPauseMenu pauseMenu;
+    private UiMenu levelFinishedMenu;
+    public LevelState isLevelDone = LevelState.PLAYING;
+
+    int currentLevelNumber;
+
     public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
         super(game);
-        topMenu = new UiTopMenuBar(2,game,1,8,1,8);
-        pauseMenu = new UiPauseMenu(game);
         this.levelManager = new LevelManager(playerDinoNumber,levelSelected);
+        currentLevelNumber = levelSelected;
+        levelFinishedMenu = new UiFinishedGameMenu(game,currentLevelNumber);
+        topMenu = new UiTopMenuBar(levelSelected,levelManager,game);
+        pauseMenu = new UiPauseMenu(game);
     }
     public void update() {
-        if (isPaused==false) {
+        isLevelDone = levelManager.getLevelState();
+        if (isPaused==false && isLevelDone==LevelState.PLAYING) {
             levelManager.update();
             topMenu.update();
         }
-        else{
+        if (isLevelDone != LevelState.PLAYING){
+            isPaused=true;
+        }
+        if (isPaused==true && isLevelDone==LevelState.PLAYING){
             pauseMenu.update();
         }
     }
     public void render(Graphics g) {
-        topMenu.renderTopMenuBar(g,isPaused,100);
+        topMenu.renderTopMenuBar(g,isPaused,100, levelManager.getEggCollectedCurrentLevel(), levelManager.getKeyCollectedCurrentLevel());
         levelManager.render(g);
-        if (isPaused==true){
+        if (isPaused && isLevelDone!=LevelState.PLAYING){
+            levelFinishedMenu.render(g);
+        }
+        if (isPaused==true && isLevelDone==LevelState.PLAYING){
             pauseMenu.render(g);
         }
     }
@@ -103,6 +117,9 @@ public class InLevelState extends State {
         if(isPaused==false){
             return;
         }
+        if (isPaused && isLevelDone != LevelState.PLAYING){
+            levelFinishedMenu.mousePressed(e);
+        }
         else{
             pauseMenu.mousePressed(e);
         }
@@ -113,6 +130,9 @@ public class InLevelState extends State {
         if(isPaused==false){
             return;
         }
+        if (isPaused && isLevelDone != LevelState.PLAYING){
+            levelFinishedMenu.mouseReleased(e);
+        }
         pauseMenu.mouseReleased(e);
     }
 
@@ -121,7 +141,11 @@ public class InLevelState extends State {
         if(isPaused==false){
             return;
         }
+        if (isPaused && isLevelDone != LevelState.PLAYING){
+            levelFinishedMenu.mouseMoved(e);
+        }
         pauseMenu.mouseMoved(e);
     }
+
 
 }

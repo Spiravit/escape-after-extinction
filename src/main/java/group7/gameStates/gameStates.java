@@ -15,7 +15,8 @@ public enum gameStates {
     NEXT,    //The substage when player has pressed next button
     PERV,   // The substage when player has pressed previous button
     RESTART,     // The substage when player has pressed restart button
-    RESUME, // The substage when continue key was clicked in pause menu
+    RESUME,// The substage when continue key was clicked in pause menu
+    Next_Level, // substage when a  next level button is clicked
     PAUSE; // The substage when player has pressed  pause button
 
 }

@@ -1,3 +1,4 @@
+// TODO : need no more editing
 package group7.userInterface;
 
 import group7.Game;
@@ -10,9 +11,11 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 /**
- * This class is implemented to render
+ * This class is implemented to render Buttons, implements their interaction with mouse input
+ * and associate them with a gameState. That is if they are clicked then they change the state of game based on
+ *  their associated button state.
  *
- *
+ * @author Mohammad Parsaei
  */
 public class UiButtons {
 
@@ -79,6 +82,7 @@ public class UiButtons {
 
         return IsMouseOverButton;
     }
+
     /**
      *  gets value of IsMousePressedButton and returns it.
      *
@@ -171,26 +175,49 @@ public class UiButtons {
 
 
     /**
-     *
+     * resets the value of IsMouseOverButton to false indicating that mouse is not on button anymore.
      *
      */
     public void resetMouseBooleans() {
+
         IsMouseOverButton = IsMousePressedButton =  false;
     }
+
+    /**
+     * passes the buttonGameStates to changeGameStates method in game class when the button is clicked in order
+     * to change state of the game.
+     *
+     */
     public void applyGameState() {
         // Change the current stage of Game to be the same stage of button
         game.changeGameStates(buttonGameStates);
     }
 
+    /**
+     *  TODO mIGHT be removed !
+     */
     public void update() {
-        // TODO FIX the update method for buttons
-        // TODO MAYBE we don't need it ???
+        // TODO ADD :???
     }
 
+
+    /**
+     * returns true if the mouse is on the button else it returns false.
+     *
+     * @param e     MouseEvent e passed in order to see if the mouse position falls in where button is located
+     * @return      returns boolean indicating if the mouse is on the button or not
+     */
     public boolean isMouseInButton (MouseEvent e) {
         return buttonCollision.contains(e.getX(), e.getY());
     }
+
+    /**
+     * Returns the state that button is associated with.
+     *
+     * @return  return buttonGameStates
+     */
     public gameStates getButtonGameStates() {
+
         return buttonGameStates;
     }
 

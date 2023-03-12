@@ -33,8 +33,8 @@ public class Game implements Runnable {
 
 
 
-    int playerDinoNumber = 1;
-    int levelSelected = 1;
+    int playerDinoNumber;
+    int levelSelected;
 
 
     /**
@@ -51,6 +51,9 @@ public class Game implements Runnable {
         currentState = new MainMenuState(this);
         // setting initial state of game to be mainMenu
         gameCurrentState = gameStates.IN_MENU;
+
+        levelSelected=1;
+        playerDinoNumber=1;
 
         // Since the initial state of game is main menu, we pass a mainMenuState object as a gameState object
         // to graphicsPanel so that graphicsPanel will render the main menu until.
@@ -74,9 +77,9 @@ public class Game implements Runnable {
 
 
     /**
+     * changes state of game based on argument passed.
      *
-     *
-     * @param gameStateParameter
+     * @param gameStateParameter    The desired next state of game.
      */
     public void changeGameStates(gameStates gameStateParameter){
 
@@ -99,6 +102,19 @@ public class Game implements Runnable {
         // but still keep the gameStage to be inLevel stage since we are still in levels
         else if (gameCurrentState==gameStates.IN_LEVEL && gameStateParameter == gameStates.RESUME){
             currentState.isPaused=false;
+            return;
+        }
+
+        // If gameStateParameter is Next_level then we need to make the next level
+        // to play it.
+        else if (gameCurrentState==gameStates.IN_LEVEL && gameStateParameter == gameStates.Next_Level){
+            currentState.isPaused=false;
+            levelSelected ++;
+            if (levelSelected > 3){
+                levelSelected = levelSelected % 3;
+            }
+            currentState = new InLevelState(this, playerDinoNumber, levelSelected);
+            graphicsPanel.changeGameStates(currentState);
             return;
         }
 

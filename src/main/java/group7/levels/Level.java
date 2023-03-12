@@ -27,8 +27,6 @@ public abstract class Level {
     protected int numberOfEggs = 0;
     protected int numberOfKeys = 0;
 
-    protected int eggsCollected = 0;
-    protected int keysCollected = 0;
 
     /** 
      * Loads everything about the level
@@ -40,9 +38,6 @@ public abstract class Level {
         importSprites();
         setLevelData(); // TEST: MULTIPLE LEVLES
         GraphicsGrid.setGridSize(width, height);
-        
-        numberOfEggs = 0;
-        numberOfKeys = 0;
     }
 
     /**
@@ -178,7 +173,7 @@ public abstract class Level {
     public LevelState checkLevelState() {
         if (player.getHealth() < 0) {
             return LevelState.LOST;
-        } else if (numberOfKeys == keysCollected) {
+        } else if (numberOfKeys == getKeysCollected()) {
             return LevelState.WON;
         } else {
             return LevelState.PLAYING;

@@ -10,7 +10,7 @@ public class Level3 extends Level {
         super(dinoNumber);
         addPlayer(1, 3, dinoNumber);
         addEnemy(5, 5);
-        addKey(1, 3);
+        addKey(1, 7);
         addEgg(1, 4, 100);
         addPotion(1, 5, 0);
         addTrap(1, 6);
