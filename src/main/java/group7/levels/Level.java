@@ -28,9 +28,9 @@ public abstract class Level {
     protected int numberOfKeys = 0;
 
 
-    /** 
+    /**
      * Loads everything about the level
-     * @param dinoNumber 
+     * @param dinoNumber
      * player dino type
      */
     public Level(int dinoNumber) {
@@ -59,11 +59,9 @@ public abstract class Level {
      * position x
      * @param y
      * position y
-     * @param enemyNumber
-     * the number of the enemy sprite to use
      */
-    protected void addEnemy(int x, int y) {
-        entities.add(new Enemy(x, y, pathfinding));
+    protected void addEnemy(int x, int y, int enemyNumber) {
+        entities.add(new Enemy(x, y, pathfinding, enemyNumber));
     }
 
     /**
@@ -125,6 +123,15 @@ public abstract class Level {
     }
 
     /**
+     * returns the player's health
+     * @return
+     * player's health
+     */
+    public int getHealth() {
+        return player.getHealth();
+    }
+
+    /**
      * returns number of all egg (collected and not collected) in a level
      *
      * @return number of egg items in a level
@@ -143,19 +150,19 @@ public abstract class Level {
     }
 
 
-    /** 
+    /**
      * Set the level data
      * this includes the data in the pathfinding object and the levelSpriteData array
      */
     protected abstract void setLevelData();
 
-    /** 
+    /**
      * Import the sprites from the sprite atlas and store them in the levelSprites array
      */
     private void importSprites() {
         BufferedImage img = AssetLoader.getSpriteAtlas("levels/levelssprites.png");
         levelSprites = new BufferedImage[75];
-        
+
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 5; y++) {
                 int index = y * 15 + x;
@@ -173,7 +180,7 @@ public abstract class Level {
     }
 
     public LevelState checkLevelState() {
-        if (player.getHealth() < 0) {
+        if (player.getHealth() <= 0) {
             return LevelState.LOST;
         } else if (numberOfKeys == getKeysCollected()) {
             return LevelState.WON;
@@ -208,20 +215,20 @@ public abstract class Level {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 GraphicsGrid.render(
-                    g, 
-                    levelSprites[levelSpriteData[x][y]], 
-                    x, 
-                    y, 
-                    1, 
-                    1
+                        g,
+                        levelSprites[levelSpriteData[x][y]],
+                        x,
+                        y,
+                        1,
+                        1
                 );
             }
         }
- 
+
         for (Entity entity : entities) {
             entity.render(g);
         }
- 
+
         player.render(g);
     }
 }

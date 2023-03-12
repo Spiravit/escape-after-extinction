@@ -37,7 +37,7 @@ public class MainMenuState extends State {
 
     @Override
     public void update() {
-       // TODO
+        // TODO
     }
 
     @Override
@@ -85,8 +85,5 @@ public class MainMenuState extends State {
     @Override
     public void mouseMoved(MouseEvent e) {
         mainMenuBox.mouseMoved(e);
-    }
-    public int resetLevelSelect() {
-        return 0;
     }
 }

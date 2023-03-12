@@ -16,7 +16,7 @@ public class AssetLoader {
     public static final String MAIN_MENU_BUTTONS = "menu/mainMenuButtons.png";
     // The main menu background sprite image
     public static final String MAIN_MENU_BACKGROUND = "menu/mainMenuBackground.png";
-/*
+
     public static final String MAINPAGE_Layer_1 = "menu/parallexBG/1.png";
     public static final String MAINPAGE_Layer_2 = "menu/parallexBG/2.png";
     public static final String MAINPAGE_Layer_3 = "menu/parallexBG/3.png";
@@ -24,7 +24,7 @@ public class AssetLoader {
     public static final String MAINPAGE_Layer_5 = "menu/parallexBG/5.png";
     public static final String MAINPAGE_Layer_6 = "menu/parallexBG/6.png";
     public static final String MAINPAGE_Layer_7 = "menu/parallexBG/7.png";
-    public static final String MAINPAGE_Layer_8 = "menu/parallexBG/8.png";*/
+    public static final String MAINPAGE_Layer_8 = "menu/parallexBG/8.png";
     public static final String LOADING_1 = "menu/parallexBG/loading1.png";
     public static final String LOADING_2 = "menu/parallexBG/loading2.png";
     public static final String LOADING_3 = "menu/parallexBG/loading3.png";
@@ -62,7 +62,7 @@ public class AssetLoader {
      * The sprite atlas as a BufferedImage
      */
     public static BufferedImage getSpriteAtlas(String filename) {
-        //System.out.println("filename: " + filename);
+        System.out.println("filename: " + filename);
         BufferedImage img = null;
         InputStream is = AssetLoader.class.getResourceAsStream("/assets/" + filename);
         try {
