@@ -86,4 +86,7 @@ public class MainMenuState extends State {
     public void mouseMoved(MouseEvent e) {
         mainMenuBox.mouseMoved(e);
     }
+    public int resetLevelSelect() {
+        return 0;
+    }
 }

@@ -13,7 +13,6 @@ import static group7.helperClasses.buttonSpriteRow.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import static group7.Graphics.GraphicsPanel.*;
 
 /**
  *
