@@ -53,10 +53,12 @@ public abstract class Animate extends Entity {
         // When moving left check both top left and bottom left
         if(this.movingLeft && checkDirection(Direction.LEFT)){
             hitboxX -= entitySpeed;
+            reverseImage = true;
         }
         // When moving right check both top left and bottom left
         if(this.movingRight && checkDirection(Direction.RIGHT)) {
             hitboxX += entitySpeed;
+            reverseImage = false;
         }
     }
 
@@ -117,10 +119,6 @@ public abstract class Animate extends Entity {
                 return false;
         }
     }
-
-
-
-
 
     /**
      * adds a direction to the list of directions the entity is moving in

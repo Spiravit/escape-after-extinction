@@ -48,17 +48,17 @@ public class Player extends Animate {
         BufferedImage dinosaur = AssetLoader.getSpriteAtlas("playerSprites/dino_"+ dinoNumber +".png");
         
         int prevAnimations = 0;
-        int curAnimation = 8;
+        int curAnimation = 11;
 
+        // spawn animation + idle animation to make the spawn animation a bit longer
         entityAnimations[SPAWN_ANIMATION] = new BufferedImage[curAnimation];
         for (int i = 0; i < curAnimation; i++) {
             entityAnimations[SPAWN_ANIMATION][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
         }
 
-        prevAnimations += curAnimation;
+        prevAnimations += curAnimation - 3;
         curAnimation = 3;
 
-        // place idle animations into 2d array
         entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[curAnimation];
         for (int i = 0; i < curAnimation; i++) {
             entityAnimations[DEFAULT_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
@@ -67,7 +67,6 @@ public class Player extends Animate {
         prevAnimations += curAnimation;
         curAnimation = 6;
 
-        // place moving animations into 2d array
         entityAnimations[MOVING_ANIMATION] = new BufferedImage[curAnimation];
         for (int i = 0; i < curAnimation; i++) {
             entityAnimations[MOVING_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
@@ -119,7 +118,11 @@ public class Player extends Animate {
      */
     public void takeDamage(int damage) {
         health -= damage;
-        setAnimation(DAMAGE_TAKEN_ANIMATION);
+        if (health <= 0) {
+            setAnimation(DEATH_ANIMATION);
+        } else {
+            setAnimation(DAMAGE_TAKEN_ANIMATION);
+        }
         canMove = false;
     }
 

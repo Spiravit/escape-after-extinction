@@ -23,18 +23,23 @@ public class Egg extends Collectable {
         loadAnimations();
         this.timeout = timeout;
         startTime = System.currentTimeMillis();
+
+        aniSpeed = 30;
     }
 
     @Override
     protected void loadAnimations() {
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[1];
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.EGG);
-        entityAnimations[DEFAULT_ANIMATION][0] = img.getSubimage(0, 0, 24, 24);
+
+        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
+        for (int i = 0; i < 4; i++) {
+            entityAnimations[DEFAULT_ANIMATION][i] = img.getSubimage(i * 24, 0, 24, 24);
+        }
     }
 
     public void update() {
         if ((System.currentTimeMillis() - startTime) / 1000 > timeout) {
-            visible = false;
+            removeCollectable();
         }
         super.update();
     }

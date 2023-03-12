@@ -16,6 +16,9 @@ public class Enemy extends Animate {
     int detectionWidth = 5;
     int detectionHeight = 5;
 
+    // prevents the enemy from refreshing the player death animation when the enemy continues to interact
+    boolean interactable = true;
+
     public Enemy(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY, pathfinding);
         entitySpeed = (float)(0.75 * entitySpeed); // 0.75 the speed of regular animate
@@ -128,7 +131,10 @@ public class Enemy extends Animate {
 
     @Override
     public void onInteraction(Player player) {
-        player.takeDamage(player.getHealth()); // remove all health
+        if (interactable) {
+            player.takeDamage(player.getHealth()); // remove all health
+            interactable = false;
+        }
     }
 
     public void render(Graphics g) {
