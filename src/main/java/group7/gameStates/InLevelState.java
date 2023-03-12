@@ -1,18 +1,18 @@
 package group7.gameStates;
 
 import group7.Game;
-import group7.Graphics.GraphicsButtons;
+import group7.levels.LevelState;
+import group7.userInterface.*;
 import group7.Graphics.GraphicsGrid;
 import group7.levels.LevelManager;
-import group7.utils.AssetLoader;
-import group7.utils.Direction;                                                      
+import group7.helperClasses.AssetLoader;
+import group7.helperClasses.Direction;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static group7.Graphics.GraphicsPanel.panelHeight;
 import static group7.Graphics.GraphicsPanel.panelWidth;
 
 
@@ -21,104 +21,107 @@ import static group7.Graphics.GraphicsPanel.panelWidth;
 // render and update them
 // the class is extending the abstract State class, a super class for all states
 public class InLevelState extends State {
-        protected LevelManager levelManager;                                                              // ***TEST REMOVE***              
 
-        public boolean isPaused = false;
-        protected GraphicsButtons[] PauseMenuButtons = new GraphicsButtons[4];
-        private BufferedImage PauseBackground;
-        private static final int PAUSE_BACKGROUND_HEIGHT=80+4*GraphicsGrid.getScaleY()+20;
-        private static final int PAUSE_BACKGROUND_WIDTH=4*GraphicsGrid.getScaleX(); // The width of main Menu is 4 Grids
-        public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
-            super(game);
-            this.levelManager = new LevelManager(playerDinoNumber);
-            this.levelManager.loadLevel(levelSelected);
-            
-            PauseBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
-            PauseMenuButtons[0] = new GraphicsButtons(game,panelWidth / 2, 170, 0, gameStates.RESTART);
-            PauseMenuButtons[1] = new GraphicsButtons(game,panelWidth / 2, 170 + 10 + 1 * GraphicsGrid.getScaleY(), 11, gameStates.IN_LEVEL);
-            PauseMenuButtons[2] = new GraphicsButtons(game,panelWidth / 2, 170 + 20 + 2 * GraphicsGrid.getScaleY(), 10, gameStates.IN_MENU);
-            PauseMenuButtons[3] = new GraphicsButtons(game,panelWidth / 2, 170 + 30 + 3 * GraphicsGrid.getScaleY(), 3, gameStates.QUIT);
+    protected LevelManager levelManager;
+    private UiTopMenuBar topMenu;
+    private UiPauseMenu pauseMenu;
+    private UiMenu levelFinishedMenu;
+    public LevelState isLevelDone = LevelState.PLAYING;
+
+    int currentLevelNumber;
+
+    public InLevelState(Game game, int playerDinoNumber, int levelSelected) {
+        super(game);
+        this.levelManager = new LevelManager(playerDinoNumber,levelSelected);
+        currentLevelNumber = levelSelected;
+        levelFinishedMenu = new UiFinishedGameMenu(game,currentLevelNumber);
+        topMenu = new UiTopMenuBar(levelSelected,levelManager,game);
+        pauseMenu = new UiPauseMenu(game);
+    }
+    public void update() {
+        isLevelDone = levelManager.getLevelState();
+        if (isPaused==false && isLevelDone==LevelState.PLAYING) {
+            levelManager.update();
+            topMenu.update();
         }
-
-        public void update() {
-            if (isPaused==false) {
-                levelManager.update();
-            }
-            else{
-                for (GraphicsButtons button : PauseMenuButtons)
-                    button.update();
-            }
+        if (isLevelDone != LevelState.PLAYING){
+            isPaused=true;
         }
-
-        public void render(Graphics g) {
-            levelManager.render(g);
-            if (isPaused){
-                renderPause(g);
-            }
+        if (isPaused==true && isLevelDone==LevelState.PLAYING){
+            pauseMenu.update();
         }
-
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            if (isPaused==false){
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
-                    //Right arrow key code
-                    levelManager.setDirection(Direction.RIGHT);
-                } else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
-                    //gamePanel arrow key code
-                    levelManager.setDirection(Direction.LEFT);
-                } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
-                    //Up arrow key code
-                    levelManager.setDirection(Direction.UP);
-                } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
-                    //Down arrow key code
-                    levelManager.setDirection(Direction.DOWN);
-                } 
-                if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
-                    isPaused = true;
-                    return;
-                }
+    }
+    public void render(Graphics g) {
+        topMenu.renderTopMenuBar(g,isPaused,100, levelManager.getEggCollectedCurrentLevel(), levelManager.getKeyCollectedCurrentLevel());
+        levelManager.render(g);
+        if (isPaused && isLevelDone!=LevelState.PLAYING){
+            levelFinishedMenu.render(g);
+        }
+        if (isPaused==true && isLevelDone==LevelState.PLAYING){
+            pauseMenu.render(g);
+        }
+    }
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (isPaused==false){
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+                //Right arrow key code
+                levelManager.setDirection(Direction.RIGHT);
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+                //gamePanel arrow key code
+                levelManager.setDirection(Direction.LEFT);
+            } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+                //Up arrow key code
+                levelManager.setDirection(Direction.UP);
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+                //Down arrow key code
+                levelManager.setDirection(Direction.DOWN);
             }
-            if (isPaused==true){
-                if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
-                    isPaused = false;
-                    levelManager.removeDirection(Direction.RIGHT);
-                    levelManager.removeDirection(Direction.LEFT);
-                    levelManager.removeDirection(Direction.UP);
-                    levelManager.removeDirection(Direction.DOWN);
-                }
+            if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
+                isPaused = true;
+                return;
             }
         }
-        @Override
-        public void keyReleased(KeyEvent e) {
-            if (isPaused==false){
-                if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
-                    //Right arrow key code
-                    levelManager.removeDirection(Direction.RIGHT);
-                } else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
-                    //gamePanel arrow key code
-                    levelManager.removeDirection(Direction.LEFT);
-                } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
-                    //Up arrow key code
-                    levelManager.removeDirection(Direction.UP);
-                } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
-                    //Down arrow key code
-                    levelManager.removeDirection(Direction.DOWN);
-                }
+        if (isPaused==true){
+            if (e.getKeyCode()==KeyEvent.VK_ESCAPE){
+                isPaused = false;
+                levelManager.removeDirection(Direction.RIGHT);
+                levelManager.removeDirection(Direction.LEFT);
+                levelManager.removeDirection(Direction.UP);
+                levelManager.removeDirection(Direction.DOWN);
             }
         }
+    }
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (isPaused==false){
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+                //Right arrow key code
+                levelManager.removeDirection(Direction.RIGHT);
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+                //gamePanel arrow key code
+                levelManager.removeDirection(Direction.LEFT);
+            } else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
+                //Up arrow key code
+                levelManager.removeDirection(Direction.UP);
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) {
+                //Down arrow key code
+                levelManager.removeDirection(Direction.DOWN);
+            }
+        }
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
-            if(isPaused==false){
-                return;
-            }
-        for (GraphicsButtons button : PauseMenuButtons) {
-            if (button.isMouseInButton(e)) {
-                button.setMousePressed(true);
-            }
+        if(isPaused==false){
+            return;
         }
-
+        if (isPaused && isLevelDone != LevelState.PLAYING){
+            levelFinishedMenu.mousePressed(e);
+        }
+        else{
+            pauseMenu.mousePressed(e);
+        }
     }
 
     @Override
@@ -126,20 +129,10 @@ public class InLevelState extends State {
         if(isPaused==false){
             return;
         }
-        for (GraphicsButtons button : PauseMenuButtons) {
-            if (button.isMouseInButton(e)) {
-                if (button.isMousePressed())
-                    button.applyGamestate();
-                break;
-            }
+        if (isPaused && isLevelDone != LevelState.PLAYING){
+            levelFinishedMenu.mouseReleased(e);
         }
-        resetButtons();
-    }
-
-    private void resetButtons() {
-        for (GraphicsButtons button : PauseMenuButtons) {
-            button.resetBools();
-        }
+        pauseMenu.mouseReleased(e);
     }
 
     @Override
@@ -147,27 +140,11 @@ public class InLevelState extends State {
         if(isPaused==false){
             return;
         }
-        for (GraphicsButtons button : PauseMenuButtons)
-            button.setMouseOver(false);
-
-        for (GraphicsButtons button : PauseMenuButtons) {
-            if (button.isMouseInButton(e)) {
-                button.setMouseOver(true);
-                break;
-            }
-
+        if (isPaused && isLevelDone != LevelState.PLAYING){
+            levelFinishedMenu.mouseMoved(e);
         }
+        pauseMenu.mouseMoved(e);
     }
-    private void renderPause(Graphics g) {
-        g.drawImage(PauseBackground,
-                panelWidth / 2 - 2*GraphicsGrid.getScaleX(),
-                140,
-                PAUSE_BACKGROUND_WIDTH,
-                PAUSE_BACKGROUND_HEIGHT,
-                null);
 
-        for (GraphicsButtons buttons : PauseMenuButtons) {
-            buttons.render(g);
-        }
-    }
+
 }

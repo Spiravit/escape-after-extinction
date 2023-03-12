@@ -1,12 +1,6 @@
 package group7.levels;
-import group7.Game;
-import group7.utils.AssetLoader;
-import group7.utils.Direction;
+import group7.helperClasses.Direction;
 
-import static group7.Game.*;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
