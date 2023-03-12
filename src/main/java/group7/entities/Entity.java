@@ -27,9 +27,11 @@ public abstract class Entity {
     protected double imageScaleX = 1;
     protected double imageScaleY = 1;
 
+    protected boolean reverseImage = false; // if the image should be flipped horizontally
+
     // animation information
     protected int aniIndex = 0; // current index of the animation (second dimension of entityAnimations)
-    protected int aniSpeed = 15; // how fast the animation changes
+    protected int aniSpeed = 12; // how fast the animation changes
     protected int aniTick = 15; // how long the current animation has been playing
 
     // entity animation options
@@ -137,16 +139,27 @@ public abstract class Entity {
      * the graphics object to draw on
      */
     public void render(Graphics g) {
-        g.setColor(Color.RED);
-        GraphicsGrid.render(
-            g,
-            entityAnimations[currentAnimation][aniIndex],
-            hitboxX, 
-            hitboxY, 
-            hitboxWidth * imageScaleX, 
-            hitboxHeight * imageScaleY
-        );
+        if (reverseImage) {
+            GraphicsGrid.render(
+                g,
+                entityAnimations[currentAnimation][aniIndex],
+                hitboxX + hitboxWidth * imageScaleX, // offset the image by the width of the hitbox 
+                hitboxY, 
+                -(hitboxWidth * imageScaleX), 
+                hitboxHeight * imageScaleY
+            );
+        } else {
+            GraphicsGrid.render(
+                g,
+                entityAnimations[currentAnimation][aniIndex],
+                hitboxX, 
+                hitboxY, 
+                hitboxWidth * imageScaleX, 
+                hitboxHeight * imageScaleY
+            );
+        }
         // TODO: debugging purposes only, remove later
+        g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight); 
         drawPositionDot(g);
     }

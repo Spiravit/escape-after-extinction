@@ -38,6 +38,11 @@ public abstract class Collectable extends Inanimate {
         }
     }
 
+    protected void removeCollectable() {
+        interactable = false;
+        visible = false;
+    }
+
     @Override
     public void onInteraction(Player player) {
         interactable = false;
