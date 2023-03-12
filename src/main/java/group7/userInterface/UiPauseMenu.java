@@ -1,7 +1,6 @@
 package group7.userInterface;
 
 import group7.Game;
-import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.gameStates.gameStates;
 

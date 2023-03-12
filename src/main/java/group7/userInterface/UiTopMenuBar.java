@@ -1,7 +1,6 @@
 package group7.userInterface;
 
 import group7.Game;
-import group7.Graphics.GraphicsButtons;
 import group7.Graphics.GraphicsGrid;
 import group7.Graphics.GraphicsPanel;
 import group7.gameStates.gameStates;
@@ -39,7 +38,7 @@ public class UiTopMenuBar {
     private int minute_counter;
 
     // The pause menu button located at in-game menu in order to spawn pause menu
-    protected GraphicsButtons pauseMenuButton;
+    protected UiButtons pauseMenuButton;
 
     // topMenuSkyParallelBackground is used for rendering parallel background for in-game menu
     private UiParallelBackground topMenuSkyParallelBackground;
@@ -91,7 +90,7 @@ public class UiTopMenuBar {
         // passed 5 as row , since the sprite for Pause button is in 6th row of mainMenuButtons.png
         // passed gameStates.PAUSE as the objective of this button. When the button is clicked , it should change the game
         // to pause mode.
-        pauseMenuButton = new GraphicsButtons(game, (int)(panelWidth-2.5*GraphicsGrid.scaleX), (int)(0.5*GraphicsGrid.getScaleY()), PAUSED_BUTTON, gameStates.PAUSE);
+        pauseMenuButton = new UiButtons(game, (int)(panelWidth-2.5*GraphicsGrid.scaleX), (int)(0.5*GraphicsGrid.getScaleY()), PAUSED_BUTTON, gameStates.PAUSE);
 
         loadFont(); // loading the custom font at assets/font directory
 
