@@ -1,7 +1,7 @@
 package group7.entities.inanimate;
 
-import group7.utils.AssetLoader;
-import static group7.utils.AssetLoader.*;
+import group7.helperClasses.AssetLoader;
+import static group7.helperClasses.AssetLoader.*;
 import java.awt.image.BufferedImage;
 
 
@@ -19,6 +19,8 @@ public class Potion extends Collectable {
         hitboxWidth = 0.73;
         setPosX(posX);
         setPosY(posY);
+
+        loadAnimations();
     }
 
     protected void setObject( int objectType ) {
@@ -31,7 +33,7 @@ public class Potion extends Collectable {
     @Override
     protected void loadAnimations() {
         //BufferedImage potion = AssetLoader.getSpriteAtlas( SPEED_POTION );
-        BufferedImage potion = AssetLoader.getSpriteAtlas( SPEED_POTION ); // TODO: Change this to potionType
+        BufferedImage potion = AssetLoader.getSpriteAtlas( potionType ); // TODO: Change this to potionType
 
         entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[1];
         entityAnimations[DEFAULT_ANIMATION][0] = potion.getSubimage( 0, 0, 16, 16 );

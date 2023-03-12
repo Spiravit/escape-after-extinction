@@ -2,13 +2,12 @@ package group7.entities.animate;
 
 import group7.Graphics.GraphicsGrid;
 import group7.levels.Pathfinding;
-import group7.utils.AssetLoader;
-import group7.utils.Direction;
+import group7.helperClasses.AssetLoader;
+import group7.helperClasses.Direction;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
 
 public class Enemy extends Animate {
     int directionUpdateInterval = 200;
