@@ -1,15 +1,9 @@
 package group7.Graphics;
 
-import group7.entities.animate.Player;
 import group7.gameStates.State;
-import group7.gameStates.gameStates;
 import group7.inputs.*;
-import group7.levels.LevelManager;
-import group7.utils.Direction;
 
 import javax.swing.*;
-
-import static group7.Game.*;
 
 import java.awt.*;
 
