@@ -6,7 +6,11 @@ import group7.Graphics.GraphicsGrid;
 import static group7.Graphics.GraphicsGrid.*;
 import group7.helperClasses.AssetLoader;
 import group7.userInterface.UiButtons;
+import group7.userInterface.UiParallelBackground;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import static group7.Graphics.GraphicsPanel.*;
 
@@ -19,9 +23,7 @@ import static group7.Graphics.GraphicsPanel.*;
  * @author  Mohammad Parsaei
  * @author  Chen Min
  */
-public class creditState extends MainMenuState{
-    // TODO This will be removed
-    private BufferedImage creditText;
+public class creditState extends State{
 
     /**
      * Constructor for creditState class
@@ -30,14 +32,8 @@ public class creditState extends MainMenuState{
      *              if any of the button in credit page was clicked.
      */
     public creditState(Game game) {
-        // Calling constructor of MainMenuState to set game field
+        // Calling constructor of State to set the animated background
         super(game);
-
-        // There will be only one button in credit page, and it is a return button
-        menuButtons = new UiButtons[1];
-
-        // TODO The line bellow will be removed !!
-        creditText = AssetLoader.getSpriteAtlas(AssetLoader.CreditMenu);
 
         // Initializing Return button
         initializeMainMenuButtons();
@@ -47,14 +43,16 @@ public class creditState extends MainMenuState{
      * Initialize the button in creditState class to a return button located at (13th tile, 14th tile)
      *
      */
-    @Override
     protected void initializeMainMenuButtons(){
-        menuButtons[0] = new UiButtons(game,
+        stateButton= new UiButtons[1];
+        // There will be only one button in credit page, and it is a return button
+        stateButton[0] = new UiButtons(game,
                 13*scaleX,
                 14*scaleY,
                 RETURN_BUTTON,
                 gameStates.IN_MENU);
     }
+
 
     /**
      * renders credit page which includes credit text and a return button to main menu.
@@ -64,13 +62,26 @@ public class creditState extends MainMenuState{
      */
     @Override
     public void render(Graphics g){
-        // render the same animated background of main menu in credit page
-        mainPageParallelBG.renderParallelBackground(g);
+        // render the animated background
+        super.render(g);
 
-        // TODO The line bellow will be removed
-        g.drawImage(creditText, (int)(0.5*(panelWidth-creditText.getWidth())),100,creditText.getWidth(),creditText.getHeight(),null);
+        // TODO Adding Credit text
 
         // Render the return button in credit page
-        menuButtons[0].render(g);
+        stateButton[0].render(g);
+    }
+
+
+    /**
+     *  gets a key that was pressed and if that key was escape key on keyboard, then it
+     *  changes gameState to be in mainMenuState in order to get back to main menu page.
+     *
+     * @param e the keyboard key that player has pressed while being in credit page
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // If the pressed escape button, then go back to main menu page
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+            game.changeGameStates(gameStates.IN_MENU);
     }
 }

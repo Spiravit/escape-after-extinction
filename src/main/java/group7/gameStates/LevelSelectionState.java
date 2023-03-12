@@ -1,14 +1,17 @@
 package group7.gameStates;
 
 import group7.Game;
-import group7.Graphics.GraphicsGrid;
+
 import static group7.Graphics.GraphicsGrid.*;
+
 import group7.helperClasses.AssetLoader;
 import group7.userInterface.UiButtons;
+
 import static group7.helperClasses.buttonSpriteRow.*;
 
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import static group7.Graphics.GraphicsPanel.*;
 
@@ -21,10 +24,12 @@ import static group7.Graphics.GraphicsPanel.*;
  * @author Salaman Ayaz
  */
 
-public class LevelSelectionState extends MainMenuState{
+public class LevelSelectionState extends State {
 
     // There are maximum 3 levels considered
     private static int numberOfLevels = 3;
+
+
 
     // Sprites for level selection number
     private BufferedImage[] levelNumbersSprites;
@@ -49,37 +54,42 @@ public class LevelSelectionState extends MainMenuState{
         loadLevelDemoSprites();
     }
 
+    @Override
+    public void update() {
+
+    }
+
     /**
      * loads and initialize the previous, next, lets play and return button on level selection page.
      *
      */
     private void loadButtons(){
         // There will be 4 buttons on level selection page
-        menuButtons = new UiButtons[4];
+       stateButton = new UiButtons[4];
 
         // Previous button
-        menuButtons[0] = new UiButtons(game,
+        stateButton[0] = new UiButtons(game,
                 6*scaleX,
                 7*scaleY,
                 PERV_BUTTON,
                 gameStates.PERV);
 
         // Next button
-        menuButtons[1] = new UiButtons(game,
+        stateButton[1] = new UiButtons(game,
                 12*scaleX,
                 7*scaleY,
                 NEXT_BUTTON,
                 gameStates.NEXT);
 
         // Let's play button
-        menuButtons[2] = new UiButtons(game,
+        stateButton[2] = new UiButtons(game,
                 panelWidth / 2 - 2*scaleX ,
                 3*scaleY,
                 LETS_PLAY_BUTTON,
                 gameStates.IN_LEVEL);
 
         // Return button
-        menuButtons[3] = new UiButtons(game,
+        stateButton[3] = new UiButtons(game,
                 panelWidth / 2 ,
                 3*scaleY,
                 RETURN_BUTTON,
@@ -109,7 +119,8 @@ public class LevelSelectionState extends MainMenuState{
      */
     @Override
     public void render(Graphics g) {
-        mainPageParallelBG.renderParallelBackground(g);
+        // render the animated background
+        super.render(g);
 
         // Render Level number sprites
         g.drawImage( levelNumbersSprites[indexLevelNumbers],
@@ -119,11 +130,10 @@ public class LevelSelectionState extends MainMenuState{
                     2 *scaleY,
                     null);
 
-        for (UiButtons buttons : menuButtons) {
+        for (UiButtons buttons : stateButton) {
             buttons.render(g);
         }
     }
-
 
     /**
      *  Increments the index of levelNumbersSprites. It is used when a player press on next button
@@ -162,5 +172,19 @@ public class LevelSelectionState extends MainMenuState{
         }
         return indexLevelNumbers;
     }
+
+    /**
+     *  gets a key that was pressed and if that key was escape key on keyboard, then it
+     *  changes gameState to be in mainMenuState in order to get back to main menu page.
+     *
+     * @param e the keyboard key that player has pressed while being in credit page
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // If the pressed escape button, then go back to main menu page
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+            game.changeGameStates(gameStates.IN_MENU);
+    }
+
 }
 
