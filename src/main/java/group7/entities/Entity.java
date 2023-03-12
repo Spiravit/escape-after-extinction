@@ -27,6 +27,10 @@ public abstract class Entity {
     protected double imageScaleX = 1;
     protected double imageScaleY = 1;
 
+    // used to offset the image relative to the center of the hitbox
+    protected double imageOffsetX = 0;
+    protected double imageOffsetY = 0;
+
     protected boolean reverseImage = false; // if the image should be flipped horizontally
 
     // animation information
@@ -145,17 +149,17 @@ public abstract class Entity {
             GraphicsGrid.render(
                 g,
                 entityAnimations[currentAnimation][aniIndex],
-                hitboxX + hitboxWidth * imageScaleX, // offset the image by the width of the hitbox 
-                hitboxY, 
-                -(hitboxWidth * imageScaleX), 
+                hitboxX - ((imageScaleX - 1) / 2) + imageOffsetX * imageScaleX + hitboxWidth * imageScaleX, // offset the image by the width of the hitbox 
+                hitboxY - ((imageScaleY - 1) / 2) + imageOffsetY * imageScaleY,
+                - (hitboxWidth * imageScaleX), 
                 hitboxHeight * imageScaleY
             );
         } else {
             GraphicsGrid.render(
                 g,
                 entityAnimations[currentAnimation][aniIndex],
-                hitboxX, 
-                hitboxY, 
+                hitboxX - ((imageScaleX - 1) / 2) + imageOffsetX * imageScaleX,
+                hitboxY - ((imageScaleY - 1) / 2) + imageOffsetY * imageScaleY, 
                 hitboxWidth * imageScaleX, 
                 hitboxHeight * imageScaleY
             );
