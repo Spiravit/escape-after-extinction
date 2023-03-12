@@ -1,25 +1,41 @@
 package group7.levels;
 
-import group7.Graphics.GraphicsGrid;
-import group7.helperClasses.AssetLoader;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import group7.helperClasses.AssetLoader;
+import static group7.entities.inanimate.Collectable.*;
+
 
 public class Level1 extends Level {
 
     public Level1(int dinoNumber) {
         super(dinoNumber);
         addPlayer(1, 3, dinoNumber);
-        addEnemy(5, 5, 1);
-        addEnemy(6, 5, 2);
-        addEnemy(5, 7, 3);
-        addEnemy(5, 8, 4);
-        addKey(8, 9);
-        addEgg(1, 4, 100);
-        addPotion(1, 5, 0);
-        addTrap(1, 6);
+
+        addEnemy(5, 14, 1);
+        addEnemy(9, 4, 2);
+        addEnemy(13, 9, 3);
+        addEnemy(10, 15, 4);
+
+        addTrap(3, 9);
+        addTrap(11, 10);
+        addTrap(16, 10);
+        addTrap(8, 14);
+
+        addKey(2, 14);
+        addKey(17, 5);
+        addKey(18, 16);
+
+        addEgg(3, 15, 200);
+        addEgg(16, 4, 100);
+        addEgg(18, 13, 300);
+
+        addPotion(10, 3, PURPLE_SPEED_POTION );    
+        addPotion(7, 16, PURPLE_SPEED_POTION );    
+        addPotion(9, 10, GREEN_HEALTH_POTION );    
     }
+
     @Override
     /**
      * Set the level data
