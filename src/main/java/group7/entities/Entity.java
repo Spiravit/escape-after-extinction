@@ -27,23 +27,35 @@ public abstract class Entity {
     protected double imageScaleX = 1;
     protected double imageScaleY = 1;
 
+    // used to offset the image relative to the center of the hitbox
+    protected double imageOffsetX = 0;
+    protected double imageOffsetY = 0;
+
+    protected boolean reverseImage = false; // if the image should be flipped horizontally
+
     // animation information
     protected int aniIndex = 0; // current index of the animation (second dimension of entityAnimations)
-    protected int aniSpeed = 15; // how fast the animation changes
+    protected int aniSpeed = 12; // how fast the animation changes
     protected int aniTick = 15; // how long the current animation has been playing
 
     // entity animation options
     protected final static int DEFAULT_ANIMATION = 0;
     protected final static int MOVING_ANIMATION = 1;
     protected final static int INTERACTION_ANIMATION = 2;
+    protected final static int SPAWN_ANIMATION = 3;
+    protected final static int DEATH_ANIMATION = 4;
+    protected final static int DAMAGE_TAKEN_ANIMATION = 5;
+    protected final static int SPECIAL_IDLE_ANIMATION = 6;
+    protected final static int TRACKING_PLAYER_ANIMATION = 7;
     // stores the amount of possible animations, update this if you add more animations
-    protected final static int ANIMATION_COUNT = 3;
+    protected final static int ANIMATION_COUNT = 8;
 
     public Entity(double posX, double posY) {
-        hitboxX = posX;
-        hitboxY = posY;
+        setPosX(posX);
+        setPosY(posY);
 
         entityAnimations = new BufferedImage[ANIMATION_COUNT][];
+        loadAnimations();
     }
 
     /**
@@ -60,6 +72,26 @@ public abstract class Entity {
      */
     protected double getPosX() {
         return hitboxX + hitboxWidth / 2;
+    }
+
+    /**
+     * sets the x position of the entity to be the center of the given x tile
+     * recall this method when hitboxX or hitboxWidth is changed to center the entity
+     * @param x
+     * the x position to set the entity to
+     */
+    protected void setPosX(double x) {
+        hitboxX = x + ((1 - hitboxWidth) / 2);
+    }
+
+    /**
+     * sets the y position of the entity to be the center of the given y tile
+     * recall this method when hitboxY or hitboxHeight is changed to center the entity
+     * @param y
+     * the y position to set the entity to
+     */
+    protected void setPosY(double y) {
+        hitboxY = y + ((1 - hitboxHeight) / 2);
     }
 
     /**
@@ -80,10 +112,23 @@ public abstract class Entity {
         if (aniTick >= aniSpeed) {
             aniTick = 0;
             aniIndex ++;
-            if (aniIndex >= GetSpriteAmount(currentAnimation)) {
+            if (aniIndex >= getSpriteAmount(currentAnimation)) {
                 // If aniIndex went out of range, then make it 0.
                 aniIndex = 0;
             }
+        }
+    }
+
+    /**
+     * sets the current animation of the entity
+     * @param animation
+     * the animation to set the entity to
+     */
+    protected void setAnimation(int animation) {
+        if (!(currentAnimation == animation)) {
+            currentAnimation = animation;
+            aniIndex = 0;
+            aniTick = 0;
         }
     }
 
@@ -93,13 +138,8 @@ public abstract class Entity {
      * @return
      * amount of sprites for the action
      */
-    protected int GetSpriteAmount(int entityAction){
+    protected int getSpriteAmount(int entityAction){
         return entityAnimations[entityAction].length;
-    }
-
-    public void update() {
-        updateAnimationTick();
-        updateAnimation();
     }
 
     /**
@@ -120,22 +160,38 @@ public abstract class Entity {
      */
     public abstract void onInteraction(Player player);
 
+    public void update() {
+        updateAnimationTick();
+        updateAnimation();
+    }
+
     /**
      * draws the currentEntityImage on the screen
      * @param g
      * the graphics object to draw on
      */
     public void render(Graphics g) {
-        g.setColor(Color.RED);
-        GraphicsGrid.render(
-            g,
-            entityAnimations[currentAnimation][aniIndex],
-            hitboxX, 
-            hitboxY, 
-            hitboxWidth * imageScaleX, 
-            hitboxHeight * imageScaleY
-        );
+        if (reverseImage) {
+            GraphicsGrid.render(
+                g,
+                entityAnimations[currentAnimation][aniIndex],
+                hitboxX - ((imageScaleX - 1) / 2) + imageOffsetX * imageScaleX + hitboxWidth * imageScaleX, // offset the image by the width of the hitbox 
+                hitboxY - ((imageScaleY - 1) / 2) + imageOffsetY * imageScaleY,
+                - (hitboxWidth * imageScaleX), 
+                hitboxHeight * imageScaleY
+            );
+        } else {
+            GraphicsGrid.render(
+                g,
+                entityAnimations[currentAnimation][aniIndex],
+                hitboxX - ((imageScaleX - 1) / 2) + imageOffsetX * imageScaleX,
+                hitboxY - ((imageScaleY - 1) / 2) + imageOffsetY * imageScaleY, 
+                hitboxWidth * imageScaleX, 
+                hitboxHeight * imageScaleY
+            );
+        }
         // TODO: debugging purposes only, remove later
+        g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight); 
         drawPositionDot(g);
     }

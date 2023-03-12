@@ -59,6 +59,8 @@ public abstract class Level {
      * position x
      * @param y
      * position y
+     * @param enemyNumber
+     * the number of the enemy sprite to use
      */
     protected void addEnemy(int x, int y) {
         entities.add(new Enemy(x, y, pathfinding));

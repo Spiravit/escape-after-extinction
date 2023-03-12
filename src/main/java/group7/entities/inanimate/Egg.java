@@ -13,30 +13,38 @@ public class Egg extends Collectable {
 
     /**
      * Creates an egg that will disappear after a certain amount of time
-     * @param x
+     * @param posX
      * position x
-     * @param y
+     * @param posY
      * position y
      * @param timeout
      * time in seconds before egg disappears
      */
-    public Egg(int x, int y, int timeout) {
-        super(x, y);
-        loadAnimations();
+    public Egg(double posX, double posY, int timeout) {
+        super(posX, posY);
         this.timeout = timeout;
         startTime = System.currentTimeMillis();
+
+        aniSpeed = 30;
+        hitboxWidth = 0.8;
+        hitboxHeight = 0.8;
+        setPosX(posX);
+        setPosY(posY);
     }
 
     @Override
     protected void loadAnimations() {
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[1];
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.EGG);
-        entityAnimations[DEFAULT_ANIMATION][0] = img.getSubimage(0, 0, 24, 24);
+
+        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
+        for (int i = 0; i < 4; i++) {
+            entityAnimations[DEFAULT_ANIMATION][i] = img.getSubimage(i * 24, 0, 24, 24);
+        }
     }
 
     public void update() {
         if ((System.currentTimeMillis() - startTime) / 1000 > timeout) {
-            visible = false;
+            removeCollectable();
         }
         super.update();
     }

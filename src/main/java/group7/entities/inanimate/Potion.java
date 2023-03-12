@@ -11,10 +11,14 @@ public class Potion extends Collectable {
     
     protected String potionType;
 
-    public Potion(int positionX, int positionY, int objectType) {
-        super(positionX, positionY);
+    public Potion(double posX, double posY, int objectType) {
+        super(posX, posY);
         setObject( objectType );
-        loadAnimations();
+
+        hitboxHeight = 0.7;
+        hitboxWidth = 0.73;
+        setPosX(posX);
+        setPosY(posY);
     }
 
     protected void setObject( int objectType ) {

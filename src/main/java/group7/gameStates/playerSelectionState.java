@@ -36,10 +36,11 @@ public class playerSelectionState extends State {
     }
 
     private void loadCharacterDemos() {
-        String i_Th_player_demo_sprite = "characterSelectionMenu/player_";
-        for (int i=0;i<numberOfCharacters;i++){
-            characterDemos[i]= AssetLoader.getSpriteAtlas(i_Th_player_demo_sprite + (i+1) +".png");
-        }
+        characterDemos[0] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_1).getSubimage(11 * 24, 0, 24, 24);
+        characterDemos[1] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_2).getSubimage(11 * 24, 0, 24, 24);
+        characterDemos[2] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_3).getSubimage(11 * 24, 0, 24, 24);
+        characterDemos[3] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_4).getSubimage(11 * 24, 0, 24, 24);
+        characterDemos[4] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_5).getSubimage(11 * 24, 0, 24, 24);
     }
 
     @Override
