@@ -28,7 +28,6 @@ public class Game implements Runnable {
     private State currentState;
 
 
-
     private GraphicsGrid graphicsGrid;
 
 
