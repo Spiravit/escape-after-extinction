@@ -1,2 +1,26 @@
-# escape-after-extinction
+# Escape After Extinction
 
+## Assets
+
+* [Dino Family](https://demching.itch.io/dino-family) by [@ArksDigital on Twitter](https://twitter.com/ArksDigital) and [@DemChing on itch.io](https://demching.itch.io) 
+  * used under the license [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+* [2D Pixel Art Scientist Sprites](https://elthen.itch.io/2d-pixel-art-scientist-sprites) by [@elthen on itch.io](https://elthen.itch.io) 
+  * used under the license [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+* [2D Platformer Tileset - Laboratory](https://exceptrea.itch.io/2d-platformer-tileset-laboratory) by [@exceptrea on itch.io](https://exceptrea.itch.io) 
+  * no license specified but author allowed use [here](https://itch.io/t/2189307/license)
+* [Pixel Art GUI Elements](https://mounirtohami.itch.io/pixel-art-gui-elements) by [@mounirtohami on itch.io](https://mounirtohami.itch.io) 
+  * no license specified but author allowed use on the [main page](https://mounirtohami.itch.io/pixel-art-gui-elements)
+* [Animated Traps](https://stealthix.itch.io/animated-traps) by [@stealthix on itch.io](https://stealthix.itch.io) 
+  * used under the licence [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/)
+* [Pixel Art Key](https://drxwat.itch.io/pixel-art-key) by [@drxwat on itch.io](https://drxwat.itch.io) 
+  * no license specified but author allowed use in the comments of the [main page](https://drxwat.itch.io/pixel-art-key)
+* [Peaberry Font Family](https://emhuo.itch.io/peaberry-pixel-font) by [@emhuo on itch.io](https://emhuo.itch.io)
+  * used under the license [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+* [The Dungeon Pack - Parallax Background](https://pixfinity.itch.io/the-dungeon-pack) by [@pixfinity on itch.io](https://pixfinity.itch.io)
+  * no license specified but author allowed use on the [main page](https://pixfinity.itch.io/the-dungeon-pack)
+* [The Dawn - Seamless Parallax Background](https://saurabhkgp.itch.io/the-dawn-parallax-background) by [@saurabhkgp on itch.io](https://saurabhkgp.itch.io)
+  * used under the license [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)
+* [Thaleah Fat Free Pixel Font](https://tinyworlds.itch.io/free-pixel-font-thaleah) by [@tinyworlds on itch.io](https://tinyworlds.itch.io)
+  * used under the license [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
+* [Free Sky Backgrounds](https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set) by [@free-game-assets on itch.io](https://free-game-assets.itch.io)
+  * used under the license [FREEBIE PRODUCTS](https://craftpix.net/file-licenses/)
