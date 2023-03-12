@@ -126,7 +126,7 @@ public class Pathfinding {
      */
     private void addPathNode(PathNode currentNode, int x, int y) {
         // only add if tile is valid
-        if (canMove(x, y)) {
+        if (isValidTile(x, y)) {
             PathNode pathnode = new PathNode(
                 x, 
                 y, 
@@ -170,7 +170,7 @@ public class Pathfinding {
      * @return
      * true if valid, false if invalid
      */
-    public boolean canMove(int x, int y) {
+    public boolean isValidTile(int x, int y) {
         if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
             return false;
         }
