@@ -171,7 +171,7 @@ public abstract class Level {
     }
 
     public LevelState checkLevelState() {
-        if (player.getHealth() < 0) {
+        if (player.getHealth() <= 0) {
             return LevelState.LOST;
         } else if (numberOfKeys == getKeysCollected()) {
             return LevelState.WON;

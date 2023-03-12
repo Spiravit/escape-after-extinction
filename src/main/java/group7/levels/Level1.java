@@ -15,7 +15,7 @@ public class Level1 extends Level {
         addEnemy(6, 5, 2);
         addEnemy(5, 7, 3);
         addEnemy(5, 8, 4);
-        addKey(1, 7);
+        addKey(8, 9);
         addEgg(1, 4, 100);
         addPotion(1, 5, 0);
         addTrap(1, 6);
