@@ -4,61 +4,40 @@ import group7.entities.*;
 import group7.entities.animate.*;
 import group7.entities.inanimate.*;
 import group7.Graphics.GraphicsGrid;
-import group7.utils.AssetLoader;
-import group7.utils.Direction;
+import group7.helperClasses.AssetLoader;
+import group7.helperClasses.Direction;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
 public abstract class Level {
-    private int width;
-    private int height;
-    private Pathfinding pathfinding;
-    private BufferedImage[] levelSprites;
-    private int levelSpriteData[][];
-    private Player player;
+    protected int width;
+    protected int height;
+    protected Pathfinding pathfinding;
+    protected BufferedImage[] levelSprites;
+    protected int levelSpriteData[][];
+    protected Player player;
 
-    private ArrayList<Entity> entities = new ArrayList<Entity>();
+    protected ArrayList<Entity> entities = new ArrayList<Entity>();
 
-    private int numberOfEggs = 0;
-    private int numberOfKeys = 0;
+    protected int numberOfEggs = 0;
+    protected int numberOfKeys = 0;
 
-    private int eggsCollected = 0;
-    private int keysCollected = 0;
 
-    /** 
+    /**
      * Loads everything about the level
-     * @param dinoNumber 
+     * @param dinoNumber
      * player dino type
      */
-    public void loadLevel(String filename, int dinoNumber) {
+    public Level(int dinoNumber) {
         //levelSpriteData = getLevelData(level);      // TEST: MULTIPLE LEVLES
         importSprites();
-        setLevelData(filename); // TEST: MULTIPLE LEVLES 
+        setLevelData(); // TEST: MULTIPLE LEVLES
         GraphicsGrid.setGridSize(width, height);
-        
-        numberOfEggs = 0;
-        numberOfKeys = 0;
-
-        addPlayer(1, 3, dinoNumber);
-        addEnemy(5, 5, 1);
-        addEnemy(6, 5, 2);
-        addEnemy(5, 7, 3);
-        addEnemy(5, 8, 4);
-        addKey(1, 7);
-        addEgg(1, 4, 100);
-        addPotion(1, 5, 0);
-        addTrap(1, 6);
     }
 
     /**
@@ -70,7 +49,7 @@ public abstract class Level {
      * @param dinoNumber
      * the number of the dinosaur sprite to use
      */
-    private void addPlayer(int x, int y, int dinoNumber) {
+    protected void addPlayer(int x, int y, int dinoNumber) {
         player = new Player(x, y, pathfinding, dinoNumber);
     }
 
@@ -80,10 +59,8 @@ public abstract class Level {
      * position x
      * @param y
      * position y
-     * @param enemyNumber
-     * the number of the enemy sprite to use
      */
-    private void addEnemy(int x, int y, int enemyNumber) {
+    protected void addEnemy(int x, int y, int enemyNumber) {
         entities.add(new Enemy(x, y, pathfinding, enemyNumber));
     }
 
@@ -94,7 +71,7 @@ public abstract class Level {
      * @param y
      * position y
      */
-    private void addKey(int x, int y) {
+    protected void addKey(int x, int y) {
         entities.add(new Key(x, y));
         numberOfKeys++;
     }
@@ -108,7 +85,7 @@ public abstract class Level {
      * @param timeout
      * time in seconds before egg disappears
      */
-    private void addEgg(int x, int y, int timeout) {
+    protected void addEgg(int x, int y, int timeout) {
         entities.add(new Egg(x, y, timeout));
         numberOfEggs++;
     }
@@ -122,7 +99,7 @@ public abstract class Level {
      * @param potionType
      * type of potion
      */
-    private void addPotion(int x, int y, int potionType) {
+    protected void addPotion(int x, int y, int potionType) {
         entities.add(new Potion(x, y, potionType));
     }
 
@@ -133,7 +110,7 @@ public abstract class Level {
      * @param y
      * position y
      */
-    private void addTrap(int x, int y) {
+    protected void addTrap(int x, int y) {
         entities.add(new Trap(x, y));
     }
 
@@ -144,38 +121,39 @@ public abstract class Level {
     public int getEggsCollected() {
         return player.getEggsCollected();
     }
-    
-    /** 
+
+    /**
+     * returns number of all egg (collected and not collected) in a level
+     *
+     * @return number of egg items in a level
+     */
+    public int getNumberOfEggs() {
+        return numberOfEggs;
+    }
+
+    /**
+     * returns number of all keys (collected and not collected) in a level
+     *
+     * @return number of keys items in a level
+     */
+    public int getNumberOfKeys() {
+        return numberOfKeys;
+    }
+
+
+    /**
      * Set the level data
      * this includes the data in the pathfinding object and the levelSpriteData array
      */
-    private void setLevelData( String filename) { //TEST MULTIPLE LEVELS
-        BufferedImage img = AssetLoader.getSpriteAtlas(filename); //TEST MULTIPLE LEVELS, changed from AssetLoader.LEVEL_1 to filename
+    protected abstract void setLevelData();
 
-        this.width = img.getWidth();
-        this.height = img.getHeight();
-
-        levelSpriteData = new int[width][height];
-        pathfinding = new Pathfinding(width, height);
-
-        for (int x = 0; x < this.width; x++) {
-            for (int y = 0; y < this.height; y++) {
-                Color color = new Color(img.getRGB(x, y));
-                int value = color.getRed() % 74; //73 is the clear tile
-
-                levelSpriteData[x][y] = value;
-                pathfinding.set(x, y, value != 13 ? false:true);
-            }
-        }
-    }
-
-    /** 
+    /**
      * Import the sprites from the sprite atlas and store them in the levelSprites array
      */
     private void importSprites() {
         BufferedImage img = AssetLoader.getSpriteAtlas("levels/levelssprites.png");
         levelSprites = new BufferedImage[75];
-        
+
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 5; y++) {
                 int index = y * 15 + x;
@@ -195,7 +173,7 @@ public abstract class Level {
     public LevelState checkLevelState() {
         if (player.getHealth() < 0) {
             return LevelState.LOST;
-        } else if (numberOfKeys == keysCollected) {
+        } else if (numberOfKeys == getKeysCollected()) {
             return LevelState.WON;
         } else {
             return LevelState.PLAYING;
@@ -228,20 +206,20 @@ public abstract class Level {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 GraphicsGrid.render(
-                    g, 
-                    levelSprites[levelSpriteData[x][y]], 
-                    x, 
-                    y, 
-                    1, 
-                    1
+                        g,
+                        levelSprites[levelSpriteData[x][y]],
+                        x,
+                        y,
+                        1,
+                        1
                 );
             }
         }
- 
+
         for (Entity entity : entities) {
             entity.render(g);
         }
- 
+
         player.render(g);
     }
 }
