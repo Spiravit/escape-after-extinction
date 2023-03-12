@@ -145,8 +145,8 @@ public class UiTopMenuBar {
      */
     private void renderHealth(Graphics g,int health) {
         int healthBarInsideHeight = healthBarInside.getHeight();
-        int healthBarInsideWidth = healthBarInside.getWidth();
-        int remainingHealthBarWidth = (healthBarInsideWidth-131)*(health/100) + 131;
+        double healthBarInsideWidth = healthBarInside.getWidth();
+        int remainingHealthBarWidth = (int)((healthBarInsideWidth - 131)*((double)health/100) + 131);
         BufferedImage remainingHealthBar = healthBarInside.getSubimage(0,0,remainingHealthBarWidth,healthBarInsideHeight);
         g.drawImage(healthBarBoundary,(int)(0.5*GraphicsGrid.scaleX),(int)(0.5*GraphicsGrid.scaleY),2*GraphicsGrid.scaleX,(int)(0.5*GraphicsGrid.scaleY),null);
         g.drawImage(remainingHealthBar,(int)(0.5*GraphicsGrid.scaleX),(int)(0.5*GraphicsGrid.scaleY),(int)(2*GraphicsGrid.scaleX *(remainingHealthBarWidth/healthBarInsideWidth)),(int)(0.5*GraphicsGrid.scaleY),null);

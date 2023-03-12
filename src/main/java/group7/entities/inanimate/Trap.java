@@ -2,13 +2,11 @@ package group7.entities.inanimate;
 
 import java.awt.image.BufferedImage;
 
-
 import group7.entities.animate.Player;
 import group7.helperClasses.AssetLoader;
 
-
 public class Trap extends Collectable {
-    private int damage = 25;
+    private int damage = 50;
 
     public Trap(int positionX, int positionY) {
         super(positionX, positionY);

@@ -28,7 +28,6 @@ public class Game implements Runnable {
     private State currentState;
 
 
-
     private GraphicsGrid graphicsGrid;
 
 
@@ -46,7 +45,7 @@ public class Game implements Runnable {
 
         this.graphicsGrid = new GraphicsGrid(graphicsPanel, 20, 18);
 
-       // The first stage of game is main menu once game is launched
+        // The first stage of game is main menu once game is launched
         // so a mainMenuState stage object is initialized
         currentState = new MainMenuState(this);
         // setting initial state of game to be mainMenu
@@ -60,7 +59,7 @@ public class Game implements Runnable {
         this.graphicsPanel =  new GraphicsPanel(currentState);
 
         this.graphicsWindow = new GraphicsWindow(this.graphicsPanel);
-        
+
         // Giving input focus to graphicsPanel
         graphicsPanel.requestFocus();
         startGameLoop();
@@ -163,7 +162,7 @@ public class Game implements Runnable {
         // then change gameCurrentState to be player selection menu
         // then initialize currentState to be a  player selection state object
         // and pass it to graphicPanel in order to render player selection menu
-       else if (gameStateParameter == gameStates.PLAYER_SELECTION_SUB_MENU ) {
+        else if (gameStateParameter == gameStates.PLAYER_SELECTION_SUB_MENU ) {
             this.gameCurrentState = gameStateParameter;
             currentState = new playerSelectionState(this);
             graphicsPanel.changeGameStates(currentState);
@@ -224,7 +223,7 @@ public class Game implements Runnable {
         }
 
         // If the desired state passed as argument is QUIT, then we need to exit from the game, terminating it
-         else if (gameStateParameter == gameStates.QUIT) {
+        else if (gameStateParameter == gameStates.QUIT) {
             // if the current state of game is changed to be quit, then terminate the program
             this.gameCurrentState = gameStateParameter;
             System.exit(0);
@@ -239,7 +238,7 @@ public class Game implements Runnable {
     @Override
     public void run() {
         while(true) {
-           currentState.update();
+            currentState.update();
             // The repaint will render the game corresponding to a gameState field, holding current running state
             // of game, in graphicsPanel.
             graphicsPanel.repaint();

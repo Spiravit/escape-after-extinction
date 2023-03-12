@@ -8,7 +8,6 @@ import group7.helperClasses.Direction;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
 
 public class Enemy extends Animate {
     int directionUpdateInterval = 200;

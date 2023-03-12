@@ -13,6 +13,7 @@ import static group7.helperClasses.buttonSpriteRow.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import static group7.Graphics.GraphicsPanel.*;
 
 /**
  *
@@ -64,7 +65,7 @@ public class LevelSelectionState extends State {
      */
     private void loadButtons(){
         // There will be 4 buttons on level selection page
-       stateButton = new UiButtons[4];
+        stateButton = new UiButtons[4];
 
         // Previous button
         stateButton[0] = new UiButtons(game,
@@ -123,11 +124,11 @@ public class LevelSelectionState extends State {
 
         // Render Level number sprites
         g.drawImage( levelNumbersSprites[indexLevelNumbers],
-                    (int)(panelWidth / 2 - scaleX),
-                    6*scaleY,
-                    2 * scaleX,
-                    2 *scaleY,
-                    null);
+                (int)(panelWidth / 2 - scaleX),
+                6*scaleY,
+                2 * scaleX,
+                2 *scaleY,
+                null);
 
         for (UiButtons buttons : stateButton) {
             buttons.render(g);

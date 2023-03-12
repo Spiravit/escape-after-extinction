@@ -12,7 +12,12 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+
+import static group7.Graphics.GraphicsGrid.scaleX;
+import static group7.Graphics.GraphicsGrid.scaleY;
 import static group7.Graphics.GraphicsPanel.*;
+import static group7.helperClasses.buttonSpriteRow.*;
+import static group7.helperClasses.buttonSpriteRow.RETURN_BUTTON;
 
 public class playerSelectionState extends State {
 
@@ -21,21 +26,49 @@ public class playerSelectionState extends State {
     protected int indexCharacterDemo =0;
     public playerSelectionState(Game game) {
         super(game);
-        stateButton = new UiButtons[4];
-        characterDemos = new BufferedImage[numberOfCharacters];
-        stateButton[0] = new UiButtons(game,(int)(panelWidth/2 - 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 7, gameStates.PERV);
-        stateButton[1] = new UiButtons(game,(int)(panelWidth/2 + 3*GraphicsGrid.getScaleX()), (int)(0.5*panelHeight), 6, gameStates.NEXT);
-        stateButton[2] = new UiButtons(game,panelWidth / 2 - GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 8, gameStates.IN_LEVEL);
-        stateButton[3] = new UiButtons(game,panelWidth / 2 + GraphicsGrid.getScaleX(), (int)(0.2*panelHeight), 9, gameStates.IN_MENU);
+
+        loadButtons();
+
         loadCharacterDemos();
     }
 
-    @Override
-    public void update() {
+    private void loadButtons(){
+        // There will be 4 buttons on level selection page
+        stateButton = new UiButtons[4];
+
+        // Previous button
+        stateButton[0] = new UiButtons(game,
+                6*scaleX,
+                7*scaleY,
+                PERV_BUTTON,
+                gameStates.PERV);
+
+        // Next button
+        stateButton[1] = new UiButtons(game,
+                12*scaleX,
+                7*scaleY,
+                NEXT_BUTTON,
+                gameStates.NEXT);
+
+        // Let's play button
+        stateButton[2] = new UiButtons(game,
+                panelWidth / 2 - 2*scaleX ,
+                3*scaleY,
+                LETS_PLAY_BUTTON,
+                gameStates.IN_LEVEL);
+
+        // Return button
+        stateButton[3] = new UiButtons(game,
+                panelWidth / 2 ,
+                3*scaleY,
+                RETURN_BUTTON,
+                gameStates.IN_MENU);
 
     }
 
+
     private void loadCharacterDemos() {
+        characterDemos = new BufferedImage[5];
         characterDemos[0] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_1).getSubimage(11 * 24, 0, 24, 24);
         characterDemos[1] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_2).getSubimage(11 * 24, 0, 24, 24);
         characterDemos[2] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_3).getSubimage(11 * 24, 0, 24, 24);
