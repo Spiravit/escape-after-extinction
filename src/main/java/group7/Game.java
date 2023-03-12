@@ -4,8 +4,18 @@ import group7.Graphics.GraphicsPanel;
 import group7.Graphics.GraphicsWindow;
 import group7.Graphics.GraphicsGrid;
 import group7.gameStates.*;
+import group7.gameStates.LevelSelectionState;
+import group7.gameStates.playerSelectionState;
 
-
+/**
+ * TODO , writing javadoc for game class
+ *
+ *
+ * @author  Salman Ayaz
+ * @author Kermen Yung
+ * @author Mohammad Parsaei
+ * @author Chen Imin
+ */
 public class Game implements Runnable {
 
 
@@ -62,6 +72,12 @@ public class Game implements Runnable {
         thread.start();
     }
 
+
+    /**
+     *
+     *
+     * @param gameStateParameter
+     */
     public void changeGameStates(gameStates gameStateParameter){
 
         // if the current stage of game is the same as desired one passed as argument
@@ -74,10 +90,26 @@ public class Game implements Runnable {
         // in order to spawn pause menu
         // but still keep the gameStage to be inLevel stage since we are still in levels but paused
         else if (gameCurrentState==gameStates.IN_LEVEL && gameStateParameter == gameStates.PAUSE){
-            currentState.isPaused=true; // TODO fix it
+            currentState.isPaused=true;
             return;
         }
 
+        // If gameStateParameter is resume then set the isPause boolean in inLevel stage to false
+        // in order to continue playing level and stop seeing pause menu
+        // but still keep the gameStage to be inLevel stage since we are still in levels
+        else if (gameCurrentState==gameStates.IN_LEVEL && gameStateParameter == gameStates.RESUME){
+            currentState.isPaused=false;
+            return;
+        }
+
+        // If gameStateParameter is new_game then we need to make a new InLevel object in order
+        // to restart the game.
+        else if (gameCurrentState==gameStates.IN_LEVEL && gameStateParameter == gameStates.NEW_GAME){
+            currentState.isPaused=false;
+            currentState = new InLevelState(this, playerDinoNumber, levelSelected);
+            graphicsPanel.changeGameStates(currentState);
+            return;
+        }
 
 
         // If game stage was not in main menu and the desired stage passed as parameter is main menu
@@ -131,6 +163,14 @@ public class Game implements Runnable {
             graphicsPanel.changeGameStates(currentState);
         }
 
+        // If current state of game is in player selection menu but the desired next stage is playing game stage
+        // then change the current stage of game to be inLevel stage in order to render and setting up game level
+        if (gameStateParameter == gameStates.IN_LEVEL && gameCurrentState == gameStates.PLAYER_SELECTION_SUB_MENU){
+            this.gameCurrentState = gameStates.IN_LEVEL;
+            currentState = new InLevelState(this, playerDinoNumber, levelSelected);
+            graphicsPanel.changeGameStates(currentState);
+        }
+
 
         // If a next button was clicked then :
         else if (gameStateParameter == gameStates.NEXT ) {
@@ -175,6 +215,11 @@ public class Game implements Runnable {
         }
     }
 
+
+    /**
+     * TODO , Someone add javadoc for that
+     *
+     */
     @Override
     public void run() {
         while(true) {
