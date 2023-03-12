@@ -1,14 +1,8 @@
 package group7.levels;
 
-import group7.Graphics.GraphicsGrid;
-import group7.utils.AssetLoader;
-import group7.utils.Direction;
-
-import static group7.Game.*;
+import group7.helperClasses.Direction;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 /**
  * LevelManager
@@ -17,28 +11,29 @@ import java.util.ArrayList;
  * - saves level data
  */
 public class LevelManager {
-    private Level currentLevel; 
-    private Level[] levels = {
-        new Level1(),
-        new Level2(),
-        new Level3()
-    };
+    private Level currentLevel;
     private int dinoNumber;
-    //private int levelSelected;
 
-    public LevelManager(int dinoNumber) {
+    public LevelManager(int dinoNumber, int levelNumber) {
         this.dinoNumber = dinoNumber;
-        //this.levelSelected = levelSelected;
-    }
-
-    /** 
-     * Load a level
-     * @param level
-     * level number starting from 1
-     */
-    public void loadLevel(int level) {
-        currentLevel = levels[level - 1];
-        currentLevel.loadLevel("levels/level_maps/level_" + level + ".png", dinoNumber); //TEST MULTIPLE LEVELS, chnged from (dinoNumber) to ("Level_" + level, dinoNumber)
+        switch (levelNumber){
+            case 1:
+                System.out.println("Made level 1");
+                currentLevel = new Level1(dinoNumber);
+                break;
+            case 2:
+                System.out.println("Made level 2");
+                currentLevel = new Level2(dinoNumber);
+                break;
+            case 3:
+                System.out.println("Made level 3");
+                currentLevel = new Level3(dinoNumber);
+                break;
+            default:
+                System.out.println("Made level default 1");
+                currentLevel = new Level1(dinoNumber);
+                break;
+        }
     }
 
     public void update() {
@@ -60,5 +55,21 @@ public class LevelManager {
      */
     public void render(Graphics g) {
         currentLevel.render(g);
+    }
+
+    public LevelState getLevelState(){
+        return currentLevel.checkLevelState();
+    }
+    public int getEggInCurrentLevel(){
+        return currentLevel.getNumberOfEggs();
+    }
+    public int getKeyInCurrentLevel(){
+        return currentLevel.getNumberOfKeys();
+    }
+    public int getEggCollectedCurrentLevel(){
+        return currentLevel.getEggsCollected();
+    }
+    public int getKeyCollectedCurrentLevel(){
+        return currentLevel.getKeysCollected();
     }
 }
