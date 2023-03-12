@@ -19,6 +19,7 @@ import static group7.Graphics.GraphicsPanel.*;
 import static group7.helperClasses.buttonSpriteRow.*;
 import static group7.helperClasses.buttonSpriteRow.RETURN_BUTTON;
 
+
 public class playerSelectionState extends State {
 
     private static int numberOfCharacters = 5;
@@ -66,7 +67,10 @@ public class playerSelectionState extends State {
 
     }
 
+    @Override
+    public void update() {
 
+    }
     private void loadCharacterDemos() {
         characterDemos = new BufferedImage[5];
         characterDemos[0] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_1).getSubimage(11 * 24, 0, 24, 24);
