@@ -44,7 +44,7 @@ public abstract class Entity {
     protected final static int SPECIAL_IDLE_ANIMATION = 6;
     protected final static int TRACKING_PLAYER_ANIMATION = 7;
     // stores the amount of possible animations, update this if you add more animations
-    protected final static int ANIMATION_COUNT = 7;
+    protected final static int ANIMATION_COUNT = 8;
 
     public Entity(double posX, double posY) {
         hitboxX = posX;
@@ -95,9 +95,11 @@ public abstract class Entity {
     }
 
     protected void setAnimation(int animation) {
-        currentAnimation = animation;
-        aniIndex = 0;
-        aniTick = 0;
+        if (!(currentAnimation == animation)) {
+            currentAnimation = animation;
+            aniIndex = 0;
+            aniTick = 0;
+        }
     }
 
     /**
