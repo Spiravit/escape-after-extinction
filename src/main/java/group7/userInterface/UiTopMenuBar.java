@@ -146,10 +146,13 @@ public class UiTopMenuBar {
     private void renderHealth(Graphics g,int health) {
         int healthBarInsideHeight = healthBarInside.getHeight();
         double healthBarInsideWidth = healthBarInside.getWidth();
-        int remainingHealthBarWidth = (int)((healthBarInsideWidth - 131)*((double)health/100) + 131);
+        double remainingPercentage = (((double)health)/100);
+
+        int remainingHealthBarWidth = (int) (((healthBarInsideWidth)) * (remainingPercentage));
+        
         BufferedImage remainingHealthBar = healthBarInside.getSubimage(0,0,remainingHealthBarWidth,healthBarInsideHeight);
-        g.drawImage(healthBarBoundary,(int)(0.5*GraphicsGrid.scaleX),(int)(0.5*GraphicsGrid.scaleY),2*GraphicsGrid.scaleX,(int)(0.5*GraphicsGrid.scaleY),null);
-        g.drawImage(remainingHealthBar,(int)(0.5*GraphicsGrid.scaleX),(int)(0.5*GraphicsGrid.scaleY),(int)(2*GraphicsGrid.scaleX *(remainingHealthBarWidth/healthBarInsideWidth)),(int)(0.5*GraphicsGrid.scaleY),null);
+        g.drawImage(healthBarBoundary,(int)(0.2*GraphicsGrid.scaleX),(int)(0.3*GraphicsGrid.scaleY),(int)(2.5*GraphicsGrid.scaleX),(int)(1*GraphicsGrid.scaleY),null);
+        g.drawImage(remainingHealthBar,(int)(0.2*GraphicsGrid.scaleX + 30),(int)(0.3*GraphicsGrid.scaleY),(int)(2*GraphicsGrid.scaleX *(remainingHealthBarWidth/healthBarInsideWidth)),(int)(1*GraphicsGrid.scaleY),null);
     }
 
     /**
