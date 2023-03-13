@@ -10,10 +10,13 @@ import group7.helperClasses.AssetLoader;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException; 
+import java.io.InputStream;
 
 import static group7.Graphics.GraphicsPanel.panelWidth;
 
 public class UiMenu {
+    protected Font retroFont;
     // Position x of buttons in menu, they are centered at middle of width
     int mainMenuButtonsPosX = panelWidth/ 2 - scaleX ;
 
@@ -35,7 +38,7 @@ public class UiMenu {
         this.game = game;
         initializeMenuButtons();
     }
-    protected void initializeMenuButtons(){
+    private void initializeMenuButtons(){ //from protected to private
 
         // New Game button
         menuButtons[0] = new UiButtons(game,
@@ -140,6 +143,25 @@ public class UiMenu {
                 break;
             }
 
+        }
+    }
+
+    /** TEST REMOVE
+     *  Loads custom font from assets folder in order to be used later in drawing strings on game window.
+     *
+     */
+    protected void loadFont(){
+        InputStream is;
+        try{
+            is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
+            // Set size of font to be 30
+            retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
+        }
+        catch (FontFormatException f){
+            f.printStackTrace();
+        }
+        catch (IOException a){
+            a.printStackTrace();
         }
     }
 }
