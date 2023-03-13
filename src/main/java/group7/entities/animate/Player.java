@@ -1,6 +1,7 @@
 package group7.entities.animate;
 
 import group7.levels.*;
+import group7.entities.inanimate.Potion;
 import group7.helperClasses.AssetLoader;
 import java.awt.image.BufferedImage;
 
@@ -147,6 +148,35 @@ public class Player extends Animate {
     }
 
     /**
+     * Increase Health
+     * @param hp
+     * Players MAX health is 100. If player has full health do nothing, 
+     * else if player has low health add the health gained from the potion. 
+     */
+    public void gainHealth( int hp ) {
+        if ( health != 0 && health < 100 && health + Potion.GREEN_POTION_BOOST_VALUE <= 100 ) {
+            //System.out.println("current health: " + health);                // ***TEST REMOVE***
+            health += hp;
+            //System.out.println("health boosted: " + health );               // ***TEST REMOVE***
+        } else if ( health < 100 && health + Potion.GREEN_POTION_BOOST_VALUE > 100 ) {
+            //System.out.println("boost to full health" + health);            // ***TEST REMOVE***
+            health = 100;   // player restored to full health
+        }
+    }
+
+    /**
+     * Increase Speed
+     * @param speedBoost
+     * Players MAX speed is 0.03f. If player has full health do nothing, 
+     * else if player has low health add the health gained from the potion. 
+     */
+    public void increaseSpeed( float speedBoost ) {
+        if ( entitySpeed < 0.04f && entitySpeed + Potion.PURPLE_POTION_BOOST_VALUE <= 0.04f ) {
+            entitySpeed += speedBoost;
+        } 
+    }
+
+    /**
      * Get the number of keys collected
      * @return
      * the number of keys collected
@@ -159,7 +189,7 @@ public class Player extends Animate {
      * Increment the number of keys collected
      */
     public void incrementKeysCollected() {
-        keysCollected ++;
+        keysCollected++;
     }
 
     /**
@@ -175,7 +205,7 @@ public class Player extends Animate {
      * Increment the number of eggs collected
      */
     public void incrementEggsCollected() {
-        eggsCollected ++;
+        eggsCollected++;
     }
 
     public void onInteraction(Player player) {

@@ -14,7 +14,7 @@ public abstract class Animate extends Entity {
     protected boolean movingRight = false;
 
     // Moving speed of entity to change position of entity on map
-    protected float entitySpeed = 0.02f;
+    protected float entitySpeed = 0.02f; 
 
     public Animate(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY);
