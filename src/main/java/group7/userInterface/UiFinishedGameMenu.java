@@ -15,13 +15,13 @@ import static group7.helperClasses.buttonSpriteRow.EXIT_BUTTON;
 
 public class UiFinishedGameMenu extends UiMenu{
     int currentLevel;
-    private Font retroFont ;
+    //private Font retroFont ;
 
     public UiFinishedGameMenu(Game game, int currentLevel) {
         super(game);
         this.currentLevel=currentLevel;
         initialiseMenuButtons();
-        loadFont();
+        loadFont(); 
     }
 
     @Override
@@ -30,14 +30,15 @@ public class UiFinishedGameMenu extends UiMenu{
         Graphics2D g2D = (Graphics2D) g;
         g2D.setFont(retroFont);
         g2D.setColor(Color.white);
-        g2D.drawString("WON !",panelWidth/2 - scaleX/2,5*scaleY);
-    }
-    @Override
-    protected void initializeMenuButtons() {
-        // TODO FIx here
+        g2D.drawString("WON !", panelWidth/2 - scaleX/2, 5*scaleY);
     }
 
-    protected void initialiseMenuButtons() {
+    //@Override
+    //protected void initializeMenuButtons() {
+        // TODO FIx here
+    //}
+
+    private void initialiseMenuButtons() {  //changed from protected to private
         menuButtons = new UiButtons[3];
         // If we are at level 2 or 1, we will have next level button
         if (currentLevel < 3){
@@ -48,13 +49,13 @@ public class UiFinishedGameMenu extends UiMenu{
                     NEXT_LEVEL_BUTTON,
                     gameStates.Next_Level);
         }
-        // if we are at level 3, we have main menu button
+        // if we are at level 3, we have an exit button
         else{
             menuButtons[0] = new UiButtons(game,
                     mainMenuButtonsPosX,
                     9*scaleY,
-                    MAIN_MENU_BUTTON,
-                    gameStates.IN_MENU);
+                    EXIT_BUTTON,
+                    gameStates.QUIT );
         }
 
         // Restart button
@@ -72,11 +73,11 @@ public class UiFinishedGameMenu extends UiMenu{
                 gameStates.IN_MENU);
     }
 
-    /**
+    /** MOVED TO UiMenu, and changed to protected 
      *  Loads custom font from assets folder in order to be used later in drawing strings on game window.
      *
      */
-    private void loadFont(){
+/*    private void loadFont(){
         InputStream is;
         try{
             is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
@@ -89,5 +90,5 @@ public class UiFinishedGameMenu extends UiMenu{
         catch (IOException a){
             a.printStackTrace();
         }
-    }
+    } */
 }

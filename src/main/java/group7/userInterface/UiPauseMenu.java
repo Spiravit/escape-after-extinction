@@ -21,8 +21,8 @@ public class UiPauseMenu extends UiMenu {
         initializeMenuButtons();
     }
 
-    @Override
-    protected void initializeMenuButtons() {
+    //@Override
+    private void initializeMenuButtons() { //changed from protected to private
         // Continue button
         menuButtons[0] = new UiButtons(game,
                 mainMenuButtonsPosX,
