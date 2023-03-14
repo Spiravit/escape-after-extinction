@@ -20,8 +20,8 @@ public class InLevelState extends State {
     protected LevelManager levelManager;
     private UiTopMenuBar topMenu;
     private UiPauseMenu pauseMenu;
-    private UiMenu levelFinishedMenu;
-    private UiMenu deathScreenMenu;                                                        // ***TEST REMOVE*** 
+    private UiFinishedGameMenu levelFinishedMenu;
+    private UiDeathScreen deathScreenMenu;                                                        // ***TEST REMOVE***
     public LevelState isLevelDone = LevelState.PLAYING;
 
     int currentLevelNumber;
@@ -39,31 +39,33 @@ public class InLevelState extends State {
 
     public void update() {
         isLevelDone = levelManager.getLevelState();
-        if ( isPaused == false && isLevelDone == LevelState.PLAYING ) {
+        if ( isLevelDone == LevelState.LOST ) {
+            isPaused = true;
+            deathScreenMenu.update();
+        }
+        else if ( isLevelDone == LevelState.WON ) {
+            isPaused = true;
+            levelFinishedMenu.update();
+        }
+        else if ( isPaused == false && isLevelDone == LevelState.PLAYING ) {
             levelManager.update();
             topMenu.update();
         }
-        if ( isLevelDone != LevelState.PLAYING ) {
-            isPaused = true;
-        }
-        if ( isPaused == true && isLevelDone == LevelState.PLAYING ) {
+        else if ( isPaused == true && isLevelDone == LevelState.PLAYING ) {
             pauseMenu.update();
         }
-        if ( isLevelDone == LevelState.LOST ) {                                             // ***TEST REMOVE***
-            deathScreenMenu.update();                                                       // ***TEST REMOVE***
-        }                                                                                   // ***TEST REMOVE***
     }
 
     public void render( Graphics g ) {
         topMenu.renderTopMenuBar(g,isPaused,levelManager.getHealth(), levelManager.getEggCollectedCurrentLevel(), levelManager.getKeyCollectedCurrentLevel());
         levelManager.render(g);
-        if ( isPaused && isLevelDone != LevelState.PLAYING ) {
-            levelFinishedMenu.render(g);
-        } 
-        if ( isLevelDone == LevelState.LOST ) {                                             // ***TEST REMOVE***
-            deathScreenMenu.render(g);                                                      // ***TEST REMOVE***
-        }                                                                                   // ***TEST REMOVE***
-        if ( isPaused == true && isLevelDone == LevelState.PLAYING ) {
+        if ( isLevelDone == LevelState.WON ) {
+            levelFinishedMenu.render(g,topMenu.getTime(),levelManager.getEggCollectedCurrentLevel());
+        }
+        else if ( isLevelDone == LevelState.LOST ) {
+            deathScreenMenu.render(g);
+        }
+        else if ( isPaused == true && isLevelDone == LevelState.PLAYING ) {
             pauseMenu.render(g);
         }
     }
@@ -91,7 +93,7 @@ public class InLevelState extends State {
         }
 
         if ( isPaused == true ) {
-            if ( e.getKeyCode() == KeyEvent.VK_ESCAPE ){
+            if ( e.getKeyCode() == KeyEvent.VK_ESCAPE && isLevelDone==LevelState.PLAYING ){
                 isPaused = false;
                 levelManager.removeDirection(Direction.RIGHT);
                 levelManager.removeDirection(Direction.LEFT);
@@ -122,36 +124,50 @@ public class InLevelState extends State {
 
     @Override
     public void mousePressed( MouseEvent e ) {
-        if( isPaused == false ){
-            return;
+        if( isPaused == false && isLevelDone==LevelState.PLAYING  ){
+            topMenu.mousePressed(e);
         }
-        if ( isPaused && isLevelDone != LevelState.PLAYING ) {
+        else if (isLevelDone == LevelState.LOST ) {
+            deathScreenMenu.mousePressed(e);
+        }
+        else if (isLevelDone == LevelState.WON ){
             levelFinishedMenu.mousePressed(e);
-        } else {
+        }
+        else {
             pauseMenu.mousePressed(e);
         }
     }
 
     @Override
     public void mouseReleased( MouseEvent e ) {
-        if( isPaused == false ) {
-            return;
+        if( isPaused == false && isLevelDone==LevelState.PLAYING  ){
+            topMenu.mouseReleased(e);
         }
-        if ( isPaused && isLevelDone != LevelState.PLAYING ){
+        else if (isLevelDone == LevelState.LOST ) {
+            deathScreenMenu.mouseReleased(e);
+        }
+        else if (isLevelDone == LevelState.WON ){
             levelFinishedMenu.mouseReleased(e);
         }
-        pauseMenu.mouseReleased(e);
+        else {
+            pauseMenu.mouseReleased(e);
+        }
     }
 
     @Override
     public void mouseMoved( MouseEvent e ) {
-        if( isPaused == false ) {
-            return;
+        if( isPaused == false && isLevelDone==LevelState.PLAYING  ){
+            topMenu.mouseMoved(e);
         }
-        if ( isPaused && isLevelDone != LevelState.PLAYING ) {
+        else if (isLevelDone == LevelState.LOST ) {
+            deathScreenMenu.mouseMoved(e);
+        }
+        else if (isLevelDone == LevelState.WON ){
             levelFinishedMenu.mouseMoved(e);
         }
-        pauseMenu.mouseMoved(e);
+        else {
+            pauseMenu.mouseMoved(e);
+        }
     }
 
 }
