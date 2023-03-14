@@ -39,4 +39,4 @@ java -cp target/escape-after-extinction-1.0-SNAPSHOT-javadoc.jar group7.App
   * used under the license [FREEBIE PRODUCTS](https://craftpix.net/file-licenses/)
 * [Hearts and health bar](https://fliflifly.itch.io/hearts-and-health-bar) by [@fliflifly on itch.io](https://fliflifly.itch.io)
   * used under the license [CC-0](https://creativecommons.org/share-your-work/public-domain/cc0/)
-* [Prarie Cottage backgrounds](https://vrozenfeld.itch.io/prarie-cottage-backgrounds)
+* [Prarie Cottage backgrounds](https://vrozenfeld.itch.io/prarie-cottage-backgrounds) by [@vrozenfeld on itch.io](https://vrozenfeld.itch.io)
