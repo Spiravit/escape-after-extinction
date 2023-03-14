@@ -24,5 +24,5 @@
   * used under the license [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 * [Free Sky Backgrounds](https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set) by [@free-game-assets on itch.io](https://free-game-assets.itch.io)
   * used under the license [FREEBIE PRODUCTS](https://craftpix.net/file-licenses/)
-*[Hearts and health bar](https://fliflifly.itch.io/hearts-and-health-bar) by [@fliflifly on itch.io](https://fliflifly.itch.io)
+* [Hearts and health bar](https://fliflifly.itch.io/hearts-and-health-bar) by [@fliflifly on itch.io](https://fliflifly.itch.io)
   * used under the license [CC-0](https://creativecommons.org/share-your-work/public-domain/cc0/)
