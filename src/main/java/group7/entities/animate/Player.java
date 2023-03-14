@@ -5,14 +5,20 @@ import group7.entities.inanimate.Potion;
 import group7.helperClasses.AssetLoader;
 import java.awt.image.BufferedImage;
 
+/**
+ * this class is an entity class of a player character that inherits the Animate class
+ * player has some properties, such as health, number of keys the player has collected, and the number of dinosaur eggs
+ * some methods----update the player's animation ---- ways to update the player's position --- ways to get the player health --- ways to take damage
+ * ways to increase the player's health --- ways to increase the player's speed --- ways to get the number of keys the player collects --- ways to increase the number of keys the player collects
+ */
 public class Player extends Animate {
-    private int health = 100;
+    private int health = 100; // player health, default value is 100
     private int dinoNumber; // the number of the dinosaur sprite to use
 
-    private int keysCollected = 0;
-    private int eggsCollected = 0;
+    private int keysCollected = 0; // the number of keys collected
+    private int eggsCollected = 0; // the number of dinosaur eggs collected
 
-    private boolean canMove = false;
+    private boolean canMove = false; // whether the player can mover
 
     /**
      * Create a new player
@@ -26,10 +32,10 @@ public class Player extends Animate {
     public Player(double posX, double posY, Pathfinding pathfinding, int dinoNumber) {
         super(posX, posY, pathfinding);
         this.dinoNumber = dinoNumber;
-        currentAnimation = SPAWN_ANIMATION;
-        loadAnimations();
-        imageScaleX = 1.25;
-        imageScaleY = 1.5;
+        currentAnimation = SPAWN_ANIMATION; // the default animation is "hatching"
+        loadAnimations(); // load animation resources
+        imageScaleX = 1.25; // X-axis scaling
+        imageScaleY = 1.5; // Y-axis scaling
     }
 
     @Override
