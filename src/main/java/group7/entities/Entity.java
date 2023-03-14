@@ -1,10 +1,8 @@
 package group7.entities;
 
-import group7.levels.Pathfinding;
 import group7.Graphics.GraphicsGrid;
 import group7.entities.animate.Player;
 
-import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -190,7 +188,10 @@ public abstract class Entity {
                 hitboxHeight * imageScaleY
             );
         }
-        // TODO: debugging purposes only, remove later
+        //debugRender(g);
+    }
+
+    protected void debugRender(Graphics g) {
         g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight); 
         drawPositionDot(g);
@@ -202,7 +203,7 @@ public abstract class Entity {
      * @param g
      * the graphics object to draw on
      */
-    public void drawPositionDot(Graphics g) {
+    protected void drawPositionDot(Graphics g) {
         g.setColor(Color.ORANGE);
         g.drawRect((int)(GraphicsGrid.getScaleX() * getPosX()), (int) (GraphicsGrid.getScaleY() * getPosY()), 2, 2);
     }
