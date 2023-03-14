@@ -21,7 +21,7 @@ public class UiMenu {
     int mainMenuButtonsPosX = panelWidth/ 2 - scaleX ;
 
     //dedicated for four buttons in main menu page (New game, Load game, credit and exit buttons)
-    protected UiButtons[] menuButtons = new UiButtons[4];
+    protected UiButtons[] menuButtons = new UiButtons[3];
 
     // TODO Add comments
     public Game game;
@@ -50,19 +50,13 @@ public class UiMenu {
         // Load game button
         menuButtons[1] = new UiButtons(game,
                 mainMenuButtonsPosX,
-                7*scaleY,
+                8*scaleY,
                 LOAD_GAME_UNSAVED_BUTTON,
                 gameStates.LEVEL_SELECTION_SUB_MENU);
 
-        // Credit button
-        menuButtons[2] = new UiButtons(game,
-                mainMenuButtonsPosX,
-                9*scaleY,
-                CREDIT_BUTTON,
-                gameStates.CREDIT_SUB_MENU);
 
         // Exit button
-        menuButtons[3] = new UiButtons(game,
+        menuButtons[2] = new UiButtons(game,
                 mainMenuButtonsPosX,
                 11*scaleY,
                 EXIT_BUTTON,
