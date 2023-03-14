@@ -72,23 +72,4 @@ public class UiFinishedGameMenu extends UiMenu{
                 MAIN_MENU_BUTTON,
                 gameStates.IN_MENU);
     }
-
-    /** MOVED TO UiMenu, and changed to protected 
-     *  Loads custom font from assets folder in order to be used later in drawing strings on game window.
-     *
-     */
-/*    private void loadFont(){
-        InputStream is;
-        try{
-            is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
-            // Set size of font to be 30
-            retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
-        }
-        catch (FontFormatException f){
-            f.printStackTrace();
-        }
-        catch (IOException a){
-            a.printStackTrace();
-        }
-    } */
 }
