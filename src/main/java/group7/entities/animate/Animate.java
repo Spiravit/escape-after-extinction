@@ -4,17 +4,22 @@ import group7.entities.Entity;
 import group7.levels.Pathfinding;
 import group7.helperClasses.Direction;
 
-
+/**
+ * the animation class is an abstract class of all animated entities and inherits from the Entity class
+ * it implements basic function such as entity movement and animation update, and provides auxiliary methods such as setting and removing movement direction and checking whether direction is feasible
+ */
 public abstract class Animate extends Entity {
+    // a pathfinding object that checks whether a tile is accessible
     protected Pathfinding pathfinding;
 
+    // these four Boolean variables indicate whether the object is moving in a particular direction
     protected boolean movingUp = false;
     protected boolean movingDown = false;
     protected boolean movingLeft = false;
     protected boolean movingRight = false;
 
     // Moving speed of entity to change position of entity on map
-    protected float entitySpeed = 0.02f; 
+    protected float entitySpeed = 0.02f;
 
     public Animate(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY);
@@ -43,7 +48,7 @@ public abstract class Animate extends Entity {
         if( !movingUp && !movingDown && !movingLeft && !movingRight ) {
             return;
         }
-        
+
         // When moving up check both top left and right corners
         if(this.movingUp && checkDirection(Direction.UP)){
             hitboxY -= entitySpeed;
@@ -67,12 +72,15 @@ public abstract class Animate extends Entity {
 
 
     /**
-    * updates the current animation on the entity based on its movement state and direction
-    * if the entity is currently moving and can move in a certain direction, the motion animation is played.
-    *previous animations are stored in a variable for comparison.
-    **/
+     * updates the current animation on the entity based on its movement state and direction
+     * if the entity is currently moving and can move in a certain direction, the motion animation is played.
+     *previous animations are stored in a variable for comparison.
+     **/
     protected void updateAnimation(){
+        // store the current animation
         int prevAnimation = currentAnimation;
+
+        // determine which animation to play based on the moving state and direction of the target
         if (this.isMoving()){
             if (this.movingUp && checkDirection(Direction.UP)){
                 currentAnimation = MOVING_ANIMATION;
@@ -200,7 +208,11 @@ public abstract class Animate extends Entity {
 
     /**
      * @return
+     * used to detect whether an object is moving
      * true if the entity is moving in any direction
+     * return true when the UP and Down keys are pressed at the same time and the left or right buttons are pressed at the same time and the up or down keys are pressed but not at the same time
+     * return true when pressed up, down, left or right
+     * otherwise return false
      */
     public boolean isMoving() {
         if (movingUp && movingDown) {
