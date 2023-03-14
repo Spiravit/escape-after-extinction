@@ -160,7 +160,7 @@ public abstract class Level {
      * Import the sprites from the sprite atlas and store them in the levelSprites array
      */
     private void importSprites() {
-        BufferedImage img = AssetLoader.getSpriteAtlas("levels/levelssprites.png");
+        BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELS_SPRITES);
         levelSprites = new BufferedImage[75];
 
         for (int x = 0; x < 15; x++) {
