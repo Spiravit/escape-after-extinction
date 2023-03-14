@@ -10,7 +10,7 @@ public class AssetLoader {
     public static final String LEVEL_1 = "levels/level_maps/level_1.png";
     public static final String LEVEL_2 = "levels/level_maps/level_2.png"; 
     public static final String LEVEL_3 = "levels/level_maps/level_3.png"; 
-    public static final String LEVELS_SPRITES = "levels/levelssprites.png";
+    public static final String LEVELS_SPRITES = "levels/levelsSprites.png";
 
     // The main menu buttons sprite image
     public static final String MAIN_MENU_BUTTONS = "menu/mainMenuButtons.png";
