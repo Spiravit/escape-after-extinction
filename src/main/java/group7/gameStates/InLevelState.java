@@ -123,6 +123,7 @@ public class InLevelState extends State {
     @Override
     public void mousePressed( MouseEvent e ) {
         if( isPaused == false ){
+            topMenu.mousePressed(e);
             return;
         }
         if ( isPaused && isLevelDone != LevelState.PLAYING ) {
@@ -135,6 +136,7 @@ public class InLevelState extends State {
     @Override
     public void mouseReleased( MouseEvent e ) {
         if( isPaused == false ) {
+            topMenu.mouseReleased(e);
             return;
         }
         if ( isPaused && isLevelDone != LevelState.PLAYING ){
@@ -146,6 +148,7 @@ public class InLevelState extends State {
     @Override
     public void mouseMoved( MouseEvent e ) {
         if( isPaused == false ) {
+            topMenu.mouseMoved(e);
             return;
         }
         if ( isPaused && isLevelDone != LevelState.PLAYING ) {
