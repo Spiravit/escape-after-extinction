@@ -10,7 +10,7 @@ import group7.helperClasses.AssetLoader;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException; 
+import java.io.IOException;
 import java.io.InputStream;
 
 import static group7.Graphics.GraphicsPanel.panelWidth;
@@ -21,7 +21,7 @@ public class UiMenu {
     int mainMenuButtonsPosX = panelWidth/ 2 - scaleX ;
 
     //dedicated for four buttons in main menu page (New game, Load game, credit and exit buttons)
-    protected UiButtons[] menuButtons = new UiButtons[3];
+    protected UiButtons[] menuButtons;
 
     // TODO Add comments
     public Game game;
@@ -31,7 +31,7 @@ public class UiMenu {
     //MENU_BOX_BACKGROUND_HEIGHT: The Height of blue box behind  menu buttons
     private static final int MENU_BOX_BACKGROUND_HEIGHT =9*scaleY;
     //MENU_BOX_BACKGROUND_WIDTH: The Width of blue box behind  menu buttons
-    private static final int MENU_BOX_BACKGROUND_WIDTH =4*scaleX;
+    private static final int MENU_BOX_BACKGROUND_WIDTH =5*scaleX;
 
     public UiMenu(Game game){
         menuBoxBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
@@ -39,7 +39,7 @@ public class UiMenu {
         initializeMenuButtons();
     }
     private void initializeMenuButtons(){ //from protected to private
-
+        menuButtons = new UiButtons[3];
         // New Game button
         menuButtons[0] = new UiButtons(game,
                 mainMenuButtonsPosX,
@@ -137,25 +137,6 @@ public class UiMenu {
                 break;
             }
 
-        }
-    }
-
-    /** TEST REMOVE
-     *  Loads custom font from assets folder in order to be used later in drawing strings on game window.
-     *
-     */
-    protected void loadFont(){
-        InputStream is;
-        try{
-            is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
-            // Set size of font to be 30
-            retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
-        }
-        catch (FontFormatException f){
-            f.printStackTrace();
-        }
-        catch (IOException a){
-            a.printStackTrace();
         }
     }
 }
