@@ -153,8 +153,8 @@ public abstract class Animate extends Entity {
 
     /**
      * removes a direction from the list of directions the entity is moving in
-     * @param direction
-     * the direction to stop moving in
+     * @param direction the direction to stop moving in
+     *
      */
     public void removeDirection(Direction direction){
         switch(direction) {
