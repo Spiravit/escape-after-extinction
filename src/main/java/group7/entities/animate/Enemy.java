@@ -9,6 +9,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+/**
+ * this class represents enemies in the game and extends from animate
+ * enemies have their own way  of moving and their own behavior
+ * when the player interacts with the enemy, the enemy clears the player's health
+ */
 public class Enemy extends Animate {
     int directionUpdateInterval = 200;
 
@@ -23,6 +28,14 @@ public class Enemy extends Animate {
     // the number sprite to use
     int enemyNumber;
 
+
+    /**
+     * constructor to initialize the properties of the enemy instance, such as location, pathfinding, and numbering
+     * @param posX x coordinates of enemy instance
+     * @param posY y coordinates of enemy instance
+     * @param  pathfinding Objects that help enemy instances move
+     * @param enemyNumber number of an enemy instance used to determine which character's animation is locded
+     */
     public Enemy(double posX, double posY, Pathfinding pathfinding, int enemyNumber) {
         super(posX, posY, pathfinding);
         entitySpeed = (float)(0.75 * entitySpeed); // 0.75 the speed of regular animate
@@ -199,6 +212,9 @@ public class Enemy extends Animate {
             
     }
 
+    /**
+     * update the animation of the enemy instacne
+     */
     protected void updateAnimation() {
         if (specialIdleAnimation && !trackingPlayer) {
             setAnimation(SPECIAL_IDLE_ANIMATION);
@@ -236,6 +252,12 @@ public class Enemy extends Animate {
         }
     }
 
+    /**
+     * ways to interact with the player
+     * when an enemy instance interacts with the player, clears all of the player's health
+     * @param player example of player
+     * the player that is interacting with the entity
+     */
     @Override
     public void onInteraction(Player player) {
         if (interactable) {
