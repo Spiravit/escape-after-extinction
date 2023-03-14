@@ -6,6 +6,10 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+/**
+ *
+ *
+ */
 public class AssetLoader {
     public static final String LEVEL_1 = "levels/level_maps/level_1.png";
     public static final String LEVEL_2 = "levels/level_maps/level_2.png"; 

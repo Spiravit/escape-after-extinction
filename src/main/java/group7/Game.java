@@ -138,16 +138,6 @@ public class Game implements Runnable {
             graphicsPanel.changeGameStates(currentState);
         }
 
-        // If game stage was not in credit menu and the desired stage passed as parameter is credit menu
-        // then change gameCurrentState to be CREDIT_SUB_MENU
-        // then initialize currentState to be a credit menu state object
-        // and pass it to graphicPanel in order to render level selection menu
-        else if (gameStateParameter == gameStates.CREDIT_SUB_MENU ) {
-            this.gameCurrentState = gameStateParameter;
-            currentState = new creditState(this);
-            graphicsPanel.changeGameStates(currentState);
-        }
-
         // If game stage was not in level selection menu and the desired stage passed as parameter is level selection menu
         // then change gameCurrentState to be level selection menu
         // then initialize currentState to be a  level selection state object

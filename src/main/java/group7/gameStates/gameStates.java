@@ -11,7 +11,6 @@ public enum gameStates {
     QUIT,       // Quit is for when the player press the quit button on menu
     PLAYER_SELECTION_SUB_MENU,      // The stage when player is in player selection page
     LEVEL_SELECTION_SUB_MENU,       // The stage when player is in level selection page
-    CREDIT_SUB_MENU,                // The stage when player is in credit page
     NEXT,       // The substage when player has pressed next button
     PERV,       // The substage when player has pressed previous button
     RESTART,    // The substage when player has pressed restart button
