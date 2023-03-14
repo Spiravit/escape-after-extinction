@@ -10,6 +10,7 @@ import group7.levels.LevelManager;
 import static group7.helperClasses.buttonSpriteRow.*;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,6 @@ import static group7.Graphics.GraphicsPanel.*;
  * @author      Mohammad Parsaei
  * @author      Karmen Yung
  * @author      Salman Ayaz
- * @author      Chen Min
  * @since       1.0
  */
 public class UiTopMenuBar {
@@ -263,6 +263,26 @@ public class UiTopMenuBar {
         // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
         g.drawString("Keys: " + keyCollected +"/" + levelManager.getKeyInCurrentLevel(),12*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+    }
+
+    public void mousePressed(MouseEvent e) {
+        if (pauseMenuButton.isMouseInButton(e)) {
+            pauseMenuButton.setIsMousePressedButton(true);
+        }
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        if (pauseMenuButton.isMouseInButton(e)) {
+            if (pauseMenuButton.getIsMousePressed())
+                pauseMenuButton.applyGameState();
+        }
+        pauseMenuButton.resetMouseBooleans();
+    }
+    public void mouseMoved(MouseEvent e) {
+        pauseMenuButton.setIsMouseOverButton(false);
+        if (pauseMenuButton.isMouseInButton(e)) {
+            pauseMenuButton.setIsMouseOverButton(true);
+        }
     }
 
 }
