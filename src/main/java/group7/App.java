@@ -9,7 +9,7 @@ package group7;
  * @author  Mohammad Parsaei
  * @author  Chen Min
  */
-public class Main {
+public class App {
     /**
      *  The main method will start the game by calling constructor of game class.
      *
