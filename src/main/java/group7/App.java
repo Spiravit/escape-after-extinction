@@ -12,7 +12,7 @@ package group7;
  * @version 1.0
  * @since 2023-03-14
  */
-public class Main {
+public class App {
     /**
      * The main method will start the game by calling constructor of game class.
      * @param args Unused

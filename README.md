@@ -1,5 +1,13 @@
 # Escape After Extinction
 
+## Build the Project
+
+Start by building this maven project using the command:
+```
+mvn package
+```
+To run it, navigate to the `target` folder and run the file `escape-after-extinction-1.0-SNAPSHOT-javadoc.jar`.
+
 ## Assets
 
 * [Dino Family](https://demching.itch.io/dino-family) by [@ArksDigital on Twitter](https://twitter.com/ArksDigital) and [@DemChing on itch.io](https://demching.itch.io) 
@@ -24,5 +32,5 @@
   * used under the license [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/)
 * [Free Sky Backgrounds](https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set) by [@free-game-assets on itch.io](https://free-game-assets.itch.io)
   * used under the license [FREEBIE PRODUCTS](https://craftpix.net/file-licenses/)
-*[Hearts and health bar](https://fliflifly.itch.io/hearts-and-health-bar) by [@fliflifly on itch.io](https://fliflifly.itch.io)
+* [Hearts and health bar](https://fliflifly.itch.io/hearts-and-health-bar) by [@fliflifly on itch.io](https://fliflifly.itch.io)
   * used under the license [CC-0](https://creativecommons.org/share-your-work/public-domain/cc0/)
