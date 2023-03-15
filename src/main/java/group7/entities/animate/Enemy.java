@@ -8,9 +8,16 @@ import java.awt.image.BufferedImage;
 import java.awt.Graphics;
 
 /**
- * this class represents enemies in the game and extends from animate
- * enemies have their own way  of moving and their own behavior
- * when the player interacts with the enemy, the enemy clears the player's health
+ * This class represents enemies in the game and extends from animate
+ * enemies have their own way of moving and their own behavior
+ * when the player interacts with the enemy, the enemy depleates the player's health
+ * 
+ * @author  Salman Ayaz
+ * @author  Karmen Yung
+ * @author  Mohammad Parsaei
+ * @author  Chen Min
+ * @version 1.0
+ * @since 2023-03-13
  */
 public class Enemy extends Animate {
     int directionUpdateInterval = 200;
@@ -28,7 +35,7 @@ public class Enemy extends Animate {
 
 
     /**
-     * constructor to initialize the properties of the enemy instance, such as location, pathfinding, and numbering
+     * Constructor to initialize the properties of the enemy instance, such as location, pathfinding, and numbering
      * @param posX x coordinates of enemy instance
      * @param posY y coordinates of enemy instance
      * @param  pathfinding Objects that help enemy instances move
@@ -60,7 +67,7 @@ public class Enemy extends Animate {
      */
     public void updateDirection() {
         Direction playerDirection = pathfinding.findPlayer((int) getPosX(), (int) getPosY(), detectionRange);
-        if (!(playerDirection == Direction.NONE)) {
+        if ( !(playerDirection == Direction.NONE) ) {
             trackingPlayer = true;
             // remove all directions
             removeDirection(Direction.UP);
@@ -90,6 +97,7 @@ public class Enemy extends Animate {
             directionUpdateInterval--;
             return;
         }
+
         directionUpdateInterval = (int) (Math.random() * 100);
         switch ((int) (Math.random() * 5)) {
         case 0:
@@ -116,6 +124,10 @@ public class Enemy extends Animate {
         }
     }
 
+    /**
+     * Returns the images used to animate the Enemy (scientist) object.
+     * @return image from resource file.
+     */
     public void loadAnimations() {
         BufferedImage scientist = AssetLoader.getSpriteAtlas(AssetLoader.SCIENTIST);
         
@@ -205,13 +217,11 @@ public class Enemy extends Animate {
                 entityAnimations[TRACKING_PLAYER_ANIMATION][i] = scientist.getSubimage(i * 32, 15 * 32, 32, 32);
             }
             break;
-        }
-
-            
+        }        
     }
 
     /**
-     * update the animation of the enemy instance
+     * Update the animation of the enemy instacne
      */
     protected void updateAnimation() {
         if (specialIdleAnimation && !trackingPlayer) {

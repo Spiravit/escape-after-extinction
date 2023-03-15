@@ -9,11 +9,19 @@ import group7.helperClasses.Direction;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import java.awt.Graphics;
-import java.awt.Color;
-import java.awt.geom.Rectangle2D;
 
+/** 
+* The abstract class Level defines all methods needed to loads all graphics 
+* such as animate and inanimate objects, as well as, the map into the game. 
+*
+* @author  Mohammad Parsaei
+* @author  Salman Ayaz
+* @author  Karmen Yung
+* @author  Chen Min
+* @version 1.0
+* @since 2023-03-13
+*/
 public abstract class Level {
     protected int width;
     protected int height;
@@ -29,47 +37,38 @@ public abstract class Level {
 
 
     /**
-     * Loads everything about the level
-     * @param dinoNumber
-     * player dino type
+     * Constructor: Loads everything about the level.
+     * @param dinoNumber (player chosen dino type)
      */
     public Level(int dinoNumber) {
-        //levelSpriteData = getLevelData(level);      // TEST: MULTIPLE LEVLES
         importSprites();
-        setLevelData(); // TEST: MULTIPLE LEVLES
+        setLevelData(); 
         GraphicsGrid.setGridSize(width, height);
     }
 
     /**
-     * spawn the player in the level
-     * @param x
-     * position x
-     * @param y
-     * position y
-     * @param dinoNumber
-     * the number of the dinosaur sprite to use
+     * Wrapper Method: Spawn a player in the level.
+     * @param x (position x of this player)
+     * @param y (position y of this player)
+     * @param dinoNumber (associated number of the chosen dinosaur sprite to be use)
      */
     protected void addPlayer(int x, int y, int dinoNumber) {
         player = new Player(x, y, pathfinding, dinoNumber);
     }
 
     /**
-     * Add an enemy to the level
-     * @param x
-     * position x
-     * @param y
-     * position y
+     * Wrapper Method: Spawn an Enemy in the level.
+     * @param x (position x of this enemy)
+     * @param y (position y of this enemy)
      */
     protected void addEnemy(int x, int y, int enemyNumber) {
         entities.add(new Enemy(x, y, pathfinding, enemyNumber));
     }
 
     /**
-     * Add a key to the level
-     * @param x
-     * position x
-     * @param y
-     * position y
+     * Wrapper Method: Spawn a key in the level.
+     * @param x (position x of this key)
+     * @param y (position y of this key)
      */
     protected void addKey(int x, int y) {
         entities.add(new Key(x, y));
@@ -77,13 +76,10 @@ public abstract class Level {
     }
 
     /**
-     * Add an egg to the level
-     * @param x
-     * position x
-     * @param y
-     * position y
-     * @param timeout
-     * time in seconds before egg disappears
+     * Wrapper Method: Spawn an egg in the level.
+     * @param x (position x of this egg)
+     * @param y (position y of this egg)
+     * @param timeout (time in seconds before this egg disappears)
      */
     protected void addEgg(int x, int y, int timeout) {
         entities.add(new Egg(x, y, timeout));
@@ -91,59 +87,59 @@ public abstract class Level {
     }
 
     /**
-     * Add a potion to the level
-     * @param x
-     * position x
-     * @param y
-     * position y
-     * @param potionType
-     * type of potion
+     * Wrapper Method: Spawn a potion in the level.
+     * @param x (position x of this potion)
+     * @param y (position y of this potion)
+     * @param potionType (type of potion: Health or Speed)
      */
     protected void addPotion(int x, int y, int potionType) {
         entities.add(new Potion(x, y, potionType));
     }
 
     /**
-     * Add a trap to the level
-     * @param x
-     * position x
-     * @param y
-     * position y
+     * Wrapper Method: Spawn a trap in the level.
+     * @param x (position x of this tarp)
+     * @param y (position y of this trap)
      */
     protected void addTrap(int x, int y) {
         entities.add(new Trap(x, y));
     }
 
+    /**
+     * Wrapper Method: returns number of keys the player collected.
+     * @return int keys collected
+     */
     public int getKeysCollected() {
         return player.getKeysCollected();
     }
 
+    /**
+     * Wrapper Method: returns number of eggs the player collected.
+     * @return int eggs collected
+     */
     public int getEggsCollected() {
         return player.getEggsCollected();
     }
 
     /**
-     * returns the player's health
-     * @return
-     * player's health
+     * Wrapper Method: returns the player's health.
+     * @return int player's health
      */
     public int getHealth() {
         return player.getHealth();
     }
 
     /**
-     * returns number of all egg (collected and not collected) in a level
-     *
-     * @return number of egg items in a level
+     * Returns number of all eggs to be used in a level
+     * @return int number of egg items in a level
      */
     public int getNumberOfEggs() {
         return numberOfEggs;
     }
 
     /**
-     * returns number of all keys (collected and not collected) in a level
-     *
-     * @return number of keys items in a level
+     * Returns number of all keys to be used in a level
+     * @return int number of keys items in a level
      */
     public int getNumberOfKeys() {
         return numberOfKeys;
@@ -151,13 +147,13 @@ public abstract class Level {
 
 
     /**
-     * Set the level data
-     * this includes the data in the pathfinding object and the levelSpriteData array
+     * Set the level data,
+     * this includes the data in the pathfinding object and the levelSpriteData array.
      */
     protected abstract void setLevelData();
 
     /**
-     * Import the sprites from the sprite atlas and store them in the levelSprites array
+     * Import the sprites from the sprite atlas and store them in the levelSprites array.
      */
     private void importSprites() {
         BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.LEVELS_SPRITES);
@@ -171,14 +167,28 @@ public abstract class Level {
         }
     }
 
+    /**
+     * Wrapper Method: sets the direction to be moved in.
+     * @param direction
+     */
     public void setDirection(Direction direction) {
         player.setDirection(direction);
     }
 
+    /**
+     * Wrapper Method: removes current direction that is being moving in.
+     * @param direction
+     */
     public void removeDirection(Direction direction) {
         player.removeDirection(direction);
     }
 
+    /**
+     * Return the current state of the player in this game.
+     * @return LOST if players health is at zero.
+     * @return WON if all the keys in the level are collected.
+     * @return PLAYING otherwise.
+     */
     public LevelState checkLevelState() {
         if (player.getHealth() <= 0) {
             return LevelState.LOST;
@@ -189,6 +199,9 @@ public abstract class Level {
         }
     }
 
+    /**
+     * Determine if any of the entity hitboxex intersect with the player hitbox.
+     */
     private void checkInteractions() {
         for (Entity entity : entities) {
             if (entity.getHitbox().intersects(player.getHitbox())) {
@@ -197,6 +210,9 @@ public abstract class Level {
         }
     }
 
+    /**
+     * Determine if any of the entities loaded on the map interact with the player or not.
+     */
     public void update() {
         player.update();
         for (Entity entity : entities) {
@@ -207,8 +223,7 @@ public abstract class Level {
 
     /**
      * render the level, player and entities
-     * @param g
-     * the graphics object to draw on
+     * @param g (the graphics object to draw on)
      */
     public void render(Graphics g) {
         // remember to render the level first or you will end up spending a long time debugging like me :D
