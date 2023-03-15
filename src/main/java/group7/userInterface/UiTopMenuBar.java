@@ -10,6 +10,7 @@ import group7.levels.LevelManager;
 import static group7.helperClasses.buttonSpriteRow.*;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,6 @@ import static group7.Graphics.GraphicsPanel.*;
  * @author      Mohammad Parsaei
  * @author      Karmen Yung
  * @author      Salman Ayaz
- * @author      Chen Min
  * @since       1.0
  */
 public class UiTopMenuBar {
@@ -130,7 +130,6 @@ public class UiTopMenuBar {
         g.drawImage(topMenuLandBackground,0,(int)(1.25*GraphicsGrid.scaleY),GraphicsPanel.panelWidth,(int)(0.75*GraphicsGrid.scaleY),null);
         renderTime(g,isPaused);
         renderHealth(g,health);
-        renderScore(g,100);
         renderEggCount(g,eggCollected);
         renderKeyCount(g,keyCollected);
         pauseMenuButton.render(g);
@@ -225,20 +224,6 @@ public class UiTopMenuBar {
     }
 
     /**
-     * draws the score of player while playing a level in in-game top menu.
-     *
-     * @param g         Graphic g is passed as parameter in order to draw items on game window.
-     * @param score     score of player in current level is passed in order to be drawn by Graphic g.
-     */
-    private void renderScore(Graphics g,int score){
-        // Using Graphic2D in order to change the Font for drawing a string
-        Graphics2D g2D = (Graphics2D) g;
-        // Set the font to retroFont in order to draw the Key count on in-game top menu
-        g.setFont(retroFont);
-        g.drawString("SCORE: " + score,7*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
-    };
-
-    /**
      * renders number of eggs a player has collected and number of all eggs in current level player is playing.
      *
      * @param g                 Graphic g is passed as parameter in order to draw items on game window.
@@ -249,7 +234,7 @@ public class UiTopMenuBar {
         Graphics2D g2D = (Graphics2D) g;
         // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
-        g.drawString("Egg: " + eggCollected +"/" + levelManager.getEggInCurrentLevel(),10*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+        g.drawString("Egg: " + eggCollected +"/" + levelManager.getEggInCurrentLevel(),7*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
 
     }
 
@@ -265,6 +250,29 @@ public class UiTopMenuBar {
         // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
         g.drawString("Keys: " + keyCollected +"/" + levelManager.getKeyInCurrentLevel(),12*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+    }
+
+    public void mousePressed(MouseEvent e) {
+        if (pauseMenuButton.isMouseInButton(e)) {
+            pauseMenuButton.setIsMousePressedButton(true);
+        }
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        if (pauseMenuButton.isMouseInButton(e)) {
+            if (pauseMenuButton.getIsMousePressed())
+                pauseMenuButton.applyGameState();
+        }
+        pauseMenuButton.resetMouseBooleans();
+    }
+    public void mouseMoved(MouseEvent e) {
+        pauseMenuButton.setIsMouseOverButton(false);
+        if (pauseMenuButton.isMouseInButton(e)) {
+            pauseMenuButton.setIsMouseOverButton(true);
+        }
+    }
+    public int getTime(){
+        return minute_counter*60 + second_counter;
     }
 
 }

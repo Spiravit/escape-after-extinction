@@ -1,13 +1,11 @@
 package group7.entities.animate;
 
-import group7.Graphics.GraphicsGrid;
 import group7.levels.Pathfinding;
 import group7.helperClasses.AssetLoader;
 import group7.helperClasses.Direction;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.Graphics;
 
 /**
  * This class represents enemies in the game and extends from animate
@@ -240,29 +238,6 @@ public class Enemy extends Animate {
     }
 
     /**
-     * For Debugging Only
-     * Draw rectangles in the direction the enemy is moving in
-     * @param g
-     * the graphics object to draw to
-     */
-    private void drawMovementDirections(Graphics g) {
-        // debugging the direction the enemy is moving in
-        g.setColor(Color.ORANGE);
-        if (movingDown) {
-            GraphicsGrid.drawRect(g, getPosX(), getPosY() + 1, 0.1, 0.1);
-        }
-        if (movingLeft) {
-            GraphicsGrid.drawRect(g, getPosX() - 1, getPosY(), 0.1, 0.1);
-        }
-        if (movingRight) {  
-            GraphicsGrid.drawRect(g, getPosX() + 1, getPosY(), 0.1, 0.1);
-        }
-        if (movingUp) {
-            GraphicsGrid.drawRect(g, getPosX(), getPosY() - 1, 0.1, 0.1);
-        }
-    }
-
-    /**
      * ways to interact with the player
      * when an enemy instance interacts with the player, clears all of the player's health
      * @param player example of player
@@ -274,11 +249,6 @@ public class Enemy extends Animate {
             player.takeDamage(player.getHealth()); // remove all health
             interactable = false;
         }
-    }
-
-    public void render(Graphics g) {
-        super.render(g);
-        drawMovementDirections(g);
     }
 }
 
