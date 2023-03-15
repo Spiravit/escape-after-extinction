@@ -7,18 +7,18 @@ import group7.gameStates.*;
 import group7.gameStates.LevelSelectionState;
 import group7.gameStates.playerSelectionState;
 
-/**
- * TODO , writing javadoc for game class
- *
- *
- * @author  Salman Ayaz
- * @author Kermen Yung
- * @author Mohammad Parsaei
- * @author Chen Imin
- */
+/** 
+* The class Game implements @see <a href=”https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html”>label</a>.
+* Renders and starts the game. Allows user to use in game menus to make selections and play or exit the game.
+*
+* @author  Mohammad Parsaei
+* @author  Salman Ayaz
+* @author  Karmen Yung
+* @author  Chen Min
+* @version 1.0
+* @since 2023-03-13
+*/
 public class Game implements Runnable {
-
-
     public GraphicsWindow graphicsWindow;
     public GraphicsPanel graphicsPanel;
 
@@ -27,10 +27,7 @@ public class Game implements Runnable {
     // State object in order to render state of gameCurrentState
     private State currentState;
 
-
     private GraphicsGrid graphicsGrid;
-
-
 
     int playerDinoNumber;
     int levelSelected;
@@ -39,7 +36,6 @@ public class Game implements Runnable {
     /**
      * Constructor for Game class. It launches the game by creating GraphicsPanel,GraphicsGrid,GraphicWindow objects to
      * set up game's window. The default initial stage of game is set to be main menu so main menu will be rendered initially.
-     *
      */
     public Game() {
 
@@ -66,8 +62,7 @@ public class Game implements Runnable {
     }
 
     /**
-     * starts the game loop by making a thread.
-     *
+     * Starts the game loop by making a thread.
      */
     private void startGameLoop(){
         Thread thread = new Thread(this);
@@ -76,9 +71,8 @@ public class Game implements Runnable {
 
 
     /**
-     * changes state of game based on argument passed.
-     *
-     * @param gameStateParameter    The desired next state of game.
+     * Changes state of game based on argument passed.
+     * @param gameStateParameter    (The desired next state of game {@link gameState})
      */
     public void changeGameStates(gameStates gameStateParameter){
 
@@ -232,7 +226,7 @@ public class Game implements Runnable {
 
 
     /**
-     * TODO , Someone add javadoc for that
+     * Renders all graphics required to run and play the game.
      *
      */
     @Override

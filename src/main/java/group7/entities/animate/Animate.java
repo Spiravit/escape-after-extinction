@@ -5,8 +5,17 @@ import group7.levels.Pathfinding;
 import group7.helperClasses.Direction;
 
 /**
- * the animation class is an abstract class of all animated entities and inherits from the Entity class
- * it implements basic function such as entity movement and animation update, and provides auxiliary methods such as setting and removing movement direction and checking whether direction is feasible
+ * The Animation class is an abstract class of all animated entities and inherits from the Entity class
+ * it implements basic function such as entity movement and animation update, 
+ * and provides auxiliary methods such as setting and removing movement direction 
+ * and checking whether going a certain direction is feasible or not.
+ * 
+ * @author  Salman Ayaz
+ * @author  Karmen Yung
+ * @author  Mohammad Parsaei
+ * @author  Chen Min
+ * @version 1.0
+ * @since 2023-03-13
  */
 public abstract class Animate extends Entity {
     // a pathfinding object that checks whether a tile is accessible
@@ -33,7 +42,7 @@ public abstract class Animate extends Entity {
     }
 
     /**
-     * updates the entity, including position, hitbox, and animation
+     * Updates the entity, including position, hitbox, and animation.
      */
     public void update() {
         updatePosition();
@@ -41,7 +50,7 @@ public abstract class Animate extends Entity {
     }
 
     /**
-     * updates the position of the entity based on the directions it is moving in
+     * Updates the position of the entity based on the directions it is moving in.
      */
     protected void updatePosition() {
         // Exit if not moving in any direction
@@ -72,11 +81,11 @@ public abstract class Animate extends Entity {
 
 
     /**
-     * updates the current animation on the entity based on its movement state and direction
-     * if the entity is currently moving and can move in a certain direction, the motion animation is played.
-     *previous animations are stored in a variable for comparison.
-     **/
-    protected void updateAnimation(){
+     * Updates the current animation on the entity based on its movement state and direction.
+     * If the entity is currently moving and can move in a certain direction, the motion animation is played.
+     * Previous animations are stored in a variable for comparison.
+     */
+    protected void updateAnimation() {
         // store the current animation
         int prevAnimation = currentAnimation;
 
@@ -110,6 +119,11 @@ public abstract class Animate extends Entity {
         }
     }
 
+    /**
+     * Checks if the directions the entity wants to move in is possible or not. 
+     * @param direction
+     * @return If the direction an entity wants to go is possible or not. 
+     */
     protected boolean checkDirection(Direction direction) {
         // floor in the isValidTile function insures the entity doesn't move into a negative position between 0 and -1
         switch(direction) {
@@ -131,9 +145,8 @@ public abstract class Animate extends Entity {
     }
 
     /**
-     * adds a direction to the list of directions the entity is moving in
+     * Adds a direction to the list of directions the entity to start moving in.
      * @param direction
-     * the direction to start moving in
      */
     public void setDirection(Direction direction){
         switch(direction) {
@@ -160,9 +173,9 @@ public abstract class Animate extends Entity {
 
 
     /**
-     * removes a direction from the list of directions the entity is moving in
+     * Removes a direction from the list of directions the entity is moving in.
+     * The direction to stop moving in.
      * @param direction
-     * the direction to stop moving in
      */
     public void removeDirection(Direction direction){
         switch(direction) {
@@ -184,7 +197,7 @@ public abstract class Animate extends Entity {
     }
 
     /**
-     * toggles a direction in the list of directions the entity is moving in
+     * Toggles a direction in the list of directions the entity is moving in.
      * @param direction
      */
     public void toggleDirection(Direction direction) {
@@ -208,11 +221,12 @@ public abstract class Animate extends Entity {
 
     /**
      * @return
-     * used to detect whether an object is moving
-     * true if the entity is moving in any direction
-     * return true when the UP and Down keys are pressed at the same time and the left or right buttons are pressed at the same time and the up or down keys are pressed but not at the same time
-     * return true when pressed up, down, left or right
-     * otherwise return false
+     * Used to detect whether an object is moving.
+     * Returns true if the entity is moving in any direction ( when pressing up, down, left or right ).
+     * Return true when the UP and Down keys are pressed at the same time 
+     * and the left or right buttons are pressed at the same time 
+     * and the up or down keys are pressed but not at the same time.
+     * Otherwise return false.
      */
     public boolean isMoving() {
         if (movingUp && movingDown) {

@@ -5,29 +5,32 @@ import group7.entities.inanimate.Potion;
 import group7.helperClasses.AssetLoader;
 import java.awt.image.BufferedImage;
 
+
 /**
- * this class is an entity class of a player character that inherits the Animate class
- * player has some properties, such as health, number of keys the player has collected, and the number of dinosaur eggs
- * some methods----update the player's animation ---- ways to update the player's position --- ways to get the player health --- ways to take damage
- * ways to increase the player's health --- ways to increase the player's speed --- ways to get the number of keys the player collects --- ways to increase the number of keys the player collects
+ * The Player class extends abstract Animate class, which in turn extends the abstract Entity class.
+ * The class creates an object of Player type, which is rendered on screen as a Dinosaur.
+ * Player has properties: health, number of keys collected, and the number of dinosaur eggs collected.
+ *
+ * @author  Salman Ayaz
+ * @author  Karmen Yung
+ * @author  Mohammad Parsaei
+ * @author  Chen Min
+ * @version 1.0
+ * @since 2023-03-13
  */
 public class Player extends Animate {
     private int health = 100; // player health, default value is 100
-    private int dinoNumber; // the number of the dinosaur sprite to use
-
     private int keysCollected = 0; // the number of keys collected
     private int eggsCollected = 0; // the number of dinosaur eggs collected
 
+    private int dinoNumber; // the number of the dinosaur sprite to use
     private boolean canMove = false; // whether the player can mover
 
     /**
-     * Create a new player
-     * @param posX
-     * the x position of the player
-     * @param posY
-     * the y position of the player
-     * @param pathfinding
-     * the pathfinding of the level the player is in
+     * Constructor: Create a new player object.
+     * @param posX (the x position of this player)
+     * @param posY (the y position of this player)
+     * @param pathfinding (the pathfinding of the level this player is in)
      */
     public Player(double posX, double posY, Pathfinding pathfinding, int dinoNumber) {
         super(posX, posY, pathfinding);
@@ -130,8 +133,7 @@ public class Player extends Animate {
 
     /**
      * Get the health of the player
-     * @return
-     * the health of the player
+     * @return The health of the player
      */
     public int getHealth() {
         return health;
@@ -139,9 +141,8 @@ public class Player extends Animate {
 
     
     /**
-     * Take damage
-     * @param damage
-     * the amount of damage to take
+     * Decreases Health
+     * @param damage The amount of damage taken
      */
     public void takeDamage(int damage) {
         health -= damage;
@@ -155,9 +156,9 @@ public class Player extends Animate {
 
     /**
      * Increase Health
-     * @param hp
      * Players MAX health is 100. If player has full health do nothing, 
      * else if player has low health add the health gained from the potion. 
+     * @param hp
      */
     public void gainHealth( int hp ) {
         if ( health != 0 && health < 100 && health + Potion.GREEN_POTION_BOOST_VALUE <= 100 ) {
@@ -171,10 +172,10 @@ public class Player extends Animate {
     }
 
     /**
-     * Increase Speed
-     * @param speedBoost
-     * Players MAX speed is 0.03f. If player has full health do nothing, 
-     * else if player has low health add the health gained from the potion. 
+     * Increase movement speed.
+     * Players MAX speed is 0.04f. If player has full health do nothing, 
+     * else if player has low health add the health gained from the potion.
+     * @param speedBoost 
      */
     public void increaseSpeed( float speedBoost ) {
         if ( entitySpeed < 0.04f && entitySpeed + Potion.PURPLE_POTION_BOOST_VALUE <= 0.04f ) {
@@ -183,25 +184,23 @@ public class Player extends Animate {
     }
 
     /**
-     * Get the number of keys collected
-     * @return
-     * the number of keys collected
+     * Get the number of keys collected.
+     * @return The number of keys collected.
      */
     public int getKeysCollected() {
         return keysCollected;
     }
 
     /**
-     * Increment the number of keys collected
+     * Increment the number of keys collected.
      */
     public void incrementKeysCollected() {
         keysCollected++;
     }
 
     /**
-     * Get the number of eggs collected
-     * @return
-     * the number of eggs collected
+     * Get the number of eggs collected.
+     * @return The number of eggs collected.
      */
     public int getEggsCollected() {
         return eggsCollected;
@@ -215,6 +214,6 @@ public class Player extends Animate {
     }
 
     public void onInteraction(Player player) {
-        // no interaction
+        // No Interaction
     }
 }

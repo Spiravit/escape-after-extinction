@@ -5,18 +5,29 @@ import java.awt.image.BufferedImage;
 import group7.entities.animate.Player;
 import group7.helperClasses.AssetLoader;
 
-public class Egg extends Collectable {
+
+/**
+* The class Egg extends Inanimate.
+* Creates an Object of type Egg, that renders a dinosaur egg on screen.
+* Collecting a dinosaur egg increases a players final score for the level.
+* Egg has properties: startTime and timeout, that allows it to disappear from the map after a set time.
+*
+* @author  Mohammad Parsaei
+* @author  Salman Ayaz
+* @author  Karmen Yung
+* @author  Chen Min
+* @version 1.0
+* @since 2023-03-13
+*/
+public class Egg extends Inanimate {
     private double startTime;
     private int timeout;
 
     /**
      * Creates an egg that will disappear after a certain amount of time
-     * @param posX
-     * position x
-     * @param posY
-     * position y
-     * @param timeout
-     * time in seconds before egg disappears
+     * @param posX (position x of this Egg)
+     * @param posY (position y of this Egg)
+     * @param timeout (time, in seconds, before this egg disappears)
      */
     public Egg(double posX, double posY, int timeout) {
         super(posX, posY);
@@ -40,6 +51,9 @@ public class Egg extends Collectable {
         }
     }
 
+    /**
+     * Removes the graphic displayed from the game window, when time is up.
+     */
     public void update() {
         if ((System.currentTimeMillis() - startTime) / 1000 > timeout) {
             removeCollectable();

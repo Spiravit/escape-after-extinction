@@ -8,6 +8,8 @@ package group7.helperClasses;
  * @author Karmen Yung
  * @author Mohammad Parsaei
  * @author Salman Ayaz
+ * @version 1.0
+ * @since 2023-03-13
  */
 public class buttonSpriteRow {
 

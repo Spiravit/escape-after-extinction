@@ -6,6 +6,17 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+/** 
+* The class AssetLoader defines all Animate and Inanimate Objects resource file paths,
+* and retreives the correct images from file as a BufferedImage.
+*
+* @author  Mohammad Parsaei
+* @author  Salman Ayaz
+* @author  Karmen Yung
+* @author  Chen Min
+* @version 1.0
+* @since 2023-03-13
+*/
 public class AssetLoader {
     public static final String LEVEL_1 = "levels/level_maps/level_1.png";
     public static final String LEVEL_2 = "levels/level_maps/level_2.png"; 
@@ -55,14 +66,13 @@ public class AssetLoader {
     public static final String HEALTH_BAR_INSIDE = "menu/inLevelTopMenu/health_bar_inside.png";
 
     /**
-     * Load a sprite atlas from the assets folder
+     * Load a sprite atlas from the assets folder.
      * @param filename
-     * The name of the file to load, which must be one of the constants defined in this class
-     * @return
-     * The sprite atlas as a BufferedImage
+     * The name of the file to loaded. Must be one of the constants defined in this class.
+     * @return The sprite atlas as a BufferedImage
      */
     public static BufferedImage getSpriteAtlas(String filename) {
-        //System.out.println("filename: " + filename);
+        //System.out.println("filename: " + filename);                                  // ***TEST REMOVE***
         BufferedImage img = null;
         InputStream is = AssetLoader.class.getResourceAsStream("/assets/" + filename);
         try {
