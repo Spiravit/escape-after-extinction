@@ -1,16 +1,25 @@
 package group7.entities;
 
-import group7.levels.Pathfinding;
 import group7.Graphics.GraphicsGrid;
 import group7.entities.animate.Player;
 
-import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
-
+/** 
+* The class Entity encompasses all Animate and Inanimate Objects that can appear in game.
+* Entity has properties: hitbox, scale, offset, and animation information. Used for rendering in game 
+* objects in the correct location, setting an objects size and how an orject is animated. 
+*
+* @author  Mohammad Parsaei
+* @author  Salman Ayaz
+* @author  Karmen Yung
+* @author  Chen Min
+* @version 1.0
+* @since 2023-03-13
+*/
 public abstract class Entity {
     // stores the position of the top left corner of the hitbox rectangle
     protected double hitboxX;
@@ -50,6 +59,11 @@ public abstract class Entity {
     // stores the amount of possible animations, update this if you add more animations
     protected final static int ANIMATION_COUNT = 8;
 
+    /**
+     * Constructor: Create the correct Entity at a given location.
+     * @param posX (the x position of this entity)
+     * @param posY (the y position of this entity)
+     */
     public Entity(double posX, double posY) {
         setPosX(posX);
         setPosY(posY);
@@ -59,51 +73,49 @@ public abstract class Entity {
     }
 
     /**
-     * @return
-     * returns the hitbox of the entity as a rectangle
+     * Returns the hitbox of the entity as a rectangle
+     * @return hitbox
      */
     public Rectangle2D getHitbox() {
         return new Rectangle2D.Double(hitboxX, hitboxY, hitboxWidth, hitboxHeight);
     }
 
     /**
-     * @return
-     * returns the x position where the middle of the hitbox lies
+     * Returns the x position where the middle of where the hitbox lies
+     * @return hitboxX of the middle of the hitbox
      */
     protected double getPosX() {
         return hitboxX + hitboxWidth / 2;
     }
 
     /**
-     * sets the x position of the entity to be the center of the given x tile
+     * Sets the x position of the entity to be the center of the given x tile
      * recall this method when hitboxX or hitboxWidth is changed to center the entity
-     * @param x
-     * the x position to set the entity to
+     * @param x (the x position to set the entity to)
      */
     protected void setPosX(double x) {
         hitboxX = x + ((1 - hitboxWidth) / 2);
     }
 
     /**
-     * sets the y position of the entity to be the center of the given y tile
+     * Sets the y position of the entity to be the center of the given y tile
      * recall this method when hitboxY or hitboxHeight is changed to center the entity
-     * @param y
-     * the y position to set the entity to
+     * @param y (the y position to set the entity to)
      */
     protected void setPosY(double y) {
         hitboxY = y + ((1 - hitboxHeight) / 2);
     }
 
     /**
-     * @return
-     * returns the y position where the middle of the hitbox lies
+     * Returns the y position where the middle of the hitbox lies
+     * @return hitboxY of the middle of the hitbox
      */
     protected double getPosY() {
         return hitboxY + hitboxHeight / 2;
     }
 
     /**
-     * manages the animation of the entity
+     * Manages the animation of the entity,
      * including changing the sprite of the entity
      * and how fast the sprite changes
      */
@@ -120,9 +132,8 @@ public abstract class Entity {
     }
 
     /**
-     * sets the current animation of the entity
-     * @param animation
-     * the animation to set the entity to
+     * Sets the current animation of the entity
+     * @param animation (the type of animation to set)
      */
     protected void setAnimation(int animation) {
         if (!(currentAnimation == animation)) {
@@ -133,10 +144,9 @@ public abstract class Entity {
     }
 
     /**
-     * @param entityAction
-     * enum of entity action
-     * @return
-     * amount of sprites for the action
+     * Returns the amount of sprites/frames for a type of action.
+     * @param entityAction (enum of entity action)
+     * @return length of a type of action
      */
     protected int getSpriteAmount(int entityAction){
         return entityAnimations[entityAction].length;
@@ -154,21 +164,22 @@ public abstract class Entity {
     protected abstract void updateAnimation();
 
     /**
-     * what happens when the entity is interacted with
+     * What happens when the entity is interacted with
      * @param player
-     * the player that is interacting with the entity
      */
     public abstract void onInteraction(Player player);
 
+    /**
+     * Update the animation sequence, virtually make an object look like it's moving.
+     */
     public void update() {
         updateAnimationTick();
         updateAnimation();
     }
 
     /**
-     * draws the currentEntityImage on the screen
-     * @param g
-     * the graphics object to draw on
+     * Draws the currentEntityImage on the screen
+     * @param g (the graphics object to draw on)
      */
     public void render(Graphics g) {
         if (reverseImage) {

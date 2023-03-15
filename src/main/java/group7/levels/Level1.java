@@ -4,9 +4,20 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import group7.helperClasses.AssetLoader;
-import static group7.entities.inanimate.Collectable.*;
+import static group7.entities.inanimate.Inanimate.*;
 
 
+/** 
+* The class Level1 creates objects the player, all Enemies, traps, and collectable objects (such as 
+* keys, eggs, and potions) for Level One and spawns them in their designated positions onto the map.
+*
+* @author  Mohammad Parsaei
+* @author  Salman Ayaz
+* @author  Karmen Yung
+* @author  Chen Min
+* @version 1.0
+* @since 2023-03-13
+*/
 public class Level1 extends Level {
 
     public Level1(int dinoNumber) {
@@ -37,10 +48,6 @@ public class Level1 extends Level {
     }
 
     @Override
-    /**
-     * Set the level data
-     * this includes the data in the pathfinding object and the levelSpriteData array
-     */
     protected void setLevelData() { //TEST MULTIPLE LEVELS
         BufferedImage img = AssetLoader.getSpriteAtlas("levels/level_maps/level_" + 1 + ".png"); //TEST MULTIPLE LEVELS, changed from AssetLoader.LEVEL_1 to filename
 
