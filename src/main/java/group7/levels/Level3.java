@@ -24,10 +24,10 @@ public class Level3 extends Level {
         super(dinoNumber);
         addPlayer(1, 3, dinoNumber);
 
-        addEnemy(4, 6, 1);
-        addEnemy(3, 14, 2);
-        addEnemy(13, 15, 3);
-        addEnemy(18, 5, 4);
+        addEnemy(4, 6, 3, 4, 1);
+        addEnemy(3, 14, 3, 4,  2);
+        addEnemy(13, 15, 3, 4, 3);
+        addEnemy(18, 5, 3, 5, 4);
 
         addTrap(3, 7);
         addTrap(3, 10);
