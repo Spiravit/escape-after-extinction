@@ -204,6 +204,12 @@ public abstract class Entity {
         //debugRender(g);
     }
 
+    /**
+     * debugging purposes only
+     * draws the hitbox of the entity, and a dot at the center of the entity
+     * @param g
+     * the graphics object to draw on
+     */
     protected void debugRender(Graphics g) {
         g.setColor(Color.RED);
         GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight); 
