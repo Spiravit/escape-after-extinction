@@ -5,9 +5,27 @@ import java.awt.image.BufferedImage;
 import group7.entities.animate.Player;
 import group7.helperClasses.AssetLoader;
 
-public class Trap extends Collectable {
+
+/** 
+* The class Trap extends abstract class Inanimate.
+* The class creates an object of Trap type, and renders a spike trap in the game window.
+* When a Player walks over a trap their health decreases.
+*
+* @author  Mohammad Parsaei
+* @author  Salman Ayaz
+* @author  Karmen Yung
+* @author  Chen Min
+* @version 1.0
+* @since 2023-03-13
+*/
+public class Trap extends Inanimate {
     private int damage = 50;
 
+    /**
+     * Constructor: Create a new trap object.
+     * @param posX (the x position of this trap)
+     * @param posY (the y position of this trap)
+     */
     public Trap(int positionX, int positionY) {
         super(positionX, positionY);
         loadAnimations();

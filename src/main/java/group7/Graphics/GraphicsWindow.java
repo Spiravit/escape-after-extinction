@@ -3,14 +3,21 @@ package group7.Graphics;
 import javax.swing.*;
 
 /**
- * Sets up the window frame for Game.
- * @author Salman Ayaz, Karmen Yung, Mohammad Parsaei, Chen Min
- */
+* The class GraphicWindow extends @see <a href=”https://docs.oracle.com/javase/7/docs/api/javax/swing/JFrame.html”>label</a>.
+* The class generates the window frame for game window.
+*
+* @author  Mohammad Parsaei
+* @author  Salman Ayaz
+* @author  Karmen Yung
+* @author  Chen Min
+* @version 1.0
+* @since 2023-03-13
+*/
 public class GraphicsWindow {
     private JFrame jframe;
 
     /**
-     * Initializes jframe field and changes jframe's attributes
+     * Constructor: Initializes jframe field and changes jframe's attributes.
      * @param graphicsPanel
      */
     public GraphicsWindow(GraphicsPanel graphicsPanel){
@@ -19,6 +26,10 @@ public class GraphicsWindow {
         changeWindowAttributes(graphicsPanel);
     }
     
+    /**
+     * Sets the new Window attributes to suit this game's needs.
+     * @param graphicsPanel
+     */
     private void changeWindowAttributes(GraphicsPanel graphicsPanel){
         // Terminate the program when player closes the window
         jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
