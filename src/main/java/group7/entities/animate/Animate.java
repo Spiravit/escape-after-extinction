@@ -125,7 +125,9 @@ public abstract class Animate extends Entity {
     /**
      * Checks if the directions the entity wants to move in is possible or not. 
      * @param direction
-     * @return If the direction an entity wants to go is possible or not. 
+     * The direction the entity wants to move in.
+     * @return 
+     * If the direction an entity wants to go is possible or not. 
      */
     protected boolean checkDirection(Direction direction) {
         // floor in the isValidTile function insures the entity doesn't move into a negative position between 0 and -1
