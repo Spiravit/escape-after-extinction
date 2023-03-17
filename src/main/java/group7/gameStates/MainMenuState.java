@@ -14,6 +14,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+/**
+ * The class creates an object of type MainMenuState, that renders a page
+ * where the player can selec to play the game, select a level, or exit the game.
+ * @author  Salman Ayaz
+ * @author  Karmen Yung
+ * @author  Mohammad Parsaei
+ * @author  Chen Min
+ * @version 1.0
+ * @since 2023-03-13
+ */
 public class MainMenuState extends State {
 
     // stores the loading screen for the main page
