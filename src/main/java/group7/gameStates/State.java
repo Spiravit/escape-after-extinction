@@ -21,6 +21,12 @@ public abstract class State {
     public boolean isPaused=false;
     public UiParallelBackground animatedDawnBackground;
     public UiButtons[] stateButton;
+
+    /**
+     * Constructor for State class.
+     * @param game
+     * game object.
+     */
     public State(Game game){
         this.game=game;
         animatedDawnBackground = new UiParallelBackground(
