@@ -164,8 +164,9 @@ public abstract class Entity {
     protected abstract void updateAnimation();
 
     /**
-     * What happens when the entity is interacted with
+     * Called when the entity is interacted with
      * @param player
+     * the player that is interacting with the entity
      */
     public abstract void onInteraction(Player player);
 
@@ -206,7 +207,8 @@ public abstract class Entity {
 
     /**
      * debugging purposes only
-     * draws the hitbox of the entity, and a dot at the center of the entity
+     * draws the hitbox of the entity
+     * and a dot at getPosX() and getPosY() of the entity
      * @param g
      * the graphics object to draw on
      */
