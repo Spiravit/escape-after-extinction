@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 /** 
 * The class AssetLoader defines all Animate and Inanimate Objects resource file paths,
-* and retreives the correct images from file as a BufferedImage.
+* and retrieves the correct images from file as a BufferedImage.
 *
 * @author  Mohammad Parsaei
 * @author  Salman Ayaz
