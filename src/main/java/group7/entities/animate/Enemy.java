@@ -22,7 +22,8 @@ import java.awt.Graphics;
 public class Enemy extends Animate {
     int directionUpdateInterval = 200;
 
-    int detectionRange = 3;
+    int detectionRange; // the range at which the enemy can initially detect the player
+    int afterDetectionRange; // the range at which the enemy can continue to detect the player
 
     // prevents the enemy from refreshing the player death animation when the enemy continues to interact
     boolean interactable = true;
@@ -39,12 +40,16 @@ public class Enemy extends Animate {
      * @param posX x coordinates of enemy instance
      * @param posY y coordinates of enemy instance
      * @param  pathfinding Objects that help enemy instances move
+     * @param detectionRange the range at which the enemy can initially detect the player
+     * @param afterDetectionRange the range at which the enemy can continue to detect the player
      * @param enemyNumber number of an enemy instance used to determine which character's animation is locded
      */
-    public Enemy(double posX, double posY, Pathfinding pathfinding, int enemyNumber) {
+    public Enemy(double posX, double posY, Pathfinding pathfinding, int detectionRange, int afterDetectionRange, int enemyNumber) {
         super(posX, posY, pathfinding);
         entitySpeed = (float)(0.75 * entitySpeed); // 0.75 the speed of regular animate
         this.enemyNumber = enemyNumber;
+        this.detectionRange = detectionRange;
+        this.afterDetectionRange = afterDetectionRange;
         loadAnimations();
         imageScaleX = 1.75;
         imageScaleY = 1.75;
@@ -66,7 +71,13 @@ public class Enemy extends Animate {
      * If the player is not in range, move randomly
      */
     public void updateDirection() {
-        Direction playerDirection = pathfinding.findPlayer((int) getPosX(), (int) getPosY(), detectionRange);
+        Direction playerDirection;
+        if (trackingPlayer) {
+            playerDirection = pathfinding.findPlayer((int) getPosX(), (int) getPosY(), afterDetectionRange);
+        } else {
+            playerDirection = pathfinding.findPlayer((int) getPosX(), (int) getPosY(), detectionRange);
+        }
+       
         if ( !(playerDirection == Direction.NONE) ) {
             trackingPlayer = true;
             // remove all directions
@@ -124,10 +135,6 @@ public class Enemy extends Animate {
         }
     }
 
-    /**
-     * Returns the images used to animate the Enemy (scientist) object.
-     * @return image from resource file.
-     */
     public void loadAnimations() {
         BufferedImage scientist = AssetLoader.getSpriteAtlas(AssetLoader.SCIENTIST);
         
@@ -221,7 +228,7 @@ public class Enemy extends Animate {
     }
 
     /**
-     * Update the animation of the enemy instacne
+     * Update the animation of the enemy instance
      */
     protected void updateAnimation() {
         if (specialIdleAnimation && !trackingPlayer) {
