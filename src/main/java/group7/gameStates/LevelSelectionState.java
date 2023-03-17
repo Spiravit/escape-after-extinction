@@ -16,9 +16,6 @@ import java.awt.image.BufferedImage;
 import static group7.Graphics.GraphicsPanel.*;
 
 /**
- *
- *
- *
  * @author Karmeny Yung
  * @author Mohammad Parsaei
  * @author Salaman Ayaz
@@ -61,7 +58,6 @@ public class LevelSelectionState extends State {
 
     /**
      * loads and initialize the previous, next, lets play and return button on level selection page.
-     *
      */
     private void loadButtons(){
         // There will be 4 buttons on level selection page
