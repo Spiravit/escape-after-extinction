@@ -71,7 +71,9 @@ public class UiTopMenuBar {
      *                     was required for creating a Pause button. Pause button
      *                     needs the game object. Because once the button is clicked, it changes
      *                     the gameState inside game object.
+     * @param levelManager  The current level number where player is playing
      *
+     *  @param levelManager The levelManager which is holding information about current level such as health etc.
      */
     public UiTopMenuBar(int levelNumber, LevelManager levelManager, Game game){
         // Initialize the topMenuSkyParallelBackground object
@@ -124,6 +126,8 @@ public class UiTopMenuBar {
      *                     as parameter in order to pause updating time and rendering it.
      * @param health        Health is an integer indicating health of a player. It is passed in order
      *                      to render player's health on the in-game menu.
+     * @param eggCollected  Number of egg collected by player
+     * @param keyCollected  number of keys collected by player
      */
     public void renderTopMenuBar (Graphics g, boolean isPaused, int health,int eggCollected, int keyCollected){
         topMenuSkyParallelBackground.renderParallelBackground(g);
@@ -252,12 +256,20 @@ public class UiTopMenuBar {
         g.drawString("Keys: " + keyCollected +"/" + levelManager.getKeyInCurrentLevel(),12*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
     }
 
+    /**
+     * responsible for interaction if a button was pressed.
+     * @param e Mouse event e
+     */
     public void mousePressed(MouseEvent e) {
         if (pauseMenuButton.isMouseInButton(e)) {
             pauseMenuButton.setIsMousePressedButton(true);
         }
     }
 
+    /**
+     * responsible for interaction if mouse pressing a button was released.
+     * @param e Mouse event e
+     */
     public void mouseReleased(MouseEvent e) {
         if (pauseMenuButton.isMouseInButton(e)) {
             if (pauseMenuButton.getIsMousePressed())
@@ -265,12 +277,22 @@ public class UiTopMenuBar {
         }
         pauseMenuButton.resetMouseBooleans();
     }
+
+    /**
+     * responsible for interaction if a mouse was moved in a button.
+     * @param e Mouse event e
+     */
     public void mouseMoved(MouseEvent e) {
         pauseMenuButton.setIsMouseOverButton(false);
         if (pauseMenuButton.isMouseInButton(e)) {
             pauseMenuButton.setIsMouseOverButton(true);
         }
     }
+
+    /**
+     * returns the time of playing
+     * @return  time spent playing a level
+     */
     public int getTime(){
         return minute_counter*60 + second_counter;
     }

@@ -12,8 +12,19 @@ import static group7.helperClasses.buttonSpriteRow.EXIT_BUTTON;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * is responsible for creating a pause menu.
+ *
+ *  * @author Karmen Yung
+ *  * @author Salman Ayaz
+ *  * @author Mohammad Parsaei
+ */
 public class UiPauseMenu extends UiMenu {
 
+    /**
+     * constructor for pause menu
+     * @param game  in order to be passed to button of pause menu
+     */
     public UiPauseMenu(Game game) {
         super(game);
 
@@ -21,7 +32,9 @@ public class UiPauseMenu extends UiMenu {
         initializeMenuButtons();
     }
 
-    //@Override
+    /**
+     * It initializes the button for pause menu.
+     */
     private void initializeMenuButtons() { //changed from protected to private
         menuButtons = new UiButtons[4];
         // Continue button
