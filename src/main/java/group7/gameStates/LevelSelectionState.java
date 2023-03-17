@@ -16,6 +16,8 @@ import java.awt.image.BufferedImage;
 import static group7.Graphics.GraphicsPanel.*;
 
 /**
+ * The class creates an object of type LevelSelectionState, that renders a page
+ * where the player can select the level they want to play. 
  * @author Karmeny Yung
  * @author Mohammad Parsaei
  * @author Salaman Ayaz
@@ -26,14 +28,11 @@ public class LevelSelectionState extends State {
     // There are maximum 3 levels considered
     private static int numberOfLevels = 3;
 
-
-
     // Sprites for level selection number
     private BufferedImage[] levelNumbersSprites;
 
     // used in indexing of levelNumbersSprites array
     protected int indexLevelNumbers = 0;
-
 
     /**
      *  Constructor for creating a level selection page
