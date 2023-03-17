@@ -12,11 +12,22 @@ import java.util.ArrayList;
 import static group7.Graphics.GraphicsPanel.panelHeight;
 import static group7.Graphics.GraphicsPanel.panelWidth;
 
+/**
+ * is responsible to create and render animated backgrounds on game window.
+ */
 public class UiParallelBackground {
     ArrayList<BufferedImage> backgroundImages;
     ArrayList<Double> backgroundsIncrementSpeed;
     ArrayList<Double> backgroundsPositionX;
     int scale1,scale2;
+
+    /**
+     * Constructor for creating animated backgrounds
+     * @param NumberOfBackgrounds   The number of backgrounds used to create animated background
+     * @param AssetAddress  The location where each background is located
+     * @param scale1    width scale of backgrounds relative to width of game window
+     * @param scale2     height scale of backgrounds relative to height of game window
+     */
     public UiParallelBackground(int NumberOfBackgrounds, String AssetAddress, int scale1, int scale2){
         BackgroundMovingSpeed.setParallelMovingSpeeds();
         backgroundImages = new ArrayList<>();
@@ -29,6 +40,11 @@ public class UiParallelBackground {
         this.scale1=scale1;
         this.scale2=scale2;
     }
+
+    /**
+     * Renders the animated background on game window
+     * @param g passed as argument in order to draw the background on game window
+     */
     public void renderParallelBackground(Graphics g){
         g.setColor(new Color(0,0,0));
         g.fillRect(0,0,panelWidth,panelHeight);
