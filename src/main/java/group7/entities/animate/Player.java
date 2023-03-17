@@ -159,14 +159,12 @@ public class Player extends Animate {
      * Players MAX health is 100. If player has full health do nothing, 
      * else if player has low health add the health gained from the potion. 
      * @param hp
+     * the amount of health to be gained
      */
     public void gainHealth( int hp ) {
         if ( health != 0 && health < 100 && health + Potion.GREEN_POTION_BOOST_VALUE <= 100 ) {
-            //System.out.println("current health: " + health);                // ***TEST REMOVE***
             health += hp;
-            //System.out.println("health boosted: " + health );               // ***TEST REMOVE***
         } else if ( health < 100 && health + Potion.GREEN_POTION_BOOST_VALUE > 100 ) {
-            //System.out.println("boost to full health" + health);            // ***TEST REMOVE***
             health = 100;   // player restored to full health
         }
     }
@@ -176,6 +174,7 @@ public class Player extends Animate {
      * Players MAX speed is 0.04f. If player has full health do nothing, 
      * else if player has low health add the health gained from the potion.
      * @param speedBoost 
+     * the amount of speed to be gained
      */
     public void increaseSpeed( float speedBoost ) {
         if ( entitySpeed < 0.04f && entitySpeed + Potion.PURPLE_POTION_BOOST_VALUE <= 0.04f ) {
