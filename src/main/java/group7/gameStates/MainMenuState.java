@@ -16,14 +16,15 @@ import java.awt.image.BufferedImage;
 
 public class MainMenuState extends State {
 
-    // TODO Write comment for feild below
+    // stores the loading screen for the main page
     private BufferedImage[] loadingMainPage = new BufferedImage[3];
 
-    // TODO Write comment for these three bellow
+    // animation variables for the loading screen
     private int loadingIndex=0;
     private int loadingSpeed=20;
     private  int loadingTick = 0;
 
+    // stores the main menu box
     UiMenu mainMenuBox;
 
     public MainMenuState(Game game) {
@@ -37,23 +38,20 @@ public class MainMenuState extends State {
 
     @Override
     public void update() {
-        // TODO
+        // no need to update the animated background
     }
 
     @Override
     public void render(Graphics g) {
-
         // render the animated background
         super.render(g);
-
         mainMenuBox.render(g);
-
     }
 
     /**
-     *
-     * @param g     Graphic object passed as parameter in order
-     *              to draw the loading game name
+     * renders the game name in the loading screen
+     * @param g     
+     * Graphic object passed as parameter in order to draw the loading game name
      */
     private void renderLoadingGameName (Graphics g){
         // Show the original main menu
@@ -65,7 +63,13 @@ public class MainMenuState extends State {
                 loadingIndex = 0;
             }
         }
-        g.drawImage(loadingMainPage[loadingIndex],0,(int)(0.125*panelHeight), (int) panelWidth,(int) (0.75*panelHeight),null);
+
+        g.drawImage(
+            loadingMainPage[loadingIndex],
+            0,(int)(0.125*panelHeight), 
+            (int) panelWidth,(int) (0.75*panelHeight),
+            null
+        );
     }
 
     public void keyPressed(KeyEvent e) {
@@ -82,6 +86,12 @@ public class MainMenuState extends State {
     public void mouseReleased(MouseEvent e) {
         mainMenuBox.mouseReleased(e);
     }
+
+    /**
+     * gets a mouse movement and passes it to the main menu box
+     * @param e 
+     * mouse movement event 
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         mainMenuBox.mouseMoved(e);
