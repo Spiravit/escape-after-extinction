@@ -231,8 +231,10 @@ public class Enemy extends Animate {
      * Update the animation of the enemy instance
      */
     protected void updateAnimation() {
+        // only play the special idle animation only when the enemy is not tracking the player
         if (specialIdleAnimation && !trackingPlayer) {
             setAnimation(SPECIAL_IDLE_ANIMATION);
+            // only play the special idle animation only when the enemy is not tracking the player
             if (aniIndex == getSpriteAmount(SPECIAL_IDLE_ANIMATION) - 1) {
                 specialIdleAnimation = false;
             }
