@@ -20,8 +20,10 @@ import group7.helperClasses.AssetLoader;
 * @since 2023-03-13
 */
 public class Egg extends Inanimate {
+    // start time in milliseconds
     private double startTime;
-    private int timeout;
+    // time the egg is available in seconds
+    private int timeout; 
 
     /**
      * Creates an egg that will disappear after a certain amount of time

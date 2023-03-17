@@ -162,7 +162,6 @@ public class Player extends Animate {
      */
     public void gainHealth( int hp ) {
         if ( health != 0 && health < 100 && health + Potion.GREEN_POTION_BOOST_VALUE <= 100 ) {
-            //System.out.println("current health: " + health);                // ***TEST REMOVE***
             health += hp;
             //System.out.println("health boosted: " + health );               // ***TEST REMOVE***
         } else if ( health < 100 && health + Potion.GREEN_POTION_BOOST_VALUE > 100 ) {

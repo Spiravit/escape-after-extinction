@@ -33,6 +33,15 @@ public abstract class Animate extends Entity {
     // Moving speed of entity to change position of entity on map
     protected float entitySpeed = 0.02f;
 
+    /**
+     * Constructor to initialize the properties of the animate instance, such as location and pathfinding
+     * @param posX
+     * the x coordinates of animate instance
+     * @param posY
+     * the y coordinates of animate instance
+     * @param pathfinding
+     * pathfinding object that helps animate find its way around the map
+     */
     public Animate(double posX, double posY, Pathfinding pathfinding) {
         super(posX, posY);
         this.pathfinding = pathfinding;
