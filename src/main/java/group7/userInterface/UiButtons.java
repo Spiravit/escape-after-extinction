@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
  * and associate them with a gameState. That is if they are clicked then they change the state of game based on
  *  their associated button state.
  *
+ * @author Karmen Yung
+ * @author Salman Ayaz
  * @author Mohammad Parsaei
  */
 public class UiButtons {
@@ -55,12 +57,14 @@ public class UiButtons {
     private Game game;
 
     /**
+     * Constructor for Button
      *
-     * @param game
-     * @param buttonPositionX
-     * @param buttonPositionY
-     * @param buttonSpriteRowNumber
-     * @param buttonGameStates
+     * @param game  passed game to a button in order for a button to change game state
+     * @param buttonPositionX   position x of where button is going to be located
+     * @param buttonPositionY   position y of where button is going to be located
+     * @param buttonSpriteRowNumber the i-th row of menubuttons png where sprite of button is located
+     * @param buttonGameStates  The state associated with button, hence once it is clicked
+     *                         it changes game state based on buttonState
      */
     public UiButtons(Game game, int buttonPositionX, int buttonPositionY, int buttonSpriteRowNumber, gameStates buttonGameStates) {
         this.game=game;

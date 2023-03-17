@@ -15,6 +15,12 @@ import java.io.InputStream;
 
 import static group7.Graphics.GraphicsPanel.panelWidth;
 
+/**
+ * is responsible to create the menu in first page of game (main menu).
+ * @author Karmen Yung
+ * @author Salman Ayaz
+ * @author Mohammad Parsaei
+ */
 public class UiMenu {
     protected Font retroFont;
     // Position x of buttons in menu, they are centered at middle of width
@@ -23,7 +29,6 @@ public class UiMenu {
     //dedicated for four buttons in main menu page (New game, Load game, credit and exit buttons)
     protected UiButtons[] menuButtons;
 
-    // TODO Add comments
     public Game game;
 
     //MenuBoxBackground: dedicated for blue box image behind main menu buttons
@@ -33,11 +38,19 @@ public class UiMenu {
     //MENU_BOX_BACKGROUND_WIDTH: The Width of blue box behind  menu buttons
     private static final int MENU_BOX_BACKGROUND_WIDTH =5*scaleX;
 
+    /**
+     * constructor for main menu
+     * @param game  in order to be passed to button of main menu
+     */
     public UiMenu(Game game){
         menuBoxBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
         this.game = game;
         initializeMenuButtons();
     }
+
+    /**
+     * It initializes the button, creating new game, load game and exit button for main menu.
+     */
     private void initializeMenuButtons(){ //from protected to private
         menuButtons = new UiButtons[3];
         // New Game button
@@ -63,6 +76,10 @@ public class UiMenu {
                 gameStates.QUIT);
     }
 
+    /**
+     * Renders the main menu on game window
+     * @param g  Graphic g used in order to draw main menu on game window
+     */
     public void render(Graphics g){
         // Draw blue box behind buttons background
         renderMenuBox(g);
@@ -90,18 +107,29 @@ public class UiMenu {
                 null);
     }
 
+
+    /**
+     * Renders the buttons of main menu on game window
+     * @param g  Graphic g used in order to draw buttons on game window
+     */
     private void renderButtons(Graphics g){
         for (UiButtons buttons : menuButtons) {
             buttons.render(g);
         }
     }
+
+    /**
+     * calls the update method of buttons in order if buttons were clicked, update the game
+     */
     public void update() {
         for (UiButtons button : menuButtons)
             button.update();
     }
 
-
-
+    /**
+     * responsible for interaction if a button was pressed.
+     * @param e Mouse event e
+     */
     public void mousePressed(MouseEvent e) {
         for (UiButtons button : menuButtons) {
             if (button.isMouseInButton(e)) {
@@ -110,6 +138,10 @@ public class UiMenu {
         }
     }
 
+    /**
+     * responsible for interaction if mouse pressing a button was released.
+     * @param e Mouse event e
+     */
     public void mouseReleased(MouseEvent e) {
         for (UiButtons button : menuButtons) {
             if (button.isMouseInButton(e)) {
@@ -121,12 +153,19 @@ public class UiMenu {
         resetButtons();
     }
 
+    /**
+     * resets the boolean of buttons indicating that they are not clicked nor hovered anymore
+     */
     private void resetButtons() {
         for (UiButtons button : menuButtons) {
             button.resetMouseBooleans();
         }
     }
 
+    /**
+     * responsible for interaction if a mouse was moved in a button.
+     * @param e Mouse event e
+     */
     public void mouseMoved(MouseEvent e) {
         for (UiButtons button : menuButtons)
             button.setIsMouseOverButton(false);
