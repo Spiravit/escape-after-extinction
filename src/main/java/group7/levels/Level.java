@@ -58,11 +58,26 @@ public abstract class Level {
 
     /**
      * Wrapper Method: Spawn an Enemy in the level.
-     * @param x (position x of this enemy)
-     * @param y (position y of this enemy)
+     * @param x 
+     * position x of this enemy
+     * @param y 
+     * position y of this enemy
+     * @param detectionRange 
+     * detection range of this enemy
+     * @param afterDetectionRange 
+     * the range this enemy will continue to detect the player after it has been detected
      */
-    protected void addEnemy(int x, int y, int enemyNumber) {
-        entities.add(new Enemy(x, y, pathfinding, enemyNumber));
+    protected void addEnemy(int x, int y, int detectionRange, int afterDetectionRange, int enemyNumber) {
+        entities.add(
+            new Enemy(
+                x, 
+                y, 
+                pathfinding, 
+                detectionRange, 
+                afterDetectionRange, 
+                enemyNumber
+            )
+        );
     }
 
     /**
