@@ -2,6 +2,8 @@ package group7;
 // CMPT 276 Group 7
 // Escape After Extinction 2D game
 
+import java.io.IOException;
+
 /**
  * Starts the game.
  *
@@ -17,7 +19,7 @@ public class App {
      * The main method will start the game by calling constructor of game class.
      * @param args Unused
      */
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         new Game();
     }
 }

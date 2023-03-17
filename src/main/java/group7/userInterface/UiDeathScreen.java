@@ -11,10 +11,22 @@ import static group7.Graphics.GraphicsGrid.scaleX;
 import static group7.Graphics.GraphicsGrid.scaleY;
 import static group7.helperClasses.buttonSpriteRow.*;
 
-
+/**
+ * This class is responsible to create and render a death screen after end player's lost.
+ *
+ * @author Karmen Yung
+ * @author Salman Ayaz
+ * @author Mohammad Parsaei
+ */
 public class UiDeathScreen extends UiMenu {
+    // The current level where player is playing
     int currentLevel;
 
+    /**
+     * Constructor for creating death menu
+     * @param game  Game object passed in order to being used for buttons in death screen
+     * @param currentLevel  The current level where player is playing
+     */
     public UiDeathScreen( Game game, int currentLevel ) {
         super(game);
         this.currentLevel = currentLevel;
@@ -22,6 +34,9 @@ public class UiDeathScreen extends UiMenu {
         loadFont();
     }
 
+    /**
+     * It initializes the button, creating restart, main menu and exit button for death screen.
+     */
     private void initialiseMenuButtons() { 
         menuButtons = new UiButtons[3];
 
@@ -56,6 +71,10 @@ public class UiDeathScreen extends UiMenu {
         g2D.drawString( "Next", (panelWidth/2 - scaleX/2), (7 * scaleY) ); 
         g2D.drawString( "Time!", (panelWidth/2 - scaleX/2), (8 * scaleY) ); 
     }
+
+    /**
+     * Loads custom font to write messages on death screen
+     */
     private void loadFont(){
         InputStream is;
         try{

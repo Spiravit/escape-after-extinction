@@ -13,10 +13,21 @@ import static group7.Graphics.GraphicsGrid.scaleY;
 import static group7.helperClasses.buttonSpriteRow.*;
 import static group7.helperClasses.buttonSpriteRow.EXIT_BUTTON;
 
+/**
+ * is responsible to create a menu after the player has successfully won a level
+ * @author Salman Ayaz
+ * @author Karmen Yung
+ * @author Mohammad Parsaei
+ */
 public class UiFinishedGameMenu extends UiMenu{
     int currentLevel;
     private Font retroFont ;
 
+    /**
+     * Constructor for creating won menu
+     * @param game  Game object passed in order to being used for buttons in death screen
+     * @param currentLevel  The current level where player is playing
+     */
     public UiFinishedGameMenu(Game game, int currentLevel) {
         super(game);
         this.currentLevel=currentLevel;
@@ -24,6 +35,9 @@ public class UiFinishedGameMenu extends UiMenu{
         loadFont();
     }
 
+    /**
+     * Renders the won menu on game window
+     */
     public void render(Graphics g,int time, int eggCollected){
         super.render(g);
         Graphics2D g2D = (Graphics2D) g;
@@ -35,6 +49,9 @@ public class UiFinishedGameMenu extends UiMenu{
         g2D.drawString("score: "+(time*(-1)+100*eggCollected),panelWidth/2 - 2*scaleX,8*scaleY);
     }
 
+    /**
+     * It initializes the buttons on death screen.
+     */
     protected void initialiseMenuButtons() {
         menuButtons = new UiButtons[3];
         // If we are at level 2 or 1, we will have next level button
