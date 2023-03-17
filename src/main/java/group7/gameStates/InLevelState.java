@@ -21,17 +21,25 @@ public class InLevelState extends State {
     private UiTopMenuBar topMenu;
     private UiPauseMenu pauseMenu;
     private UiFinishedGameMenu levelFinishedMenu;
-    private UiDeathScreen deathScreenMenu;                                                        // ***TEST REMOVE***
+    private UiDeathScreen deathScreenMenu;
     public LevelState isLevelDone = LevelState.PLAYING;
 
     int currentLevelNumber;
 
+    /**
+     * Constructor for InLevelState
+     * @param game
+     * game object
+     * @param playerDinoNumber
+     * the dinosaur number selected by the player
+     * @param levelSelected
+     * the level number selected by the player
+     */
     public InLevelState( Game game, int playerDinoNumber, int levelSelected ) {
         super( game );
         currentLevelNumber = levelSelected;
         this.levelManager = new LevelManager( playerDinoNumber, levelSelected );
-        //System.out.println( "All I need is :"+ currentLevelNumber );                      // ***TEST REMOVE***
-        deathScreenMenu = new UiDeathScreen( game, currentLevelNumber );                    // ***TEST REMOVE***
+        deathScreenMenu = new UiDeathScreen( game, currentLevelNumber );
         levelFinishedMenu = new UiFinishedGameMenu( game, currentLevelNumber );
         topMenu = new UiTopMenuBar( levelSelected, levelManager, game );
         pauseMenu = new UiPauseMenu( game );
