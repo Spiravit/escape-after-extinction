@@ -19,7 +19,16 @@ import static group7.Graphics.GraphicsPanel.*;
 import static group7.helperClasses.buttonSpriteRow.*;
 import static group7.helperClasses.buttonSpriteRow.RETURN_BUTTON;
 
-
+/**
+ * The class creates an object of type playerSelectionState, that renders a page
+ * where the player can select the character they want to play as.
+ * @author  Salman Ayaz
+ * @author  Karmen Yung
+ * @author  Mohammad Parsaei
+ * @author  Chen Min
+ * @version 1.0
+ * @since 2023-03-13
+ */
 public class playerSelectionState extends State {
     // number of characters to be displayed
     private static int numberOfCharacters = 5;

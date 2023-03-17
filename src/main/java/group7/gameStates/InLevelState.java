@@ -10,11 +10,19 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-
-// This class is for when the game is in Playing state
-// it initializes a level
-// render and update them
-// the class is extending the abstract State class, a super class for all states
+/**
+ * This class is for when the game is in Playing state
+ * it initializes a level
+ * render and update them
+ * the class is extending the abstract State class, a super class for all states
+ *
+ * @author  Salman Ayaz
+ * @author  Karmen Yung
+ * @author  Mohammad Parsaei
+ * @author  Chen Min
+ * @version 1.0
+ * @since 2023-03-13
+ */
 public class InLevelState extends State {
 
     protected LevelManager levelManager;
