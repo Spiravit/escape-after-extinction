@@ -21,10 +21,20 @@ import static group7.helperClasses.buttonSpriteRow.RETURN_BUTTON;
 
 
 public class playerSelectionState extends State {
-
+    // number of characters to be displayed
     private static int numberOfCharacters = 5;
-    private BufferedImage[] characterDemos ;
-    protected int indexCharacterDemo =0;
+
+    // Sprites for character selection
+    private BufferedImage[] characterDemos;
+
+    // current character displayed
+    protected int indexCharacterDemo = 0;
+
+    /**
+     * Constructor for creating a level selection page
+     * @param game
+     * the game class 
+     */
     public playerSelectionState(Game game) {
         super(game);
 
@@ -33,6 +43,9 @@ public class playerSelectionState extends State {
         loadCharacterDemos();
     }
 
+    /**
+     * loads all the buttons for the level selection page
+     */
     private void loadButtons(){
         // There will be 4 buttons on level selection page
         stateButton = new UiButtons[4];
@@ -67,10 +80,9 @@ public class playerSelectionState extends State {
 
     }
 
-    @Override
-    public void update() {
-
-    }
+   /**
+    * loads the player type images for the player selection screen
+    */
     private void loadCharacterDemos() {
         characterDemos = new BufferedImage[5];
         characterDemos[0] = AssetLoader.getSpriteAtlas(AssetLoader.DINO_1).getSubimage(11 * 24, 0, 24, 24);
@@ -104,6 +116,9 @@ public class playerSelectionState extends State {
             game.changeGameStates(gameStates.IN_MENU);
     }
 
+    /**
+     * decreases the index of the current shown character in the character demo array
+     */
     @Override
     public int incrementSpriteArrayIndex() {
         this.indexCharacterDemo += 1;
@@ -112,6 +127,10 @@ public class playerSelectionState extends State {
         }
         return indexCharacterDemo;
     }
+
+    /**
+     * increases the index of the current shown character in the character demo array
+     */
     @Override
     public int decrementSpriteArrayIndex() {
         this.indexCharacterDemo = this.indexCharacterDemo -1;
