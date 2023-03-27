@@ -69,7 +69,7 @@ public abstract class Animate extends Entity {
         if( !movingUp && !movingDown && !movingLeft && !movingRight ) {
             return;
         }
-
+        
         // When moving up check both top left and right corners
         if(this.movingUp && checkDirection(Direction.UP)){
             hitboxY -= entitySpeed;
@@ -278,5 +278,9 @@ public abstract class Animate extends Entity {
         if (movingUp) {
             GraphicsGrid.drawRect(g, getPosX(), getPosY() - 1, 0.1, 0.1);
         }
+    }
+
+    public float getSpeed() {
+        return entitySpeed;
     }
 }
