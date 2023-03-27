@@ -24,7 +24,7 @@ public class Player extends Animate {
     private int eggsCollected = 0; // the number of dinosaur eggs collected
 
     private int dinoNumber; // the number of the dinosaur sprite to use
-    private boolean canMove = false; // whether the player can mover
+    private boolean canMove = false; // whether the player can move
 
     /**
      * Constructor: Create a new player object.
@@ -44,12 +44,14 @@ public class Player extends Animate {
     @Override
     protected void updateAnimation() {
         if (!canMove) {
+            System.out.println("can't move");
             if (aniIndex >= getSpriteAmount(currentAnimation) - 1) {
                 currentAnimation = DEFAULT_ANIMATION;
                 aniIndex = 0;
                 canMove = true;
             }
         } else {
+            System.out.println("can move");
             super.updateAnimation();
         }
     }
@@ -214,5 +216,9 @@ public class Player extends Animate {
 
     public void onInteraction(Player player) {
         // No Interaction
+    }
+
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
     }
 }
