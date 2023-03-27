@@ -41,9 +41,9 @@ public class PotionTest {
         assertTrue(player.getHealth() == originalHealth);
 
         // player should heal when health is less than max health
-        player.takeDamage(99);
+        player.takeDamage(player.getHealth() + 1);
         potion.onInteraction(player);
-        System.out.println(player.getHealth());
+        
         assertTrue(player.getHealth() < originalHealth);
     }
 

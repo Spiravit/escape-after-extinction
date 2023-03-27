@@ -87,7 +87,6 @@ public class PlayerTest  {
         player.update();
 
         // Player should move down
-        System.out.println(player.getPosY());
         assertTrue(player.getPosY() > 0.5);
 
         player = new Player(0, 0, pathfinding, 0);
