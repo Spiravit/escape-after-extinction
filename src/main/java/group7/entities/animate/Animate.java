@@ -69,22 +69,26 @@ public abstract class Animate extends Entity {
         if( !movingUp && !movingDown && !movingLeft && !movingRight ) {
             return;
         }
-
+        System.out.println(checkDirection(Direction.DOWN));
         // When moving up check both top left and right corners
         if(this.movingUp && checkDirection(Direction.UP)){
+            System.out.println("moving up");
             hitboxY -= entitySpeed;
         }
         // When moving down check both bottom left and right corners
         if(this.movingDown && checkDirection(Direction.DOWN)){
+            System.out.println("moving down");
             hitboxY += entitySpeed;
         }
         // When moving left check both top left and bottom left
         if(this.movingLeft && checkDirection(Direction.LEFT)){
+            System.out.println("moving left");
             hitboxX -= entitySpeed;
             reverseImage = true;
         }
         // When moving right check both top left and bottom left
         if(this.movingRight && checkDirection(Direction.RIGHT)) {
+            System.out.println("moving right");
             hitboxX += entitySpeed;
             reverseImage = false;
         }
@@ -278,5 +282,9 @@ public abstract class Animate extends Entity {
         if (movingUp) {
             GraphicsGrid.drawRect(g, getPosX(), getPosY() - 1, 0.1, 0.1);
         }
+    }
+
+    public float getSpeed() {
+        return entitySpeed;
     }
 }
