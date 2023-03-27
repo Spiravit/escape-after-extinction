@@ -55,7 +55,7 @@ public class Egg extends Inanimate {
      * Removes the graphic displayed from the game window, when time is up.
      */
     public void update() {
-        if ((System.currentTimeMillis() - startTime) / 1000 > timeout) {
+        if ((System.currentTimeMillis() - startTime) / 1000 >= timeout) {
             removeCollectable();
         }
         super.update();

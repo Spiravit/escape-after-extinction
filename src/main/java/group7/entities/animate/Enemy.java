@@ -77,9 +77,10 @@ public class Enemy extends Animate {
         } else {
             playerDirection = pathfinding.findPlayer((int) getPosX(), (int) getPosY(), detectionRange);
         }
-       
+        
         if ( !(playerDirection == Direction.NONE) ) {
             trackingPlayer = true;
+            
             // remove all directions
             removeDirection(Direction.UP);
             removeDirection(Direction.DOWN);
@@ -258,6 +259,13 @@ public class Enemy extends Animate {
             player.takeDamage(player.getHealth()); // remove all health
             interactable = false;
         }
+    }
+
+    /*
+     * returns the true if the enemy is tracking the player
+     */
+    public boolean getTrackingPlayer() {
+        return trackingPlayer;
     }
 }
 

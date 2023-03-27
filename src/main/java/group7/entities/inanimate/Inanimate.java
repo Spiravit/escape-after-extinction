@@ -88,4 +88,12 @@ public abstract class Inanimate extends Entity {
             super.render(g);
         }
     }
+
+    public boolean isInteractable() {
+        return interactable;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
 }
