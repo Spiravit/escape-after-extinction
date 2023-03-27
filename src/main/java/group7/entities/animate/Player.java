@@ -44,14 +44,12 @@ public class Player extends Animate {
     @Override
     protected void updateAnimation() {
         if (!canMove) {
-            System.out.println("can't move");
             if (aniIndex >= getSpriteAmount(currentAnimation) - 1) {
                 currentAnimation = DEFAULT_ANIMATION;
                 aniIndex = 0;
                 canMove = true;
             }
         } else {
-            System.out.println("can move");
             super.updateAnimation();
         }
     }
