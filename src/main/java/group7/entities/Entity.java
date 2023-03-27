@@ -84,7 +84,7 @@ public abstract class Entity {
      * Returns the x position where the middle of where the hitbox lies
      * @return hitboxX of the middle of the hitbox
      */
-    protected double getPosX() {
+    public double getPosX() {
         return hitboxX + hitboxWidth / 2;
     }
 
@@ -110,7 +110,7 @@ public abstract class Entity {
      * Returns the y position where the middle of the hitbox lies
      * @return hitboxY of the middle of the hitbox
      */
-    protected double getPosY() {
+    public double getPosY() {
         return hitboxY + hitboxHeight / 2;
     }
 
