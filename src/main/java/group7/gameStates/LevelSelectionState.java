@@ -66,7 +66,7 @@ public class LevelSelectionState extends State {
         stateButton[0] = new UiButtons(game,
                 6*scaleX,
                 7*scaleY,
-                PERV_BUTTON,
+                PREV_BUTTON,
                 gameStates.PERV);
 
         // Next button
