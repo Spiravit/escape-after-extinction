@@ -225,4 +225,13 @@ public class UiButtons {
         return buttonGameStates;
     }
 
+    /**
+     * Returns the sprite number that button is associated with.
+     *
+     * @return  return buttonGameStates
+     */
+    public int getButtonSpriteRowNumber() {
+        return buttonSpriteRowNumber;
+    }
+
 }

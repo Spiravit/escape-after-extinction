@@ -37,7 +37,7 @@ public class buttonSpriteRow {
     public static final int NEXT_BUTTON = 6;
 
     // Previous button sprite is at 8th row of mainMenuButtons.png
-    public static final int PERV_BUTTON = 7;
+    public static final int PREV_BUTTON = 7;
 
     // Let's play button sprite is at 9th row of mainMenuButtons.png
     public static final int LETS_PLAY_BUTTON = 8;
