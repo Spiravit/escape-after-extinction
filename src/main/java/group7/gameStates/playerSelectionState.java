@@ -63,7 +63,7 @@ public class playerSelectionState extends State {
         stateButton[0] = new UiButtons(game,
                 6*scaleX,
                 7*scaleY,
-                PERV_BUTTON,
+                PREV_BUTTON,
                 gameStates.PERV);
 
         // Next button
@@ -147,5 +147,19 @@ public class playerSelectionState extends State {
             indexCharacterDemo=numberOfCharacters-1;
         }
         return indexCharacterDemo;
+    }
+
+    /**
+     * gets curren sprite array index
+     */
+    public int getIndexCharacterDemo() {
+        return indexCharacterDemo;
+    }
+
+    /**
+     * get bound of the character demo array
+     */
+    public int getNumberOfCharacters() {
+        return numberOfCharacters;
     }
 }
