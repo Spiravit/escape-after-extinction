@@ -44,6 +44,7 @@ public abstract class Level {
         importSprites();
         setLevelData(); 
         GraphicsGrid.setGridSize(width, height);
+        addPlayer(1, 3, dinoNumber);
     }
 
     /**
