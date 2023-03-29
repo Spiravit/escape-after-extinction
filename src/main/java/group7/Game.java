@@ -24,6 +24,7 @@ public class Game implements Runnable {
 
     // The current running state of the game
     public gameStates gameCurrentState;
+
     // State object in order to render state of gameCurrentState
     private State currentState;
 
@@ -67,6 +68,14 @@ public class Game implements Runnable {
     private void startGameLoop(){
         Thread thread = new Thread(this);
         thread.start();
+    }
+
+    /**
+     * Getters for current state of game
+     * @return  current state of game
+     */
+    public State getCurrentState() {
+        return currentState;
     }
 
 
