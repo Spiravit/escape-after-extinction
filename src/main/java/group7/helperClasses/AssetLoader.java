@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
 * @since 2023-03-13
 */
 public class AssetLoader {
-    
+
     public static final String LEVELS_SPRITES = "levels/levelsSprites.png";
 
     // The main menu buttons sprite image

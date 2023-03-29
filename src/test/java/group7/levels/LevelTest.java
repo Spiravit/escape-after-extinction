@@ -10,12 +10,24 @@ import static org.junit.Assert.*;
 public class LevelTest {
 
     @Test
-    public void checkLevelState() {
+    public void levelStateLostHealthTest() {
         int dinoNumber = 3;
         Level level = new Level3(3);
         Player player = level.getPlayer();
         player.takeDamage(100);
-        level.checkLevelState()
+        assertEquals(level.checkLevelState(),LevelState.LOST);
+    }
+
+    @Test
+    public void levelStateHealthyPlayerTest(){
+        int dinoNumber = 3;
+        Level level = new Level3(3);
+        Player player = level.getPlayer();
+        assertEquals(level.checkLevelState(),LevelState.PLAYING);
+        player.takeDamage(1);
+        assertEquals(level.checkLevelState(),LevelState.PLAYING);
+        player.takeDamage(98);
+        assertEquals(level.checkLevelState(),LevelState.PLAYING);
     }
 
     @Test(expected = NullPointerException.class)
@@ -27,18 +39,5 @@ public class LevelTest {
         Level level = new Level3(3);
         // since we don't have a level 5, setLevelData should throw a NullPointer Exception
         level.setLevelData(5);
-    }
-
-    /*
-    @Test(expected = NullPointerException.class)
-    public void nonValidDinoNumberInLevel(){
-        int nonValidDinoNumberOFFPoint = 6; // we only have [1,5] as dino numbers
-        // Since we don't have dino number as 6 , making a level with this dino number
-        // should throw a null pointer exception
-        Level level = new Level2(nonValidDinoNumberOFFPoint);
-    }*/
-
-    @Test
-    public void update() {
     }
 }
