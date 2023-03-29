@@ -1,28 +1,31 @@
 package group7.gameStatesTest;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import org.junit.Test;
-
-import group7.gameStates.State;
+//import group7.gameStates.State;
 import group7.gameStates.gameStates;
 import group7.gameStates.playerSelectionState;
 import group7.helperClasses.buttonSpriteRow;
 
 public class playerSelectionStateTest {
-    
+    playerSelectionState check; 
+
+    @BeforeEach
+    void setup() {
+        check = new playerSelectionState(null);
+    }
+
     // Test valid buttons are loaded
     @Test
     public void shouldLoadButtons() {
         Method m;
 
         try {
-            //State check = new playerSelectionState(null);
-            playerSelectionState check = new playerSelectionState(null);
             m = playerSelectionState.class.getDeclaredMethod("loadButtons");
             m.setAccessible(true); // allow access to private method loadButtons()
             m.invoke(check);
@@ -55,7 +58,6 @@ public class playerSelectionStateTest {
     // Test increment sprite array index by one
     @Test
     public void shouldIncrementSpriteArray() {
-            playerSelectionState check = new playerSelectionState(null);
             check.incrementSpriteArrayIndex();
             assertTrue(check.getIndexCharacterDemo() == 1);
     }
@@ -63,7 +65,6 @@ public class playerSelectionStateTest {
     // Test decrement sprite array index by one
     @Test
     public void shouldDecrementSpriteArray() {
-        playerSelectionState check = new playerSelectionState(null);
         check.decrementSpriteArrayIndex();
         assertTrue(check.getIndexCharacterDemo() == 4);
     }
@@ -72,7 +73,6 @@ public class playerSelectionStateTest {
     // If increment index array[4] should wrap around to index array[0], not a positive out of bound index: 5 
     @Test
     public void shouldIncrementSpriteArrayInBound() {
-        playerSelectionState check = new playerSelectionState(null);
         assertTrue(check.getIndexCharacterDemo() == 0); // initial position
 
         for (int i = 0; i < check.getNumberOfCharacters() - 1; i++) {
@@ -88,7 +88,6 @@ public class playerSelectionStateTest {
     // If decrement index array[0] should wrap around to index array[4], not a negative out of bound index: -1 
     @Test
     public void shouldDecrementSpriteArrayInBound() {
-        playerSelectionState check = new playerSelectionState(null);
         assertTrue(check.getIndexCharacterDemo() == 0); // initial position
         check.decrementSpriteArrayIndex();
         assertTrue(check.getIndexCharacterDemo() == 4); // wrap around position
