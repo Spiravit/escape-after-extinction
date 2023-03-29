@@ -7,9 +7,9 @@ import group7.Graphics.GraphicsGrid;
 import group7.helperClasses.AssetLoader;
 import group7.helperClasses.Direction;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.awt.Graphics;
 
 /** 
 * The abstract class Level defines all methods needed to loads all graphics 
@@ -39,10 +39,11 @@ public abstract class Level {
     /**
      * Constructor: Loads everything about the level.
      * @param dinoNumber (player chosen dino type)
+     * @param levelNumber (level number which we will import its sprite)
      */
-    public Level(int dinoNumber) {
+    public Level(int dinoNumber,int levelNumber) {
         importSprites();
-        setLevelData(); 
+        setLevelData(levelNumber);
         GraphicsGrid.setGridSize(width, height);
         addPlayer(1, 3, dinoNumber);
     }
@@ -165,8 +166,27 @@ public abstract class Level {
     /**
      * Set the level data,
      * this includes the data in the pathfinding object and the levelSpriteData array.
+     * @param levelNumber the level number which we want to import its sprite
      */
-    protected abstract void setLevelData();
+    protected void setLevelData(int levelNumber){
+        BufferedImage img = AssetLoader.getSpriteAtlas("levels/level_maps/level_" + levelNumber + ".png");
+
+        this.width = img.getWidth();
+        this.height = img.getHeight();
+
+        levelSpriteData = new int[width][height];
+        pathfinding = new Pathfinding(width, height);
+
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                Color color = new Color(img.getRGB(x, y));
+                int value = color.getRed() % 74; //73 is the clear tile
+
+                levelSpriteData[x][y] = value;
+                pathfinding.set(x, y, value != 13 ? false:true);
+            }
+        }
+    }
 
     /**
      * Import the sprites from the sprite atlas and store them in the levelSprites array.
