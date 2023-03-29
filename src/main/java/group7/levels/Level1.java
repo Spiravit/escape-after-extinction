@@ -22,7 +22,7 @@ public class Level1 extends Level {
 
     public Level1(int dinoNumber) {
         super(dinoNumber);
-        addPlayer(1, 3, dinoNumber);
+
 
        addEnemy(5, 14, 2, 3, 1);
        addEnemy(9, 4, 2, 3, 2);
