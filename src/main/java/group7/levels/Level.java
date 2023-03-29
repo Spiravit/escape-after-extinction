@@ -28,6 +28,7 @@ public abstract class Level {
     protected Pathfinding pathfinding;
     protected BufferedImage[] levelSprites;
     protected int levelSpriteData[][];
+
     protected Player player;
 
     protected ArrayList<Entity> entities = new ArrayList<Entity>();
@@ -162,6 +163,13 @@ public abstract class Level {
         return numberOfKeys;
     }
 
+    /**
+     * Returns player entity
+     * @return Player player for this level is returned
+     */
+    public Player getPlayer() {
+        return player;
+    }
 
     /**
      * Set the level data,
