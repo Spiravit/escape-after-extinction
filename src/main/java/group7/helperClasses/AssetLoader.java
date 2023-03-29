@@ -72,14 +72,18 @@ public class AssetLoader {
      * @return The sprite atlas as a BufferedImage
      */
     public static BufferedImage getSpriteAtlas(String filename) {
-        //System.out.println("filename: " + filename);                                  // ***TEST REMOVE***
         BufferedImage img = null;
         InputStream is = AssetLoader.class.getResourceAsStream("/assets/" + filename);
         try {
             img = ImageIO.read(is);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
+
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        finally {
             try {
                 is.close();
             } catch (IOException e) {

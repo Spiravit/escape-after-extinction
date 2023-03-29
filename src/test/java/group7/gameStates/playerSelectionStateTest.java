@@ -1,4 +1,4 @@
-package group7.gameStatesTest;
+package group7.gameStates;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
