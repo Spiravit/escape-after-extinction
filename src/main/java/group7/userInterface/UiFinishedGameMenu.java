@@ -63,28 +63,41 @@ public class UiFinishedGameMenu extends UiMenu{
                     9*scaleY,
                     NEXT_LEVEL_BUTTON,
                     gameStates.Next_Level);
+            // Restart button
+            menuButtons[1] = new UiButtons(game,
+                    mainMenuButtonsPosX,
+                    10*scaleY,
+                    RESTART_BUTTON,
+                    gameStates.NEW_GAME);
+
+            // Main Menu button
+            menuButtons[2] = new UiButtons(game,
+                    mainMenuButtonsPosX,
+                    11*scaleY,
+                    MAIN_MENU_BUTTON,
+                    gameStates.IN_MENU);
         }
         // if we are at level 3, we have main menu button
         else{
+            // Main Menu button
             menuButtons[0] = new UiButtons(game,
                     mainMenuButtonsPosX,
                     9*scaleY,
                     MAIN_MENU_BUTTON,
                     gameStates.IN_MENU);
+            // Restart button
+            menuButtons[1] = new UiButtons(game,
+                    mainMenuButtonsPosX,
+                    10*scaleY,
+                    RESTART_BUTTON,
+                    gameStates.NEW_GAME);
+
+            // Exit button
+            menuButtons[2] = new UiButtons(game,
+                    mainMenuButtonsPosX,
+                    11*scaleY,
+                    EXIT_BUTTON,
+                    gameStates.QUIT);
         }
-
-        // Restart button
-        menuButtons[1] = new UiButtons(game,
-                mainMenuButtonsPosX,
-                10*scaleY,
-                RESTART_BUTTON,
-                gameStates.NEW_GAME);
-
-        // Main Menu button
-        menuButtons[2] = new UiButtons(game,
-                mainMenuButtonsPosX,
-                11*scaleY,
-                MAIN_MENU_BUTTON,
-                gameStates.IN_MENU);
     }
 }
