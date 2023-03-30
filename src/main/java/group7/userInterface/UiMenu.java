@@ -158,7 +158,7 @@ public class UiMenu {
     /**
      * resets the boolean of buttons indicating that they are not clicked nor hovered anymore
      */
-    private void resetButtons() {
+    public void resetButtons() {
         for (UiButtons button : menuButtons) {
             button.resetMouseBooleans();
         }
@@ -197,5 +197,13 @@ public class UiMenu {
         catch (IOException a){
             a.printStackTrace();
         }
+    }
+
+    /**
+     * getters for buttons used in a menu
+     * @return array of buttons used in a menu
+     */
+    public UiButtons[] getMenuButtons() {
+        return menuButtons;
     }
 }
