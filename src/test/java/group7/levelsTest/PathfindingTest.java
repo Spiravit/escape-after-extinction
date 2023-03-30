@@ -3,6 +3,7 @@ package group7.levelsTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import group7.helperClasses.Direction;
 import group7.levels.Pathfinding;
