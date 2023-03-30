@@ -11,6 +11,8 @@ public class LevelTest {
 
     @Test
     public void levelStateLostHealthTest() {
+        // Testing levelState method in Level class
+        // when player health is less or equal to 0
         int dinoNumber = 3;
         Level level = new Level3(3);
         Player player = level.getPlayer();
@@ -20,6 +22,8 @@ public class LevelTest {
 
     @Test
     public void levelStateHealthyPlayerTest(){
+        // Testing levelState method in Level class
+        // when player health is still above 100
         int dinoNumber = 3;
         Level level = new Level3(3);
         Player player = level.getPlayer();
@@ -27,6 +31,7 @@ public class LevelTest {
         player.takeDamage(1);
         assertEquals(level.checkLevelState(),LevelState.PLAYING);
         player.takeDamage(98);
+        // In total health of player - 99 where 99 is a off point
         assertEquals(level.checkLevelState(),LevelState.PLAYING);
     }
 
