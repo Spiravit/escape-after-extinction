@@ -8,6 +8,14 @@ mvn package
 ```
 To run it, navigate to the `target` folder and run the file `escape-after-extinction-1.0-SNAPSHOT-javadoc.jar`.
 
+## Documentation
+
+The documentation for this project can be built using the command:
+```
+mvn javadoc:javadoc
+```
+Documentation HTML can then be found in the `target/site/apidocs` folder.
+
 ## Assets
 
 * [Dino Family](https://demching.itch.io/dino-family) by [@ArksDigital on Twitter](https://twitter.com/ArksDigital) and [@DemChing on itch.io](https://demching.itch.io) 
