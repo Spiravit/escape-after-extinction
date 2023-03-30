@@ -29,7 +29,7 @@ public class UiFinishedGameMenu extends UiMenu{
      */
     public UiFinishedGameMenu(Game game, int currentLevel) {
         super(game);
-        if (currentLevel > 3){
+        if (currentLevel > 3 || currentLevel <= 0){
             throw new IndexOutOfBoundsException("No such level number exist");
         }
         this.currentLevel=currentLevel;
