@@ -51,7 +51,10 @@ public class Pathfinding {
      * @param value (true if valid, false if invalid)
      */
     public void set(int x, int y, boolean value) {
-        pathfinding[x][y] = value;
+        if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
+            return;
+        }
+        pathfinding[x][y] = value; 
     }
 
     /**
@@ -60,6 +63,9 @@ public class Pathfinding {
      * @param y (current y coordinate of tile player is in)
      */
     public void setPlayer(int x, int y) {
+        if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
+            return;
+        }
         playerX = x;
         playerY = y;
     }
@@ -94,8 +100,8 @@ public class Pathfinding {
                 openList.clear();
                 closedList.clear();
 
-                // player is out of range
                 if (currentNode.getG() > range) {
+                    // player is out of range
                     return Direction.NONE;
                 }
 
