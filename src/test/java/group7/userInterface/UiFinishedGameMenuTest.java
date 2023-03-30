@@ -8,9 +8,21 @@ import static org.junit.Assert.*;
 public class UiFinishedGameMenuTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void checkInvalidLevelinGameFinishedMenu(){
+    public void checkInvalidLevelInGameFinishedMenu(){
         // should make IndexOutOfBoundError since we don't have a 4th level
         UiDeathScreen wonMenu = new UiDeathScreen(null,4);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void checkNegativeLevelInGameFinishedMenu(){
+        // should make IndexOutOfBoundError since we don't have a negative level number
+        UiDeathScreen wonMenu = new UiDeathScreen(null,-1);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void checkZeroLevelInGameFinishedMenu(){
+        // should make IndexOutOfBoundError since we don't have a 0 level number
+        UiDeathScreen wonMenu = new UiDeathScreen(null,0);
     }
 
     @Test
