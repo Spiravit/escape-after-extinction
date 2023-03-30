@@ -29,6 +29,9 @@ public class UiDeathScreen extends UiMenu {
      */
     public UiDeathScreen( Game game, int currentLevel ) {
         super(game);
+        if (currentLevel > 3 || currentLevel <= 0){
+            throw new IndexOutOfBoundsException("No such level number exist");
+        }
         this.currentLevel = currentLevel;
         initialiseMenuButtons();
     }
