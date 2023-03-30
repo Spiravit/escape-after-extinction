@@ -38,6 +38,7 @@ public class UiMenu {
     //MENU_BOX_BACKGROUND_WIDTH: The Width of blue box behind  menu buttons
     private static final int MENU_BOX_BACKGROUND_WIDTH =5*scaleX;
 
+
     /**
      * constructor for main menu
      * @param game  in order to be passed to button of main menu
@@ -45,6 +46,7 @@ public class UiMenu {
     public UiMenu(Game game){
         menuBoxBackground = AssetLoader.getSpriteAtlas(AssetLoader.MAIN_MENU_BACKGROUND);
         this.game = game;
+        loadFont();
         initializeMenuButtons();
     }
 
@@ -176,6 +178,24 @@ public class UiMenu {
                 break;
             }
 
+        }
+    }
+    /**
+     *  Loads custom font from assets folder in order to be used later in drawing strings on game window.
+     *
+     */
+    private void loadFont(){
+        InputStream is;
+        try{
+            is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
+            // Set size of font to be 30
+            retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
+        }
+        catch (FontFormatException f){
+            f.printStackTrace();
+        }
+        catch (IOException a){
+            a.printStackTrace();
         }
     }
 }

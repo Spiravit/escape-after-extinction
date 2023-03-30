@@ -31,7 +31,6 @@ public class UiDeathScreen extends UiMenu {
         super(game);
         this.currentLevel = currentLevel;
         initialiseMenuButtons();
-        loadFont();
     }
 
     /**
@@ -70,23 +69,5 @@ public class UiDeathScreen extends UiMenu {
         g2D.drawString( "Luck", (panelWidth/2 - scaleX/2), (6 * scaleY) ); 
         g2D.drawString( "Next", (panelWidth/2 - scaleX/2), (7 * scaleY) ); 
         g2D.drawString( "Time!", (panelWidth/2 - scaleX/2), (8 * scaleY) ); 
-    }
-
-    /**
-     * Loads custom font to write messages on death screen
-     */
-    private void loadFont(){
-        InputStream is;
-        try{
-            is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
-            // Set size of font to be 30
-            retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
-        }
-        catch (FontFormatException f){
-            f.printStackTrace();
-        }
-        catch (IOException a){
-            a.printStackTrace();
-        }
     }
 }
