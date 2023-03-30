@@ -1,11 +1,8 @@
 package group7.levelsTest;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import group7.helperClasses.Direction;
 import group7.levels.Pathfinding;
@@ -97,7 +94,6 @@ public class PathfindingTest {
     }
 
     
-
     @Test
     public void testFindPlayerOutOfBounds() {
         Pathfinding pathfinding = new Pathfinding(1, 1);
