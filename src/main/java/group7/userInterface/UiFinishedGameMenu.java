@@ -21,7 +21,6 @@ import static group7.helperClasses.buttonSpriteRow.EXIT_BUTTON;
  */
 public class UiFinishedGameMenu extends UiMenu{
     int currentLevel;
-    private Font retroFont ;
 
     /**
      * Constructor for creating won menu
@@ -32,7 +31,6 @@ public class UiFinishedGameMenu extends UiMenu{
         super(game);
         this.currentLevel=currentLevel;
         initialiseMenuButtons();
-        loadFont();
     }
 
     /**
@@ -85,24 +83,5 @@ public class UiFinishedGameMenu extends UiMenu{
                 11*scaleY,
                 MAIN_MENU_BUTTON,
                 gameStates.IN_MENU);
-    }
-
-    /**
-     *  Loads custom font from assets folder in order to be used later in drawing strings on game window.
-     *
-     */
-    private void loadFont(){
-        InputStream is;
-        try{
-            is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
-            // Set size of font to be 30
-            retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
-        }
-        catch (FontFormatException f){
-            f.printStackTrace();
-        }
-        catch (IOException a){
-            a.printStackTrace();
-        }
     }
 }
