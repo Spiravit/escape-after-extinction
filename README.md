@@ -2,7 +2,6 @@
 
 You ruled the earth for millions of years, but eventually, your reign had come to an end. After being extinct for millions of years, you've been given another chance at life. Will you take it to become the Apex Predator you used to be? Of course you will, but first you must escape the lab in which you were created.
 
-<br/>
 
 ## **Prerequisites**
 ---
@@ -12,7 +11,6 @@ To begin working on this project, you will need to have the following installed:
 * [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 * [Maven](https://maven.apache.org/download.cgi)
 
-<br/>
 
 ## **Setup**
 ---
@@ -22,9 +20,6 @@ To begin working on this project, you will need to have the following installed:
 git clone git@csil-git1.cs.surrey.sfu.ca:cmpt276s23_group7/escape-after-extinction.git
 ```
 2. Open the project in your IDE of choice.
-
-<br/>
-
 
 ## **Build the Project**
 ---
@@ -43,8 +38,6 @@ To run the tests, use the command:
 mvn test
 ```
 
-<br/>
-
 ## **Documentation**
 ---
 
@@ -53,8 +46,6 @@ The documentation for this project can be built using the command:
 mvn javadoc:javadoc
 ```
 Documentation HTML can then be found in the `target/site/apidocs` folder.
-
-<br/>
 
 ## **Assets**
 ---
