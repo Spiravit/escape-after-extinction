@@ -257,28 +257,7 @@ public abstract class Animate extends Entity {
         return false;
     }
 
-    /**
-     * debugging only
-     * Draw rectangles in the direction the enemy is moving in
-     * @param g
-     * the graphics object to draw to
-     */
-    protected void drawMovementDirections(Graphics g) {
-        // debugging the direction the enemy is moving in
-        g.setColor(Color.ORANGE);
-        if (movingDown) {
-            GraphicsGrid.drawRect(g, getPosX(), getPosY() + 1, 0.1, 0.1);
-        }
-        if (movingLeft) {
-            GraphicsGrid.drawRect(g, getPosX() - 1, getPosY(), 0.1, 0.1);
-        }
-        if (movingRight) {  
-            GraphicsGrid.drawRect(g, getPosX() + 1, getPosY(), 0.1, 0.1);
-        }
-        if (movingUp) {
-            GraphicsGrid.drawRect(g, getPosX(), getPosY() - 1, 0.1, 0.1);
-        }
-    }
+
 
     public float getSpeed() {
         return entitySpeed;
