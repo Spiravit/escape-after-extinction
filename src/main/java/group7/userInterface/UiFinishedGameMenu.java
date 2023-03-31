@@ -5,8 +5,6 @@ import group7.gameStates.gameStates;
 import static group7.Graphics.GraphicsPanel.*;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
 
 import static group7.Graphics.GraphicsGrid.scaleX;
 import static group7.Graphics.GraphicsGrid.scaleY;
@@ -21,7 +19,6 @@ import static group7.helperClasses.buttonSpriteRow.EXIT_BUTTON;
  */
 public class UiFinishedGameMenu extends UiMenu{
     int currentLevel;
-    private Font retroFont ;
 
     /**
      * Constructor for creating won menu
@@ -30,9 +27,11 @@ public class UiFinishedGameMenu extends UiMenu{
      */
     public UiFinishedGameMenu(Game game, int currentLevel) {
         super(game);
+        if (currentLevel > 3 || currentLevel <= 0){
+            throw new IndexOutOfBoundsException("No such level number exist");
+        }
         this.currentLevel=currentLevel;
         initialiseMenuButtons();
-        loadFont();
     }
 
     /**
@@ -62,47 +61,41 @@ public class UiFinishedGameMenu extends UiMenu{
                     9*scaleY,
                     NEXT_LEVEL_BUTTON,
                     gameStates.Next_Level);
+            // Restart button
+            menuButtons[1] = new UiButtons(game,
+                    mainMenuButtonsPosX,
+                    10*scaleY,
+                    RESTART_BUTTON,
+                    gameStates.NEW_GAME);
+
+            // Main Menu button
+            menuButtons[2] = new UiButtons(game,
+                    mainMenuButtonsPosX,
+                    11*scaleY,
+                    MAIN_MENU_BUTTON,
+                    gameStates.IN_MENU);
         }
         // if we are at level 3, we have main menu button
         else{
+            // Main Menu button
             menuButtons[0] = new UiButtons(game,
                     mainMenuButtonsPosX,
                     9*scaleY,
                     MAIN_MENU_BUTTON,
                     gameStates.IN_MENU);
-        }
+            // Restart button
+            menuButtons[1] = new UiButtons(game,
+                    mainMenuButtonsPosX,
+                    10*scaleY,
+                    RESTART_BUTTON,
+                    gameStates.NEW_GAME);
 
-        // Restart button
-        menuButtons[1] = new UiButtons(game,
-                mainMenuButtonsPosX,
-                10*scaleY,
-                RESTART_BUTTON,
-                gameStates.NEW_GAME);
-
-        // Main Menu button
-        menuButtons[2] = new UiButtons(game,
-                mainMenuButtonsPosX,
-                11*scaleY,
-                MAIN_MENU_BUTTON,
-                gameStates.IN_MENU);
-    }
-
-    /**
-     *  Loads custom font from assets folder in order to be used later in drawing strings on game window.
-     *
-     */
-    private void loadFont(){
-        InputStream is;
-        try{
-            is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
-            // Set size of font to be 30
-            retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
-        }
-        catch (FontFormatException f){
-            f.printStackTrace();
-        }
-        catch (IOException a){
-            a.printStackTrace();
+            // Exit button
+            menuButtons[2] = new UiButtons(game,
+                    mainMenuButtonsPosX,
+                    11*scaleY,
+                    EXIT_BUTTON,
+                    gameStates.QUIT);
         }
     }
 }

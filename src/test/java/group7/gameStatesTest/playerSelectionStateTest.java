@@ -13,7 +13,7 @@ import group7.gameStates.playerSelectionState;
 import group7.helperClasses.buttonSpriteRow;
 
 public class playerSelectionStateTest {
-    playerSelectionState check; 
+    playerSelectionState check;
 
     @BeforeEach
     void setup() {
@@ -30,7 +30,7 @@ public class playerSelectionStateTest {
             m.setAccessible(true); // allow access to private method loadButtons()
             m.invoke(check);
 
-            // check button one is "prev" 
+            // check button one is "prev"
             assertEquals(gameStates.PERV, check.stateButton[0].getButtonGameStates());
             assertEquals(buttonSpriteRow.PREV_BUTTON, check.stateButton[0].getButtonSpriteRowNumber());
             // check button two is "next" 
@@ -58,8 +58,8 @@ public class playerSelectionStateTest {
     // Test increment sprite array index by one
     @Test
     public void shouldIncrementSpriteArray() {
-            check.incrementSpriteArrayIndex();
-            assertTrue(check.getIndexCharacterDemo() == 1);
+        check.incrementSpriteArrayIndex();
+        assertTrue(check.getIndexCharacterDemo() == 1);
     }
 
     // Test decrement sprite array index by one
