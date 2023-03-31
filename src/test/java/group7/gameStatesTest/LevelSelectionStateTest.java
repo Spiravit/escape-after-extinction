@@ -1,8 +1,6 @@
-package group7.gameStates;
+package group7.gameStatesTest;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class LevelSelectionStateTest {
 

@@ -1,8 +1,6 @@
 package group7.userInterface;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
 
 import group7.Game;
 import group7.gameStates.gameStates;

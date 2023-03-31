@@ -1,8 +1,10 @@
-package group7.gameStates;
+package group7.gameStatesTest;
 
 import group7.Game;
-import group7.gameStates.*;
+import group7.gameStates.State;
+import group7.gameStates.gameStates;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +26,7 @@ public class MainMenuStateTest {
         State mainMenuState = game.getCurrentState();
         Robot robot = new Robot();
         robot.keyPress(KeyEvent.VK_ESCAPE);
-        assertEquals(game.getCurrentState(),gameStates.QUIT);
+        Assert.assertEquals(game.getCurrentState(), gameStates.QUIT);
     }
 
     @Test

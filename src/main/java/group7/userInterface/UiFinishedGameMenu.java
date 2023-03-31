@@ -5,8 +5,6 @@ import group7.gameStates.gameStates;
 import static group7.Graphics.GraphicsPanel.*;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
 
 import static group7.Graphics.GraphicsGrid.scaleX;
 import static group7.Graphics.GraphicsGrid.scaleY;
