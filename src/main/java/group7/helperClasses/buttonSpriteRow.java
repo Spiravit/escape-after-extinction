@@ -15,12 +15,7 @@ public class buttonSpriteRow {
 
     // New button sprite is at first row of mainMenuButtons.png
     public static final int NEW_GAME_BUTTON = 0;
-
-    // Load button sprite is at 2nd row of mainMenuButtons.png
-    public static final int LOAD_GAME_BUTTON = 1;
-
-    // credit button sprite is at 3rd row of mainMenuButtons.png
-    public static final int CREDIT_BUTTON = 2;
+    
 
     // Exit button sprite is at 4th row of mainMenuButtons.png
     public static final int EXIT_BUTTON = 3;
