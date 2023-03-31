@@ -1,4 +1,4 @@
-package group7.gameStates;
+package group7.gameStatesTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -6,11 +6,11 @@ import static org.junit.Assert.assertTrue;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.junit.Test;
-
-import group7.gameStates.State;
 import group7.gameStates.gameStates;
 import group7.gameStates.playerSelectionState;
+import org.junit.Assert;
+import org.junit.Test;
+
 import group7.helperClasses.buttonSpriteRow;
 
 public class playerSelectionStateTest {
@@ -28,7 +28,7 @@ public class playerSelectionStateTest {
             m.invoke(check);
 
             // check button one is "prev" 
-            assertEquals(gameStates.PERV, check.stateButton[0].getButtonGameStates());
+            Assert.assertEquals(gameStates.PERV, check.stateButton[0].getButtonGameStates());
             assertEquals(buttonSpriteRow.PREV_BUTTON, check.stateButton[0].getButtonSpriteRowNumber());
             // check button two is "next" 
             assertEquals(gameStates.NEXT, check.stateButton[1].getButtonGameStates());
