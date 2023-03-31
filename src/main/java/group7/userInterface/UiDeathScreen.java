@@ -1,8 +1,6 @@
 package group7.userInterface;
 
 import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
 
 import group7.Game;
 import group7.gameStates.gameStates;
@@ -29,9 +27,11 @@ public class UiDeathScreen extends UiMenu {
      */
     public UiDeathScreen( Game game, int currentLevel ) {
         super(game);
+        if (currentLevel > 3 || currentLevel <= 0){
+            throw new IndexOutOfBoundsException("No such level number exist");
+        }
         this.currentLevel = currentLevel;
         initialiseMenuButtons();
-        loadFont();
     }
 
     /**
@@ -70,23 +70,5 @@ public class UiDeathScreen extends UiMenu {
         g2D.drawString( "Luck", (panelWidth/2 - scaleX/2), (6 * scaleY) ); 
         g2D.drawString( "Next", (panelWidth/2 - scaleX/2), (7 * scaleY) ); 
         g2D.drawString( "Time!", (panelWidth/2 - scaleX/2), (8 * scaleY) ); 
-    }
-
-    /**
-     * Loads custom font to write messages on death screen
-     */
-    private void loadFont(){
-        InputStream is;
-        try{
-            is = getClass().getResourceAsStream("/assets/font/ThaleahFat.ttf");
-            // Set size of font to be 30
-            retroFont = Font.createFont(Font.TRUETYPE_FONT,is).deriveFont(30f);
-        }
-        catch (FontFormatException f){
-            f.printStackTrace();
-        }
-        catch (IOException a){
-            a.printStackTrace();
-        }
     }
 }
