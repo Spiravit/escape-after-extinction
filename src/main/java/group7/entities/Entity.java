@@ -5,7 +5,6 @@ import group7.entities.animate.Player;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
 /** 
@@ -202,7 +201,6 @@ public abstract class Entity {
                 hitboxHeight * imageScaleY
             );
         }
-        //debugRender(g);
     }
 
     private void setHitboxHeight(double hitboxHeight, double posX){

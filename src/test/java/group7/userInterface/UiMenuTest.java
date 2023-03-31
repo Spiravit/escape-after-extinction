@@ -1,9 +1,13 @@
 package group7.userInterface;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 import group7.gameStates.gameStates;
-import org.junit.Test;
+
 
 public class UiMenuTest {
     @Test
@@ -24,18 +28,27 @@ public class UiMenuTest {
         // last button in main menu should be exit button
         assertEquals(arrayButton[2].getButtonGameStates(), gameStates.QUIT);
     }
-    @Test(expected = IndexOutOfBoundsException.class)
+
+    @Test //(expected = IndexOutOfBoundsException.class)
     public void buttonsCountCheckMainMenu (){
         // In this test, we make sure our main menu only
         // contains 3 buttons
         UiMenu mainMenu = new UiMenu(null);
         UiButtons[] arrayButton = mainMenu.getMenuButtons();
         UiButtons button = arrayButton[0];
-         button = arrayButton[1];
-         button = arrayButton[2];
+        button = arrayButton[1];
+        button = arrayButton[2];
         // Indexing with 3 should throw a index out of bound error
-         button = arrayButton[3];
+        try {
+            System.out.println("test setting invalid 3rd button for main menu");
+            button = arrayButton[3];            
+            fail();
+        } catch ( IndexOutOfBoundsException ex ) {
+            assertTrue( ex instanceof IndexOutOfBoundsException );
+        }
+         //button = arrayButton[3];
     }
+
     @Test
     public void resetButtonsMenuCheck(){
         // checking if resetButtons method in UiMenu
@@ -48,6 +61,7 @@ public class UiMenuTest {
             button.setIsMousePressedButton(true);
             button.setIsMouseOverButton(true);
         }
+
         mainMenu.resetButtons();
         for (UiButtons button : arrayButton){
             // isMousePressed and isMouseOver boolean of all buttons should be false after resetting
