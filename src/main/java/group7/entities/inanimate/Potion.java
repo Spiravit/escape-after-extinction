@@ -36,10 +36,8 @@ public class Potion extends Inanimate {
         super(posX, posY);
         this.potionNumber = objectType;
 
-        hitboxHeight = 0.7;
-        hitboxWidth = 0.73;
-        setPosX(posX);
-        setPosY(posY);
+        setHitboxHeight(0.7, posY);
+        setHitboxWidth(0.73, posX);
 
         loadAnimations();
     }
