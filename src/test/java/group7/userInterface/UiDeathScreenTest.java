@@ -1,34 +1,57 @@
 package group7.userInterface;
 
 import group7.gameStates.gameStates;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 public class UiDeathScreenTest {
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void checkInvalidLevelInDeathMenu(){
+    UiDeathScreen DeathMenu;
+
+    @Test 
+    public void checkInvalidLevelInDeathMenu() {
         // should make IndexOutOfBoundError since we don't have a 4th level
-        UiDeathScreen DeathMenu = new UiDeathScreen(null,4);
+        try {
+            System.out.println("test setting invalid level 4");
+            DeathMenu = new UiDeathScreen(null, 4);            
+            fail();
+        } catch ( IndexOutOfBoundsException ex ) {
+            assertTrue( ex instanceof IndexOutOfBoundsException );
+        }
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test 
     public void checkNegativeLevelInDeathMenu(){
         // should make IndexOutOfBoundError since we don't have a negative level number
-        UiDeathScreen DeathMenu = new UiDeathScreen(null,-1);
+        try {
+            System.out.println("test setting invalid level -1");
+            DeathMenu = new UiDeathScreen(null, -1);            
+            fail();
+        } catch ( IndexOutOfBoundsException ex ) {
+            assertTrue( ex instanceof IndexOutOfBoundsException );
+        }
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void checkZeroLevelInDeathMenu(){
+    @Test 
+    public void checkZeroLevelInDeathMenu() {
         // should make IndexOutOfBoundError since we don't have a 0 level number
-        UiDeathScreen DeathMenu = new UiDeathScreen(null,0);
+        try {
+            System.out.println("test setting invalid level 0");
+            DeathMenu = new UiDeathScreen(null, 0);            
+            fail();
+        } catch ( IndexOutOfBoundsException ex ) {
+            assertTrue( ex instanceof IndexOutOfBoundsException );
+        }
     }
 
     @Test
     public void checkInitializedButtonDeathMenu(){
         // This test checks that buttons are initialized correctly
         // in Death Game menu
-        UiDeathScreen DeathMenu = new UiDeathScreen(null,3);
+        DeathMenu = new UiDeathScreen(null, 3);
         UiButtons[] arrayButton = DeathMenu.getMenuButtons();
         // checking if there are buttons actually initialized in death Game menu
         // by seeing if the array is not null
