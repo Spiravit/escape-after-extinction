@@ -45,10 +45,8 @@ public abstract class Animate extends Entity {
         this.pathfinding = pathfinding;
 
         // change hitbox size to 0.8 to allow for movement
-        hitboxWidth = 0.8;
-        hitboxHeight = 0.8;
-        setPosX(posX);
-        setPosY(posY);
+        setHitboxWidth(0.8, posX);
+        setHitboxHeight(0.8, posY);
     }
 
     /**

@@ -203,14 +203,14 @@ public abstract class Entity {
         }
     }
 
-    private void setHitboxHeight(double hitboxHeight, double posX){
+    protected void setHitboxHeight(double hitboxHeight, double posY){
         this.hitboxHeight = hitboxHeight;
-        setPosX(posX);
+        setPosY(posY);
     }
 
-    private void setHitboxWidth(double hitboxWidth, double posY){
+    protected void setHitboxWidth(double hitboxWidth, double posX){
         this.hitboxWidth = hitboxWidth;
-        setPosY(posY);
+        setPosX(posX);
     }
 
 }
