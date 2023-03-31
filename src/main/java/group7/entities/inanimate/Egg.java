@@ -35,10 +35,9 @@ public class Egg extends Inanimate {
         startTime = System.currentTimeMillis();
 
         aniSpeed = 30;
-        hitboxWidth = 0.8;
-        hitboxHeight = 0.8;
-        setPosX(posX);
-        setPosY(posY);
+
+        setHitboxHeight(0.8, posY);
+        setHitboxWidth(0.8, posX);
     }
 
     @Override
