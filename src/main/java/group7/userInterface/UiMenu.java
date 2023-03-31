@@ -10,8 +10,6 @@ import group7.helperClasses.AssetLoader;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
 import static group7.Graphics.GraphicsPanel.panelWidth;
 
