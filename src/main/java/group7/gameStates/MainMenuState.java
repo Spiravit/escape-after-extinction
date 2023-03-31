@@ -3,7 +3,6 @@ package group7.gameStates;
 import group7.Game;
 import group7.helperClasses.AssetLoader;
 import group7.userInterface.UiMenu;
-
 import static group7.Graphics.GraphicsPanel.*;
 
 import java.awt.*;
