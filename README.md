@@ -1,6 +1,6 @@
 # **Escape After Extinction**
 
-You ruled the earth for millions of years, but eventually, your reign had come to an end. After being extinct for millions of years, you've been given another chance at life. Will you take it to become the Apex Predator you used to be? Of course you will, but first you must escape the lab in which you were created.
+You used to rule the earth, but eventually, your long lasting reign had come to an end. After being extinct for millions of years, you've been given another chance at life. Will you use it to retake the crown and become the apex predator you used to be? Of course you will! The first step is to escape the lab in which you were created.
 
 
 ## **Prerequisites**
