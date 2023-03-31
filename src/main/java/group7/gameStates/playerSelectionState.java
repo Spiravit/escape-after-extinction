@@ -2,15 +2,11 @@ package group7.gameStates;
 
 import group7.Game;
 import group7.Graphics.GraphicsGrid;
-import group7.gameStates.State;
-import group7.gameStates.gameStates;
 import group7.helperClasses.AssetLoader;
 import group7.userInterface.UiButtons;
-import group7.userInterface.UiParallelBackground;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import static group7.Graphics.GraphicsGrid.scaleX;
