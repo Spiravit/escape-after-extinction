@@ -1,11 +1,8 @@
 package group7.gameStates;
 
 import group7.Game;
-import group7.Graphics.GraphicsGrid;
 import group7.helperClasses.AssetLoader;
-import group7.userInterface.UiButtons;
 import group7.userInterface.UiMenu;
-import group7.userInterface.UiParallelBackground;
 
 import static group7.Graphics.GraphicsPanel.*;
 

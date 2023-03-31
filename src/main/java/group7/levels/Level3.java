@@ -21,13 +21,13 @@ import static group7.entities.inanimate.Inanimate.*;
 public class Level3 extends Level {
 
     public Level3(int dinoNumber) {
-        super(dinoNumber);
+        super(dinoNumber,3);
         addPlayer(1, 3, dinoNumber);
 
-        addEnemy(4, 6, 2, 3, 1);
-        addEnemy(3, 14, 2, 3,  2);
-        addEnemy(13, 15, 2, 3, 3);
-        addEnemy(18, 5, 2, 3, 4);
+        //addEnemy(4, 6, 2, 3, 1);
+        //addEnemy(3, 14, 2, 3,  2);
+        //addEnemy(13, 15, 2, 3, 3);
+        //addEnemy(18, 5, 2, 3, 4);
 
         addTrap(3, 7);
         addTrap(3, 10);
@@ -60,26 +60,5 @@ public class Level3 extends Level {
         addPotion(10, 6, GREEN_HEALTH_POTION );    
         addPotion(11, 11, GREEN_HEALTH_POTION ); 
         addPotion(17, 7, GREEN_HEALTH_POTION );    
-    }
-
-    @Override
-    protected void setLevelData() { //TEST MULTIPLE LEVELS
-        BufferedImage img = AssetLoader.getSpriteAtlas("levels/level_maps/level_" + 3 + ".png"); //TEST MULTIPLE LEVELS, changed from AssetLoader.LEVEL_1 to filename
-
-        this.width = img.getWidth();
-        this.height = img.getHeight();
-
-        levelSpriteData = new int[width][height];
-        pathfinding = new Pathfinding(width, height);
-
-        for (int x = 0; x < this.width; x++) {
-            for (int y = 0; y < this.height; y++) {
-                Color color = new Color(img.getRGB(x, y));
-                int value = color.getRed() % 74; //73 is the clear tile
-
-                levelSpriteData[x][y] = value;
-                pathfinding.set(x, y, value != 13 ? false:true);
-            }
-        }
     }
 }
