@@ -205,27 +205,14 @@ public abstract class Entity {
         //debugRender(g);
     }
 
-    /**
-     * debugging purposes only
-     * draws the hitbox of the entity
-     * and a dot at getPosX() and getPosY() of the entity
-     * @param g
-     * the graphics object to draw on
-     */
-    protected void debugRender(Graphics g) {
-        g.setColor(Color.RED);
-        GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight); 
-        drawPositionDot(g);
+    private void setHitboxHeight(double hitboxHeight, double posX){
+        this.hitboxHeight = hitboxHeight;
+        setPosX(posX);
     }
 
-    /**
-     * debugging purposes only
-     * draws a dot at getPosX() and getPosY() of the entity
-     * @param g
-     * the graphics object to draw on
-     */
-    protected void drawPositionDot(Graphics g) {
-        g.setColor(Color.ORANGE);
-        g.drawRect((int)(GraphicsGrid.getScaleX() * getPosX()), (int) (GraphicsGrid.getScaleY() * getPosY()), 2, 2);
+    private void setHitboxWidth(double hitboxWidth, double posY){
+        this.hitboxWidth = hitboxWidth;
+        setPosY(posY);
     }
+
 }
