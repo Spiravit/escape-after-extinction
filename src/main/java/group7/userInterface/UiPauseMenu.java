@@ -1,16 +1,11 @@
 package group7.userInterface;
 
 import group7.Game;
-import group7.Graphics.GraphicsGrid;
 import group7.gameStates.gameStates;
-
 import static group7.Graphics.GraphicsGrid.*;
-import static group7.Graphics.GraphicsPanel.panelWidth;
 import static group7.helperClasses.buttonSpriteRow.*;
 import static group7.helperClasses.buttonSpriteRow.EXIT_BUTTON;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * is responsible for creating a pause menu.

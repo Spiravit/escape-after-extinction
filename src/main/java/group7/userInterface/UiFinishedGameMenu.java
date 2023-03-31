@@ -11,7 +11,6 @@ import java.io.InputStream;
 import static group7.Graphics.GraphicsGrid.scaleX;
 import static group7.Graphics.GraphicsGrid.scaleY;
 import static group7.helperClasses.buttonSpriteRow.*;
-import static group7.helperClasses.buttonSpriteRow.EXIT_BUTTON;
 
 /**
  * is responsible to create a menu after the player has successfully won a level
