@@ -183,13 +183,17 @@ public abstract class Entity {
      * @param g (the graphics object to draw on)
      */
     public void render(Graphics g) {
+        // imageScaleX and imageScaleY are used to increase/decresae the size of the image
+        // imageOffsetX and imageOffsetY are used to move the image horizontally and vertically
         if (reverseImage) {
+            // if the image should be flipped horizontally
             GraphicsGrid.render(
                 g,
                 entityAnimations[currentAnimation][aniIndex],
-                hitboxX - ((imageScaleX - 1) / 2) + imageOffsetX * imageScaleX + hitboxWidth * imageScaleX, // offset the image by the width of the hitbox 
+                // hitboxWidth * imageScaleX recenters the image after reversing it ↓
+                hitboxX - ((imageScaleX - 1) / 2) + imageOffsetX * imageScaleX + hitboxWidth * imageScaleX, 
                 hitboxY - ((imageScaleY - 1) / 2) + imageOffsetY * imageScaleY,
-                - (hitboxWidth * imageScaleX), 
+                - (hitboxWidth * imageScaleX), // negative flips the image horizontally
                 hitboxHeight * imageScaleY
             );
         } else {
@@ -202,7 +206,6 @@ public abstract class Entity {
                 hitboxHeight * imageScaleY
             );
         }
-        //debugRender(g);
     }
 
     protected void setHitboxHeight(double hitboxHeight, double posY){
