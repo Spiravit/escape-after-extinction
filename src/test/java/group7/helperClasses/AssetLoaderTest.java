@@ -1,22 +1,29 @@
 package group7.helperClasses;
 
-import org.junit.Test;
-
-import java.io.IOException;
-import java.io.InputStream;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 import static group7.helperClasses.AssetLoader.getSpriteAtlas;
-import static org.junit.Assert.*;
+
 
 public class AssetLoaderTest {
 
-    @Test(expected = NullPointerException.class)
+    @Test //(expected = NullPointerException.class)
     public void getSpriteAtlasNonExistingImageTest() {
         // This test make sure, if we tried to load an image
         // that doesn't exists in our asset folder then
         // it should throw nullpointer
-        getSpriteAtlas("aribitrary file name that doesn't exist");
+        try {
+            System.out.println("throw null ptr if asset doesnt exist in asset folder");
+            getSpriteAtlas("aribitrary file name that doesn't exist");            
+            fail();
+        } catch (NullPointerException ex) {
+            assertTrue(ex instanceof NullPointerException);
+        }
     }
+
     @Test
     public void getSpriteAtlasExistingImageTest(){
         // This test make sure when we pass name of the images that are in our asset folder
