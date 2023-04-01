@@ -1,6 +1,25 @@
-# Escape After Extinction
+# **Escape After Extinction**
 
-## Build the Project
+You used to rule the earth, but eventually, your long lasting reign had come to an end. After being extinct for millions of years, you've been given another chance at life. Will you use it to retake the crown and become the apex predator you used to be? Of course you will! The first step is to escape the lab in which you were created.
+
+
+## **Prerequisites**
+
+To begin working on this project, you will need to have the following installed:
+
+* [Java 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+* [Maven](https://maven.apache.org/download.cgi)
+
+
+## **Setup**
+
+1. Clone the repository using the command:
+```
+git clone git@csil-git1.cs.surrey.sfu.ca:cmpt276s23_group7/escape-after-extinction.git
+```
+2. Open the project in your IDE of choice.
+
+## **Build the Project**
 
 Start by building this maven project using the command:
 ```
@@ -8,7 +27,22 @@ mvn package
 ```
 To run it, navigate to the `target` folder and run the file `escape-after-extinction-1.0-SNAPSHOT-javadoc.jar`.
 
-## Assets
+## **Run the Tests**
+
+To run the tests, use the command:
+```
+mvn test
+```
+
+## **Documentation**
+
+The documentation for this project can be built using the command:
+```
+mvn javadoc:javadoc
+```
+Documentation HTML can then be found in the `target/site/apidocs` folder.
+
+## **Assets**
 
 * [Dino Family](https://demching.itch.io/dino-family) by [@ArksDigital on Twitter](https://twitter.com/ArksDigital) and [@DemChing on itch.io](https://demching.itch.io) 
   * used under the license [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

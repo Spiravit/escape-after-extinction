@@ -1,11 +1,9 @@
 package group7.entities.animate;
 
-import group7.Graphics.GraphicsGrid;
 import group7.entities.Entity;
 import group7.levels.Pathfinding;
 import group7.helperClasses.Direction;
-import java.awt.Graphics;
-import java.awt.Color;
+
 
 /**
  * The Animation class is an abstract class of all animated entities and inherits from the Entity class
@@ -47,10 +45,8 @@ public abstract class Animate extends Entity {
         this.pathfinding = pathfinding;
 
         // change hitbox size to 0.8 to allow for movement
-        hitboxWidth = 0.8;
-        hitboxHeight = 0.8;
-        setPosX(posX);
-        setPosY(posY);
+        setHitboxWidth(0.8, posX);
+        setHitboxHeight(0.8, posY);
     }
 
     /**
@@ -257,28 +253,7 @@ public abstract class Animate extends Entity {
         return false;
     }
 
-    /**
-     * debugging only
-     * Draw rectangles in the direction the enemy is moving in
-     * @param g
-     * the graphics object to draw to
-     */
-    protected void drawMovementDirections(Graphics g) {
-        // debugging the direction the enemy is moving in
-        g.setColor(Color.ORANGE);
-        if (movingDown) {
-            GraphicsGrid.drawRect(g, getPosX(), getPosY() + 1, 0.1, 0.1);
-        }
-        if (movingLeft) {
-            GraphicsGrid.drawRect(g, getPosX() - 1, getPosY(), 0.1, 0.1);
-        }
-        if (movingRight) {  
-            GraphicsGrid.drawRect(g, getPosX() + 1, getPosY(), 0.1, 0.1);
-        }
-        if (movingUp) {
-            GraphicsGrid.drawRect(g, getPosX(), getPosY() - 1, 0.1, 0.1);
-        }
-    }
+
 
     public float getSpeed() {
         return entitySpeed;

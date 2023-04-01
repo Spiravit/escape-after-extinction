@@ -5,7 +5,6 @@ import group7.helperClasses.AssetLoader;
 import group7.helperClasses.Direction;
 
 import java.awt.image.BufferedImage;
-import java.awt.Graphics;
 
 /**
  * This class represents enemies in the game and extends from animate

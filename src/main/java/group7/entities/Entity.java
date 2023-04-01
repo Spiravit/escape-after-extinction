@@ -5,7 +5,6 @@ import group7.entities.animate.Player;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
 /** 
@@ -202,30 +201,16 @@ public abstract class Entity {
                 hitboxHeight * imageScaleY
             );
         }
-        //debugRender(g);
     }
 
-    /**
-     * debugging purposes only
-     * draws the hitbox of the entity
-     * and a dot at getPosX() and getPosY() of the entity
-     * @param g
-     * the graphics object to draw on
-     */
-    protected void debugRender(Graphics g) {
-        g.setColor(Color.RED);
-        GraphicsGrid.drawRect(g, hitboxX, hitboxY, hitboxWidth, hitboxHeight); 
-        drawPositionDot(g);
+    protected void setHitboxHeight(double hitboxHeight, double posY){
+        this.hitboxHeight = hitboxHeight;
+        setPosY(posY);
     }
 
-    /**
-     * debugging purposes only
-     * draws a dot at getPosX() and getPosY() of the entity
-     * @param g
-     * the graphics object to draw on
-     */
-    protected void drawPositionDot(Graphics g) {
-        g.setColor(Color.ORANGE);
-        g.drawRect((int)(GraphicsGrid.getScaleX() * getPosX()), (int) (GraphicsGrid.getScaleY() * getPosY()), 2, 2);
+    protected void setHitboxWidth(double hitboxWidth, double posX){
+        this.hitboxWidth = hitboxWidth;
+        setPosX(posX);
     }
+
 }
