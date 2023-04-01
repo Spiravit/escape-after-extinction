@@ -35,15 +35,8 @@ public class Trap extends Inanimate {
     protected void loadAnimations() {
         BufferedImage trap = AssetLoader.getSpriteAtlas(AssetLoader.TRAP);
 
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[1];
-        for (int i = 0; i < 1; i++) {
-            entityAnimations[DEFAULT_ANIMATION][i] = trap.getSubimage(i * 32, 0, 32, 32);
-        }
-
-        entityAnimations[INTERACTION_ANIMATION] = new BufferedImage[3];
-        for (int i = 0; i < 3; i++) {
-            entityAnimations[INTERACTION_ANIMATION][i] = trap.getSubimage((i + 1) * 32, 0, 32, 32);
-        }
+        entityAnimations[DEFAULT_ANIMATION] = extractSprite(trap, 0, 0, 32, 32, 1);
+        entityAnimations[INTERACTION_ANIMATION] = extractSprite(trap, 32, 0, 32, 32, 3);
     }
 
     @Override

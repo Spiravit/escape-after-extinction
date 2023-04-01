@@ -196,6 +196,16 @@ public class Pathfinding {
         return pathfinding[x][y];
     }
 
+
+    /**
+     * Check if a tile is within the bounds of the map
+     * @param x
+     * x coordinate of tile
+     * @param y
+     * y coordinate of tile
+     * @return
+     * True if within bounds, false if not
+     */
     private boolean withinBounds(int x, int y) {
         if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
             return false;

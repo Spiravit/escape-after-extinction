@@ -178,6 +178,31 @@ public abstract class Entity {
     }
 
     /**
+     * returns an array of BufferedImages that are extracted from the given image
+     * @param img
+     * the image to extract the sprites from
+     * @param x
+     * the x position of the first sprite
+     * @param y
+     * the y position of the first sprite
+     * @param width
+     * the width of each sprite
+     * @param height
+     * the height of each sprite
+     * @param numberOfSprites
+     * the amount of sprites to extract
+     * @return
+     * an array of BufferedImages that are extracted from the given image
+     */
+    protected BufferedImage[] extractSprite(BufferedImage img, int x, int y, int width, int height, int numberOfSprites) {
+        BufferedImage[] sprite = new BufferedImage[numberOfSprites];
+        for (int i = 0; i < numberOfSprites; i++) {
+            sprite[i] = img.getSubimage(x + i * width, y, width, height);
+        }
+        return sprite;
+    }
+
+    /**
      * Draws the currentEntityImage on the screen
      * @param g (the graphics object to draw on)
      */

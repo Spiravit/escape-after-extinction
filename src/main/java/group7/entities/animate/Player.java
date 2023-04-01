@@ -81,42 +81,25 @@ public class Player extends Animate {
         int curAnimation = 15;
 
         // spawn animation + idle animation to make the spawn animation a bit longer
-        entityAnimations[SPAWN_ANIMATION] = new BufferedImage[curAnimation];
-        for (int i = 0; i < curAnimation; i++) {
-            entityAnimations[SPAWN_ANIMATION][i] = dinosaur.getSubimage(i * 24, 0, 24, 24);
-        }
+        entityAnimations[SPAWN_ANIMATION] = extractSprite(dinosaur, 0, 0, 24, 24, curAnimation);
 
+        // default animation
         prevAnimations += curAnimation - 3;
         curAnimation = 3;
-
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[curAnimation];
-        for (int i = 0; i < curAnimation; i++) {
-            entityAnimations[DEFAULT_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
-        }
-
+        entityAnimations[DEFAULT_ANIMATION] = extractSprite(dinosaur, prevAnimations * 24, 0, 24, 24, curAnimation);
+        
+        // moving animation
         prevAnimations += curAnimation;
         curAnimation = 6;
-
-        entityAnimations[MOVING_ANIMATION] = new BufferedImage[curAnimation];
-        for (int i = 0; i < curAnimation; i++) {
-            entityAnimations[MOVING_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
-        }
+        entityAnimations[MOVING_ANIMATION] = extractSprite(dinosaur, prevAnimations * 24, 0, 24, 24, curAnimation);
 
         prevAnimations += curAnimation + 6;
         curAnimation = 4;
-
-        entityAnimations[DAMAGE_TAKEN_ANIMATION] = new BufferedImage[curAnimation];
-        for (int i = 0; i < curAnimation; i++) {
-            entityAnimations[DAMAGE_TAKEN_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
-        }
+        entityAnimations[DAMAGE_TAKEN_ANIMATION] = extractSprite(dinosaur, prevAnimations * 24, 0, 24, 24, curAnimation);
 
         prevAnimations += curAnimation;
         curAnimation = 5;
-
-        entityAnimations[DEATH_ANIMATION] = new BufferedImage[curAnimation];
-        for (int i = 0; i < curAnimation; i++) {
-            entityAnimations[DEATH_ANIMATION][i] = dinosaur.getSubimage(i * 24 + prevAnimations * 24, 0, 24, 24);
-        }
+        entityAnimations[DEATH_ANIMATION] = extractSprite(dinosaur, prevAnimations * 24, 0, 24, 24, curAnimation);
     }
 
     /**
