@@ -1,11 +1,9 @@
 package group7.entities.animate;
 
-import group7.Graphics.GraphicsGrid;
 import group7.entities.Entity;
 import group7.levels.Pathfinding;
 import group7.helperClasses.Direction;
-import java.awt.Graphics;
-import java.awt.Color;
+
 
 /**
  * The Animation class is an abstract class of all animated entities and inherits from the Entity class

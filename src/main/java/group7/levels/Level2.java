@@ -1,9 +1,5 @@
 package group7.levels;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-
-import group7.helperClasses.AssetLoader;
 import static group7.entities.inanimate.Inanimate.*;
 
 
