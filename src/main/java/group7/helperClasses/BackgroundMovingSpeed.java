@@ -46,7 +46,7 @@ public class BackgroundMovingSpeed {
     }
 
     /**
-     * Returns the speed the a specific layer of the background should move at.
+     * Returns the speeds the a specific layer of the background should move at.
      * @param Size
      * @return int i (speed that a layer should move at)
      * @return null (if that layer is fixed)

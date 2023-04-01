@@ -1,9 +1,5 @@
 package group7.levels;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-import group7.helperClasses.AssetLoader;
 import static group7.entities.inanimate.Inanimate.*;
 
 
@@ -21,8 +17,8 @@ import static group7.entities.inanimate.Inanimate.*;
 public class Level1 extends Level {
 
     public Level1(int dinoNumber) {
-        super(dinoNumber);
-        addPlayer(1, 3, dinoNumber);
+        super(dinoNumber,1);
+
 
        addEnemy(5, 14, 2, 3, 1);
        addEnemy(9, 4, 2, 3, 2);
@@ -47,24 +43,4 @@ public class Level1 extends Level {
         addPotion(9, 10, GREEN_HEALTH_POTION );    
     }
 
-    @Override
-    protected void setLevelData() { //TEST MULTIPLE LEVELS
-        BufferedImage img = AssetLoader.getSpriteAtlas("levels/level_maps/level_" + 1 + ".png"); //TEST MULTIPLE LEVELS, changed from AssetLoader.LEVEL_1 to filename
-
-        this.width = img.getWidth();
-        this.height = img.getHeight();
-
-        levelSpriteData = new int[width][height];
-        pathfinding = new Pathfinding(width, height);
-
-        for (int x = 0; x < this.width; x++) {
-            for (int y = 0; y < this.height; y++) {
-                Color color = new Color(img.getRGB(x, y));
-                int value = color.getRed() % 74; //73 is the clear tile
-
-                levelSpriteData[x][y] = value;
-                pathfinding.set(x, y, value != 13 ? false:true);
-            }
-        }
-    }
 }
