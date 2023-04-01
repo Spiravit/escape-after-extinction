@@ -42,12 +42,8 @@ public class Egg extends Inanimate {
 
     @Override
     protected void loadAnimations() {
-        BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.EGG);
-
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
-        for (int i = 0; i < 4; i++) {
-            entityAnimations[DEFAULT_ANIMATION][i] = img.getSubimage(i * 24, 0, 24, 24);
-        }
+        BufferedImage egg = AssetLoader.getSpriteAtlas(AssetLoader.EGG);
+        entityAnimations[DEFAULT_ANIMATION] = extractSprite(egg, 0, 0, 24, 24, 4);
     }
 
     /**

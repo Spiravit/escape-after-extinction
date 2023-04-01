@@ -55,19 +55,14 @@ public class Potion extends Inanimate {
         }
 
         BufferedImage potion = AssetLoader.getSpriteAtlas( potionType ); 
-
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[1];
-        entityAnimations[DEFAULT_ANIMATION][0] = potion.getSubimage( 0, 0, 16, 16 );
+        entityAnimations[DEFAULT_ANIMATION] = extractSprite(potion, 0, 0, 16, 16, 2);
     }
 
     @Override
     public void onInteraction( Player player ) {
-        //System.out.println("collecting a potion: " + this.potionNumber );           // ***TEST REMOVE***
         if ( this.potionNumber == GREEN_HEALTH_POTION ) {
-            //System.out.println("health potion");                                    // ***TEST REMOVE***
             player.gainHealth( GREEN_POTION_BOOST_VALUE );
         } else if ( this.potionNumber == PURPLE_SPEED_POTION ) {
-            //System.out.println("i am speed");                                       // ***TEST REMOVE***
             player.increaseSpeed( PURPLE_POTION_BOOST_VALUE );
         }
         super.onInteraction( player );
