@@ -232,11 +232,25 @@ public abstract class Entity {
         }
     }
 
+    /**
+     * updates the hitbox height of the entity
+     * @param hitboxHeight
+     * the new height of the hitbox
+     * @param posY
+     * the y position to set the entity to
+     */
     protected void setHitboxHeight(double hitboxHeight, double posY){
         this.hitboxHeight = hitboxHeight;
         setPosY(posY);
     }
 
+    /**
+     * updates the hitbox width of the entity
+     * @param hitboxWidth
+     * the new width of the hitbox
+     * @param posX
+     * the x position to set the entity to
+     */
     protected void setHitboxWidth(double hitboxWidth, double posX){
         this.hitboxWidth = hitboxWidth;
         setPosX(posX);
