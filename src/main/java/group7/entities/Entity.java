@@ -178,17 +178,46 @@ public abstract class Entity {
     }
 
     /**
+     * returns an array of BufferedImages that are extracted from the given image
+     * @param img
+     * the image to extract the sprites from
+     * @param x
+     * the x position of the first sprite
+     * @param y
+     * the y position of the first sprite
+     * @param width
+     * the width of each sprite
+     * @param height
+     * the height of each sprite
+     * @param numberOfSprites
+     * the amount of sprites to extract
+     * @return
+     * an array of BufferedImages that are extracted from the given image
+     */
+    protected BufferedImage[] extractSprite(BufferedImage img, int x, int y, int width, int height, int numberOfSprites) {
+        BufferedImage[] sprite = new BufferedImage[numberOfSprites];
+        for (int i = 0; i < numberOfSprites; i++) {
+            sprite[i] = img.getSubimage(x + i * width, y, width, height);
+        }
+        return sprite;
+    }
+
+    /**
      * Draws the currentEntityImage on the screen
      * @param g (the graphics object to draw on)
      */
     public void render(Graphics g) {
+        // imageScaleX and imageScaleY are used to increase/decresae the size of the image
+        // imageOffsetX and imageOffsetY are used to move the image horizontally and vertically
         if (reverseImage) {
+            // if the image should be flipped horizontally
             GraphicsGrid.render(
                 g,
                 entityAnimations[currentAnimation][aniIndex],
-                hitboxX - ((imageScaleX - 1) / 2) + imageOffsetX * imageScaleX + hitboxWidth * imageScaleX, // offset the image by the width of the hitbox 
+                // hitboxWidth * imageScaleX recenters the image after reversing it ↓
+                hitboxX - ((imageScaleX - 1) / 2) + imageOffsetX * imageScaleX + hitboxWidth * imageScaleX, 
                 hitboxY - ((imageScaleY - 1) / 2) + imageOffsetY * imageScaleY,
-                - (hitboxWidth * imageScaleX), 
+                - (hitboxWidth * imageScaleX), // negative flips the image horizontally
                 hitboxHeight * imageScaleY
             );
         } else {
@@ -203,11 +232,25 @@ public abstract class Entity {
         }
     }
 
+    /**
+     * updates the hitbox height of the entity
+     * @param hitboxHeight
+     * the new height of the hitbox
+     * @param posY
+     * the y position to set the entity to
+     */
     protected void setHitboxHeight(double hitboxHeight, double posY){
         this.hitboxHeight = hitboxHeight;
         setPosY(posY);
     }
 
+    /**
+     * updates the hitbox width of the entity
+     * @param hitboxWidth
+     * the new width of the hitbox
+     * @param posX
+     * the x position to set the entity to
+     */
     protected void setHitboxWidth(double hitboxWidth, double posX){
         this.hitboxWidth = hitboxWidth;
         setPosX(posX);

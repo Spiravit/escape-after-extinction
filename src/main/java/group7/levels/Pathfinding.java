@@ -51,7 +51,7 @@ public class Pathfinding {
      * @param value (true if valid, false if invalid)
      */
     public void set(int x, int y, boolean value) {
-        if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
+        if (!withinBounds(x, y)) {
             return;
         }
         pathfinding[x][y] = value; 
@@ -63,7 +63,7 @@ public class Pathfinding {
      * @param y (current y coordinate of tile player is in)
      */
     public void setPlayer(int x, int y) {
-        if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
+        if (!withinBounds(x, y)) {
             return;
         }
         playerX = x;
@@ -190,10 +190,27 @@ public class Pathfinding {
      * @return False if invalid
      */
     public boolean isValidTile(int x, int y) {
-        if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
+        if (!withinBounds(x, y)) {
             return false;
         }
         return pathfinding[x][y];
+    }
+
+
+    /**
+     * Check if a tile is within the bounds of the map
+     * @param x
+     * x coordinate of tile
+     * @param y
+     * y coordinate of tile
+     * @return
+     * True if within bounds, false if not
+     */
+    private boolean withinBounds(int x, int y) {
+        if (x < 0 || x >= pathfinding.length || y < 0 || y >= pathfinding[0].length) {
+            return false;
+        }
+        return true;
     }
 
 } 
