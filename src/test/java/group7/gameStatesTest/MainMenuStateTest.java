@@ -13,7 +13,7 @@ import group7.gameStates.gameStates;
 
 
 public class MainMenuStateTest {
-
+/* 
     @BeforeEach
     public void setup(){
     }
@@ -37,5 +37,6 @@ public class MainMenuStateTest {
 
     @Test
     public void mouseMoved() {
-    }
+    } 
+*/    
 }
