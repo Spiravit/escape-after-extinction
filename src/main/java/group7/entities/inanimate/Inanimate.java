@@ -22,14 +22,11 @@ public abstract class Inanimate extends Entity {
 
     protected int objectType;
 
+    // seperate visibility and interactability variables for objects that can be 
+    // continued to be seen after being interacted with
+    // an example of this is the trap, which shows an iteraction animation
     protected boolean visible = true; // If object can still be seen TRUE, else FALSE
     protected boolean interactable = true; // If object can be picked up TRUE, else FALSE
-
-    // TYPES OF COLLECTABLES
-    public static final int ESCAPE_KEYCARD = 0;
-    public static final int GREEN_HEALTH_POTION = 1;
-	public static final int PURPLE_SPEED_POTION = 2;
-    public static final int EGG_POINT_BONUS = 3;
     
     /**
      * Constructor: Passes position information onto super constructor in {@link Entity}
@@ -89,10 +86,16 @@ public abstract class Inanimate extends Entity {
         }
     }
 
+    /**
+     * removes the ability for the player to interact with the object
+     */
     public boolean isInteractable() {
         return interactable;
     }
 
+    /**
+     * removes the ability for the player to see the object
+     */
     public boolean isVisible() {
         return visible;
     }

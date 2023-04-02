@@ -1,6 +1,6 @@
 package group7.levels;
 
-import static group7.entities.inanimate.Inanimate.*;
+import static group7.entities.inanimate.Potion.*;
 
 
 /** 
