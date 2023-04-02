@@ -27,12 +27,6 @@ public abstract class Inanimate extends Entity {
     // an example of this is the trap, which shows an iteraction animation
     protected boolean visible = true; // If object can still be seen TRUE, else FALSE
     protected boolean interactable = true; // If object can be picked up TRUE, else FALSE
-
-    // TYPES OF COLLECTABLES
-    public static final int ESCAPE_KEYCARD = 0;
-    public static final int GREEN_HEALTH_POTION = 1;
-	public static final int PURPLE_SPEED_POTION = 2;
-    public static final int EGG_POINT_BONUS = 3;
     
     /**
      * Constructor: Passes position information onto super constructor in {@link Entity}
