@@ -99,16 +99,16 @@ public abstract class Animate extends Entity {
 
         // determine which animation to play based on the moving state and direction of the target
         if (this.isMoving()){
-            if (this.movingUp && checkDirection(Direction.UP)){
+            if (this.movingUp && !this.movingDown && checkDirection(Direction.UP)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            else if (this.movingDown && checkDirection(Direction.DOWN)){
+            else if (this.movingDown && !this.movingUp && checkDirection(Direction.DOWN)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            else if (this.movingLeft && checkDirection(Direction.LEFT)){
+            else if (this.movingLeft && !this.movingRight && checkDirection(Direction.LEFT)){
                 currentAnimation = MOVING_ANIMATION;
             }
-            else if (this.movingRight && checkDirection(Direction.RIGHT)){
+            else if (this.movingRight && !this.movingLeft && checkDirection(Direction.RIGHT)){
                 currentAnimation = MOVING_ANIMATION;
             }
             else {
@@ -238,7 +238,7 @@ public abstract class Animate extends Entity {
      * and the up or down keys are pressed but not at the same time.
      * Otherwise return false.
      */
-    public boolean isMoving() {
+    protected boolean isMoving() {
         if (movingUp && movingDown) {
             if ((movingLeft || movingRight) && !(movingLeft && movingRight)) { // XOR
                 return true;
@@ -253,8 +253,31 @@ public abstract class Animate extends Entity {
         return false;
     }
 
+    /**
+     * check to see if the entity is moving in a specific direction
+     * @param direction
+     * The direction to check if the entity is moving in.
+     */
+    protected boolean getDirectionState(Direction direction) {
+        switch(direction) {
+            case UP:
+                return movingUp;
+            case DOWN:
+                return movingDown;
+            case LEFT:
+                return movingLeft;
+            case RIGHT:
+                return movingRight;
+            default:
+                return false;
+        }
+    }
 
-
+    /**
+     * returns the speed of the entity
+     * @return
+     * The speed of the entity.
+     */
     public float getSpeed() {
         return entitySpeed;
     }
