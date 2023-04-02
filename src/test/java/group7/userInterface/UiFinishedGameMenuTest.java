@@ -35,7 +35,7 @@ public class UiFinishedGameMenuTest {
     }
 
     @Test //(expected = IndexOutOfBoundsException.class)
-    public void checkZeroLevelInGameFinishedMenu(){
+    public void checkZeroLevelInGameFinishedMenu() {
         // should make IndexOutOfBoundError since we don't have a 0 level number
         try {
             System.out.println("test setting invalid level 4");
@@ -47,7 +47,7 @@ public class UiFinishedGameMenuTest {
     }
 
     @Test
-    public void checkInitializedButtonLevel1or2(){
+    public void checkInitializedButtonLevel1or2() {
         // This test checks that buttons are initialized correctly
         // in Finished Game menu in level 1 and 2
         wonMenu = new UiFinishedGameMenu(null, 1);
@@ -66,7 +66,7 @@ public class UiFinishedGameMenuTest {
     }
 
     @Test
-    public void checkInitializedButtonLevel3(){
+    public void checkInitializedButtonLevel3() {
         // This test checks that buttons are initialized correctly
         // in Finished Game menu in level 3( last level of game)
         wonMenu = new UiFinishedGameMenu(null, 3);

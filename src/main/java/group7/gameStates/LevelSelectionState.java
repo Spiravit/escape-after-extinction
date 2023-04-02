@@ -50,11 +50,6 @@ public class LevelSelectionState extends State {
         loadLevelDemoSprites();
     }
 
-    @Override
-    public void update() {
-
-    }
-
     /**
      * loads and initialize the previous, next, lets play and return button on level selection page.
      */
