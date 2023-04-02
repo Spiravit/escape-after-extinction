@@ -53,6 +53,10 @@ public class InLevelState extends State {
         pauseMenu = new UiPauseMenu( game );
     }
 
+    /**
+     * update must occur in current stage after an interaction such as pressing buttons.
+     * default update method is empty.
+     */
     public void update() {
         isLevelDone = levelManager.getLevelState();
         if ( isLevelDone == LevelState.LOST ) {
