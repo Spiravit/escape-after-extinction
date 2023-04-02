@@ -66,7 +66,7 @@ public class UiDeathScreen extends UiMenu {
         Graphics2D g2D = ( Graphics2D ) g;
         g2D.setFont( retroFont );
         g2D.setColor( Color.white );
-        g2D.drawString( "Better", (panelWidth/2 - scaleX/2)-2, (5 * scaleY) ); 
+        g2D.drawString( "Better", (panelWidth/2 - scaleX/2), (5 * scaleY) ); 
         g2D.drawString( "Luck", (panelWidth/2 - scaleX/2), (6 * scaleY) ); 
         g2D.drawString( "Next", (panelWidth/2 - scaleX/2), (7 * scaleY) ); 
         g2D.drawString( "Time!", (panelWidth/2 - scaleX/2), (8 * scaleY) ); 
