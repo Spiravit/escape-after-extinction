@@ -35,20 +35,15 @@ public class Egg extends Inanimate {
         startTime = System.currentTimeMillis();
 
         aniSpeed = 30;
-        hitboxWidth = 0.8;
-        hitboxHeight = 0.8;
-        setPosX(posX);
-        setPosY(posY);
+
+        setHitboxHeight(0.8, posY);
+        setHitboxWidth(0.8, posX);
     }
 
     @Override
     protected void loadAnimations() {
-        BufferedImage img = AssetLoader.getSpriteAtlas(AssetLoader.EGG);
-
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
-        for (int i = 0; i < 4; i++) {
-            entityAnimations[DEFAULT_ANIMATION][i] = img.getSubimage(i * 24, 0, 24, 24);
-        }
+        BufferedImage egg = AssetLoader.getSpriteAtlas(AssetLoader.EGG);
+        entityAnimations[DEFAULT_ANIMATION] = extractSprite(egg, 0, 0, 24, 24, 4);
     }
 
     /**
