@@ -31,11 +31,7 @@ public class Key extends Inanimate {
     @Override
     protected void loadAnimations() {
         BufferedImage key = AssetLoader.getSpriteAtlas(KEY);
-
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[12];
-        for (int i = 0; i < 12; i++) {
-            entityAnimations[DEFAULT_ANIMATION][i] = key.getSubimage(i * 32, 0, 32, 32);
-        }
+        entityAnimations[DEFAULT_ANIMATION] = extractSprite(key, 0, 0, 32, 32, 12);
     }
 
     @Override
