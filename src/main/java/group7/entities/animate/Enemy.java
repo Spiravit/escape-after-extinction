@@ -140,89 +140,29 @@ public class Enemy extends Animate {
         
         switch (enemyNumber) {
         case 1:
-            entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
-            for (int i = 0; i < 4; i++) {
-                entityAnimations[DEFAULT_ANIMATION][i] = scientist.getSubimage(i * 32, 2, 32, 32);
-            }
-
-            entityAnimations[MOVING_ANIMATION] = new BufferedImage[8];
-            for (int i = 0; i < 8; i++) {
-                entityAnimations[MOVING_ANIMATION][i] = scientist.getSubimage(i * 32, 34, 32, 32);
-            }
-
-            entityAnimations[SPECIAL_IDLE_ANIMATION] = new BufferedImage[16];
-            for (int i = 0; i < 16; i++) {
-                entityAnimations[SPECIAL_IDLE_ANIMATION][i] = scientist.getSubimage(i * 32, 2 * 32, 32, 32);
-            }
-
-            entityAnimations[TRACKING_PLAYER_ANIMATION] = new BufferedImage[8];
-            for (int i = 0; i < 8; i++) {
-                entityAnimations[TRACKING_PLAYER_ANIMATION][i] = scientist.getSubimage(i * 32, 3 * 32, 32, 32);
-            }
+            entityAnimations[DEFAULT_ANIMATION] = extractSprite(scientist, 0, 2, 32, 32, 4);
+            entityAnimations[MOVING_ANIMATION] = extractSprite(scientist, 0, 34, 32, 32, 8);
+            entityAnimations[SPECIAL_IDLE_ANIMATION] = extractSprite(scientist, 0, 2 * 32, 32, 32, 16);
+            entityAnimations[TRACKING_PLAYER_ANIMATION] = extractSprite(scientist, 0, 3 * 32, 32, 32, 8);
             break;
         case 2:
-            entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
-            for (int i = 0; i < 4; i++) {
-                entityAnimations[DEFAULT_ANIMATION][i] = scientist.getSubimage(i * 32, 4 * 32, 32, 32);
-            }
-
-            entityAnimations[MOVING_ANIMATION] = new BufferedImage[8];
-            for (int i = 0; i < 8; i++) {
-                entityAnimations[MOVING_ANIMATION][i] = scientist.getSubimage(i * 32, 5 * 32, 32, 32);
-            }
-
-            entityAnimations[SPECIAL_IDLE_ANIMATION] = new BufferedImage[9];
-            for (int i = 0; i < 9; i++) {
-                entityAnimations[SPECIAL_IDLE_ANIMATION][i] = scientist.getSubimage(i * 32, 6 * 32, 32, 32);
-            }
-
-            entityAnimations[TRACKING_PLAYER_ANIMATION] = new BufferedImage[8];
-            for (int i = 0; i < 8; i++) {
-                entityAnimations[TRACKING_PLAYER_ANIMATION][i] = scientist.getSubimage(i * 32, 7 * 32, 32, 32);
-            }
+            entityAnimations[DEFAULT_ANIMATION] = extractSprite(scientist, 0, 4 * 32, 32, 32, 4);
+            entityAnimations[MOVING_ANIMATION] = extractSprite(scientist, 0, 5 * 32, 32, 32, 8);
+            entityAnimations[SPECIAL_IDLE_ANIMATION] = extractSprite(scientist, 0, 6 * 32, 32, 32, 9);
+            entityAnimations[TRACKING_PLAYER_ANIMATION] = extractSprite(scientist, 0, 7 * 32, 32, 32, 8);
             break;
         case 3:
-            entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
-            for (int i = 0; i < 4; i++) {
-                entityAnimations[DEFAULT_ANIMATION][i] = scientist.getSubimage(i * 32, 8 * 32, 32, 32);
-            }
-
-            entityAnimations[MOVING_ANIMATION] = new BufferedImage[8];
-            for (int i = 0; i < 8; i++) {
-                entityAnimations[MOVING_ANIMATION][i] = scientist.getSubimage(i * 32, 9 * 32, 32, 32);
-            }
-
-            entityAnimations[SPECIAL_IDLE_ANIMATION] = new BufferedImage[10];
-            for (int i = 0; i < 10; i++) {
-                entityAnimations[SPECIAL_IDLE_ANIMATION][i] = scientist.getSubimage(i * 32, 10 * 32, 32, 32);
-            }
-
-            entityAnimations[TRACKING_PLAYER_ANIMATION] = new BufferedImage[8];
-            for (int i = 0; i < 8; i++) {
-                entityAnimations[TRACKING_PLAYER_ANIMATION][i] = scientist.getSubimage(i * 32, 11 * 32, 32, 32);
-            }
+            entityAnimations[DEFAULT_ANIMATION] = extractSprite(scientist, 0, 8 * 32, 32, 32, 4);
+            entityAnimations[MOVING_ANIMATION] = extractSprite(scientist, 0, 9 * 32, 32, 32, 8);
+            entityAnimations[SPECIAL_IDLE_ANIMATION] = extractSprite(scientist, 0, 10 * 32, 32, 32, 10);
+            entityAnimations[TRACKING_PLAYER_ANIMATION] = extractSprite(scientist, 0, 11 * 32, 32, 32, 8);
             break;
         case 4:
         default:
-            entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[4];
-            for (int i = 0; i < 4; i++) {
-                entityAnimations[DEFAULT_ANIMATION][i] = scientist.getSubimage(i * 32, 12 * 32, 32, 32);
-            }
-
-            entityAnimations[MOVING_ANIMATION] = new BufferedImage[8];
-            for (int i = 0; i < 8; i++) {
-                entityAnimations[MOVING_ANIMATION][i] = scientist.getSubimage(i * 32, 13 * 32, 32, 32);
-            }
-
-            entityAnimations[SPECIAL_IDLE_ANIMATION] = new BufferedImage[22];
-            for (int i = 0; i < 22; i++) {
-                entityAnimations[SPECIAL_IDLE_ANIMATION][i] = scientist.getSubimage(i * 32, 14 * 32, 32, 32);
-            }
-
-            entityAnimations[TRACKING_PLAYER_ANIMATION] = new BufferedImage[8];
-            for (int i = 0; i < 8; i++) {
-                entityAnimations[TRACKING_PLAYER_ANIMATION][i] = scientist.getSubimage(i * 32, 15 * 32, 32, 32);
-            }
+            entityAnimations[DEFAULT_ANIMATION] = extractSprite(scientist, 0, 12 * 32, 32, 32, 4);
+            entityAnimations[MOVING_ANIMATION] = extractSprite(scientist, 0, 13 * 32, 32, 32, 8);
+            entityAnimations[SPECIAL_IDLE_ANIMATION] = extractSprite(scientist, 0, 14 * 32, 32, 32, 22);
+            entityAnimations[TRACKING_PLAYER_ANIMATION] = extractSprite(scientist, 0, 15 * 32, 32, 32, 8);
             break;
         }        
     }

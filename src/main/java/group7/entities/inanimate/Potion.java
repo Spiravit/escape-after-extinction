@@ -26,6 +26,9 @@ public class Potion extends Inanimate {
     
     protected String potionType;
 
+    public static final int GREEN_HEALTH_POTION = 1;
+	public static final int PURPLE_SPEED_POTION = 2;
+
     /**
      * Constructor: Create a new specified potion object.
      * @param posX (the x position of this potion)
@@ -36,10 +39,8 @@ public class Potion extends Inanimate {
         super(posX, posY);
         this.potionNumber = objectType;
 
-        hitboxHeight = 0.7;
-        hitboxWidth = 0.73;
-        setPosX(posX);
-        setPosY(posY);
+        setHitboxHeight(0.7, posY);
+        setHitboxWidth(0.73, posX);
 
         loadAnimations();
     }
@@ -57,19 +58,14 @@ public class Potion extends Inanimate {
         }
 
         BufferedImage potion = AssetLoader.getSpriteAtlas( potionType ); 
-
-        entityAnimations[DEFAULT_ANIMATION] = new BufferedImage[1];
-        entityAnimations[DEFAULT_ANIMATION][0] = potion.getSubimage( 0, 0, 16, 16 );
+        entityAnimations[DEFAULT_ANIMATION] = extractSprite(potion, 0, 0, 16, 16, 2);
     }
 
     @Override
     public void onInteraction( Player player ) {
-        //System.out.println("collecting a potion: " + this.potionNumber );           // ***TEST REMOVE***
         if ( this.potionNumber == GREEN_HEALTH_POTION ) {
-            //System.out.println("health potion");                                    // ***TEST REMOVE***
             player.gainHealth( GREEN_POTION_BOOST_VALUE );
         } else if ( this.potionNumber == PURPLE_SPEED_POTION ) {
-            //System.out.println("i am speed");                                       // ***TEST REMOVE***
             player.increaseSpeed( PURPLE_POTION_BOOST_VALUE );
         }
         super.onInteraction( player );
