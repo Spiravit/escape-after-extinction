@@ -109,17 +109,6 @@ public class UiMenu {
                 null);
     }
 
-
-    /**
-     * Renders the buttons of main menu on game window
-     * @param g  Graphic g used in order to draw buttons on game window
-     */
-    private void renderButtons(Graphics g){
-        for (UiButtons buttons : menuButtons) {
-            buttons.render(g);
-        }
-    }
-
     /**
      * calls the update method of buttons in order if buttons were clicked, update the game
      */
