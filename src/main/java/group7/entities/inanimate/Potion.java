@@ -26,6 +26,9 @@ public class Potion extends Inanimate {
     
     protected String potionType;
 
+    public static final int GREEN_HEALTH_POTION = 1;
+	public static final int PURPLE_SPEED_POTION = 2;
+
     /**
      * Constructor: Create a new specified potion object.
      * @param posX (the x position of this potion)
