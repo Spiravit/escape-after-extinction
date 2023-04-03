@@ -36,15 +36,15 @@ public class UiFinishedGameMenu extends UiMenu{
     /**
      * Renders the won menu on game window
      */
-    public void render(Graphics g,int time, int eggCollected){
+    public void render(Graphics g, int time, int eggCollected){
         super.render(g);
         Graphics2D g2D = (Graphics2D) g;
         g2D.setFont(retroFont);
         g2D.setColor(Color.white);
-        g2D.drawString("WON !",panelWidth/2 - scaleX/2,5*scaleY);
-        g2D.drawString("collected egg: "+eggCollected,panelWidth/2 - 2*scaleX,6*scaleY);
-        g2D.drawString("Time: "+time +" s",panelWidth/2 - 2*scaleX,7*scaleY);
-        g2D.drawString("score: "+(time*(-1)+100*eggCollected),panelWidth/2 - 2*scaleX,8*scaleY);
+        g2D.drawString("WON !", panelWidth/2 - scaleX/2, 5*scaleY);
+        g2D.drawString("collected egg: "+ eggCollected, panelWidth/2 - 2*scaleX, 6*scaleY);
+        g2D.drawString("Time: "+ time +" seconds", panelWidth/2 - 2*scaleX, 7*scaleY);
+        g2D.drawString("score: "+(time*(-1) + 100*eggCollected + 1000), panelWidth/2 - 2*scaleX, 8*scaleY);
     }
 
     /**
@@ -53,8 +53,7 @@ public class UiFinishedGameMenu extends UiMenu{
     protected void initialiseMenuButtons() {
         menuButtons = new UiButtons[3];
         // If we are at level 2 or 1, we will have next level button
-        if (currentLevel < 3){
-            System.out.println("Current level is " + currentLevel);
+        if (currentLevel < 3) {
             menuButtons[0] = new UiButtons(game,
                     mainMenuButtonsPosX,
                     9*scaleY,

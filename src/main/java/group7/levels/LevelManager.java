@@ -20,7 +20,6 @@ import java.awt.*;
 */
 public class LevelManager {
     private Level currentLevel;
-    private int dinoNumber;
 
     /**
      * Constructor: create the selected level.
@@ -28,7 +27,6 @@ public class LevelManager {
      * @param levelNumber
      */
     public LevelManager(int dinoNumber, int levelNumber) {
-        this.dinoNumber = dinoNumber;
         switch (levelNumber){
             case 1:
                 //System.out.println("Made level 1");

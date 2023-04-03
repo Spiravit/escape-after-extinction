@@ -8,6 +8,7 @@ import group7.helperClasses.AssetLoader;
 import group7.levels.LevelManager;
 
 import static group7.helperClasses.buttonSpriteRow.*;
+import static group7.Graphics.GraphicsPanel.*;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -15,7 +16,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static group7.Graphics.GraphicsPanel.*;
 
 /**
  * This class is responsible for creating and rendering an in-game menu.
@@ -80,13 +80,11 @@ public class UiTopMenuBar {
         // passed 4 to UiParallelBackground constructor since animated background for in-game menu is using 4 images
         // passed 0 as scale1 meaning that position y of animated background is at 0 and scale2 is indicating
         // that height of animated background is 2 tiles
-        topMenuSkyParallelBackground = new UiParallelBackground(4,"menu/inLevelTopMenu/level_"+levelNumber+"/",0,2);
+        topMenuSkyParallelBackground = new UiParallelBackground(4, "menu/inLevelTopMenu/level_"+levelNumber+"/", 0, 2);
 
         startTime = System.currentTimeMillis(); // get current time once a UiTopMenuBar object was created
-
-        second_counter=0; // Set the seconds starting at 0
-
-        minute_counter=0; // Set the minutes starting at 0
+        second_counter = 0; // Set the seconds starting at 0
+        minute_counter = 0; // Set the minutes starting at 0
 
         // Setting up the pause button, it will be located at right top of game
         // passed 5 as row , since the sprite for Pause button is in 6th row of mainMenuButtons.png
@@ -131,7 +129,7 @@ public class UiTopMenuBar {
      */
     public void renderTopMenuBar (Graphics g, boolean isPaused, int health,int eggCollected, int keyCollected){
         topMenuSkyParallelBackground.renderParallelBackground(g);
-        g.drawImage(topMenuLandBackground,0,(int)(1.25*GraphicsGrid.scaleY),GraphicsPanel.panelWidth,(int)(0.75*GraphicsGrid.scaleY),null);
+        g.drawImage(topMenuLandBackground, 0, (int)(1.25*GraphicsGrid.scaleY), GraphicsPanel.panelWidth, (int)(0.75*GraphicsGrid.scaleY), null);
         renderTime(g,isPaused);
         renderHealth(g,health);
         renderEggCount(g,eggCollected);
@@ -218,13 +216,11 @@ public class UiTopMenuBar {
             // In order to make sure that string has always 2 characters
             secondTimeString = "0"+secondTimeString;
         }
-        // Using Graphic2D in order to change the Font for drawing a string
-        Graphics2D g2D = (Graphics2D) g;
+
         // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
-
         // Drawing Time : minute : second on the game window
-        g.drawString("TIME : " + Integer.toString(minute_counter)+" : "+secondTimeString, 3*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+        g.drawString("TIME : " + Integer.toString(minute_counter)+" : "+secondTimeString, 3*GraphicsGrid.scaleX, GraphicsGrid.scaleY);
     }
 
     /**
@@ -234,12 +230,9 @@ public class UiTopMenuBar {
      * @param eggCollected      Number of eggs a player has collected currently.
      */
     private void renderEggCount(Graphics g, int eggCollected){
-        // Using Graphic2D in order to change the Font for drawing a string
-        Graphics2D g2D = (Graphics2D) g;
         // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
         g.drawString("Egg: " + eggCollected +"/" + levelManager.getEggInCurrentLevel(),7*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
-
     }
 
     /**
@@ -248,12 +241,10 @@ public class UiTopMenuBar {
      * @param g                 Graphic g is passed as parameter in order to draw items on game window.
      * @param keyCollected      Number of Keys a player has collected currently.
      */
-    private void renderKeyCount(Graphics g, int keyCollected){
-        // Using Graphic2D in order to change the Font for drawing a string
-        Graphics2D g2D = (Graphics2D) g;
+    private void renderKeyCount(Graphics g, int keyCollected) {
         // Set the font to retroFont in order to draw the Key count on in-game top menu
         g.setFont(retroFont);
-        g.drawString("Keys: " + keyCollected +"/" + levelManager.getKeyInCurrentLevel(),12*GraphicsGrid.scaleX,GraphicsGrid.scaleY);
+        g.drawString("Keys: " + keyCollected + "/" + levelManager.getKeyInCurrentLevel(), 12*GraphicsGrid.scaleX, GraphicsGrid.scaleY);
     }
 
     /**
