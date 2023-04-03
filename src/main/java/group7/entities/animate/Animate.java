@@ -33,20 +33,20 @@ public abstract class Animate extends Entity {
 
     /**
     * Constructor to initialize the properties of the animate instance, such as location and pathfinding
-    * @param posX
-    * the x coordinates of animate instance
-    * @param posY
-    * the y coordinates of animate instance
+    * @param tileX
+    * the x tile coordinates of animate instance
+    * @param tileY
+    * the y tile coordinates of animate instance
     * @param pathfinding
     * pathfinding object that helps animate find its way around the map
     */
-    public Animate(double posX, double posY, Pathfinding pathfinding) {
-        super(posX, posY);
+    public Animate(double tileX, double tileY, Pathfinding pathfinding) {
+        super(tileX, tileY);
         this.pathfinding = pathfinding;
 
         // change hitbox size to 0.8 to allow for movement
-        setHitboxWidth(0.8, posX);
-        setHitboxHeight(0.8, posY);
+        setHitboxWidth(0.8, tileX);
+        setHitboxHeight(0.8, tileY);
     }
 
     /**

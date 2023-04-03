@@ -60,12 +60,12 @@ public abstract class Entity {
 
     /**
      * Constructor: Create the correct Entity at a given location.
-     * @param posX (the x position of this entity)
-     * @param posY (the y position of this entity)
+     * @param tileX (the x tile of this entity)
+     * @param tileY (the y tile of this entity)
      */
-    public Entity(double posX, double posY) {
-        setPosX(posX);
-        setPosY(posY);
+    public Entity(double tileX, double tileY) {
+        setTileX(tileX);
+        setTileY(tileY);
 
         entityAnimations = new BufferedImage[ANIMATION_COUNT][];
         loadAnimations();
@@ -80,28 +80,20 @@ public abstract class Entity {
     }
 
     /**
-     * Returns the x position where the middle of where the hitbox lies
-     * @return hitboxX of the middle of the hitbox
-     */
-    public double getPosX() {
-        return hitboxX + hitboxWidth / 2;
-    }
-
-    /**
-     * Sets the x position of the entity to be the center of the given x tile
+     * Sets the x tile position of the entity which sets the postition of the entity to be the center of the given x tile
      * recall this method when hitboxX or hitboxWidth is changed to center the entity
-     * @param x (the x position to set the entity to)
+     * @param x (the x tile position to set the entity to)
      */
-    protected void setPosX(double x) {
+    protected void setTileX(double x) {
         hitboxX = x + ((1 - hitboxWidth) / 2);
     }
 
     /**
-     * Sets the y position of the entity to be the center of the given y tile
+     * Sets the y tile position of the entity which sets the postition of the entity to be the center of the given y tile
      * recall this method when hitboxY or hitboxHeight is changed to center the entity
-     * @param y (the y position to set the entity to)
+     * @param y (the y tile position to set the entity to)
      */
-    protected void setPosY(double y) {
+    protected void setTileY(double y) {
         hitboxY = y + ((1 - hitboxHeight) / 2);
     }
 
@@ -111,6 +103,14 @@ public abstract class Entity {
      */
     public double getPosY() {
         return hitboxY + hitboxHeight / 2;
+    }
+
+    /**
+     * Returns the x position where the middle of where the hitbox lies
+     * @return hitboxX of the middle of the hitbox
+     */
+    public double getPosX() {
+        return hitboxX + hitboxWidth / 2;
     }
 
     /**
@@ -236,24 +236,24 @@ public abstract class Entity {
      * updates the hitbox height of the entity
      * @param hitboxHeight
      * the new height of the hitbox
-     * @param posY
-     * the y position to set the entity to
+     * @param tileY
+     * the y tile to set the entity to
      */
-    protected void setHitboxHeight(double hitboxHeight, double posY){
+    protected void setHitboxHeight(double hitboxHeight, double tileY){
         this.hitboxHeight = hitboxHeight;
-        setPosY(posY);
+        setTileY(tileY);
     }
 
     /**
      * updates the hitbox width of the entity
      * @param hitboxWidth
      * the new width of the hitbox
-     * @param posX
-     * the x position to set the entity to
+     * @param tileX
+     * the x tile to set the entity to
      */
-    protected void setHitboxWidth(double hitboxWidth, double posX){
+    protected void setHitboxWidth(double hitboxWidth, double tileX){
         this.hitboxWidth = hitboxWidth;
-        setPosX(posX);
+        setTileX(tileX);
     }
 
 }
