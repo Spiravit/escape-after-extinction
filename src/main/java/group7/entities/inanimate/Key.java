@@ -21,11 +21,11 @@ public class Key extends Inanimate {
     
     /**
      * Constructor: Create a new key object.
-     * @param posX (the x position of this key)
-     * @param posY (the y position of this key)
+     * @param tileX (the x tile position of this key)
+     * @param tileY (the y tile position of this key)
      */
-    public Key(double posX, double posY) {
-        super(posX, posY);
+    public Key(double tileX, double tileY) {
+        super(tileX, tileY);
     }
 
     @Override

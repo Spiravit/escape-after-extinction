@@ -23,11 +23,11 @@ public class Trap extends Inanimate {
 
     /**
      * Constructor: Create a new trap object.
-     * @param posX (the x position of this trap)
-     * @param posY (the y position of this trap)
+     * @param tileX (the x tile position of this trap)
+     * @param tileY (the y tile position of this trap)
      */
-    public Trap(int positionX, int positionY) {
-        super(positionX, positionY);
+    public Trap(double tileX, double tileY) {
+        super(tileX, tileY);
         loadAnimations();
     }
 

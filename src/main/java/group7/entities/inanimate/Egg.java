@@ -25,19 +25,19 @@ public class Egg extends Inanimate {
 
     /**
      * Creates an egg that will disappear after a certain amount of time
-     * @param posX (position x of this Egg)
-     * @param posY (position y of this Egg)
+     * @param tileX (x tile position of this Egg)
+     * @param tileY (y tile postion of this Egg)
      * @param timeout (time, in seconds, before this egg disappears)
      */
-    public Egg(double posX, double posY, int timeout) {
-        super(posX, posY);
+    public Egg(double tileX, double tileY, int timeout) {
+        super(tileX, tileY);
         this.timeout = timeout;
         startTime = System.currentTimeMillis();
 
         aniSpeed = 30;
 
-        setHitboxHeight(0.8, posY);
-        setHitboxWidth(0.8, posX);
+        setHitboxHeight(0.8, tileY);
+        setHitboxWidth(0.8, tileX);
     }
 
     @Override
