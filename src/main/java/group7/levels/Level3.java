@@ -17,13 +17,13 @@ import static group7.entities.inanimate.Potion.*;
 public class Level3 extends Level {
 
     public Level3(int dinoNumber) {
-        super(dinoNumber,3);
+        super(dinoNumber, 3);
         addPlayer(1, 3, dinoNumber);
 
-        //addEnemy(4, 6, 2, 3, 1);
-        //addEnemy(3, 14, 2, 3,  2);
-        //addEnemy(13, 15, 2, 3, 3);
-        //addEnemy(18, 5, 2, 3, 4);
+        addEnemy(4, 6, 2, 3, 1);
+        addEnemy(3, 14, 2, 3,  2);
+        addEnemy(13, 15, 2, 3, 3);
+        addEnemy(18, 5, 2, 3, 4);
 
         addTrap(3, 7);
         addTrap(3, 10);
