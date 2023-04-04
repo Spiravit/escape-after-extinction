@@ -68,6 +68,7 @@ public class AssetLoader {
 
         }
         catch (NullPointerException e){
+            System.out.println("Error: File not found: " + filename);
             e.printStackTrace();
         }
         finally {

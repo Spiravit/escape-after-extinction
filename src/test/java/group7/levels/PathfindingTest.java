@@ -1,4 +1,4 @@
-package group7.levelsTest;
+package group7.levels;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
