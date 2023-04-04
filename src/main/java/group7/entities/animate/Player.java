@@ -154,8 +154,8 @@ public class Player extends Animate {
 
     /**
      * Increase movement speed.
-     * Players MAX speed is 0.04f. If player has full health do nothing, 
-     * else if player has low health add the health gained from the potion.
+     * Players MAX speed is 0.04f. If player is at max speed do nothing, 
+     * else if player has default speed 0.02f add the 0.01f speed increase from the potion.
      * @param speedBoost 
      * the amount of speed to be gained
      */
