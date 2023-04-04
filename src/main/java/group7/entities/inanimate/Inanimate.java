@@ -30,11 +30,11 @@ public abstract class Inanimate extends Entity {
     
     /**
      * Constructor: Passes position information onto super constructor in {@link Entity}
-     * @param posX (the x position of the player)
-     * @param posY (the y position of the player)
+     * @param posX (the x tile position of the inanimate object)
+     * @param tileY (the y tile position of the inanimate object)
      */
-    public Inanimate(double posX, double posY) {
-        super(posX, posY);
+    public Inanimate(double posX, double tileY) {
+        super(posX, tileY);
     }
 
     @Override

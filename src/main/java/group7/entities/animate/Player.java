@@ -28,12 +28,12 @@ public class Player extends Animate {
 
     /**
      * Constructor: Create a new player object.
-     * @param posX (the x position of this player)
-     * @param posY (the y position of this player)
+     * @param tileX (the x tile of this player)
+     * @param tileY (the y tile of this player)
      * @param pathfinding (the pathfinding of the level this player is in)
      */
-    public Player(double posX, double posY, Pathfinding pathfinding, int dinoNumber) {
-        super(posX, posY, pathfinding);
+    public Player(double tileX, double tileY, Pathfinding pathfinding, int dinoNumber) {
+        super(tileX, tileY, pathfinding);
         this.dinoNumber = dinoNumber;
         currentAnimation = SPAWN_ANIMATION; // the default animation is "hatching"
         loadAnimations(); // load animation resources

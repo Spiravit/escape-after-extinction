@@ -31,16 +31,16 @@ public class Potion extends Inanimate {
 
     /**
      * Constructor: Create a new specified potion object.
-     * @param posX (the x position of this potion)
-     * @param posY (the y position of this potion)
+     * @param tileX (the x tile position of this potion)
+     * @param tileY (the y tile position of this potion)
      * @param objectType (the type of potion: health or speed)
      */
-    public Potion(double posX, double posY, int objectType) {
-        super(posX, posY);
+    public Potion(double tileX, double tileY, int objectType) {
+        super(tileX, tileY);
         this.potionNumber = objectType;
 
-        setHitboxHeight(0.7, posY);
-        setHitboxWidth(0.73, posX);
+        setHitboxHeight(0.7, tileY);
+        setHitboxWidth(0.73, tileX);
 
         loadAnimations();
     }
