@@ -24,7 +24,7 @@ public class UiDeathScreenTest {
     }
 
     @Test 
-    public void checkNegativeLevelInDeathMenu(){
+    public void checkNegativeLevelInDeathMenu() {
         // should make IndexOutOfBoundError since we don't have a negative level number
         try {
             System.out.println("test setting invalid level -1");
@@ -48,7 +48,7 @@ public class UiDeathScreenTest {
     }
 
     @Test
-    public void checkInitializedButtonDeathMenu(){
+    public void checkInitializedButtonDeathMenu() {
         // This test checks that buttons are initialized correctly
         // in Death Game menu
         DeathMenu = new UiDeathScreen(null, 3);

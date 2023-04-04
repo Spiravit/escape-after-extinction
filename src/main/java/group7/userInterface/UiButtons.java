@@ -22,7 +22,7 @@ import java.awt.image.BufferedImage;
 public class UiButtons {
 
     //  Button's width is 2 tiles:
-    private int buttonWidth = 2* GraphicsGrid.getScaleX();
+    private int buttonWidth = 2 * GraphicsGrid.getScaleX();
     //  Button's height is 1 tile:
     private int buttonHeight = GraphicsGrid.getScaleY();
 
@@ -67,12 +67,12 @@ public class UiButtons {
      *                         it changes game state based on buttonState
      */
     public UiButtons(Game game, int buttonPositionX, int buttonPositionY, int buttonSpriteRowNumber, gameStates buttonGameStates) {
-        this.game=game;
+        this.game = game;
         this.buttonGameStates = buttonGameStates;
         this.buttonPosX = buttonPositionX;
         this.buttonPosY = buttonPositionY;
         this.buttonSpriteRowNumber = buttonSpriteRowNumber;
-        buttonCollision = new Rectangle(buttonPositionX,buttonPositionY,buttonWidth,buttonHeight);
+        buttonCollision = new Rectangle(buttonPositionX,  buttonPositionY, buttonWidth, buttonHeight);
         loadButtonsSprites();
     }
 
