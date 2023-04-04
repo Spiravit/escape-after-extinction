@@ -24,7 +24,7 @@ import static group7.Graphics.GraphicsPanel.panelWidth;
 public class UiMenu {
     protected Font retroFont;
     // Position x of buttons in menu, they are centered at middle of width
-    int mainMenuButtonsPosX = panelWidth/ 2 - scaleX ;
+    int mainMenuButtonsPosX = panelWidth / 2 - scaleX;
 
     //dedicated for four buttons in main menu page (New game, Load game, credit and exit buttons)
     protected UiButtons[] menuButtons;
@@ -34,9 +34,9 @@ public class UiMenu {
     //MenuBoxBackground: dedicated for blue box image behind main menu buttons
     private BufferedImage menuBoxBackground;
     //MENU_BOX_BACKGROUND_HEIGHT: The Height of blue box behind  menu buttons
-    private static final int MENU_BOX_BACKGROUND_HEIGHT =9*scaleY;
+    private static final int MENU_BOX_BACKGROUND_HEIGHT = 9 * scaleY;
     //MENU_BOX_BACKGROUND_WIDTH: The Width of blue box behind  menu buttons
-    private static final int MENU_BOX_BACKGROUND_WIDTH =5*scaleX;
+    private static final int MENU_BOX_BACKGROUND_WIDTH = 5 * scaleX;
 
 
     /**
