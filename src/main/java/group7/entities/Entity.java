@@ -256,4 +256,20 @@ public abstract class Entity {
         setTileX(tileX);
     }
 
+    /**
+     * @return
+     * returns the hitbox height of the entity
+     */
+    public double getHitboxHeight() {
+        return hitboxHeight;
+    } 
+
+    /**
+     * @return
+     * returns the hitbox width of the entity
+     */
+    public double getHitboxWidth() {
+        return hitboxWidth;
+    }
+
 }

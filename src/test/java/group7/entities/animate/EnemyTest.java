@@ -1,4 +1,4 @@
-package group7.entitiesTest.animateTest;
+package group7.entities.animate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
