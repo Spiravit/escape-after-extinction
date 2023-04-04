@@ -24,23 +24,19 @@ public class Game implements Runnable {
 
     // The current running state of the game
     public gameStates gameCurrentState;
-
     // State object in order to render state of gameCurrentState
     private State currentState;
 
-    private GraphicsGrid graphicsGrid;
-
     int playerDinoNumber;
     int levelSelected;
-
 
     /**
      * Constructor for Game class. It launches the game by creating GraphicsPanel,GraphicsGrid,GraphicWindow objects to
      * set up game's window. The default initial stage of game is set to be main menu so main menu will be rendered initially.
      */
     public Game() {
-
-        this.graphicsGrid = new GraphicsGrid(graphicsPanel, 20, 18);
+        // Makes a tileset from the gamepanel, for easier mapping/placement of objects
+        new GraphicsGrid( 20, 18); 
 
         // The first stage of game is main menu once game is launched
         // so a mainMenuState stage object is initialized
@@ -48,8 +44,8 @@ public class Game implements Runnable {
         // setting initial state of game to be mainMenu
         gameCurrentState = gameStates.IN_MENU;
 
-        levelSelected=1;
-        playerDinoNumber=1;
+        levelSelected = 1;
+        playerDinoNumber = 1;
 
         // Since the initial state of game is main menu, we pass a mainMenuState object as a gameState object
         // to graphicsPanel so that graphicsPanel will render the main menu until.
@@ -65,7 +61,7 @@ public class Game implements Runnable {
     /**
      * Starts the game loop by making a thread.
      */
-    private void startGameLoop(){
+    private void startGameLoop() {
         Thread thread = new Thread(this);
         thread.start();
     }

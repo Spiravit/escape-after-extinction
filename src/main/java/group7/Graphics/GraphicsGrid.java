@@ -20,8 +20,6 @@ import static group7.Graphics.GraphicsPanel.panelWidth;
 * @since 2023-03-13
 */
 public class GraphicsGrid {
-    private GraphicsPanel graphicsPanel;
-
     public static int scaleX;
     public static int scaleY;
     public static int gridWidth;
@@ -29,12 +27,10 @@ public class GraphicsGrid {
 
     /**
      * Constructor, creates a new GraphicsGrid 
-     * @param graphicsPanel (this graphics panel to draw on)
      * @param unitsWide (the width of this grid)
      * @param unitsHigh (the height of this grid)
      */
-    public GraphicsGrid(GraphicsPanel graphicsPanel, int unitsWide, int unitsHigh) {
-        this.graphicsPanel = graphicsPanel;
+    public GraphicsGrid( int unitsWide, int unitsHigh) {
         gridWidth = unitsWide;
         gridHeight = unitsHigh;
         calculateScale();
@@ -45,7 +41,6 @@ public class GraphicsGrid {
      * using the size of the screen and the size of the grid.
      */
     private static void calculateScale() {
-        // TODO: call graphicsPanel to get the width and height
         scaleX = panelWidth / gridWidth;
         scaleY = panelHeight / gridHeight;
     }
