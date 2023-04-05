@@ -113,4 +113,38 @@ public class EnemyTest {
         enemy.onInteraction(player);
         assertEquals(true, player.getHealth() == 0);
     }
+
+    @Test
+    public void callUpdateTest() {
+        try {
+            // insures that enemy sprites are loaded correctly
+            Pathfinding pathfinding = new Pathfinding(1, 1);
+            Enemy enemy = new Enemy(0, 0, pathfinding, 0, 0, 0);
+            for (int i = 0; i < 100; i++) {
+                enemy.update();
+            }
+
+            enemy.setDirection(Direction.DOWN);
+            for (int i = 0; i < 100; i++) {
+                enemy.update();
+            }
+
+            // plays player chasing animation
+            pathfinding = new Pathfinding(2, 2);
+            enemy = new Enemy(0, 0, pathfinding, 0, 0, 0);
+            pathfinding.set(0, 0, true);
+            pathfinding.set(0, 1, true);
+            pathfinding.set(1, 0, true);
+            pathfinding.set(1, 1, true);
+
+            pathfinding.setPlayer(1, 1);
+
+            for (int i = 0; i < 100; i++) {
+                enemy.update();
+            }
+
+        } catch (Exception e) {
+            assertTrue(false);
+        }
+    }
 }

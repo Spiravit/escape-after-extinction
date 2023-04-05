@@ -33,4 +33,18 @@ public class KeyTest {
         // Player should have 1 key
         assertEquals(1, player.getKeysCollected());
     }
+
+    @Test
+    public void callUpdateTest() {
+        try {
+            // plays original animation
+            Key key = new Key(0, 0);
+            for (int i = 0; i < 100; i++) {
+                key.update();
+            }
+        } catch (Exception e) {
+            assertTrue(false);
+        }
+        
+    }
 }
