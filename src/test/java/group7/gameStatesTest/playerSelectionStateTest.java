@@ -65,7 +65,7 @@ public class playerSelectionStateTest {
     @Test
     public void shouldDecrementSpriteArray() {
         check.decrementSpriteArrayIndex();
-        assertTrue(check.getIndexCharacterDemo() == 4);
+        assertTrue(check.getIndexCharacterDemo() == check.getNumberOfCharacters() - 1);
     }
 
     // Test increment array index doesnt exceed bounds
@@ -78,17 +78,24 @@ public class playerSelectionStateTest {
             check.incrementSpriteArrayIndex();
         }
 
-        assertTrue(check.getIndexCharacterDemo() == 4); // Boundary end array
+        assertTrue(check.getIndexCharacterDemo() == check.getNumberOfCharacters() - 1); // Boundary end array
         check.incrementSpriteArrayIndex();
         assertTrue(check.getIndexCharacterDemo() == 0); // wrap around position
     }
 
     // Test decrement array index doesnt exceed bounds, 
     // If decrement index array[0] should wrap around to index array[4], not a negative out of bound index: -1 
+    // Decrement till back at start
     @Test
-    public void shouldDecrementSpriteArrayInBound() {
+    public void shouldDecrementSpriteArrayFullLoopInBound() {
         assertTrue(check.getIndexCharacterDemo() == 0); // initial position
         check.decrementSpriteArrayIndex();
-        assertTrue(check.getIndexCharacterDemo() == 4); // wrap around position
+        assertTrue(check.getIndexCharacterDemo() == check.getNumberOfCharacters() - 1); // wrap around position AKA end of array
+        for (int i = check.getNumberOfCharacters() - 1; i > 1; i--) {
+            check.decrementSpriteArrayIndex();
+        }
+        assertTrue(check.getIndexCharacterDemo() == 1);
+        check.decrementSpriteArrayIndex();
+        assertTrue(check.getIndexCharacterDemo() == 0); // should be back at initial index
     }
 }
