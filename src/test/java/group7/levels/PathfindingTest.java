@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import group7.helperClasses.Direction;
-import group7.levels.Pathfinding;
 
 public class PathfindingTest {
     @Test

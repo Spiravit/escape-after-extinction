@@ -69,7 +69,6 @@ public class UiMenu {
                 LOAD_GAME_UNSAVED_BUTTON,
                 gameStates.LEVEL_SELECTION_SUB_MENU);
 
-
         // Exit button
         menuButtons[2] = new UiButtons(game,
                 mainMenuButtonsPosX,

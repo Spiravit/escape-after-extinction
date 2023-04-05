@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-import group7.entities.inanimate.Key;
 import group7.entities.animate.Player;
 import group7.levels.Pathfinding;
 
