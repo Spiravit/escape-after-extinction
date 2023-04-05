@@ -57,4 +57,22 @@ public class PotionTest {
         potion.onInteraction(player);
         assertTrue(player.getSpeed() > originalSpeed);
     }
+
+    @Test
+    public void callUpdateTest() {
+        try {
+            Potion potion = new Potion(0, 0, Potion.PURPLE_SPEED_POTION);
+            for (int i = 0; i < 100; i++) {
+                potion.update();
+            }
+
+            potion = new Potion(0, 0, Potion.GREEN_HEALTH_POTION);
+            for (int i = 0; i < 100; i++) {
+                potion.update();
+            }
+        } catch (Exception e) {
+            assertTrue(false);
+        }
+        
+    }
 }
