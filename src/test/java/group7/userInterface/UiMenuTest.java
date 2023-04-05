@@ -12,15 +12,13 @@ import group7.gameStates.gameStates;
 public class UiMenuTest {
     @Test
     public void checkCorrectInitializedButton(){
-        // This test checks that buttons are initialized correctly
-        // in menu
+        // This test checks that buttons are initialized correctly in main lobby menu
         UiMenu mainMenu = new UiMenu(null);
         UiButtons[] arrayButton = mainMenu.getMenuButtons();
         // checking if there are buttons actually initialized in main Menu
         // by seeing if the array is not null
         assertNotNull(arrayButton);
-        // Now checking to see if button is initialized in a way we expect
-        // main menu to be
+        // Now checking to see if button is initialized in a way we expect main menu to be
         // first button in main menu should be player selection button
         assertEquals(arrayButton[0].getButtonGameStates(), gameStates.PLAYER_SELECTION_SUB_MENU);
         // 2nd button in main menu should be level selection button
@@ -29,8 +27,8 @@ public class UiMenuTest {
         assertEquals(arrayButton[2].getButtonGameStates(), gameStates.QUIT);
     }
 
-    @Test //(expected = IndexOutOfBoundsException.class)
-    public void buttonsCountCheckMainMenu (){
+    @Test 
+    public void buttonsCountCheckMainMenu () {
         // In this test, we make sure our main menu only
         // contains 3 buttons
         UiMenu mainMenu = new UiMenu(null);
@@ -46,7 +44,6 @@ public class UiMenuTest {
         } catch ( IndexOutOfBoundsException ex ) {
             assertTrue( ex instanceof IndexOutOfBoundsException );
         }
-         //button = arrayButton[3];
     }
 
     @Test

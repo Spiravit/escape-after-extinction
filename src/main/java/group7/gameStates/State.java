@@ -18,7 +18,7 @@ import java.awt.event.MouseEvent;
  */
 public abstract class State {
     public Game game;
-    public boolean isPaused=false;
+    public boolean isPaused = false;
     public UiParallelBackground animatedDawnBackground;
     public UiButtons[] stateButton;
 
@@ -28,7 +28,7 @@ public abstract class State {
      * game object.
      */
     public State(Game game){
-        this.game=game;
+        this.game = game;
         animatedDawnBackground = new UiParallelBackground(
             8,
             "menu/parallexBG/mainMenu",
@@ -135,7 +135,7 @@ public abstract class State {
      * @return
      * default method returns -1
      */
-    public  int decrementSpriteArrayIndex() {
+    public int decrementSpriteArrayIndex() {
         return -1;
 
     }

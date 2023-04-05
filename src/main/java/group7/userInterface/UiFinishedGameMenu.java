@@ -42,7 +42,7 @@ public class UiFinishedGameMenu extends UiMenu{
         g2D.setFont(retroFont);
         g2D.setColor(Color.white);
         g2D.drawString("WON !", panelWidth/2 - scaleX/2, 5*scaleY);
-        g2D.drawString("collected egg: "+ eggCollected, panelWidth/2 - 2*scaleX, 6*scaleY);
+        g2D.drawString("Eggs collected: "+ eggCollected, panelWidth/2 - 2*scaleX, 6*scaleY);
         g2D.drawString("Time: "+ time +" seconds", panelWidth/2 - 2*scaleX, 7*scaleY);
         g2D.drawString("score: "+(time*(-1) + 100*eggCollected + 1000), panelWidth/2 - 2*scaleX, 8*scaleY);
     }

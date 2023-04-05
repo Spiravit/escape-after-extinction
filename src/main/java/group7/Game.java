@@ -4,8 +4,6 @@ import group7.Graphics.GraphicsPanel;
 import group7.Graphics.GraphicsWindow;
 import group7.Graphics.GraphicsGrid;
 import group7.gameStates.*;
-import group7.gameStates.LevelSelectionState;
-import group7.gameStates.playerSelectionState;
 
 /** 
 * The class Game implements @see <a href=”https://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html”>label</a>.
@@ -74,6 +72,13 @@ public class Game implements Runnable {
         return currentState;
     }
 
+    /**
+     * Getters for current GameState setting of game
+     * @return  current gameState setting of game
+     */
+    public gameStates getCurrentGameState() {
+        return gameCurrentState;
+    }
 
     /**
      * Changes state of game based on argument passed.
