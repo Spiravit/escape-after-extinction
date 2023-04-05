@@ -42,6 +42,14 @@ mvn javadoc:javadoc
 ```
 Documentation HTML can then be found in the `target/site/apidocs` folder.
 
+## **Code Coverage Report**
+
+The Code Coverage report for this project can be built using the command:
+```
+mvn jacoco:prepare-agent test install jacoco:report
+```
+HTML Report Documentation can then be found in the `target/site/index.html` folder.
+
 ## **Assets**
 
 * [Dino Family](https://demching.itch.io/dino-family) by [@ArksDigital on Twitter](https://twitter.com/ArksDigital) and [@DemChing on itch.io](https://demching.itch.io) 
