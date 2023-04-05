@@ -77,10 +77,10 @@ public class InLevelState extends State {
     }
 
     public void render( Graphics g ) {
-        topMenu.renderTopMenuBar(g,isPaused,levelManager.getHealth(), levelManager.getEggCollectedCurrentLevel(), levelManager.getKeyCollectedCurrentLevel());
+        topMenu.renderTopMenuBar(g, isPaused, levelManager.getHealth(), levelManager.getEggCollectedCurrentLevel(), levelManager.getKeyCollectedCurrentLevel());
         levelManager.render(g);
         if ( isLevelDone == LevelState.WON ) {
-            levelFinishedMenu.render(g,topMenu.getTime(),levelManager.getEggCollectedCurrentLevel());
+            levelFinishedMenu.render(g, topMenu.getTime(), levelManager.getEggCollectedCurrentLevel());
         }
         else if ( isLevelDone == LevelState.LOST ) {
             deathScreenMenu.render(g);
@@ -113,7 +113,7 @@ public class InLevelState extends State {
         }
 
         if ( isPaused == true ) {
-            if ( e.getKeyCode() == KeyEvent.VK_ESCAPE && isLevelDone==LevelState.PLAYING ){
+            if ( e.getKeyCode() == KeyEvent.VK_ESCAPE && isLevelDone == LevelState.PLAYING ) {
                 isPaused = false;
                 levelManager.removeDirection(Direction.RIGHT);
                 levelManager.removeDirection(Direction.LEFT);
@@ -125,7 +125,7 @@ public class InLevelState extends State {
 
     @Override
     public void keyReleased( KeyEvent e ) {
-        if (isPaused==false){
+        if (isPaused == false){
             if ( e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D ) {
                 //Right arrow key code
                 levelManager.removeDirection(Direction.RIGHT);
@@ -144,7 +144,7 @@ public class InLevelState extends State {
 
     @Override
     public void mousePressed( MouseEvent e ) {
-        if( isPaused == false && isLevelDone==LevelState.PLAYING  ){
+        if( isPaused == false && isLevelDone == LevelState.PLAYING ) {
             topMenu.mousePressed(e);
         }
         else if (isLevelDone == LevelState.LOST ) {
@@ -160,7 +160,7 @@ public class InLevelState extends State {
 
     @Override
     public void mouseReleased( MouseEvent e ) {
-        if( isPaused == false && isLevelDone==LevelState.PLAYING  ){
+        if( isPaused == false && isLevelDone == LevelState.PLAYING ) {
             topMenu.mouseReleased(e);
         }
         else if (isLevelDone == LevelState.LOST ) {
@@ -176,7 +176,7 @@ public class InLevelState extends State {
 
     @Override
     public void mouseMoved( MouseEvent e ) {
-        if( isPaused == false && isLevelDone==LevelState.PLAYING  ){
+        if( isPaused == false && isLevelDone == LevelState.PLAYING ) {
             topMenu.mouseMoved(e);
         }
         else if (isLevelDone == LevelState.LOST ) {
