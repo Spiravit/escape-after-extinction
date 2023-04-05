@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 public class UiFinishedGameMenuTest {
     UiFinishedGameMenu wonMenu;
 
-    @Test //(expected = IndexOutOfBoundsException.class)
-    public void checkInvalidLevelInGameFinishedMenu(){
+    @Test 
+    public void checkInvalidLevelInGameFinishedMenu() {
         // should make IndexOutOfBoundError since we don't have a 4th level
         try {
             System.out.println("test setting invalid level 4");
@@ -22,8 +22,8 @@ public class UiFinishedGameMenuTest {
         }
     }
 
-    @Test //(expected = IndexOutOfBoundsException.class)
-    public void checkNegativeLevelInGameFinishedMenu(){
+    @Test 
+    public void checkNegativeLevelInGameFinishedMenu() {
         // should make IndexOutOfBoundError since we don't have a negative level number
         try {
             System.out.println("test setting invalid level 4");
@@ -34,7 +34,7 @@ public class UiFinishedGameMenuTest {
         }
     }
 
-    @Test //(expected = IndexOutOfBoundsException.class)
+    @Test 
     public void checkZeroLevelInGameFinishedMenu() {
         // should make IndexOutOfBoundError since we don't have a 0 level number
         try {

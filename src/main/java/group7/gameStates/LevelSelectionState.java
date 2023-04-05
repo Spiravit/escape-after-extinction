@@ -176,5 +176,19 @@ public class LevelSelectionState extends State {
             game.changeGameStates(gameStates.IN_MENU);
     }
 
+    // GETTERS
+    /**
+     * gets curren sprite array index
+     */
+    public int getIndexLevelNumbers() {
+        return indexLevelNumbers;
+    }
+
+    /**
+     * get bound of the character demo array
+     */
+    public int getNumberOfLevels() {
+        return numberOfLevels;
+    }
 }
 
