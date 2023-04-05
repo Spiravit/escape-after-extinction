@@ -140,4 +140,69 @@ public class PlayerTest  {
         assertTrue(player.getDirectionState(Direction.RIGHT));
     }
 
+    @Test
+    public void simpleCollisionTest() {
+        // set tile player is on to invalid
+        pathfinding.set(0, 0, false);
+
+        player.setCanMove(true);
+        player.setDirection(Direction.DOWN);
+        player.update();
+
+        // Player should not move down
+        assertTrue(player.getPosY() == 0.5);
+
+        setup();
+        pathfinding.set(0, 0, false);
+        player.setCanMove(true);
+        player.setDirection(Direction.UP);
+        player.update();
+
+        // Player should not move up
+        assertTrue(player.getPosY() == 0.5);
+
+        setup();
+        pathfinding.set(0, 0, false);
+        player.setCanMove(true);
+        player.setDirection(Direction.LEFT);
+        player.update();
+
+        // Player should not move left
+        assertTrue(player.getPosX() == 0.5);
+
+        setup();
+        pathfinding.set(0, 0, false);
+        player.setCanMove(true);
+        player.setDirection(Direction.RIGHT);
+        player.update();
+
+        // Player should not move right
+        assertTrue(player.getPosX() == 0.5);
+    }
+
+    @Test
+    public void callUpdateTest() {
+        try {
+            // insures that assets are loaded correctly
+            for (int i = 0; i < 100; i++) {
+                player.update();
+            }
+
+            player.setDirection(Direction.DOWN);
+            // move animation
+            for (int i = 0; i < 100; i++) {
+                player.update();
+            }
+
+            player.takeDamage(1);
+            // damage animation
+            for (int i = 0; i < 100; i++) {
+                player.update();
+            }
+        } catch (Exception e) {
+            // Test failed
+            assertTrue(false);
+        }
+        
+    }
 }
