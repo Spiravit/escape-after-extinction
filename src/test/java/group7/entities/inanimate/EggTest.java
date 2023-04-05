@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import group7.entities.animate.Player;
-import group7.entities.inanimate.Egg;
 import group7.levels.Pathfinding;
+
 
 public class EggTest {
     @Test
