@@ -55,4 +55,18 @@ public class EggTest {
         // Player should have 1 egg
         assertEquals(1, player.getEggsCollected());
     }
+
+    @Test
+    public void callUpdateTest() {
+        try {
+            // plays original animation
+            Egg egg = new Egg(0, 0, 100);
+            for (int i = 0; i < 100; i++) {
+                egg.update();
+            }
+        } catch (Exception e) {
+            assertTrue(false);
+        }
+        
+    }
 }
