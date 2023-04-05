@@ -41,4 +41,26 @@ public class TrapTest {
         trap.update();
         assertTrue(!trap.isInteractable());
     }
+
+    @Test
+    public void callUpdateTest() {
+        try {
+            // original animation
+            Trap trap = new Trap(0, 0);
+            for (int i = 0; i < 100; i++) {
+                trap.update();
+            }
+
+            Player player = new Player(0, 0, new Pathfinding(1, 1), 0);
+            trap.onInteraction(player);
+
+            // plays after interaction animation
+            for (int i = 0; i < 100; i++) {
+                trap.update();
+            }
+        } catch (Exception e) {
+            assertTrue(false);
+        }
+        
+    }
 }
