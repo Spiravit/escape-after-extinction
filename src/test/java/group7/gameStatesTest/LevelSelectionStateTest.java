@@ -77,13 +77,21 @@ public class LevelSelectionStateTest {
         assertTrue(check.getIndexLevelNumbers() == 0); // wrap around position
     }
 
-    // Test decrement sprite array index by one AND
+    // Test decrement sprite array index till its back where it started
     // Test decrement array index doesnt exceed bounds, 
     // If decrement index array[0] should wrap around to index array[2], not a negative out of bound index: -1 
     @Test
-    public void shouldDecrementSpriteArrayInBound() {
+    public void shouldDecrementSpriteArrayFullLoopInBound() {
         assertTrue(check.getIndexLevelNumbers() == 0); // initial position
         check.decrementSpriteArrayIndex();
-        assertTrue(check.getIndexLevelNumbers() == check.getNumberOfLevels() - 1); // wrap around position
+        assertTrue(check.getIndexLevelNumbers() == check.getNumberOfLevels() - 1); // wrap around position, AKA index for end of array
+
+        for (int i = check.getNumberOfLevels() - 1; i > 1; i--) {
+            check.decrementSpriteArrayIndex();
+        }
+
+        assertTrue(check.getIndexLevelNumbers() == 1);
+        check.decrementSpriteArrayIndex();
+        assertTrue(check.getIndexLevelNumbers() == 0); // should be back at initial index
     }
 }
