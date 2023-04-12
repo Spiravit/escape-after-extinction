@@ -49,7 +49,7 @@ public class GraphicsPanel extends JPanel {
     /** 
      * If the state of game is changed in game class, we need this following method to also update the gameCurrentStates
      * in GraphicPanel so that we will render the current state of game.
-     * @param gameCurrentStates {@link State}
+     * @param gameCurrentStates the current state of the game
      */
     public void changeGameStates(State gameCurrentStates) {
         this.gameCurrentStates = gameCurrentStates;
@@ -62,15 +62,16 @@ public class GraphicsPanel extends JPanel {
 
     /**
      * Returns this current state of the game.
-     * @return State gameCurrentStates {@link State}
+     * @return State gameCurrentStates 
+     *         the current state of the game
      */
     public State getGameCurrentStates() {
         return this.gameCurrentStates;
     }
 
     /**
-     * Render the graphics for the corresponding current running state of the game {@link gameStates}.
-     * @param g {@link Graphics}
+     * Render the graphics for the corresponding current running state of the game.
+     * @param g the graphics that will be rendered
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

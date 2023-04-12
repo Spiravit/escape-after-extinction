@@ -29,7 +29,7 @@ public class KeyboardInputs implements KeyListener {
     }
 
     /**
-     * Sets the key functions allowed at each state {@link gameStates} of the game.
+     * Sets the key functions allowed at each state of the game.
      * @param gameCurrentStates
      */
     public void setKeyboardGameStates(State gameCurrentStates) {

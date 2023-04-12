@@ -24,7 +24,7 @@ public class BackgroundMovingSpeed {
     static ArrayList<ArrayList<Double>> ParallelMovingSpeeds = new ArrayList<>();
 
     /**
-     * Controls the speed of the decorative background images in the main {@link UiMain} and top {@link UiTopMenuBar} menu.
+     * Controls the speed of the decorative background images in the main and top menu.
      */
     public static void setParallelMovingSpeeds() {
         // The speeds used for each background of main menu for instance
