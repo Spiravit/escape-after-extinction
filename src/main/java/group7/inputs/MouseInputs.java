@@ -30,7 +30,7 @@ public class MouseInputs implements MouseListener {
     }
 
     /**
-     * Sets the mouse functions allowed at each state {@link gameStates} of the game.
+     * Sets the mouse functions allowed at each state of the game.
      * @param gameCurrentStates
      */
     public void setMouseGameStates(State gameCurrentStates) {
@@ -38,8 +38,8 @@ public class MouseInputs implements MouseListener {
     }
 
     /**
-     * Wrapper Method: calls the mouseMoved method {@link State},
-     * on this current state {@link gameState} of the game.
+     * Wrapper Method: calls the mouseMoved method,
+     * on this current state of the game.
      * @param e
      */
     public void mouseMoved(MouseEvent e) {

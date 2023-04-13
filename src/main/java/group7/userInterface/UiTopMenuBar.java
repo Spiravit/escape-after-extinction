@@ -66,14 +66,13 @@ public class UiTopMenuBar {
      *                      Level, pass corresponding in-game's menu backgrounds to UiParallelBackground field
      *                      to render the animated background for in-game menu's background.
      *
-     *
      * @param game         a game Object passed to constructor since it
      *                     was required for creating a Pause button. Pause button
      *                     needs the game object. Because once the button is clicked, it changes
      *                     the gameState inside game object.
-     * @param levelManager  The current level number where player is playing
-     *
-     *  @param levelManager The levelManager which is holding information about current level such as health etc.
+     * 
+     * @param levelManager  The current level number where player is playing.
+     *                      The levelManager which is holding information about current level such as health etc.
      */
     public UiTopMenuBar(int levelNumber, LevelManager levelManager, Game game){
         // Initialize the topMenuSkyParallelBackground object
@@ -105,9 +104,7 @@ public class UiTopMenuBar {
     }
 
     /**
-     * Calls the update method of pause button at in-game menu in order to check if the button has clicked or no.
-     *
-     * @return void
+     * Calls the update method of pause button at in-game menu in order to check if the button has clicked or not.
      */
     public void update(){
         // By checking update method in pause button
@@ -122,8 +119,10 @@ public class UiTopMenuBar {
      * @param g             g is a Graphics object used to draw on game window.
      * @param isPaused     isPaused is a boolean indicating if the game is paused or not. It is passed
      *                     as parameter in order to pause updating time and rendering it.
+     * 
      * @param health        Health is an integer indicating health of a player. It is passed in order
      *                      to render player's health on the in-game menu.
+     * 
      * @param eggCollected  Number of egg collected by player
      * @param keyCollected  number of keys collected by player
      */
