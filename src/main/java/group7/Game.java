@@ -82,7 +82,7 @@ public class Game implements Runnable {
 
     /**
      * Changes state of game based on argument passed.
-     * @param gameStateParameter    (The desired next state of game {@link gameState})
+     * @param gameStateParameter    (The desired next state of game)
      */
     public void changeGameStates(gameStates gameStateParameter) {
 
