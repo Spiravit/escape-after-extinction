@@ -4,6 +4,8 @@ You used to rule the earth, but eventually, your long lasting reign had come to 
 
 It’s time to escape after extinction.
 
+Watch the trailer [here](https://www.youtube.com/watch?v=v2LWwC0ZLkc).
+
 ## **Prerequisites**
 
 To begin working on this project, you will need to have the following installed:
