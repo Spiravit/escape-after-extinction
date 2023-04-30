@@ -16,7 +16,7 @@ To begin working on this project, you will need to have the following installed:
 
 1. Clone the repository using the command:
 ```
-git clone git@csil-git1.cs.surrey.sfu.ca:cmpt276s23_group7/escape-after-extinction.git
+git clone "the url of this repository"
 ```
 2. Open the project in your IDE of choice.
 
